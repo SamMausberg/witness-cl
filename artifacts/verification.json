@@ -1,0 +1,23 @@
+{
+  "artifact": "Witness-CL v0.1.0",
+  "date": "2026-09-08",
+  "python_version": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "tests_passed": 68,
+  "synthetic_episode_agent_records": 230400,
+  "paper_pages": 8,
+  "lean_source_theorems": 13,
+  "lean_kernel_checked": false,
+  "lean_build_error": "lake: command not found",
+  "llm_experiments_executed": false,
+  "public_benchmark_experiments_executed": false,
+  "upstream_clbench_adapter_implemented": false,
+  "checksums": {
+    "paper/main.pdf": "8be128b9d7652d7eef4ce0c5c7b93e5f47014481e1aaf073cac6b7b9bfcdae5e",
+    "artifacts/synthetic/episodes.csv": "372676a80634a548d097e77186f341f0d962279a6cc0464297e75f98a4b22bea",
+    "artifacts/synthetic/summary.json": "1c0971cc0786edbc547ffc3edfba5d059809481e147c3dbdc6fa5627fb4f24cc",
+    "artifacts/audit_power.json": "c9475f3f600965c18d59bad06d844cb6950cd7dd41103b74e331fcf95713e4b4",
+    "formal/WitnessCL/Core.lean": "632b865737c7395f32e20ff2fbd564c0c0437c7e41b2d5ad18b576c4bb3e6d58",
+    "artifacts/pytest.xml": "1b12b7bd574cc72b4e5941a0ef2b3d477a189ce562f206fbc807f37b5dbce497"
+  }
+}

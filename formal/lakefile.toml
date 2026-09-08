@@ -1,0 +1,6 @@
+name = "witnesscl"
+version = "0.1.0"
+defaultTargets = ["WitnessCL"]
+
+[[lean_lib]]
+name = "WitnessCL"

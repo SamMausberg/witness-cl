@@ -1,0 +1,29 @@
+{
+  "status": "proposed_not_executed_not_externally_registered",
+  "date": "2026-09-08",
+  "model_ids": "must_be_pinned_before_execution",
+  "model_count": 2,
+  "paired_runs_per_arm": 10,
+  "primary_target_normalized_reward_absolute_gain": 0.05,
+  "minimum_positive_tasks_of_six": 4,
+  "retention_noninferiority_tolerance": 0.01,
+  "statistical_error_budget": 0.05,
+  "arms": [
+    "raw_icl",
+    "mem0",
+    "ace",
+    "memprobe",
+    "tthe_or_evotest",
+    "witness_exact",
+    "witness_combined"
+  ],
+  "budget_regimes": [
+    "iso_feedback",
+    "iso_total_cost"
+  ],
+  "required_scopes": "public observable only, no evaluator latent IDs",
+  "required_feedback": "agent-visible only, no hidden correct answers",
+  "audit": "fresh paired forks only when genuinely supported; charge both branches",
+  "task_adapter_status": "not_implemented",
+  "official_results": null
+}

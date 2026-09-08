@@ -1,0 +1,90 @@
+{
+  "kind": "synthetic_audit_power_diagnostic_not_llm",
+  "seed": 741,
+  "rows": [
+    {
+      "true_mean_difference": -0.1,
+      "replicates": 2000,
+      "horizon": 2048,
+      "disagreement_rate": 0.3,
+      "delta_global": 0.05,
+      "candidate_index": 1,
+      "crossing_fraction": 0.001,
+      "pass_by_12": 0.0,
+      "pass_by_128": 0.001,
+      "pass_by_512": 0.001,
+      "pass_by_2048": 0.001,
+      "median_crossing_among_passed": 24.5
+    },
+    {
+      "true_mean_difference": 0.0,
+      "replicates": 2000,
+      "horizon": 2048,
+      "disagreement_rate": 0.3,
+      "delta_global": 0.05,
+      "candidate_index": 1,
+      "crossing_fraction": 0.0195,
+      "pass_by_12": 0.0005,
+      "pass_by_128": 0.0125,
+      "pass_by_512": 0.016,
+      "pass_by_2048": 0.0195,
+      "median_crossing_among_passed": 97.0
+    },
+    {
+      "true_mean_difference": 0.02,
+      "replicates": 2000,
+      "horizon": 2048,
+      "disagreement_rate": 0.3,
+      "delta_global": 0.05,
+      "candidate_index": 1,
+      "crossing_fraction": 0.121,
+      "pass_by_12": 0.0005,
+      "pass_by_128": 0.0235,
+      "pass_by_512": 0.045,
+      "pass_by_2048": 0.121,
+      "median_crossing_among_passed": 786.5
+    },
+    {
+      "true_mean_difference": 0.05,
+      "replicates": 2000,
+      "horizon": 2048,
+      "disagreement_rate": 0.3,
+      "delta_global": 0.05,
+      "candidate_index": 1,
+      "crossing_fraction": 0.859,
+      "pass_by_12": 0.001,
+      "pass_by_128": 0.064,
+      "pass_by_512": 0.227,
+      "pass_by_2048": 0.859,
+      "median_crossing_among_passed": 873.5
+    },
+    {
+      "true_mean_difference": 0.1,
+      "replicates": 2000,
+      "horizon": 2048,
+      "disagreement_rate": 0.3,
+      "delta_global": 0.05,
+      "candidate_index": 1,
+      "crossing_fraction": 1.0,
+      "pass_by_12": 0.0025,
+      "pass_by_128": 0.2585,
+      "pass_by_512": 0.886,
+      "pass_by_2048": 1.0,
+      "median_crossing_among_passed": 241.0
+    },
+    {
+      "true_mean_difference": 0.2,
+      "replicates": 2000,
+      "horizon": 2048,
+      "disagreement_rate": 0.3,
+      "delta_global": 0.05,
+      "candidate_index": 1,
+      "crossing_fraction": 1.0,
+      "pass_by_12": 0.0095,
+      "pass_by_128": 0.9375,
+      "pass_by_512": 1.0,
+      "pass_by_2048": 1.0,
+      "median_crossing_among_passed": 54.0
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "Witness-CL: Counterexample-Preserving Online Skill Compilation"
+message: "Research draft. No public benchmark win or kernel-checked Lean proof is claimed."
+type: software
+version: 0.1.0
+date-released: 2026-09-08
+license: MIT
+authors:
+  - family-names: Mausberg
+    given-names: Samuel
