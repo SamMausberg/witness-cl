@@ -1,0 +1,86 @@
+completed 10/20 seeds; 2.1s
+completed 20/20 seeds; 4.5s
+v4_B16 return 5.775 late 6.2 max deficit 2 seconds 0.0368
+v5_decision_B16 return 5.775 late 6.2 max deficit 4 seconds 0.0679
+v5_decision_untrained_B16 return 5.745833 late 6.2 max deficit 4 seconds 0.0698
+full_history_optimistic return 5.78125 late 6.2 max deficit 2 seconds 0.0508
+[
+  {
+    "candidate": "v5_decision_B16",
+    "baseline": "v4_B16",
+    "metric": "mean_return",
+    "mean_difference": -4.4408920985006264e-17,
+    "ci95_paired_t": [
+      -0.015497505621894073,
+      0.015497505621893982
+    ],
+    "positive_seeds": 4,
+    "negative_seeds": 5,
+    "tied_seeds": 11
+  },
+  {
+    "candidate": "v5_decision_B16",
+    "baseline": "v4_B16",
+    "metric": "late_A",
+    "mean_difference": 0,
+    "ci95_paired_t": [
+      0.0,
+      0.0
+    ],
+    "positive_seeds": 0,
+    "negative_seeds": 0,
+    "tied_seeds": 20
+  },
+  {
+    "candidate": "v5_decision_B16",
+    "baseline": "full_history_optimistic",
+    "metric": "mean_return",
+    "mean_difference": -0.00625,
+    "ci95_paired_t": [
+      -0.036110359615359834,
+      0.023610359615359837
+    ],
+    "positive_seeds": 3,
+    "negative_seeds": 8,
+    "tied_seeds": 9
+  },
+  {
+    "candidate": "v5_decision_B16",
+    "baseline": "full_history_optimistic",
+    "metric": "late_A",
+    "mean_difference": 0,
+    "ci95_paired_t": [
+      0.0,
+      0.0
+    ],
+    "positive_seeds": 0,
+    "negative_seeds": 0,
+    "tied_seeds": 20
+  },
+  {
+    "candidate": "v5_decision_B16",
+    "baseline": "v5_decision_untrained_B16",
+    "metric": "mean_return",
+    "mean_difference": 0.029166666666666695,
+    "ci95_paired_t": [
+      -0.003155943997971339,
+      0.06148927733130473
+    ],
+    "positive_seeds": 5,
+    "negative_seeds": 1,
+    "tied_seeds": 14
+  },
+  {
+    "candidate": "v5_decision_B16",
+    "baseline": "v5_decision_untrained_B16",
+    "metric": "late_A",
+    "mean_difference": 0,
+    "ci95_paired_t": [
+      0.0,
+      0.0
+    ],
+    "positive_seeds": 0,
+    "negative_seeds": 0,
+    "tied_seeds": 20
+  }
+]

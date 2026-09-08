@@ -1,0 +1,27 @@
+{
+  "status": "post-execution SHA256 manifest; local freeze predates execution",
+  "sha256": {
+    "src/witness_cl/latent.py": "7eb12e7ffedbc84527e09fc18bc92660cbf4440f58b33620769807dfb0835fa0",
+    "src/witness_cl/latent_agent.py": "0cb116d9fbb3ee070d570e1b12d2fe3003b0587852ed1f1be24a91edc5956368",
+    "src/witness_cl/latent_v5.py": "f99d138742bbb0fb1f344451ec4b0d2fdfbd965ce8c8ee1c33fbc1c1f59e6f2d",
+    "experiments/latent_v5.py": "16e6cd892e435d2df0b29a58b22b5251b6b89babd20a299cc178000631639245",
+    "experiments/audit_v5.py": "714f7f43d8b27d7f16cea429080e1e2910c7b62aa3428ebe57eed46f32e74963",
+    "tests/test_v5_decision.py": "1156986ceab2baa0046abadcbe69e95e98863a8d72726d37110dd66fc6fe675d",
+    "src/witness_cl/latent_v5_successor.py": "b63f375d7a42e3611d1bd8680380d6466ec80ba9a4626559de08e106d3737d14",
+    "experiments/latent_v5_successor.py": "b05b04776a244bace0dc1f31a5ca1be8b3363b068e1ad4fb5c790e0445008356",
+    "tests/test_v5_successor.py": "dadb25196901ae48fdd9a866b78a9c3a0e32cc14d3f3c1032d53aa0efba987cb",
+    "tests/test_v5_complementarity.py": "109b90c2a626a2335f7d8cc624c755de11deb2b865bfea8d56a6c603bf3119b7",
+    "artifacts/v5/experiment/audit.json": "3ea9339d453be6ae149788a22e1d5731da5cc0a3f089f6c1249de61541f53140",
+    "artifacts/v5/experiment/holdout/episodes.csv.gz": "430a28c6de8fa2235ea419896d0648855cd0fab798ca045f78e1bd4ebd6b3bf5",
+    "artifacts/v5/experiment/holdout/summary.json": "0dfa6df5b0d5d2c2afe737470f1dc02e3aff7d1e8b61bc0daacb6909a33825f3",
+    "artifacts/v5/experiment/paper_summary.json": "10bb9718e7e19fc32cfc3b32778a9778b776f8c323ac4eba98a1e8fd413b4ff0",
+    "artifacts/v5/experiment/pilot/episodes.csv.gz": "92ae9285dd933916c1ee19f9d807b86b8a6c1f4aaf5f63416231343d4ed41f3c",
+    "artifacts/v5/experiment/pilot/summary.json": "1ac90fa1413821db10bb05d7e86f29ca5225d6ed0635245f2401c385d293a8b1",
+    "artifacts/v5/experiment/plateau_diagnostic.json": "03cc65365a0c8499ab9a31cf60331e98054f25f6621cdb3ee6c1b8c20cf8ff8f",
+    "artifacts/v5/experiment/protocol_freeze.json": "a2f5750cebc41bb06c464108c88982c310b3b1460db834e37c0a5e6288f3c601",
+    "artifacts/v5/experiment/protocol_frozen.md": "6ac6a2ee6c56940aed89ace9bd690a8d25cfd0e4e1a002a7c4b692b48c60d26f",
+    "artifacts/v5/experiment/successor_exhaustive/audit.json": "d67571ed8c1d4277489da225545f204acb9e5202e518e2554cd3aeb3687a2bb3",
+    "artifacts/v5/experiment/successor_exhaustive/episodes.csv.gz": "41e5ffb7c6d03cf1fd9b4bbe8f78456250dd121296a576af3c44850ddc19a548",
+    "artifacts/v5/experiment/successor_exhaustive/summary.json": "7870e03c84e9c60bc267e2ea55bf4681b806680364138dc37b2e4ac214a89eb0"
+  }
+}

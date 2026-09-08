@@ -1,0 +1,82 @@
+{
+  "status": "native_contract_fixture_executed",
+  "timestamp_utc": "2026-09-08T19:25:26.836588+00:00",
+  "upstream_repository": "https://github.com/pgasawa/continual-learning-bench",
+  "upstream_commit": "5f8c50eb1e84b2eda2ef4faff757dfc812a0ea26",
+  "source_sha256": {
+    "src/interface.py": "e5747816690d08de7ea40f634b3ccb1e8a99f1b0a8c6294490b4608f2f633ea1",
+    "src/usage.py": "7bf85efc510212e98ca88d4048ffa6f9f0563633320e2d41d76601c82aa37761",
+    "src/runtime/runner.py": "ff69585edaaab7d015e378834d54f1873ce285ed5f6c6d54153bd642ef8eb280",
+    "src/systems/icl/system.py": "dd188c80f38facdeddd6ab26ecfef46ae114a36fecce85071c4d87b82fe735ae",
+    "src/systems/utils/provider_adapters.py": "735c0db0031031d0afe1395474f0991ddf711c96c5aa36fffd6434041e5aae28",
+    "src/systems/utils/token_budget.py": "931fdcc068444d60b19cf2db7e7fa09572f08d035acabc6f6d6dcaf79da757d9",
+    "src/systems/utils/structured_output.py": "616028b1d722c2f973971d3e62d29cf7a0ca3d60a453064f7274bd737a3fcfd8",
+    "src/tasks/database_exploration/task.py": "d23259196c4bf2204b0b46a515d17f0d435036581349b12dd6386cb2ae5c429e",
+    "src/tasks/database_exploration/prompts.py": "90216c980381e45ae26650195a1e2f1b361ce34854b2b18aa38bf8cf068e70b4"
+  },
+  "bridge_source_sha256": {
+    "core.py": "92df5285ee4af9995ad1c54dc2ff7b5f82e2196955c10e77a6c71a35306ce027",
+    "native.py": "1c7d056eb727e6bac8692a6768e30a713d8ac627b9daf43f47e7fc1a4c20b9d6",
+    "smoke.py": "22a3ed319a9a804f1ce425131bb30ac27dfb801a4bd1db7dd68791f5bded4ddc"
+  },
+  "python": "3.13.13 (main, Jun  2 2026, 22:27:49) [Clang 22.1.3 ]",
+  "packages": {
+    "litellm": "1.81.6",
+    "pydantic": "2.12.5",
+    "openai": "2.16.0",
+    "pytest": "9.0.2"
+  },
+  "official_benchmark_result": false,
+  "official_benchmark_data_used": false,
+  "language_model_used": false,
+  "synthetic_fixture": true,
+  "native_components_executed": [
+    "ICLSystem",
+    "DatabaseExploration",
+    "run_task",
+    "UsageEvent"
+  ],
+  "bridge_control_prompt_action_outcome_parity": true,
+  "fixture_outcomes_not_benchmark_scores": [
+    {
+      "instance_id": "fixture-alpha",
+      "instance_index": 0,
+      "reward": 0.75,
+      "success": true,
+      "raw_metric_name": "exploration_regret",
+      "raw_metric_value": 1.0,
+      "raw_metric_higher_is_better": false,
+      "metadata": {
+        "num_queries": 1,
+        "num_actions": 2,
+        "regret": 1.0,
+        "difficulty": "unknown"
+      }
+    },
+    {
+      "instance_id": "fixture-beta",
+      "instance_index": 1,
+      "reward": 0.0,
+      "success": false,
+      "raw_metric_name": "exploration_regret",
+      "raw_metric_value": 4.0,
+      "raw_metric_higher_is_better": false,
+      "metadata": {
+        "num_queries": 0,
+        "num_actions": 1,
+        "regret": 4.0,
+        "difficulty": "unknown"
+      }
+    }
+  ],
+  "transport_calls_per_arm": 3,
+  "input_tokens": null,
+  "output_tokens": null,
+  "cost_usd": null,
+  "token_counter": "identical deterministic fixture estimate; not a model tokenizer",
+  "wall_seconds": 17.67875090599773,
+  "legal_terminal_correct_answer_observed": true,
+  "reference_sql_observed": false,
+  "native_exact_certificate": "UNKNOWN",
+  "scope": "Actual upstream code on two local fixture questions; no benchmark or learning claim."
+}

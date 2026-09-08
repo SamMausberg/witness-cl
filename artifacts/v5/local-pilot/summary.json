@@ -1,0 +1,38 @@
+{
+  "raw_history": {
+    "episodes": 12,
+    "mean_return": 5.333333333333333,
+    "model_calls": 12,
+    "invalid_outputs": 0,
+    "model_seconds": 36.60189600100057,
+    "checker_seconds": 1.1399997674743645e-05,
+    "update_seconds": 1.8040009308606386e-06,
+    "prompt_tokens": 3385,
+    "completion_tokens": 144,
+    "usage_missing": 0
+  },
+  "checked_history": {
+    "episodes": 12,
+    "mean_return": 5.333333333333333,
+    "model_calls": 12,
+    "invalid_outputs": 0,
+    "model_seconds": 33.68431147100637,
+    "checker_seconds": 0.003673021003123722,
+    "update_seconds": 0.0009673609947640216,
+    "prompt_tokens": 3385,
+    "completion_tokens": 144,
+    "usage_missing": 0
+  },
+  "checked_static": {
+    "episodes": 12,
+    "mean_return": 5.333333333333333,
+    "model_calls": 0,
+    "invalid_outputs": 0,
+    "model_seconds": 0.0,
+    "checker_seconds": 0.0019837250001728535,
+    "update_seconds": 0.0007568910004920326,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "usage_missing": 0
+  }
+}

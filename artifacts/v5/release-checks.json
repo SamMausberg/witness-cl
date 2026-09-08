@@ -1,0 +1,34 @@
+{
+  "status": "locally_verified_research_checkpoint",
+  "bundle_sha256": "9314a21822326a932c491ecd68510a0d533426777d589824a0c14c4f76edd291",
+  "imported_main": "c1d63a6daeaa19e0024b4fb1cc58bf276a808541",
+  "standard_python_tests": {
+    "passed": 401,
+    "optional_native_skips": 8
+  },
+  "native_runtime_tests": {
+    "passed": 20,
+    "overlap_with_standard_suite": 12
+  },
+  "lean_theorems": 51,
+  "cpp_cases": 1032,
+  "cpu_episode_rows": 72192,
+  "cpu_guarded_prefixes": 54144,
+  "local_pilot_episodes": 180,
+  "actual_model_calls": 120,
+  "native_official_benchmark_run": false,
+  "general_problem_solved": false,
+  "paper_pages": 11,
+  "source_status": "v5 primary frozen, successor and model extension exploratory",
+  "local_model_server_stopped": true,
+  "sha256": {
+    "paper/main.pdf": "84f483f919bf206104c809bd58b7a8617f3efd56b20b24158dda8b0f0302ccfb",
+    "paper/main.tex": "bd6829a875265b4d632f389426a0dd96c70a7046d82b762b182dbe40ff241990",
+    "paper/v5_section.tex": "98cd2d48ccbaff982e71b4a9604161cde2037da35fc32701e5e2603dccf32319",
+    "paper/v5_local.tex": "7ebfc80317750934be609160b22451670de0b53c476cdb5443a846d669f7e4d7",
+    "artifacts/v5/pytest.txt": "2bc3a24c16726685e9dfcbe5e3d24d3d39b2d0c6ff6b7210f6c7c69913cad994",
+    "artifacts/v5/native-tests.txt": "12b8bca576f627da95ef95003e3e03098b733514727af5b89735850c82d5ea84",
+    "artifacts/v5/local-pilot-audit.json": "0e6685f4896b9df80e25e464fa2096f1f55b31d55e9a3e461e0414dfcff8cbab",
+    "integrations/clbench/native_contract_manifest.json": "4013aac60d8ed4462bb4f4c67f9cd6217792857affa2b33bdd6478c3175f999c"
+  }
+}

@@ -1,64 +1,53 @@
 # Witness-CL
 
-**Learning latent continuations without trusting the proposer.**
+**Evidence-preserving online learning, with checked assumptions and falsifiable experiments.**
 
-Version 0.4.0. [Paper](paper/main.pdf) · [Results](artifacts/v4/RESULTS.md) ·
-[Theory](docs/v4/THEORY.md) · [Claim boundaries](docs/v4/RESEARCH_STATUS.md) ·
-[Evaluation plan](docs/v4/EVALUATION.md)
+Version 0.5.0 · [Paper](paper/main.pdf) · [Research status](docs/v5/RESEARCH_STATUS.md) · [Results](docs/v5/EXPERIMENT.md) · [Next steps](docs/v5/NEXT_STEPS.md)
 
-Learns compatible hidden-state models from executed traces, checks immutable
-programs against a retained incumbent, and charges informative probes before
-execution. Neural proposals train online but cannot bypass the checker. The
-contract requires a valid finite state bound, stationary deterministic dynamics,
-public rewards and true resets. No world table or hidden state is supplied.
+This private research repository continues `Witness_CL_v4.bundle`, preserving its history, release tags, original results, and archived paper. It learns finite hidden models from executed traces, trains an online proposal ranker, and checks immutable programs before changing protected incumbents. The contract requires a valid finite class, deterministic stationary dynamics, public rewards, and genuine resets.
 
-**355 Python tests pass. 400 new and 632 legacy C++ cases pass, plus range checks.**
-In 38,400 fresh-seed synthetic episodes, the method ties a strong full-history
-planner's late return but has lower mean return. Informative probes improve the
-controller's own ablation. This planner is not an LLM ICL baseline.
+**The general continual-learning problem remains open.** The new regret-directed probe rule loses to v4 and a strong symbolic full-history planner. A post-hoc weak-dominance repair fixes a diagnosed plateau but still trails both controls. Two individually uninformative free probes can be useful together; that counterexample motivates bounded adaptive probe planning.
 
-**No native CL-Bench, AgentCL, or real-model experiment ran. All 50 Lean theorem
-declarations remain uncompiled attempts. No new GPU kernel or general
-no-forgetting result is claimed.**
+**401 standard Python tests pass; eight additional native checks pass in the optional runtime.**
+
+**51 Lean 4.19.0 theorem statements are checked**, with no custom axioms or proof placeholders. These are conditional abstract lemmas, not a verification of Python, neural training, or a deployed language agent. See the [formal audit](docs/v5/FORMAL.md).
+
+The new CPU studies preserve **72,192 episode records**, including **54,144 audited guarded prefixes** within B16. Actual local-model pilots made **120 calls** across five worlds. Their exploratory results and all costs are recorded; they are not native CL-Bench or AgentCL performance. The full-history symbolic planner is not LLM ICL.
 
 ## Reproduce
 
 ```bash
-python -m pip install -e '.[test,analysis]'
+python3 -m pip install -e '.[test,analysis]'
 make test
 make cpp-check
-make latent-study
-make latent-heldout
-make latent-diagnostics
-make holdout-audit
+make formal
 make paper
+PYTHONPATH=src python3 experiments/audit_v5.py
 ```
 
-A small execution example is `PYTHONPATH=src python examples/latent_demo.py`.
-`make formal` needs the pinned Lean toolchain. Paper generation needs pdfLaTeX,
-not BibTeX; a strict renderer builds references from the included `.bib` file.
-See [execution](docs/v4/EXECUTION.md) for actual run boundaries and the optional
-unexecuted local-model driver.
+`make formal` runs the source-hashed theorem/axiom audit with pinned Lean 4.19.0. It requires an installed toolchain; `LAKE` can specify its launcher. `make paper` requires pdfLaTeX and the standard packages imported by `paper/main.tex`. It regenerates tables and the scientific plot from recorded data, not new outcomes. Native integration has separate pinned dependencies and tests; see [its README](integrations/clbench/README.md).
+
+To run a new CPU study without replacing recorded evidence, use a new output directory:
+
+```bash
+PYTHONPATH=src python3 experiments/latent_v5.py --seed-offset 50000 --seeds 20 --out artifacts/new-development-run
+```
+
+A fresh seed from the already exhaustively studied 256-table class is development data, not new-domain validation. Local-model reproduction requires the matching served model; the driver refuses to overwrite outputs and preserves failures. No model weights or credentials are bundled.
 
 ## Repository map
 
-| Path | Role |
+| Path | Purpose |
 |---|---|
-| `src/witness_cl/latent.py` | Exact latent cover, paired bounds, residual DAG IDs, observable probe outcomes |
-| `src/witness_cl/latent_agent.py` | Online proposer, immutable tickets, incumbents, risk ledger, capacity eras |
-| `src/witness_cl/latent_proposals.py` | Bounded typed JSON candidates, no executable-code ingestion |
-| `experiments/latent_*.py` | Reproducible mechanism study, diagnostics, optional local-model protocol |
-| `tests/test_v4_*.py`, `kernels/latent_reference.cpp` | Exhaustive-oracle tests and independent numeric reference |
-| `formal/WitnessCL/Latent.lean`, `docs/v4/` | Proof attempts, written arguments, failure cases and falsification plan |
-| `artifacts/v4/`, `paper/` | Raw data, held-out parity audit, logs, paper PDF and LaTeX/TikZ sources |
+| `src/witness_cl/latent.py`, `latent_agent.py` | Preserved exact finite learner, checker, online ranker and budget ledger |
+| `src/witness_cl/latent_v5*.py` | Frozen rejected probe rule and separate post-hoc repair |
+| `experiments/`, `tests/` | Executed studies, independent replay audits, failure/cap/retention tests |
+| `formal/` | 51 checked abstract theorems and a complete axiom audit |
+| `integrations/clbench/` | Pinned native interface and feedback/usage boundary work |
+| `artifacts/v5/` | Raw data, source hashes, actual inference outputs, logs and provenance |
+| `docs/v5/` | Source-grounded literature, experiments, claim boundaries and continuation plan |
+| `paper/` | Current 11-page LaTeX/TikZ paper, PDF, figure sources and data-backed tables |
 
-The uploaded v3 Git history is retained. Its draft is archived in `paper/v3/`;
-historical results remain in `artifacts/v3/` and earlier directories. The noise,
-progressive-module and CUDA branches are not an integrated v4 language agent.
-This is a local research repository, not a remotely published GitHub project.
+The primary new held-out difference is **−0.09458 reward/episode versus v4**, paired 95% interval **[−0.16915, −0.02001]**, at about **1.90×** measured mechanics time. This is a rejected hypothesis. The original v4 negative comparison and every v5 outcome remain visible.
 
-MIT licensed. Prepared as an AI-assisted draft for Samuel Mausberg. Predictive
-state representations, dynamic shielding, conservative exploration, DeepSPI,
-evolving memory/harnesses, and versioned skill libraries are credited in the
-[primary-source bibliography](paper/references.bib). Novelty and native benchmark
-superiority remain unestablished.
+MIT software license retained. Prepared for Samuel Mausberg as an AI-assisted research draft requiring author review and independent replication. No public benchmark win, global novelty, bounded lifelong memory, or universal no-forgetting claim is made.

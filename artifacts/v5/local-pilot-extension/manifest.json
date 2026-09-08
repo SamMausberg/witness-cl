@@ -1,0 +1,28 @@
+{
+  "status": "complete",
+  "native_benchmark": false,
+  "purpose": "integration smoke, not a powered or iso-compute comparison",
+  "seeds": [
+    41001,
+    41002,
+    41003,
+    41004
+  ],
+  "episodes": 12,
+  "arms": [
+    "raw_history",
+    "checked_history",
+    "checked_static"
+  ],
+  "model": "witness-local-qwen27b-q3",
+  "temperature": 0,
+  "max_tokens": 96,
+  "prompt": "Choose a four-step program to maximize total objective reward in an unknown deterministic two-state machine. Each episode resets to the same hidden state. Learn from the executed traces; dynamics stay fixed when objectives change. Return only JSON {\"word\":[a,a,a,a]} with actions 0 or 1. No explanations, markdown, extra keys, or invented observations.",
+  "risk_budget": 16,
+  "goal_schedule": "A-B-A equal blocks",
+  "invalid_output": "count rejection and execute word 0000; no retry",
+  "time_started_unix": 1788894730.219615,
+  "source_sha256": "c69ec2cc12d0e9c6ae63dc0eedbb45a4fc6f0d95900aa06d430cee669c572921",
+  "completed_rows": 144,
+  "time_finished_unix": 1788894987.189888
+}

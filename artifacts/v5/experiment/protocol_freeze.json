@@ -1,0 +1,9 @@
+{
+  "status": "local freeze before pilot and holdout, not externally registered",
+  "files": {
+    "src/witness_cl/latent_v5.py": "f99d138742bbb0fb1f344451ec4b0d2fdfbd965ce8c8ee1c33fbc1c1f59e6f2d",
+    "experiments/latent_v5.py": "16e6cd892e435d2df0b29a58b22b5251b6b89babd20a299cc178000631639245",
+    "tests/test_v5_decision.py": "1156986ceab2baa0046abadcbe69e95e98863a8d72726d37110dd66fc6fe675d",
+    "docs/v5/EXPERIMENT.md": "6ac6a2ee6c56940aed89ace9bd690a8d25cfd0e4e1a002a7c4b692b48c60d26f"
+  }
+}

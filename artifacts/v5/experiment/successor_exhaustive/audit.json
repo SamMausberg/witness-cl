@@ -1,0 +1,8 @@
+{
+  "status": "passed independent saved-episode replay",
+  "episodes_checked": 49152,
+  "guarded_prefixes_checked": 36864,
+  "exact_unique_labelled_tables": 256,
+  "incumbent_violations_reported": 0,
+  "retention_note": "independent trajectory tests verify incumbent values; CSV does not store incumbent identities"
+}

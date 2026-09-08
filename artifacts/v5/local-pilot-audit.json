@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "total_episode_rows": 180,
+  "model_calls": 120,
+  "independent_worlds": 5,
+  "executed_source_sha256": "c69ec2cc12d0e9c6ae63dc0eedbb45a4fc6f0d95900aa06d430cee669c572921",
+  "summary_note": "Five-world exploratory pilot, not native benchmark, no powered contrast; code accounting fixes did not affect recorded calls."
+}

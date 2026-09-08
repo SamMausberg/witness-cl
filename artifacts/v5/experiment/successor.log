@@ -1,0 +1,68 @@
+32/256 tables, 11.3s
+64/256 tables, 19.7s
+96/256 tables, 33.6s
+128/256 tables, 44.0s
+160/256 tables, 52.2s
+192/256 tables, 60.2s
+224/256 tables, 69.6s
+256/256 tables, 78.1s
+{
+  "aggregates": [
+    {
+      "method": "v4_B16",
+      "mean_return": 6.26123046875,
+      "late_A": 6.375,
+      "worst_prefix_deficit": 0.609375,
+      "spent": 2.7578125,
+      "incumbent_violations": 0,
+      "seconds": 0.04351067860154956,
+      "weak_promotions": 0,
+      "max_worst_prefix_deficit": 4
+    },
+    {
+      "method": "v5_decision_B16",
+      "mean_return": 6.19873046875,
+      "late_A": 6.328125,
+      "worst_prefix_deficit": 1.78125,
+      "spent": 4.6953125,
+      "incumbent_violations": 0,
+      "seconds": 0.08453185228520965,
+      "weak_promotions": 0,
+      "max_worst_prefix_deficit": 10
+    },
+    {
+      "method": "v5_weak_closure_B16",
+      "mean_return": 6.253255208333333,
+      "late_A": 6.375,
+      "worst_prefix_deficit": 1.78125,
+      "spent": 4.6953125,
+      "incumbent_violations": 0,
+      "seconds": 0.1145239419961257,
+      "weak_promotions": 0.09375,
+      "max_worst_prefix_deficit": 10
+    },
+    {
+      "method": "full_history_optimistic",
+      "mean_return": 6.29541015625,
+      "late_A": 6.375,
+      "worst_prefix_deficit": 0.140625,
+      "spent": 0,
+      "incumbent_violations": 0,
+      "seconds": 0.06179273271872887,
+      "weak_promotions": 0,
+      "max_worst_prefix_deficit": 4
+    }
+  ],
+  "successor_vs_original": {
+    "mean_return": {
+      "mean_difference": 0.054524739583333336,
+      "improved_tables": 10,
+      "worsened_tables": 0
+    },
+    "late_A": {
+      "mean_difference": 0.046875,
+      "improved_tables": 4,
+      "worsened_tables": 0
+    }
+  }
+}

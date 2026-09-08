@@ -1,0 +1,14 @@
+python3 formal/audit.py --output artifacts/v5
+{
+  "passed": true,
+  "theorem_count": 51,
+  "build_exit_code": 0,
+  "audit_exit_code": 0,
+  "axiom_free_theorems": 24,
+  "axiom_usage_counts": {
+    "Classical.choice": 2,
+    "Quot.sound": 11,
+    "propext": 27
+  },
+  "unexpected_axioms": []
+}

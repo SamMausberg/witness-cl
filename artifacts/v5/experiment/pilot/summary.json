@@ -1,0 +1,2223 @@
+{
+  "status": "executed exact finite CPU mechanism study; no LLM or native benchmark",
+  "seed_offset": 20000,
+  "seeds": 20,
+  "episodes": 48,
+  "horizon": 4,
+  "episode_rows": 3840,
+  "methods": [
+    "v4_B16",
+    "v5_decision_B16",
+    "v5_decision_untrained_B16",
+    "full_history_optimistic"
+  ],
+  "selection_rule": "max guaranteed sum-goal minimax regret reduction/(1+debit); lower debit; larger current upper gain; proposer order; abstain at zero",
+  "uncertainty": "paired seed Student t intervals; descriptive, not multiplicity adjusted",
+  "limitations": [
+    "tiny same-distribution realizable stationary finite class",
+    "uniform generated tables sampled with replacement; fresh seeds are not disjoint worlds",
+    "same episode/action budget, unequal total compute",
+    "v5 exact enumeration is exponential; no scalable inference claim",
+    "sum-goal regret reduction is not a reward improvement guarantee",
+    "baseline uses original uniform labelled-model mean tie-break"
+  ],
+  "aggregates": [
+    {
+      "method": "v4_B16",
+      "mean_return": 5.775,
+      "late_A": 6.2,
+      "worst_prefix_deficit": 0.2,
+      "incumbent_violations": 0,
+      "spent": 2.5,
+      "seconds": 0.0368258697998499,
+      "checker_nodes": 33026,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 20.5,
+      "final_partials": 7.8,
+      "max_worst_prefix_deficit": 2,
+      "total_incumbent_violations": 0
+    },
+    {
+      "method": "v5_decision_B16",
+      "mean_return": 5.775,
+      "late_A": 6.2,
+      "worst_prefix_deficit": 0.3,
+      "incumbent_violations": 0,
+      "spent": 4.1,
+      "seconds": 0.06792043965015182,
+      "checker_nodes": 29214.6,
+      "model_rollouts": 6137.6,
+      "labelled_models_enumerated": 383.6,
+      "profile_builds": 3.95,
+      "profile_cache_hits": 43.3,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 18.3,
+      "final_partials": 7.55,
+      "max_worst_prefix_deficit": 4,
+      "total_incumbent_violations": 0
+    },
+    {
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 5.745833333333334,
+      "late_A": 6.2,
+      "worst_prefix_deficit": 0.3,
+      "incumbent_violations": 0,
+      "spent": 4.3,
+      "seconds": 0.06979833644991232,
+      "checker_nodes": 29797.6,
+      "model_rollouts": 6297.6,
+      "labelled_models_enumerated": 393.6,
+      "profile_builds": 4.25,
+      "profile_cache_hits": 42.95,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 17.9,
+      "final_partials": 7.6,
+      "max_worst_prefix_deficit": 4,
+      "total_incumbent_violations": 0
+    },
+    {
+      "method": "full_history_optimistic",
+      "mean_return": 5.78125,
+      "late_A": 6.2,
+      "worst_prefix_deficit": 0.1,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.05084197350024624,
+      "checker_nodes": 0,
+      "model_rollouts": 24922.4,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 18.7,
+      "final_partials": 7.3,
+      "max_worst_prefix_deficit": 2,
+      "total_incumbent_violations": 0
+    }
+  ],
+  "paired": [
+    {
+      "candidate": "v5_decision_B16",
+      "baseline": "v4_B16",
+      "metric": "mean_return",
+      "mean_difference": -4.4408920985006264e-17,
+      "ci95_paired_t": [
+        -0.015497505621894073,
+        0.015497505621893982
+      ],
+      "positive_seeds": 4,
+      "negative_seeds": 5,
+      "tied_seeds": 11
+    },
+    {
+      "candidate": "v5_decision_B16",
+      "baseline": "v4_B16",
+      "metric": "late_A",
+      "mean_difference": 0,
+      "ci95_paired_t": [
+        0.0,
+        0.0
+      ],
+      "positive_seeds": 0,
+      "negative_seeds": 0,
+      "tied_seeds": 20
+    },
+    {
+      "candidate": "v5_decision_B16",
+      "baseline": "full_history_optimistic",
+      "metric": "mean_return",
+      "mean_difference": -0.00625,
+      "ci95_paired_t": [
+        -0.036110359615359834,
+        0.023610359615359837
+      ],
+      "positive_seeds": 3,
+      "negative_seeds": 8,
+      "tied_seeds": 9
+    },
+    {
+      "candidate": "v5_decision_B16",
+      "baseline": "full_history_optimistic",
+      "metric": "late_A",
+      "mean_difference": 0,
+      "ci95_paired_t": [
+        0.0,
+        0.0
+      ],
+      "positive_seeds": 0,
+      "negative_seeds": 0,
+      "tied_seeds": 20
+    },
+    {
+      "candidate": "v5_decision_B16",
+      "baseline": "v5_decision_untrained_B16",
+      "metric": "mean_return",
+      "mean_difference": 0.029166666666666695,
+      "ci95_paired_t": [
+        -0.003155943997971339,
+        0.06148927733130473
+      ],
+      "positive_seeds": 5,
+      "negative_seeds": 1,
+      "tied_seeds": 14
+    },
+    {
+      "candidate": "v5_decision_B16",
+      "baseline": "v5_decision_untrained_B16",
+      "metric": "late_A",
+      "mean_difference": 0,
+      "ci95_paired_t": [
+        0.0,
+        0.0
+      ],
+      "positive_seeds": 0,
+      "negative_seeds": 0,
+      "tied_seeds": 20
+    }
+  ],
+  "per_seed": [
+    {
+      "seed": 20000,
+      "method": "v4_B16",
+      "mean_return": 6.541666666666667,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 4,
+      "seconds": 0.025983838999309228,
+      "checker_nodes": 10116,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 8,
+      "final_partials": 1
+    },
+    {
+      "seed": 20000,
+      "method": "v5_decision_B16",
+      "mean_return": 6.541666666666667,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 4,
+      "seconds": 0.058946361001289915,
+      "checker_nodes": 9961,
+      "model_rollouts": 4448,
+      "labelled_models_enumerated": 278,
+      "profile_builds": 4,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 8,
+      "final_partials": 2
+    },
+    {
+      "seed": 20000,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 6.5,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 4,
+      "seconds": 0.04541616200003773,
+      "checker_nodes": 6837,
+      "model_rollouts": 4432,
+      "labelled_models_enumerated": 277,
+      "profile_builds": 4,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 8,
+      "final_partials": 1
+    },
+    {
+      "seed": 20000,
+      "method": "full_history_optimistic",
+      "mean_return": 6.583333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.015236016000926611,
+      "checker_nodes": 0,
+      "model_rollouts": 5808,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 8,
+      "final_partials": 1
+    },
+    {
+      "seed": 20001,
+      "method": "v4_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.048207767998974305,
+      "checker_nodes": 49126,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20001,
+      "method": "v5_decision_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 10,
+      "seconds": 0.08974158999990323,
+      "checker_nodes": 44838,
+      "model_rollouts": 7520,
+      "labelled_models_enumerated": 470,
+      "profile_builds": 5,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 22,
+      "final_partials": 12
+    },
+    {
+      "seed": 20001,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 10,
+      "seconds": 0.08533194300071045,
+      "checker_nodes": 46422,
+      "model_rollouts": 7520,
+      "labelled_models_enumerated": 470,
+      "profile_builds": 5,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 22,
+      "final_partials": 12
+    },
+    {
+      "seed": 20001,
+      "method": "full_history_optimistic",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.07469324699923163,
+      "checker_nodes": 0,
+      "model_rollouts": 42752,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20002,
+      "method": "v4_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.04360629899929336,
+      "checker_nodes": 49126,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20002,
+      "method": "v5_decision_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 10,
+      "seconds": 0.07024116399952618,
+      "checker_nodes": 45806,
+      "model_rollouts": 7488,
+      "labelled_models_enumerated": 468,
+      "profile_builds": 5,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20002,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 10,
+      "seconds": 0.07805065800130251,
+      "checker_nodes": 46422,
+      "model_rollouts": 7520,
+      "labelled_models_enumerated": 470,
+      "profile_builds": 5,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 22,
+      "final_partials": 12
+    },
+    {
+      "seed": 20002,
+      "method": "full_history_optimistic",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.0731950470017182,
+      "checker_nodes": 0,
+      "model_rollouts": 42752,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20003,
+      "method": "v4_B16",
+      "mean_return": 2.6666666666666665,
+      "late_A": 0,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.04008527000041795,
+      "checker_nodes": 48211,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20003,
+      "method": "v5_decision_B16",
+      "mean_return": 2.6666666666666665,
+      "late_A": 0,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.06978717300080461,
+      "checker_nodes": 45671,
+      "model_rollouts": 6080,
+      "labelled_models_enumerated": 380,
+      "profile_builds": 3,
+      "profile_cache_hits": 45,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20003,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 2.6666666666666665,
+      "late_A": 0,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.07023931799994898,
+      "checker_nodes": 45631,
+      "model_rollouts": 6720,
+      "labelled_models_enumerated": 420,
+      "profile_builds": 4,
+      "profile_cache_hits": 44,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20003,
+      "method": "full_history_optimistic",
+      "mean_return": 2.6666666666666665,
+      "late_A": 0,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.05459635800070828,
+      "checker_nodes": 0,
+      "model_rollouts": 26432,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20004,
+      "method": "v4_B16",
+      "mean_return": 2.6666666666666665,
+      "late_A": 0,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.03966486799981794,
+      "checker_nodes": 48211,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20004,
+      "method": "v5_decision_B16",
+      "mean_return": 2.6666666666666665,
+      "late_A": 0,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.07891559100062295,
+      "checker_nodes": 45639,
+      "model_rollouts": 6592,
+      "labelled_models_enumerated": 412,
+      "profile_builds": 4,
+      "profile_cache_hits": 44,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20004,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 2.6666666666666665,
+      "late_A": 0,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.08006711099915265,
+      "checker_nodes": 45631,
+      "model_rollouts": 6720,
+      "labelled_models_enumerated": 420,
+      "profile_builds": 4,
+      "profile_cache_hits": 44,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20004,
+      "method": "full_history_optimistic",
+      "mean_return": 2.6666666666666665,
+      "late_A": 0,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.057129594000798534,
+      "checker_nodes": 0,
+      "model_rollouts": 26432,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20005,
+      "method": "v4_B16",
+      "mean_return": 6.583333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.03145703200061689,
+      "checker_nodes": 25924,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 2
+    },
+    {
+      "seed": 20005,
+      "method": "v5_decision_B16",
+      "mean_return": 6.625,
+      "late_A": 8,
+      "worst_prefix_deficit": 2,
+      "incumbent_violations": 0,
+      "spent": 8,
+      "seconds": 0.06227516100079811,
+      "checker_nodes": 11810,
+      "model_rollouts": 6496,
+      "labelled_models_enumerated": 406,
+      "profile_builds": 5,
+      "profile_cache_hits": 42,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 14,
+      "final_partials": 2
+    },
+    {
+      "seed": 20005,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 6.625,
+      "late_A": 8,
+      "worst_prefix_deficit": 2,
+      "incumbent_violations": 0,
+      "spent": 8,
+      "seconds": 0.060639669000011054,
+      "checker_nodes": 11810,
+      "model_rollouts": 6496,
+      "labelled_models_enumerated": 406,
+      "profile_builds": 5,
+      "profile_cache_hits": 42,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 14,
+      "final_partials": 2
+    },
+    {
+      "seed": 20005,
+      "method": "full_history_optimistic",
+      "mean_return": 6.458333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.062128628000209574,
+      "checker_nodes": 0,
+      "model_rollouts": 30688,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 2
+    },
+    {
+      "seed": 20006,
+      "method": "v4_B16",
+      "mean_return": 7.75,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 4,
+      "seconds": 0.039717958999972325,
+      "checker_nodes": 47635,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20006,
+      "method": "v5_decision_B16",
+      "mean_return": 7.708333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.06649392699910095,
+      "checker_nodes": 45624,
+      "model_rollouts": 6080,
+      "labelled_models_enumerated": 380,
+      "profile_builds": 3,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20006,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 7.583333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.06379391299924464,
+      "checker_nodes": 45570,
+      "model_rollouts": 6592,
+      "labelled_models_enumerated": 412,
+      "profile_builds": 4,
+      "profile_cache_hits": 42,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20006,
+      "method": "full_history_optimistic",
+      "mean_return": 7.833333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.06127073799871141,
+      "checker_nodes": 0,
+      "model_rollouts": 32128,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 16,
+      "final_partials": 9
+    },
+    {
+      "seed": 20007,
+      "method": "v4_B16",
+      "mean_return": 6.541666666666667,
+      "late_A": 6,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.020629463000659598,
+      "checker_nodes": 10305,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 22,
+      "final_partials": 1
+    },
+    {
+      "seed": 20007,
+      "method": "v5_decision_B16",
+      "mean_return": 6.541666666666667,
+      "late_A": 6,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.06066521600041597,
+      "checker_nodes": 11031,
+      "model_rollouts": 5664,
+      "labelled_models_enumerated": 354,
+      "profile_builds": 3,
+      "profile_cache_hits": 44,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 18,
+      "final_partials": 2
+    },
+    {
+      "seed": 20007,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 6.541666666666667,
+      "late_A": 6,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.07834685300076671,
+      "checker_nodes": 10600,
+      "model_rollouts": 5696,
+      "labelled_models_enumerated": 356,
+      "profile_builds": 3,
+      "profile_cache_hits": 44,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 12,
+      "final_partials": 1
+    },
+    {
+      "seed": 20007,
+      "method": "full_history_optimistic",
+      "mean_return": 6.541666666666667,
+      "late_A": 6,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.025204634001056547,
+      "checker_nodes": 0,
+      "model_rollouts": 10048,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 16,
+      "final_partials": 3
+    },
+    {
+      "seed": 20008,
+      "method": "v4_B16",
+      "mean_return": 5.291666666666667,
+      "late_A": 4,
+      "worst_prefix_deficit": 2,
+      "incumbent_violations": 0,
+      "spent": 4,
+      "seconds": 0.02872477800156048,
+      "checker_nodes": 15220,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 10,
+      "final_partials": 3
+    },
+    {
+      "seed": 20008,
+      "method": "v5_decision_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 4,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.05363216899968393,
+      "checker_nodes": 7041,
+      "model_rollouts": 4432,
+      "labelled_models_enumerated": 277,
+      "profile_builds": 4,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 8,
+      "final_partials": 1
+    },
+    {
+      "seed": 20008,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 4,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.05251069699988875,
+      "checker_nodes": 7041,
+      "model_rollouts": 4432,
+      "labelled_models_enumerated": 277,
+      "profile_builds": 4,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 8,
+      "final_partials": 1
+    },
+    {
+      "seed": 20008,
+      "method": "full_history_optimistic",
+      "mean_return": 5.291666666666667,
+      "late_A": 4,
+      "worst_prefix_deficit": 2,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.015281849999155384,
+      "checker_nodes": 0,
+      "model_rollouts": 5824,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 8,
+      "final_partials": 2
+    },
+    {
+      "seed": 20009,
+      "method": "v4_B16",
+      "mean_return": 7.791666666666667,
+      "late_A": 8,
+      "worst_prefix_deficit": 2,
+      "incumbent_violations": 0,
+      "spent": 4,
+      "seconds": 0.019275017999461852,
+      "checker_nodes": 8686,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 10,
+      "final_partials": 1
+    },
+    {
+      "seed": 20009,
+      "method": "v5_decision_B16",
+      "mean_return": 7.833333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.041398843999559176,
+      "checker_nodes": 6623,
+      "model_rollouts": 4368,
+      "labelled_models_enumerated": 273,
+      "profile_builds": 3,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 8,
+      "final_partials": 1
+    },
+    {
+      "seed": 20009,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 7.791666666666667,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 6,
+      "seconds": 0.04983983999954944,
+      "checker_nodes": 6759,
+      "model_rollouts": 4400,
+      "labelled_models_enumerated": 275,
+      "profile_builds": 4,
+      "profile_cache_hits": 42,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 8,
+      "final_partials": 1
+    },
+    {
+      "seed": 20009,
+      "method": "full_history_optimistic",
+      "mean_return": 7.916666666666667,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.016503404000104638,
+      "checker_nodes": 0,
+      "model_rollouts": 5808,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 8,
+      "final_partials": 1
+    },
+    {
+      "seed": 20010,
+      "method": "v4_B16",
+      "mean_return": 7.833333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.04720010699929844,
+      "checker_nodes": 47165,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20010,
+      "method": "v5_decision_B16",
+      "mean_return": 7.791666666666667,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.07467389200064645,
+      "checker_nodes": 45671,
+      "model_rollouts": 6080,
+      "labelled_models_enumerated": 380,
+      "profile_builds": 3,
+      "profile_cache_hits": 44,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20010,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 7.583333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.07399545199950808,
+      "checker_nodes": 45570,
+      "model_rollouts": 6592,
+      "labelled_models_enumerated": 412,
+      "profile_builds": 4,
+      "profile_cache_hits": 42,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20010,
+      "method": "full_history_optimistic",
+      "mean_return": 7.833333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.06548923300033493,
+      "checker_nodes": 0,
+      "model_rollouts": 32128,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 16,
+      "final_partials": 9
+    },
+    {
+      "seed": 20011,
+      "method": "v4_B16",
+      "mean_return": 5.166666666666667,
+      "late_A": 4,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.026326469998821267,
+      "checker_nodes": 13729,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 2
+    },
+    {
+      "seed": 20011,
+      "method": "v5_decision_B16",
+      "mean_return": 5.166666666666667,
+      "late_A": 4,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.05931828000029782,
+      "checker_nodes": 11000,
+      "model_rollouts": 5728,
+      "labelled_models_enumerated": 358,
+      "profile_builds": 4,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 14,
+      "final_partials": 2
+    },
+    {
+      "seed": 20011,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 5.166666666666667,
+      "late_A": 4,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.059079036000184715,
+      "checker_nodes": 11000,
+      "model_rollouts": 5728,
+      "labelled_models_enumerated": 358,
+      "profile_builds": 4,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 14,
+      "final_partials": 2
+    },
+    {
+      "seed": 20011,
+      "method": "full_history_optimistic",
+      "mean_return": 5.041666666666667,
+      "late_A": 4,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.020097491000342416,
+      "checker_nodes": 0,
+      "model_rollouts": 8128,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 2
+    },
+    {
+      "seed": 20012,
+      "method": "v4_B16",
+      "mean_return": 7.291666666666667,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.03537444199901074,
+      "checker_nodes": 23613,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 22,
+      "final_partials": 1
+    },
+    {
+      "seed": 20012,
+      "method": "v5_decision_B16",
+      "mean_return": 7.25,
+      "late_A": 8,
+      "worst_prefix_deficit": 4,
+      "incumbent_violations": 0,
+      "spent": 6,
+      "seconds": 0.06191039300028933,
+      "checker_nodes": 11517,
+      "model_rollouts": 6464,
+      "labelled_models_enumerated": 404,
+      "profile_builds": 4,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 12,
+      "final_partials": 1
+    },
+    {
+      "seed": 20012,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 7.25,
+      "late_A": 8,
+      "worst_prefix_deficit": 4,
+      "incumbent_violations": 0,
+      "spent": 6,
+      "seconds": 0.07257713100079854,
+      "checker_nodes": 11517,
+      "model_rollouts": 6464,
+      "labelled_models_enumerated": 404,
+      "profile_builds": 4,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 12,
+      "final_partials": 1
+    },
+    {
+      "seed": 20012,
+      "method": "full_history_optimistic",
+      "mean_return": 7.291666666666667,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.06012477799959015,
+      "checker_nodes": 0,
+      "model_rollouts": 29248,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 18,
+      "final_partials": 1
+    },
+    {
+      "seed": 20013,
+      "method": "v4_B16",
+      "mean_return": 2.6666666666666665,
+      "late_A": 0,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.04920440400019288,
+      "checker_nodes": 48211,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20013,
+      "method": "v5_decision_B16",
+      "mean_return": 2.6666666666666665,
+      "late_A": 0,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.07316117999835114,
+      "checker_nodes": 45649,
+      "model_rollouts": 6560,
+      "labelled_models_enumerated": 410,
+      "profile_builds": 4,
+      "profile_cache_hits": 44,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20013,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 2.6666666666666665,
+      "late_A": 0,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.07511623900063569,
+      "checker_nodes": 45631,
+      "model_rollouts": 6720,
+      "labelled_models_enumerated": 420,
+      "profile_builds": 4,
+      "profile_cache_hits": 44,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20013,
+      "method": "full_history_optimistic",
+      "mean_return": 2.6666666666666665,
+      "late_A": 0,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.054343162999430206,
+      "checker_nodes": 0,
+      "model_rollouts": 26432,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20014,
+      "method": "v4_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.05010234099972877,
+      "checker_nodes": 49126,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20014,
+      "method": "v5_decision_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 10,
+      "seconds": 0.07193233699945267,
+      "checker_nodes": 45806,
+      "model_rollouts": 7488,
+      "labelled_models_enumerated": 468,
+      "profile_builds": 5,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20014,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 10,
+      "seconds": 0.08586613899933582,
+      "checker_nodes": 46422,
+      "model_rollouts": 7520,
+      "labelled_models_enumerated": 470,
+      "profile_builds": 5,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 22,
+      "final_partials": 12
+    },
+    {
+      "seed": 20014,
+      "method": "full_history_optimistic",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.0870001660005073,
+      "checker_nodes": 0,
+      "model_rollouts": 42752,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20015,
+      "method": "v4_B16",
+      "mean_return": 6.416666666666667,
+      "late_A": 6,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.02726317700034997,
+      "checker_nodes": 9639,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 16,
+      "final_partials": 1
+    },
+    {
+      "seed": 20015,
+      "method": "v5_decision_B16",
+      "mean_return": 6.375,
+      "late_A": 6,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.06219598200004839,
+      "checker_nodes": 8022,
+      "model_rollouts": 5648,
+      "labelled_models_enumerated": 353,
+      "profile_builds": 3,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 22,
+      "final_partials": 1
+    },
+    {
+      "seed": 20015,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 6.416666666666667,
+      "late_A": 6,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.07968438100033381,
+      "checker_nodes": 17551,
+      "model_rollouts": 6336,
+      "labelled_models_enumerated": 396,
+      "profile_builds": 4,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 20,
+      "final_partials": 4
+    },
+    {
+      "seed": 20015,
+      "method": "full_history_optimistic",
+      "mean_return": 6.416666666666667,
+      "late_A": 6,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.0291461500000878,
+      "checker_nodes": 0,
+      "model_rollouts": 7648,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 20,
+      "final_partials": 2
+    },
+    {
+      "seed": 20016,
+      "method": "v4_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.046827231999486685,
+      "checker_nodes": 49126,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20016,
+      "method": "v5_decision_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 10,
+      "seconds": 0.08253881400014507,
+      "checker_nodes": 44838,
+      "model_rollouts": 7520,
+      "labelled_models_enumerated": 470,
+      "profile_builds": 5,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 22,
+      "final_partials": 12
+    },
+    {
+      "seed": 20016,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 10,
+      "seconds": 0.08249330799844756,
+      "checker_nodes": 46422,
+      "model_rollouts": 7520,
+      "labelled_models_enumerated": 470,
+      "profile_builds": 5,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 22,
+      "final_partials": 12
+    },
+    {
+      "seed": 20016,
+      "method": "full_history_optimistic",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.07997791299931123,
+      "checker_nodes": 0,
+      "model_rollouts": 42752,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20017,
+      "method": "v4_B16",
+      "mean_return": 5.916666666666667,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 4,
+      "seconds": 0.026279132998752175,
+      "checker_nodes": 10101,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 10,
+      "final_partials": 1
+    },
+    {
+      "seed": 20017,
+      "method": "v5_decision_B16",
+      "mean_return": 5.875,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 8,
+      "seconds": 0.04886676299975079,
+      "checker_nodes": 7124,
+      "model_rollouts": 4432,
+      "labelled_models_enumerated": 277,
+      "profile_builds": 4,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 8,
+      "final_partials": 1
+    },
+    {
+      "seed": 20017,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 5.875,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 8,
+      "seconds": 0.047342178999315365,
+      "checker_nodes": 7124,
+      "model_rollouts": 4432,
+      "labelled_models_enumerated": 277,
+      "profile_builds": 4,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 8,
+      "final_partials": 1
+    },
+    {
+      "seed": 20017,
+      "method": "full_history_optimistic",
+      "mean_return": 5.916666666666667,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.018895598001108738,
+      "checker_nodes": 0,
+      "model_rollouts": 5808,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 8,
+      "final_partials": 1
+    },
+    {
+      "seed": 20018,
+      "method": "v4_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.04653491800127085,
+      "checker_nodes": 49126,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20018,
+      "method": "v5_decision_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 10,
+      "seconds": 0.08780319800098368,
+      "checker_nodes": 46422,
+      "model_rollouts": 7520,
+      "labelled_models_enumerated": 470,
+      "profile_builds": 5,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 22,
+      "final_partials": 12
+    },
+    {
+      "seed": 20018,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 10,
+      "seconds": 0.0835894219999318,
+      "checker_nodes": 46422,
+      "model_rollouts": 7520,
+      "labelled_models_enumerated": 470,
+      "profile_builds": 5,
+      "profile_cache_hits": 43,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 22,
+      "final_partials": 12
+    },
+    {
+      "seed": 20018,
+      "method": "full_history_optimistic",
+      "mean_return": 5.333333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.0826227680008742,
+      "checker_nodes": 0,
+      "model_rollouts": 42752,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20019,
+      "method": "v4_B16",
+      "mean_return": 7.708333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 2,
+      "seconds": 0.04405287800000224,
+      "checker_nodes": 48124,
+      "model_rollouts": 0,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20019,
+      "method": "v5_decision_B16",
+      "mean_return": 7.791666666666667,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.08391075800136605,
+      "checker_nodes": 44199,
+      "model_rollouts": 6144,
+      "labelled_models_enumerated": 384,
+      "profile_builds": 3,
+      "profile_cache_hits": 44,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 48,
+      "fit_branches": 20,
+      "final_partials": 11
+    },
+    {
+      "seed": 20019,
+      "method": "v5_decision_untrained_B16",
+      "mean_return": 7.583333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.07198727799914195,
+      "checker_nodes": 45570,
+      "model_rollouts": 6592,
+      "labelled_models_enumerated": 412,
+      "profile_builds": 4,
+      "profile_cache_hits": 42,
+      "max_behavioral_profiles": 148,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 24,
+      "final_partials": 13
+    },
+    {
+      "seed": 20019,
+      "method": "full_history_optimistic",
+      "mean_return": 7.833333333333333,
+      "late_A": 8,
+      "worst_prefix_deficit": 0,
+      "incumbent_violations": 0,
+      "spent": 0,
+      "seconds": 0.06390269400071702,
+      "checker_nodes": 0,
+      "model_rollouts": 32128,
+      "labelled_models_enumerated": 0,
+      "profile_builds": 0,
+      "profile_cache_hits": 0,
+      "max_behavioral_profiles": 0,
+      "unknown": 0,
+      "neural_updates": 0,
+      "fit_branches": 16,
+      "final_partials": 9
+    }
+  ],
+  "worlds_evaluator_only": [
+    {
+      "seed": 20000,
+      "table": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "seed": 20001,
+      "table": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "seed": 20002,
+      "table": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "seed": 20003,
+      "table": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "seed": 20004,
+      "table": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "seed": 20005,
+      "table": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "seed": 20006,
+      "table": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "seed": 20007,
+      "table": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "seed": 20008,
+      "table": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "seed": 20009,
+      "table": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "seed": 20010,
+      "table": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "seed": 20011,
+      "table": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "seed": 20012,
+      "table": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "seed": 20013,
+      "table": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "seed": 20014,
+      "table": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "seed": 20015,
+      "table": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "seed": 20016,
+      "table": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "seed": 20017,
+      "table": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "seed": 20018,
+      "table": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "seed": 20019,
+      "table": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    }
+  ],
+  "environment": {
+    "python": "3.12.3",
+    "numpy": "2.2.6",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "source_sha256": {
+    "src/witness_cl/latent_v5.py": "f99d138742bbb0fb1f344451ec4b0d2fdfbd965ce8c8ee1c33fbc1c1f59e6f2d",
+    "experiments/latent_v5.py": "16e6cd892e435d2df0b29a58b22b5251b6b89babd20a299cc178000631639245"
+  }
+}

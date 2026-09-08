@@ -45,8 +45,22 @@ def authors(value):
 def main():
     entries=parse((ROOT/'paper/references.bib').read_text())
     used=set()
-    for keys in re.findall(r'\\cite(?:p|t)?\{([^}]+)\}', (ROOT/'paper/main.tex').read_text()):
-        used.update(keys.split(','))
+    pending=[ROOT/'paper/main.tex']; visited=set()
+    while pending:
+        source=pending.pop().resolve()
+        if source in visited:
+            continue
+        visited.add(source)
+        content=source.read_text()
+        for keys in re.findall(r'\\cite(?:p|t)?\{([^}]+)\}', content):
+            used.update(keys.split(','))
+        for child in re.findall(r'\\input\{([^}]+)\}', content):
+            candidate=source.parent/child
+            if not candidate.suffix:
+                candidate=candidate.with_suffix('.tex')
+            if candidate.name != 'references_formatted.tex':
+                pending.append(candidate)
+
     entries=[(key,f) for key,f in entries if key in used]
     if used-{key for key,f in entries}:
         raise ValueError('unresolved bibliography keys: '+str(used-{key for key,f in entries}))

@@ -1,0 +1,94 @@
+completed 10/100 seeds; 2.4s
+completed 20/100 seeds; 4.2s
+completed 30/100 seeds; 6.5s
+completed 40/100 seeds; 8.8s
+completed 50/100 seeds; 11.0s
+completed 60/100 seeds; 13.4s
+completed 70/100 seeds; 15.3s
+completed 80/100 seeds; 17.4s
+completed 90/100 seeds; 19.5s
+completed 100/100 seeds; 21.6s
+v4_B16 return 5.921667 late 5.8 max deficit 4 seconds 0.0359
+v5_decision_B16 return 5.827083 late 5.72 max deficit 10 seconds 0.068
+v5_decision_untrained_B16 return 5.86 late 5.8 max deficit 10 seconds 0.0645
+full_history_optimistic return 5.944583 late 5.8 max deficit 4 seconds 0.0466
+[
+  {
+    "candidate": "v5_decision_B16",
+    "baseline": "v4_B16",
+    "metric": "mean_return",
+    "mean_difference": -0.0945833333333334,
+    "ci95_paired_t": [
+      -0.16915233181763206,
+      -0.020014334849034712
+    ],
+    "positive_seeds": 19,
+    "negative_seeds": 31,
+    "tied_seeds": 50
+  },
+  {
+    "candidate": "v5_decision_B16",
+    "baseline": "v4_B16",
+    "metric": "late_A",
+    "mean_difference": -0.08,
+    "ci95_paired_t": [
+      -0.17638467282113413,
+      0.016384672821134136
+    ],
+    "positive_seeds": 0,
+    "negative_seeds": 3,
+    "tied_seeds": 97
+  },
+  {
+    "candidate": "v5_decision_B16",
+    "baseline": "full_history_optimistic",
+    "metric": "mean_return",
+    "mean_difference": -0.11749999999999998,
+    "ci95_paired_t": [
+      -0.1918234632132278,
+      -0.04317653678677216
+    ],
+    "positive_seeds": 11,
+    "negative_seeds": 45,
+    "tied_seeds": 44
+  },
+  {
+    "candidate": "v5_decision_B16",
+    "baseline": "full_history_optimistic",
+    "metric": "late_A",
+    "mean_difference": -0.08,
+    "ci95_paired_t": [
+      -0.17638467282113413,
+      0.016384672821134136
+    ],
+    "positive_seeds": 0,
+    "negative_seeds": 3,
+    "tied_seeds": 97
+  },
+  {
+    "candidate": "v5_decision_B16",
+    "baseline": "v5_decision_untrained_B16",
+    "metric": "mean_return",
+    "mean_difference": -0.032916666666666636,
+    "ci95_paired_t": [
+      -0.09638622675789972,
+      0.03055289342456645
+    ],
+    "positive_seeds": 18,
+    "negative_seeds": 10,
+    "tied_seeds": 72
+  },
+  {
+    "candidate": "v5_decision_B16",
+    "baseline": "v5_decision_untrained_B16",
+    "metric": "late_A",
+    "mean_difference": -0.08,
+    "ci95_paired_t": [
+      -0.17638467282113413,
+      0.016384672821134136
+    ],
+    "positive_seeds": 0,
+    "negative_seeds": 3,
+    "tied_seeds": 97
+  }
+]

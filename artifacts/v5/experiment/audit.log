@@ -1,0 +1,35 @@
+{
+  "audits": {
+    "pilot": {
+      "status": "passed",
+      "episode_rewards_and_traces_replayed": 3840,
+      "budget_prefixes_checked": 2880,
+      "incumbent_violations_reported": 0,
+      "incumbent_retention_note": "trajectory tests independently verify this; episode CSV does not store incumbent IDs"
+    },
+    "holdout": {
+      "status": "passed",
+      "episode_rewards_and_traces_replayed": 19200,
+      "budget_prefixes_checked": 14400,
+      "incumbent_violations_reported": 0,
+      "incumbent_retention_note": "trajectory tests independently verify this; episode CSV does not store incumbent IDs"
+    }
+  },
+  "frozen_source_matches": {
+    "src/witness_cl/latent_v5.py": true,
+    "experiments/latent_v5.py": true,
+    "tests/test_v5_decision.py": true
+  },
+  "world_overlap": {
+    "v5_pilot_unique": 20,
+    "v5_holdout_unique": 85,
+    "v5_pilot_holdout_shared": 10,
+    "v5_holdout_shared_with_v4_development": 7,
+    "v5_holdout_shared_with_v4_holdout": 22,
+    "note": "exact labelled transition tables, not behavioral isomorphism classes"
+  }
+}
+{
+  "v5_over_v4_seconds": 1.8976156311685732,
+  "v5_over_full_history_seconds": 1.4612791456695813
+}

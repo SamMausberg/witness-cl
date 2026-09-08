@@ -1,0 +1,7 @@
+# Optional native contract-test runtime; use Python >=3.13 in an isolated venv.
+# These are the upstream-pinned dependencies needed by the inspected modules.
+litellm==1.81.6
+openai==2.16.0
+pydantic==2.12.5
+pytest==9.0.2
+tqdm==4.67.2

@@ -1,0 +1,665 @@
+{
+  "status": "post-hoc diagnostic of three heldout late-return failures; no algorithm tuning rerun counted as holdout",
+  "cases": [
+    {
+      "seed": 30000,
+      "world_evaluator_only": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "states": [
+        {
+          "episode": 31,
+          "goal": 1,
+          "incumbent": 0,
+          "selected": 0,
+          "incumbent_true_value": 8,
+          "true_best_value": 8,
+          "spent": 0,
+          "regret_sum": 0,
+          "probe_gains": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "strict_improvement_candidates": [],
+          "weak_dominance_candidates": [],
+          "profile_worlds": 5,
+          "labelled_models": 32,
+          "observed_trace_count": 31
+        },
+        {
+          "episode": 32,
+          "goal": 0,
+          "incumbent": 0,
+          "selected": 0,
+          "incumbent_true_value": 0,
+          "true_best_value": 4,
+          "spent": 0,
+          "regret_sum": 0,
+          "probe_gains": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "strict_improvement_candidates": [],
+          "weak_dominance_candidates": [
+            {
+              "program": 1,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 0
+            },
+            {
+              "program": 3,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 2
+            },
+            {
+              "program": 4,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 0
+            },
+            {
+              "program": 5,
+              "lower": 0,
+              "upper": 4,
+              "true_value": 0
+            },
+            {
+              "program": 6,
+              "lower": 0,
+              "upper": 4,
+              "true_value": 2
+            },
+            {
+              "program": 7,
+              "lower": 0,
+              "upper": 6,
+              "true_value": 2
+            },
+            {
+              "program": 9,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 0
+            },
+            {
+              "program": 11,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 2
+            },
+            {
+              "program": 12,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 2
+            },
+            {
+              "program": 13,
+              "lower": 0,
+              "upper": 4,
+              "true_value": 2
+            },
+            {
+              "program": 14,
+              "lower": 0,
+              "upper": 4,
+              "true_value": 2
+            },
+            {
+              "program": 15,
+              "lower": 0,
+              "upper": 6,
+              "true_value": 4
+            }
+          ],
+          "profile_worlds": 5,
+          "labelled_models": 32,
+          "observed_trace_count": 32
+        },
+        {
+          "episode": 47,
+          "goal": 0,
+          "incumbent": 0,
+          "selected": 0,
+          "incumbent_true_value": 0,
+          "true_best_value": 4,
+          "spent": 0,
+          "regret_sum": 0,
+          "probe_gains": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "strict_improvement_candidates": [],
+          "weak_dominance_candidates": [
+            {
+              "program": 1,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 0
+            },
+            {
+              "program": 3,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 2
+            },
+            {
+              "program": 4,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 0
+            },
+            {
+              "program": 5,
+              "lower": 0,
+              "upper": 4,
+              "true_value": 0
+            },
+            {
+              "program": 6,
+              "lower": 0,
+              "upper": 4,
+              "true_value": 2
+            },
+            {
+              "program": 7,
+              "lower": 0,
+              "upper": 6,
+              "true_value": 2
+            },
+            {
+              "program": 9,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 0
+            },
+            {
+              "program": 11,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 2
+            },
+            {
+              "program": 12,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 2
+            },
+            {
+              "program": 13,
+              "lower": 0,
+              "upper": 4,
+              "true_value": 2
+            },
+            {
+              "program": 14,
+              "lower": 0,
+              "upper": 4,
+              "true_value": 2
+            },
+            {
+              "program": 15,
+              "lower": 0,
+              "upper": 6,
+              "true_value": 4
+            }
+          ],
+          "profile_worlds": 5,
+          "labelled_models": 32,
+          "observed_trace_count": 47
+        }
+      ]
+    },
+    {
+      "seed": 30013,
+      "world_evaluator_only": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "states": [
+        {
+          "episode": 31,
+          "goal": 1,
+          "incumbent": 0,
+          "selected": 0,
+          "incumbent_true_value": 8,
+          "true_best_value": 8,
+          "spent": 0,
+          "regret_sum": 0,
+          "probe_gains": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "strict_improvement_candidates": [],
+          "weak_dominance_candidates": [],
+          "profile_worlds": 8,
+          "labelled_models": 8,
+          "observed_trace_count": 31
+        },
+        {
+          "episode": 32,
+          "goal": 0,
+          "incumbent": 12,
+          "selected": 12,
+          "incumbent_true_value": 2,
+          "true_best_value": 4,
+          "spent": 0,
+          "regret_sum": 0,
+          "probe_gains": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "strict_improvement_candidates": [],
+          "weak_dominance_candidates": [
+            {
+              "program": 9,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 2
+            },
+            {
+              "program": 10,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 11,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 13,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 2
+            },
+            {
+              "program": 14,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 15,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            }
+          ],
+          "profile_worlds": 8,
+          "labelled_models": 8,
+          "observed_trace_count": 32
+        },
+        {
+          "episode": 47,
+          "goal": 0,
+          "incumbent": 12,
+          "selected": 12,
+          "incumbent_true_value": 2,
+          "true_best_value": 4,
+          "spent": 0,
+          "regret_sum": 0,
+          "probe_gains": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "strict_improvement_candidates": [],
+          "weak_dominance_candidates": [
+            {
+              "program": 9,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 2
+            },
+            {
+              "program": 10,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 11,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 13,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 2
+            },
+            {
+              "program": 14,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 15,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            }
+          ],
+          "profile_worlds": 8,
+          "labelled_models": 8,
+          "observed_trace_count": 47
+        }
+      ]
+    },
+    {
+      "seed": 30090,
+      "world_evaluator_only": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "states": [
+        {
+          "episode": 31,
+          "goal": 1,
+          "incumbent": 0,
+          "selected": 0,
+          "incumbent_true_value": 8,
+          "true_best_value": 8,
+          "spent": 0,
+          "regret_sum": 0,
+          "probe_gains": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "strict_improvement_candidates": [],
+          "weak_dominance_candidates": [],
+          "profile_worlds": 8,
+          "labelled_models": 8,
+          "observed_trace_count": 31
+        },
+        {
+          "episode": 32,
+          "goal": 0,
+          "incumbent": 12,
+          "selected": 12,
+          "incumbent_true_value": 2,
+          "true_best_value": 4,
+          "spent": 0,
+          "regret_sum": 0,
+          "probe_gains": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "strict_improvement_candidates": [],
+          "weak_dominance_candidates": [
+            {
+              "program": 9,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 10,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 11,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 13,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 14,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 15,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            }
+          ],
+          "profile_worlds": 8,
+          "labelled_models": 8,
+          "observed_trace_count": 32
+        },
+        {
+          "episode": 47,
+          "goal": 0,
+          "incumbent": 12,
+          "selected": 12,
+          "incumbent_true_value": 2,
+          "true_best_value": 4,
+          "spent": 0,
+          "regret_sum": 0,
+          "probe_gains": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "strict_improvement_candidates": [],
+          "weak_dominance_candidates": [
+            {
+              "program": 9,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 10,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 11,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 13,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 14,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            },
+            {
+              "program": 15,
+              "lower": 0,
+              "upper": 2,
+              "true_value": 4
+            }
+          ],
+          "profile_worlds": 8,
+          "labelled_models": 8,
+          "observed_trace_count": 47
+        }
+      ]
+    }
+  ]
+}

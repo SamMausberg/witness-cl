@@ -3,7 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs,graphicx,array}
 \usepackage[numbers,sort&compress]{natbib}
-\usepackage[ruled,vlined]{algorithm2e}
+
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,fit}
 \usepackage{xurl}
@@ -11,7 +11,7 @@
 \usepackage{fancyhdr,balance,caption}
 \captionsetup{font=small,labelfont=bf}
 \pagestyle{fancy}\fancyhf{}
-\fancyhead[L]{\small Witness-CL v0.4}\fancyhead[R]{\small Research draft, 8 September 2026}
+\fancyhead[L]{\small Witness-CL v0.5}\fancyhead[R]{\small Research draft, 8 September 2026}
 \fancyfoot[C]{\thepage}\setlength{\headheight}{14pt}
 \setlength{\emergencystretch}{1.5em}
 \newtheorem{theorem}{Theorem}
@@ -25,40 +25,42 @@
 \newcommand{\clip}[1]{[#1]_+}
 \newcommand{\unk}{\textsc{Unknown}}
 \newcommand{\bad}{\textsc{Inconsistent}}
-\title{\vspace{-1.2em}\textbf{Witness-CL: Learning Latent Continuations\\without Trusting the Proposer}}
+\title{\vspace{-1.2em}\textbf{Witness-CL: Evidence-Preserving Online Learning\\and the Limits of Greedy Probing}}
 \author{Samuel Mausberg\\\small AI-assisted research draft; author review and independent replication pending}
 \date{}
-\hypersetup{pdftitle={Witness-CL: Learning Latent Continuations without Trusting the Proposer},pdfauthor={Samuel Mausberg},pdfsubject={Conditional latent-learning theory, executed CPU studies, unverified Lean attempts}}
+\hypersetup{pdftitle={Witness-CL: Evidence-Preserving Online Learning and the Limits of Greedy Probing},pdfauthor={Samuel Mausberg},pdfsubject={Checked abstract Lean lemmas, local inference, and falsified greedy exploration}}
 \begin{document}
 \raggedbottom
 \maketitle
 \begin{abstract}
-A deployed learner needs reusable predictive state, not just a larger memory. We
-extend an evidence-preserving continual-learning reference from supplied world
-models and observable state to an unknown finite deterministic transducer. The
-learner consumes only executed action--output traces under a declared state bound,
-retains an exact set of partial models, trains a small proposal network online,
-and checks immutable candidate programs against the previous incumbent in every
-compatible completion. Paired symbolic execution closes identical future programs
-only after their hidden states also coincide. Informative exploration is charged
-a non-refundable worst-case deficit before execution. We give conditional written
-proofs of exact cover, reset-value retention independent of proposal quality, and
-a completed-prefix exploration bound. In 38,400 held-out synthetic episodes, the
-budgeted learner matches a strong full-history planner's late return but trails
-its average return by 0.0371 reward per episode. Informative probes reduce the
-worst observed prefix deficit from 40 to 4 relative to an unguided ablation.
-A shared-suffix optimization improves selected CPU checks but slows unrelated
-programs. The release contains 355 passing Python tests, 400 new and 632 legacy
-passing C++ cases, and 50 uncompiled Lean theorem attempts. It establishes neither
-a language-agent benchmark win nor general no-forgetting under misspecification,
-hidden drift, or fixed total storage.
+Continual improvement requires learning which past evidence changes future
+behavior while retaining useful prior decisions. Witness-CL is a finite,
+deterministic reference that learns compatible hidden models from executed
+traces, trains an online proposer, and admits immutable programs only after
+baseline-relative checking. We extend the supplied v0.4 artifact with actual
+Lean verification, a falsifiable decision-regret exploration rule, a local-model
+inference pilot, and native benchmark interface work. Lean 4.19.0 accepts all
+50 inherited statements after proof-script repairs and a new abstract
+information-obstruction lemma, with no custom axioms or proof placeholders.
+In a frozen 100-seed, 19,200-episode study, the new probe heuristic reduces mean
+return by 0.0946 relative to v4 (95\% paired interval $[-0.1692,-0.0200]$),
+while increasing measured mechanics cost. An executable counterexample explains
+one failure: individually zero-value free probes can jointly reveal a profitable
+decision, but greedy regret reduction refuses the first probe. We preserve this
+negative result and specify bounded adaptive probe plans as a falsifiable
+successor. A real quantized local model executes typed proposals, without a
+native benchmark or powered superiority claim. Formal guarantees remain about
+conditional abstract reset-value retention and prepaid deficits; they do not
+verify the Python implementation, model-class validity, general no-forgetting,
+or scalable deployment.
 \end{abstract}
 
 \section{Problem and the actual advance}
 CL-Bench evaluates whether frontier language agents improve across episodes that
-share learnable latent structure. Its tested raw-history in-context learning
-(ICL) systems outperform dedicated memory systems, with failures including
-immediate-observation overfitting and weak reuse across instances~\cite{clbench}.
+share learnable latent structure. Its strongest aggregate system uses raw-history in-context learning (ICL);
+this does not imply that every memory method loses on every metric or backbone.
+The paper reports immediate-observation overfitting and weak reuse across
+instances~\cite{clbench}.
 AgentCL uses controlled compositional, naive, and held-out streams to distinguish
 reuse from mere persistence; irrelevant memory can degrade performance~\cite{agentcl}.
 These results motivate a more exact question: what part of experience should a
@@ -73,8 +75,8 @@ not every episode can be required to improve if useful information sometimes
 requires a costly experiment. A meaningful solution must separate retained
 competence from exploration loss and account for both.
 
-\paragraph{Starting point.}
-The uploaded Witness-CL v0.3 reference provides a finite list of possible worlds,
+\paragraph{Inherited mechanism.}
+The v0.3 ancestor of the supplied v0.4 bundle provides a finite list of possible worlds,
 observable complete state, continuation-aware improvement, incumbent retention,
 and prepaid exploration. Its synthetic late return matches rather than beats a
 strong full-history learner. Separate noisy-evidence and frozen-neural-module
@@ -98,6 +100,16 @@ predictive descriptions sufficient to justify useful behavioral changes. The
 reference makes this direction executable and falsifiable. Its current empirical
 result is not benchmark superiority.
 
+\paragraph{Version 5 contribution and result.}
+We audit the v0.4 bundle rather than assume its claims are verified. We compile
+and repair its abstract Lean proofs, test decision-directed exploration with a
+frozen rule, diagnose its failure, execute local-model inference, and pin the
+native benchmark interface. The new exploration rule loses on the primary
+held-out metric. Its failed test and complementary-probe counterexample constrain
+the successor design; they are not presented as a solution to continual learning.
+The original v0.4 paper and data remain archived unchanged.
+
+
 \section{Prior work constrains the claim}
 \paragraph{Memory and executable experience.}
 ACE develops evolving playbooks; ALMA meta-learns memory designs; EvoLib builds
@@ -108,7 +120,9 @@ online adaptation. None of these comparisons has been reproduced here.
 
 EvoTest evolves system configurations between episodes, while TTHE evolves the
 executable harness and commits changes using execution-derived proxy
-signals~\cite{evotest,tthe}. A September 4, 2026 study constructs persistent
+signals~\cite{evotest,tthe}. TTHE's main evaluation adapts and scores
+on the same batch; its authors identify next-batch evaluation and stronger
+compute matching as open questions. A September 4, 2026 study constructs persistent
 versioned skills for computer-use agents, freezes the library during each
 iteration, and reports benefits over a configuration-matched empty-library
 control along with revision failures~\cite{persistent}. Versioned libraries and
@@ -122,7 +136,9 @@ future observable experiments~\cite{psr}. Dynamic shielding learns an approximat
 automaton from black-box interaction and filters potentially unsafe
 exploration~\cite{dynamicshield}. DeepSPI already combines online safe policy
 improvement, learned world models, and representations, with conditional theory
-and ALE-57 evaluation~\cite{deepspi}. These are direct precedents, not peripheral
+and ALE-57 evaluation~\cite{deepspi}. Its learned improvement mechanism is a
+direct antecedent; abstraction validity and the assumptions in its bounds
+remain substantive requirements. These are direct precedents, not peripheral
 related work. Our exact deterministic class is narrower than those applications.
 
 Conservative exploration methods such as StepMix address explicit baseline
@@ -324,7 +340,8 @@ Every proposal is a typed immutable program. A candidate replaces the incumbent
 only after an exact check proves strictly positive $L_n$; ties preserve the
 incumbent. An optional local-model driver accepts bounded JSON words or trees,
 not executable code or self-issued certificates. Its parser is tested, but no
-real LLM service was run. It is not a native benchmark adapter.
+real LLM service ran in v4. The separate v5 pilot below closes that execution
+gap without constituting a native benchmark adapter.
 
 \begin{theorem}[Proposer-independent retention]\label{thm:retention}
 Within a stationary realizable era, suppose every incumbent replacement is an
@@ -393,27 +410,27 @@ eliminating events are possible in a finite class, but this exponential bound
 does not guarantee sufficient budget, available distinguishing programs, or
 identification of an optimal policy.
 
-\begin{algorithm}[t]
-\small
-\caption{One reset episode of the implemented learner}
-\KwIn{Exact or flagged cover $\F_n$; public goal $g$; immutable incumbent $b_g$; spent debit $D$; budget $B$}
-Rank immutable candidate programs using the online proposer\;
-Check each candidate against $b_g$ by paired symbolic execution\;
-\eIf{some completed check has $L>0$}{
-Replace $b_g$ by a candidate with maximal $L$, using proposer rank to break ties\;
-Execute this frozen program with zero debit\;
-}{
-Among exact checks with $U>0$ and $D+[-L]_+\leq B$, enumerate possible traces\;
-\eIf{a feasible program has more than one possible trace}{
-Choose smallest debit, then most traces, then largest $U$, then rank\;
-Debit before executing the frozen program\;
-}{Execute the incumbent without debit\;}
-}
-Condition the cover on the actual action--output trace\;
-Apply one neural update using only its observed return\;
-\end{algorithm}
+\begin{figure}[t]
+\small\hrule\medskip
+\textbf{Algorithm 1. One reset episode of the reference learner}
+\begin{enumerate}\setlength{\itemsep}{2pt}
+\item Rank immutable programs with the online proposer. Compare each candidate
+with the selected public objective's incumbent using exact paired execution.
+\item If a completed check has $L>0$, promote a candidate with maximal $L$,
+breaking ties by proposer order. Execute it without a debit.
+\item Otherwise consider only exact checks with $U>0$ and affordable $[-L]_+$.
+Enumerate observable traces. If an informative probe is available, select the
+least debit, then most traces, then largest $U$, then proposer order. Charge its
+debit before execution. Otherwise execute the incumbent.
+\item Condition the cover on the actual trace. Apply one neural update using
+only the selected program and observed return. No hypothetical outcome is evidence.
+\end{enumerate}
+\medskip\hrule
+\caption{The preserved v4 loop. Version 5 changes only probe selection; certificate
+admission, immutable execution, evidence updates, and prepaid debits are retained.}
+\end{figure}
 
-\section{Executed experiments, including failures}
+\section{Inherited v4 experiments, reproduced checks}
 \subsection{Protocol and comparators}
 Development uses seeds 0--19. An initial seven-arm run contains 6,720 episodes;
 the revised eight-arm development run contains 7,680. A local protocol record
@@ -515,7 +532,8 @@ first violation of an unobserved assumption.
 \section{Implementation and proof status}
 The release adds an exact partial-table learner, paired checker, online agent,
 strict proposal parser, three experiment drivers, independent C++ rollout
-reference, and tests. All 355 Python tests pass. Exact small-class tests compare
+reference, and tests. All 355 inherited Python tests reproduce; the v5 suite adds mechanism,
+local-pilot, and native-interface checks. Exact small-class tests compare
 model covers and paired extrema against exhaustive enumeration, including
 reactive policies, lower-bound witnesses, empty classes, search caps, capacity
 changes, and wrong-state-bound counterexamples. The neural gradient is checked
@@ -525,17 +543,43 @@ The new C++ reference passes 400 paired observation-tree cases and a bounded
 reward rejection under undefined-behavior sanitization. The preserved legacy
 suite passes 632 cases plus an overflow check. These tests validate complete
 numeric rollouts and boundary handling, not a formal refinement of the symbolic
-search. No native benchmark, actual LLM inference, or CUDA experiment was run.
+search. The inherited v4 release did not run a native benchmark, actual LLM, or CUDA
+experiment. Version 5 adds actual local-model inference as described below;
+no new CUDA kernel or native performance result is claimed.
 
-Eleven new Lean declarations attempt abstract cover, refinement, evidence
-intersection, guarded update, arbitrary proposal, retained chains, informative
-elimination, observation aliasing, budget lifting, and shrinking-class
-preservation. Together with the prior files there are 50 declarations. The local
-\texttt{lake build} attempt failed because the compiler was unavailable; release
-retrieval attempts also failed. None is kernel-checked. The absence of
-\texttt{sorry} or \texttt{admit} is not proof verification. Moreover, even a
-successful future build would not establish that Python implements the assumed
-cover or that a native task satisfies the contract.
+Lean 4.19.0 now accepts all 50 inherited declarations and one new
+history-aliasing obstruction. Two reserved binder names and one Boolean proof
+step required repair; no inherited hypothesis or conclusion was weakened.
+An automated inventory prints every theorem's axioms and ties the report to
+source hashes. Twenty-four declarations are axiom-free; the remainder use only
+Lean's standard propositional extensionality, quotient soundness, and classical
+choice. No custom axioms or final \texttt{sorryAx} dependencies remain.
+
+This is verification of the encoded abstract statements. For example, a cover
+splitting lemma does not prove the Python depth-first search implements that
+split, and a guarded-update lemma assumes a correct bound and true-model
+membership. Numerical training, search-cap propagation, runtime tickets, C++, and
+LLM semantics are not formally refined to these assumptions. The source-hashed
+audit and detailed proof-to-runtime gaps accompany the code.
+
+\begin{proposition}[History aliasing prevents uniform strict gain]
+Suppose two worlds give a deterministic policy identical available history,
+including its memory. If every action that strictly improves on an incumbent in
+the favorable world loses value in the adverse world, a policy preserving the
+incumbent's value in the adverse world cannot improve strictly in the favorable
+world at this information state.
+\end{proposition}
+\begin{proof}
+Identical histories give the same selected action. Strict favorable gain would,
+by hypothesis, make that action worse than the adverse incumbent, contradicting
+adverse preservation. The Lean statement instantiates this implication for
+arbitrary history and action types with integer value functions.
+\end{proof}
+This elementary obstruction does not forbid safe distinguishing probes, nor
+claim a new lower bound for randomized or noisy learning. It makes the scope of
+universal zero-loss discovery explicit.
+
+\input{v5_section.tex}
 
 \section{Limitations and decisive next experiments}
 \paragraph{Where the guarantee breaks.}
@@ -576,10 +620,11 @@ the selected native tasks, if apparent gains vanish at matched compute, or if
 cost exceeds the strongest baseline without the predeclared gain.
 
 \paragraph{Resources and execution design.}
-The current simulator requires CPU only. A native pilot can use one GH200-class
-accelerator for a fixed local backbone and a multicore Docker host for task
-isolation. Measure 100 pilot episodes before assigning a larger GPU-hour budget;
-no throughput or model fit has been measured here. Retain full provenance and
+The current simulator requires CPU only. The first local inference pilot uses an existing 27B Q3 model with 48 GPU-offloaded
+layers on an RTX 5070 Ti, 4,096 context tokens and a single server slot. A larger
+native run needs a measured fixed-backbone inference budget and, where required,
+a Docker host. Measure native pilot throughput before assigning GPU-hours;
+the small synthetic run does not establish native task throughput. Retain full provenance and
 measure actual peak host/GPU memory rather than payload estimates.
 
 A possible systems extension groups partial-transition work by time and
@@ -592,10 +637,11 @@ model ambiguity, and an approximation cannot inherit exact guarantees without
 a separate soundness argument.
 
 \section{Conclusion}
-Witness-CL v0.4 learns compatible hidden-state models from its own executed traces
+Witness-CL v0.5 learns compatible hidden-state models from its own executed traces
 and uses them to protect a behavioral incumbent independently of a mutable
-proposer. It supplies exact conditional reasoning, tested implementation
-boundaries, informative-exploration evidence and reproducible negative results.
+proposer. Version 5 adds checked abstract Lean statements, real local inference, and a
+falsified regret-probe heuristic with an explicit complementary-information
+counterexample. These narrow results separate retention from learning efficiency.
 It does not yet supply the requested general stateful benchmark winner. The
 remaining research obligation is concrete: learn sufficient continuation
 abstractions cheaply enough that verified reuse beats full-history learning at
@@ -604,13 +650,13 @@ word ``memory.''
 
 \section*{Reproducibility and disclosure}
 Source, tests, raw episode files, result generation, original Git history,
-failed Lean build evidence and paper sources are included in the local research
-repository. The main reproduction targets are \texttt{make test},
+initial and successful Lean build evidence and paper sources are included in the
+private research repository. The main reproduction targets are \texttt{make test},
 \texttt{make cpp-check}, \texttt{make latent-heldout},
 \texttt{make latent-diagnostics}, and \texttt{make paper}.
-The optional model-service driver was not executed. This is an AI-assisted draft
-prepared for Samuel Mausberg; independent review, actual proof compilation and
-external replication are required before strengthening any claim.
+The v5 local-model pilot was executed; its small scope is explicit. This is an
+AI-assisted research draft prepared for Samuel Mausberg, with author review and
+independent replication pending. The native learning problem remains open.
 
 % The source .bib is retained for submission templates.
 % A strict brace-valued renderer avoids an external BibTeX dependency.

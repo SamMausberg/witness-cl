@@ -22,9 +22,8 @@ info: ././././WitnessCL/Latent.lean:135:0: 'WitnessCL.V4.split_cover' depends on
 info: ././././WitnessCL/Latent.lean:136:0: 'WitnessCL.V4.covered_lower_bound' does not depend on any axioms
 info: ././././WitnessCL/Latent.lean:137:0: 'WitnessCL.V4.arbitrary_proposer' does not depend on any axioms
 info: ././././WitnessCL/Latent.lean:138:0: 'WitnessCL.V4.informative_probe_removes' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [6/8] Built WitnessCL.Ambiguity
+ℹ [6/8] Replayed WitnessCL.Ambiguity
 info: ././././WitnessCL/Ambiguity.lean:31:0: 'WitnessCL.V5.safe_policy_cannot_gain_under_aliasing' depends on axioms: [propext, Quot.sound]
-✔ [7/8] Built WitnessCL
 Build completed successfully.
 
 exit_code=0

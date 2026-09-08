@@ -1,0 +1,2 @@
+# Preserve the exact compiler log, including its diagnostic whitespace.
+artifacts/v5/paper-build.txt -whitespace

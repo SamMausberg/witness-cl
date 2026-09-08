@@ -1,3 +1,14 @@
+# v0.5.0, 8 September 2026
+
+- Imported the complete v4 bundle into a verified private GitHub repository, preserving branch history and both release tags.
+- Repaired proof elaboration without weakening statements; Lean 4.19.0 checks 51 abstract theorems with a complete source-hashed axiom audit.
+- Implemented and rejected decision-regret probing in a frozen 100-seed study; preserved all raw data and costs.
+- Diagnosed zero-regret incumbent plateaus and complementary free probes; tested a separate post-hoc weak-dominance repair across all 256 tables, still below strong controls.
+- Independently replayed 72,192 CPU episodes and 54,144 guarded prefixes, plus meaningful implementation/failure tests.
+- Executed 120 actual local-model calls across five worlds, preserved the uninformative first seed, and recorded exploratory results, usage, model hash and accounting review.
+- Added native CL-Bench interface/feedback integration work with pinned upstream provenance; no official benchmark performance claim.
+- Compiled an 11-page LaTeX/TikZ paper, archived v4, and added literature audit, explicit claim ledger, and background continuation plan.
+
 # v0.4.0, 8 September 2026
 
 Extends the uploaded v3 commit, retaining its history, paper, and results.
