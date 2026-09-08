@@ -1,0 +1,7 @@
+Pinned requested toolchain: leanprover/lean4:v4.19.0.
+command -v lean lake elan: no executable found.
+Direct official GitHub release curl: curl (6) Could not resolve host github.com.
+Container download through viewed URL: rejected because web binary could not be opened.
+Web fetch followed release redirect but reported unsupported/safety failure for binary URL.
+GitHub connector cannot fetch binary release assets through its UTF-8-only fetch action.
+No Lean compiler executed. Every Lean declaration in this artifact remains an attempt.

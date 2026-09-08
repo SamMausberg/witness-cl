@@ -1,0 +1,15 @@
+records 17920
+delayed_damage frozen_anchor early 8.75 late 8.75 prefix_worst 0
+delayed_damage greedy_immediate early 8.15 late 8.15 prefix_worst 133
+delayed_damage raw_evidence_optimistic early 12.869 late 13.137 prefix_worst 2
+delayed_damage uniform_explore_then_plan early 10.9 late 13.137 prefix_worst 19
+delayed_damage contract_budget0 early 12.275 late 12.562 prefix_worst 0
+delayed_damage contract_budget4 early 12.85 late 13.137 prefix_worst 2
+delayed_damage contract_budget16 early 12.806 late 13.137 prefix_worst 2
+compositional_navigation frozen_anchor early 6.25 late 6.25 prefix_worst 0
+compositional_navigation greedy_immediate early 9.312 late 9.312 prefix_worst 0
+compositional_navigation raw_evidence_optimistic early 11.012 late 11.262 prefix_worst 0
+compositional_navigation uniform_explore_then_plan early 10.131 late 11.262 prefix_worst 4
+compositional_navigation contract_budget0 early 10.925 late 11.262 prefix_worst 0
+compositional_navigation contract_budget4 early 11.0 late 11.262 prefix_worst 0
+compositional_navigation contract_budget16 early 11.006 late 11.262 prefix_worst 0

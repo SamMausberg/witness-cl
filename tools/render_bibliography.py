@@ -52,7 +52,7 @@ def main():
         raise ValueError('unresolved bibliography keys: '+str(used-{key for key,f in entries}))
     lines=[r'\begin{thebibliography}{99}']
     for key,f in entries:
-        lines += [r'\bibitem{'+key+'}', authors(f['author'])+'.',f['title']+'.']
+        lines += [r'\bibitem{'+key+'}', authors(f['author']).rstrip('.')+'.',f['title']+'.']
         if 'journal' in f:
             venue=r'\emph{'+f['journal']+'}'
             if 'volume'in f:venue+=', '+f['volume']

@@ -1,79 +1,54 @@
 # Witness-CL
 
-**Evidence-preserving skill growth, local auditing, and retention under recurrence.**
+**Continuation-aware online learning with explicit retention and exploration contracts.**
 
-Research prototype, version 0.2.0. **146 Python tests and 432 C++ cases pass.**
-The nine-page [paper](paper/main.pdf), [mathematical notes](docs/v2/THEORY.md),
-[claim boundaries](docs/v2/RESEARCH_STATUS.md), and [recorded results](artifacts/v2/RESULTS.md)
-separate measured behavior from assumptions and hypotheses.
+Version 0.3.0. [Paper](paper/main.pdf) · [Theory](docs/v3/THEORY.md) ·
+[Results](artifacts/v3/RESULTS.md) · [Claim boundaries](docs/v3/RESEARCH_STATUS.md) ·
+[Evaluation plan](docs/v3/EVALUATION.md)
 
-No native CL-Bench/AgentCL or language-model experiment was run. The 29 Lean
-attempts are **not kernel-checked**. CUDA sources are **not compiled or timed**.
-This is not a benchmark-win or unrestricted no-forgetting claim.
+**271 Python tests pass. 632 C++ cases plus an overflow check pass.**
+The finite-world controller improves online and bounds exploration deficits under
+explicit assumptions. On 17,920 new synthetic episodes it matches, but does not
+beat, a strong full-history model-based baseline's late return. This baseline is
+not an LLM or raw-history ICL. A separate online neural experiment measures zero
+old-function drift with immutable modules, growing storage, and trusted scope IDs.
 
-## What changed
-
-The learner can grow its typed rule class, replay earlier evidence correctly,
-recover after unannounced changes, and reuse preserved old rules. It also learns
-schema-derived read-only aggregation programs. A separate integrated agent freezes
-candidate changes and uses randomized, actually observed outcomes to audit them
-before promotion. Fixed-feature online residual learning protects a specified
-span exactly in real arithmetic. Shared relational aggregates and packed evidence
-kernels target execution cost rather than expensive prompt accumulation.
-
-On the new 20-seed arithmetic streams, hidden-change late reward rises from
-14.49% for the original algorithm to 96.19%; class-misspecification recovery rises
-from 10.06% to 100%. Relational recurrence reaches 97.45% late reward versus
-63.59% for reset-only learning. These are symbolic mechanism tests, **not ICL
-results**. The audited agent pays an additional learning cost, and rapid change,
-noisy feedback, and unsupported operators remain published failure cases.
+**No native CL-Bench, AgentCL, or LLM-service experiment was run. The 39 Lean
+theorem attempts are not kernel-checked. CUDA drafts are not compiled or timed.**
+No general no-forgetting solution, benchmark win, or established novelty is claimed.
 
 ## Reproduce
 
 ```bash
-python -m venv .venv
-. .venv/bin/activate
 python -m pip install -e '.[test,analysis]'
 make test
 make cpp-check
-make refine       # Reruns all new experiments and replaces their recorded outputs.
-make paper        # Uses recorded JSON; requires pdflatex and the packages in main.tex.
+make continuation-study
+make neural-study
+make continuation-diagnostics
+make paper
 ```
 
-`make experiment` and `make audit-power` reproduce the original version's separate
-experiments. `make formal` needs the pinned Lean toolchain. `make cuda-check` needs
-a CUDA-capable SM90 machine, nvcc, and Compute Sanitizer. The latter two commands
-were not successfully executed here. See [execution contracts](docs/v2/EXECUTION.md).
+`make formal` needs the pinned Lean toolchain. See [execution](docs/v3/EXECUTION.md).
+The main paper uses professional two-column LaTeX with TikZ. Recorded data are
+included; `make paper` does not rerun experiments. MIT licensed.
 
-## Code map
+## Repository map
 
-| Location | Role |
+| Path | Purpose |
 |---|---|
-| `src/witness_cl/adaptive.py`, `relational.py` | Replay-safe class growth, recurrence, public-schema plans, aggregate cube |
-| `system.py`, `local_audit.py` | Integrated one-outcome learner; local and randomized admission |
-| `tracking.py`, `protected.py` | Separate fixed-archive bandit and projected-training controls |
-| `kernels/` | Executed C++ oracle; unexecuted CUDA filtering and consensus drafts |
-| `formal/`, `docs/v2/` | Attempted Lean formalization; written proofs and explicit limits |
-| `artifacts/v2/`, `experiments/` | 348,160 new raw episode records, seeded scripts, power and timing data |
+| `src/witness_cl/continuation.py` | Integrated finite-family learner, full-horizon checks, versioning, risk debits |
+| `coupling.py`, `likelihood.py`, `versioned_training.py` | Separately tested simulator sharing, noisy evidence, learned-feature isolation |
+| `kernels/`, `vector_contract.py` | Executed scalar/C++ references; uncompiled CUDA continuation draft |
+| `formal/`, `docs/v3/` | 39 Lean attempts, written proofs, limitations and falsifiable next experiments |
+| `artifacts/v3/`, `experiments/` | Raw controller episodes, per-seed results, test logs, negative results |
 
-The cube is an independently measured CPU primitive, not yet wired into the
-online learner's reported timing. It is faster than the direct Python interpreter
-in the recorded test, not a measured GPU or database-engine speedup. The neural,
-soft-router, and multistep branches are not unified into a general LLM agent.
+This extends the uploaded v0.2 history, including replay-safe skill growth,
+recurrence, and local audits. Historical results and drafts remain in
+`artifacts/v2/`, `paper/v2/`, and the earlier Git commits. They are not new v3 runs.
+The noise, neural, and coupling branches are not yet one general language agent.
 
-The original optional `experiments/llm_synthetic.py` runner is retained. It supports
-an explicitly configured local chat-completions server; it is not a native
-CL-Bench adapter, and no model-service call was executed. The original paper and
-results remain under `paper/v1/` and `artifacts/synthetic/`.
-
-## Attribution and safety
-
-Prepared as an AI-assisted research draft for Samuel Mausberg. Author review,
-independent proof checking, and external replication remain necessary. Algorithms
-build on version-space elimination, program synthesis, fixed-share experts,
-sequential inference, and orthogonal learning. [References](paper/references.bib)
-credit those foundations; novelty of the combination is not established.
-
-Only pure, read-only policies are used in the integrated experiments. Admission
-is not a guarantee that experimental treatments cannot harm individual episodes.
-Do not use the prototype to authorize irreversible actions. MIT license.
+Prepared as an AI-assisted research draft for Samuel Mausberg. Classical policy
+improvement, conservative exploration, sequential inference, and progressive
+architectures are credited in [the bibliography](paper/references.bib). Review,
+independent proof checking, and external replication remain necessary.

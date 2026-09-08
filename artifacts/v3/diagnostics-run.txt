@@ -1,0 +1,47 @@
+{
+  "noise": {
+    "trials": 1000,
+    "steps": 64,
+    "noise": 0.1,
+    "delta": 0.05,
+    "ever_true_excluded": 12,
+    "rate": 0.012,
+    "hard_elimination_loses_truth": 997,
+    "hard_rate": 0.997,
+    "empty_live_checks": 0
+  },
+  "coupling": {
+    "trials": 200,
+    "horizon": 32,
+    "parity": true,
+    "mean_environment_calls": 39.405,
+    "independent_calls": 64,
+    "controller_calls": 64
+  },
+  "cpu_vectorization": [
+    {
+      "models": 4,
+      "horizon": 6,
+      "states": 32,
+      "actions": 4,
+      "scalar_seconds": 0.0008848470000657471,
+      "packed_seconds": 0.0008086540000249443
+    },
+    {
+      "models": 16,
+      "horizon": 6,
+      "states": 32,
+      "actions": 4,
+      "scalar_seconds": 0.002792034999970383,
+      "packed_seconds": 0.002725020999946537
+    },
+    {
+      "models": 64,
+      "horizon": 6,
+      "states": 32,
+      "actions": 4,
+      "scalar_seconds": 0.009829560999946807,
+      "packed_seconds": 0.010024304000012307
+    }
+  ]
+}

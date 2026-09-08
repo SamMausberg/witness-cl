@@ -1,0 +1,1 @@
+17,920 archived rows reconciled; all budget prefixes, 40 paired late-return ties, and 20 frozen-module retention results checked.

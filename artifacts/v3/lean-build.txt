@@ -1,0 +1,3 @@
+cd formal && lake build
+/bin/sh: 1: lake: not found
+make: *** [Makefile:33: formal] Error 127

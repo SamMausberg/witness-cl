@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "witness-cl"
-version = "0.2.0"
-description = "Research reference for counterexample-preserving online skill compilation"
+version = "0.3.0"
+description = "Research reference for continuation-aware online learning"
 requires-python = ">=3.11"
 authors = [{name = "Samuel Mausberg"}]
 license = {text = "MIT"}

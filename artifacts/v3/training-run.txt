@@ -1,0 +1,46 @@
+[
+  {
+    "method": "shared_equal_width",
+    "early": 0.6471666666666667,
+    "late": 0.9613333333333332,
+    "mean_forgetting": 0.4708984375,
+    "worst_forgetting": 0.59150390625,
+    "max_logit_drift": 21.131498217211135,
+    "parameter_bytes": 1352.0,
+    "learner_updates": 4800.0,
+    "replay_payload_bytes": 0.0
+  },
+  {
+    "method": "shared_equal_parameter_budget",
+    "early": 0.6888333333333333,
+    "late": 0.9625833333333331,
+    "mean_forgetting": 0.4458333333333333,
+    "worst_forgetting": 0.58564453125,
+    "max_logit_drift": 30.27133609728913,
+    "parameter_bytes": 4040.0,
+    "learner_updates": 4800.0,
+    "replay_payload_bytes": 0.0
+  },
+  {
+    "method": "shared_online_replay",
+    "early": 0.7003333333333333,
+    "late": 0.9623333333333333,
+    "mean_forgetting": 0.026497395833333333,
+    "worst_forgetting": 0.04541015625,
+    "max_logit_drift": 22.248454142828983,
+    "parameter_bytes": 4040.0,
+    "learner_updates": 9599.0,
+    "replay_payload_bytes": 10752.0
+  },
+  {
+    "method": "versioned",
+    "early": 0.7486666666666666,
+    "late": 0.9543333333333335,
+    "mean_forgetting": 0.0,
+    "worst_forgetting": 0.0,
+    "max_logit_drift": 0.0,
+    "parameter_bytes": 4056.0,
+    "learner_updates": 4800.0,
+    "replay_payload_bytes": 0.0
+  }
+]

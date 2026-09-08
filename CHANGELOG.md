@@ -1,3 +1,11 @@
+# 0.3.0
+
+Full-horizon finite-model policy improvement and pre-execution risk debits;
+incumbent-preserving updates with explicit trust-era resets; independent
+likelihood, learned-feature isolation, and exact paired-simulation components.
+New synthetic studies, 271 total Python tests, 632 C++ cases plus overflow check,
+and 39 uncompiled Lean theorem attempts. No native LLM or GPU result.
+
 # Changelog
 
 ## 0.2.0 (2026-09-08)

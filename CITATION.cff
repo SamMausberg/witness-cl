@@ -1,8 +1,8 @@
 cff-version: 1.2.0
-title: "Witness-CL: Evidence-Preserving Skill Growth, Local Auditing, and Retention Under Recurrence"
+title: "Witness-CL: Continuation Contracts for Online Improvement and Retention"
 message: "Research draft. No public benchmark win or kernel-checked Lean proof is claimed."
 type: software
-version: 0.2.0
+version: 0.3.0
 date-released: 2026-09-08
 license: MIT
 authors:

@@ -1,24 +1,28 @@
 # Formalization status
 
-There are **29 theorem attempts**, 13 in `WitnessCL/Core.lean` and 16 in
-`WitnessCL/Refinement.lean`. There are no proof placeholders or added axioms.
-They are **not kernel-checked**. The command `make formal` failed because `lake`
-was not installed; see `artifacts/v2/lean-build.txt`. An attempted official
-Lean 4.19.0 binary download also failed. No successful Lean build is implied by
-the Python/C++ tests or by `#print axioms` commands present in unexecuted source.
+There are **39 theorem attempts**: 13 in `Core.lean`, 16 in `Refinement.lean`,
+and 10 in `Continuation.lean`. They are **not kernel-checked**. `make formal`
+failed because `lake` is absent; an official-toolchain download attempt failed
+because networking was unavailable. Logs are in `artifacts/v3/lean-build.txt`
+and `lean-install-attempt.txt`. No success is implied by `#print axioms` in
+unexecuted source or by the Python/C++ test results.
 
-The new file covers class-growth replay, a witness-compression counterexample,
-local patch noninterference, archival output identity, integer residual identity,
-and algebraic removal of neutral factors. It does NOT prove probability theorems,
-real orthogonal projection, regret bounds, SQL semantics, floating-point
-correctness, Python refinement, or CUDA correctness.
+The new deterministic theory covers closed continuation equality, full-horizon
+Bellman improvement, truth membership, shrinking obligations, deficit addition,
+zero-risk obstruction, a delayed-reward counterexample, and incumbent ordering.
+There are no intended proof placeholders or newly assumed axioms. Until the
+pinned Lean 4.19.0 compiler accepts the files, even syntax/tactic correctness is
+not established. A successful build should also save every printed axiom list.
 
-To validate with the pinned compiler:
+These abstractions do not verify Python, stage-indexed table refinement,
+floating point, CUDA, likelihood probability theory, learned abstraction error
+coverage, or an LLM's actual semantics. See `docs/v3/THEORY.md` for the handwritten
+statements and missing bridges.
 
 ```
 cd formal
 lake build
 ```
 
-The CI job attempts this build on a machine that can install the toolchain. Until
-a successful log is obtained, do not describe these as verified Lean theorems.
+CI attempts this command on a toolchain-enabled machine. No CI success from this
+revision was observed in the authoring environment.

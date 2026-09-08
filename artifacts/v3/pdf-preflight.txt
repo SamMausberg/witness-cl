@@ -1,0 +1,2 @@
+8 pages; all extracted text spans within page bounds; pdftoppm rendered all pages.
+No LaTeX overfull boxes or unresolved-reference warnings in final build.
