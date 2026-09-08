@@ -1,0 +1,9 @@
+anchor return 3.9267 late 3.78 deficit 0 sec 0.0005
+full_history_optimistic return 6.3729 late 6.48 deficit 2 sec 0.0505
+last_output_model return 6.0275 late 6.145 deficit 52 sec 0.0029
+latent_neural_B0 return 6.2354 late 6.4 deficit 0 sec 0.0367
+latent_neural_B16 return 6.3358 late 6.48 deficit 4 sec 0.0353
+latent_neural_B64 return 6.3358 late 6.48 deficit 4 sec 0.0353
+latent_untrained_B64 return 6.3217 late 6.48 deficit 4 sec 0.0335
+latent_unguided_B64 return 6.2792 late 6.48 deficit 40 sec 0.0316
+rows 38400

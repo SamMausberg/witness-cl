@@ -20,3 +20,7 @@ kernels/cuda_test
 paper/v1/*.aux
 paper/v1/*.log
 paper/v1/*.out
+
+paper/v3/*.aux
+paper/v3/*.log
+paper/v3/*.out

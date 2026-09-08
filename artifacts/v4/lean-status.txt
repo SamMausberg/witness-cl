@@ -1,0 +1,5 @@
+NOT KERNEL-CHECKED. lean/lake are absent. The actual lake build attempt is recorded.
+Official GitHub release download attempted via curl, web, and container.download;
+DNS/remote retrieval failed. No Lean compiler executed. All declarations, including
+legacy declarations, remain attempts. No sorry/admit placeholders were introduced.
+The abstract cover lemmas do not prove the Python DFS implements that cover.

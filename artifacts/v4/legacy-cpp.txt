@@ -1,0 +1,8 @@
+make -C kernels cpu-check
+make[1]: Entering directory '/mnt/data/Witness_CL_v4/kernels'
+g++ -std=c++17 -O2 -Wall -Wextra -pedantic cpu_test.cpp -o cpu_test
+./cpu_test
+{"cpu_cpp_cases_passed":432,"gpu_executed":false}
+make[1]: Leaving directory '/mnt/data/Witness_CL_v4/kernels'
+bash tools/check_v3_cpp.sh
+200 randomized C++ continuation cases plus overflow rejection passed

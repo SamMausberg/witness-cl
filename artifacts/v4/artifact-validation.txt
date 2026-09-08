@@ -1,0 +1,3 @@
+38400 raw rows, 800 seed/system summaries, prefix ledgers and reported means reconciled.
+355 passing Python cases confirmed from XML; 50 Lean declarations counted, not compiled.
+Final LaTeX log contains no overfull boxes, unresolved references or warnings.

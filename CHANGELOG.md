@@ -1,3 +1,14 @@
+# v0.4.0, 8 September 2026
+
+Extends the uploaded v3 commit, retaining its history, paper, and results.
+
+- Adds an evidence-complete partial-transducer learner using executed action/output traces, not supplied world tables or observed hidden states. A valid finite state bound, deterministic stationary dynamics, public rewards and true resets remain assumptions.
+- Integrates mutable online neural proposals, immutable candidate programs, paired exact continuation bounds, non-refundable risk and informative probe selection.
+- Adds exact residual-program DAG IDs, strict bounded JSON proposals, a local-model synthetic driver (not executed), and explicit UNKNOWN/INCONSISTENT behavior.
+- Records 38,400 primary held-out episode rows, 7,680 revised development rows, 6,720 initial pilot rows and 1,200 proposer-overwrite stress episodes. Full-history planner mean return remains better; late return ties.
+- Adds 84 passing Python tests for a total of 355, 400 new C++ cases plus a range check, and 11 Lean attempts for a total of 50. No Lean compiler or native LLM benchmark ran.
+- Provides a new compiled two-column LaTeX/TikZ paper, theory, failure cases, cost-matched evaluation plan and a final-code behavioral parity audit.
+
 # 0.3.0
 
 Full-horizon finite-model policy improvement and pre-execution risk debits;

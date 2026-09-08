@@ -1,0 +1,19 @@
+{
+  "stage": "frozen before held-out generation; local record, not external preregistration",
+  "development_seeds": [
+    0,
+    19
+  ],
+  "heldout_seeds": [
+    10000,
+    10099
+  ],
+  "episodes": 48,
+  "hypothesis": "informative probes lower worst prefix deficits versus neural unguided; benchmark superiority not expected from development",
+  "do_not_tune_on_holdout": true,
+  "sha256": {
+    "src/witness_cl/latent.py": "ebd0ed6fbe3677e5c23bbe2e3e8d6cc6d3884ae59d5c394fbaf2033d72c5015c",
+    "src/witness_cl/latent_agent.py": "ce17723a3efe685b1fe5eeec162cacec283ca4219342ede7b238f1c09c0a89a5",
+    "experiments/latent_continuation.py": "fc2529a137b29e21ef171aa31cdf87d969da09cdd402b985475f6af7bb5bffc9"
+  }
+}

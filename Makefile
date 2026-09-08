@@ -1,8 +1,8 @@
 .PHONY: test experiment audit-power refine refine-learning refine-audit refine-training cube-bench cpp-check cuda-check paper formal clean
 
 test:
-	mkdir -p artifacts/v3
-	PYTHONPATH=src python -m pytest -q --junitxml=artifacts/v3/pytest.xml
+	mkdir -p artifacts/v4
+	PYTHONPATH=src python -m pytest -q --junitxml=artifacts/v4/pytest.xml
 experiment:
 	PYTHONPATH=src python experiments/synthetic.py --seeds 20 --episodes 384 --out artifacts/synthetic
 audit-power:
@@ -22,10 +22,11 @@ cube-bench:
 cpp-check:
 	$(MAKE) -C kernels cpu-check
 	bash tools/check_v3_cpp.sh
+	PYTHONPATH=src python tools/check_v4_cpp.py
 cuda-check:
 	$(MAKE) -C kernels cuda-check
 paper:
-	python tools/v3_tables.py
+	python tools/v4_tables.py
 	python tools/render_bibliography.py
 	cd paper && pdflatex -interaction=nonstopmode -halt-on-error main.tex
 	cd paper && pdflatex -interaction=nonstopmode -halt-on-error main.tex
@@ -43,3 +44,13 @@ neural-study:
 	PYTHONPATH=src python experiments/versioned_training.py --seeds 20 --episodes 1600 --out artifacts/v3
 continuation-diagnostics:
 	PYTHONPATH=src python experiments/continuation_diagnostics.py --trials 1000 --out artifacts/v3
+
+.PHONY: latent-study latent-heldout latent-diagnostics holdout-audit
+latent-study:
+	PYTHONPATH=src python experiments/latent_continuation.py --seeds 20 --episodes 48 --out artifacts/v4
+latent-heldout:
+	PYTHONPATH=src python experiments/latent_continuation.py --seeds 100 --seed-offset 10000 --episodes 48 --out artifacts/v4/heldout
+latent-diagnostics:
+	PYTHONPATH=src python experiments/latent_diagnostics.py --out artifacts/v4
+holdout-audit:
+	PYTHONPATH=src python tools/audit_v4_holdout.py

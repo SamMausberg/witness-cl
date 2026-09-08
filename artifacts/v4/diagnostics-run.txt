@@ -1,0 +1,16 @@
+{
+  "identical": {
+    "median_query_speedup": 8.405001571871516,
+    "total_node_ratio": 153.45
+  },
+  "shared_suffix": {
+    "median_query_speedup": 1.5525059796268643,
+    "total_node_ratio": 2.4396939693969397
+  },
+  "unrelated": {
+    "median_query_speedup": 0.8984561011457877,
+    "total_node_ratio": 1.0989879042211799
+  }
+}
+scale unknown 4 of 15
+proposer mutations 1200 violations 0

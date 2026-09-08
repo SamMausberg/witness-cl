@@ -1,0 +1,12 @@
+episode=00 program=01 return=0 debit=2 spent=2 partial_models=6
+episode=01 program=11 return=4 debit=0 spent=2 partial_models=2
+episode=02 program=10 return=4 debit=0 spent=2 partial_models=2
+episode=03 program=14 return=6 debit=0 spent=2 partial_models=1
+episode=04 program=15 return=6 debit=0 spent=2 partial_models=1
+episode=05 program=15 return=6 debit=0 spent=2 partial_models=1
+episode=06 program=15 return=6 debit=0 spent=2 partial_models=1
+episode=07 program=15 return=6 debit=0 spent=2 partial_models=1
+episode=08 program=15 return=6 debit=0 spent=2 partial_models=1
+episode=09 program=15 return=6 debit=0 spent=2 partial_models=1
+episode=10 program=15 return=6 debit=0 spent=2 partial_models=1
+episode=11 program=15 return=6 debit=0 spent=2 partial_models=1

@@ -1,0 +1,2 @@
+8 pages; all text word boxes lie within page bounds. No LaTeX warnings or overfull boxes.
+All pages rendered to a contact sheet; first layout, diagram, results and balanced bibliography visually inspected.

@@ -1,21 +1,25 @@
 # Witness-CL
 
-**Continuation-aware online learning with explicit retention and exploration contracts.**
+**Learning latent continuations without trusting the proposer.**
 
-Version 0.3.0. [Paper](paper/main.pdf) · [Theory](docs/v3/THEORY.md) ·
-[Results](artifacts/v3/RESULTS.md) · [Claim boundaries](docs/v3/RESEARCH_STATUS.md) ·
-[Evaluation plan](docs/v3/EVALUATION.md)
+Version 0.4.0. [Paper](paper/main.pdf) · [Results](artifacts/v4/RESULTS.md) ·
+[Theory](docs/v4/THEORY.md) · [Claim boundaries](docs/v4/RESEARCH_STATUS.md) ·
+[Evaluation plan](docs/v4/EVALUATION.md)
 
-**271 Python tests pass. 632 C++ cases plus an overflow check pass.**
-The finite-world controller improves online and bounds exploration deficits under
-explicit assumptions. On 17,920 new synthetic episodes it matches, but does not
-beat, a strong full-history model-based baseline's late return. This baseline is
-not an LLM or raw-history ICL. A separate online neural experiment measures zero
-old-function drift with immutable modules, growing storage, and trusted scope IDs.
+Learns compatible hidden-state models from executed traces, checks immutable
+programs against a retained incumbent, and charges informative probes before
+execution. Neural proposals train online but cannot bypass the checker. The
+contract requires a valid finite state bound, stationary deterministic dynamics,
+public rewards and true resets. No world table or hidden state is supplied.
 
-**No native CL-Bench, AgentCL, or LLM-service experiment was run. The 39 Lean
-theorem attempts are not kernel-checked. CUDA drafts are not compiled or timed.**
-No general no-forgetting solution, benchmark win, or established novelty is claimed.
+**355 Python tests pass. 400 new and 632 legacy C++ cases pass, plus range checks.**
+In 38,400 fresh-seed synthetic episodes, the method ties a strong full-history
+planner's late return but has lower mean return. Informative probes improve the
+controller's own ablation. This planner is not an LLM ICL baseline.
+
+**No native CL-Bench, AgentCL, or real-model experiment ran. All 50 Lean theorem
+declarations remain uncompiled attempts. No new GPU kernel or general
+no-forgetting result is claimed.**
 
 ## Reproduce
 
@@ -23,32 +27,38 @@ No general no-forgetting solution, benchmark win, or established novelty is clai
 python -m pip install -e '.[test,analysis]'
 make test
 make cpp-check
-make continuation-study
-make neural-study
-make continuation-diagnostics
+make latent-study
+make latent-heldout
+make latent-diagnostics
+make holdout-audit
 make paper
 ```
 
-`make formal` needs the pinned Lean toolchain. See [execution](docs/v3/EXECUTION.md).
-The main paper uses professional two-column LaTeX with TikZ. Recorded data are
-included; `make paper` does not rerun experiments. MIT licensed.
+A small execution example is `PYTHONPATH=src python examples/latent_demo.py`.
+`make formal` needs the pinned Lean toolchain. Paper generation needs pdfLaTeX,
+not BibTeX; a strict renderer builds references from the included `.bib` file.
+See [execution](docs/v4/EXECUTION.md) for actual run boundaries and the optional
+unexecuted local-model driver.
 
 ## Repository map
 
-| Path | Purpose |
+| Path | Role |
 |---|---|
-| `src/witness_cl/continuation.py` | Integrated finite-family learner, full-horizon checks, versioning, risk debits |
-| `coupling.py`, `likelihood.py`, `versioned_training.py` | Separately tested simulator sharing, noisy evidence, learned-feature isolation |
-| `kernels/`, `vector_contract.py` | Executed scalar/C++ references; uncompiled CUDA continuation draft |
-| `formal/`, `docs/v3/` | 39 Lean attempts, written proofs, limitations and falsifiable next experiments |
-| `artifacts/v3/`, `experiments/` | Raw controller episodes, per-seed results, test logs, negative results |
+| `src/witness_cl/latent.py` | Exact latent cover, paired bounds, residual DAG IDs, observable probe outcomes |
+| `src/witness_cl/latent_agent.py` | Online proposer, immutable tickets, incumbents, risk ledger, capacity eras |
+| `src/witness_cl/latent_proposals.py` | Bounded typed JSON candidates, no executable-code ingestion |
+| `experiments/latent_*.py` | Reproducible mechanism study, diagnostics, optional local-model protocol |
+| `tests/test_v4_*.py`, `kernels/latent_reference.cpp` | Exhaustive-oracle tests and independent numeric reference |
+| `formal/WitnessCL/Latent.lean`, `docs/v4/` | Proof attempts, written arguments, failure cases and falsification plan |
+| `artifacts/v4/`, `paper/` | Raw data, held-out parity audit, logs, paper PDF and LaTeX/TikZ sources |
 
-This extends the uploaded v0.2 history, including replay-safe skill growth,
-recurrence, and local audits. Historical results and drafts remain in
-`artifacts/v2/`, `paper/v2/`, and the earlier Git commits. They are not new v3 runs.
-The noise, neural, and coupling branches are not yet one general language agent.
+The uploaded v3 Git history is retained. Its draft is archived in `paper/v3/`;
+historical results remain in `artifacts/v3/` and earlier directories. The noise,
+progressive-module and CUDA branches are not an integrated v4 language agent.
+This is a local research repository, not a remotely published GitHub project.
 
-Prepared as an AI-assisted research draft for Samuel Mausberg. Classical policy
-improvement, conservative exploration, sequential inference, and progressive
-architectures are credited in [the bibliography](paper/references.bib). Review,
-independent proof checking, and external replication remain necessary.
+MIT licensed. Prepared as an AI-assisted draft for Samuel Mausberg. Predictive
+state representations, dynamic shielding, conservative exploration, DeepSPI,
+evolving memory/harnesses, and versioned skill libraries are credited in the
+[primary-source bibliography](paper/references.bib). Novelty and native benchmark
+superiority remain unestablished.

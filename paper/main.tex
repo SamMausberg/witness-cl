@@ -11,7 +11,7 @@
 \usepackage{fancyhdr,balance,caption}
 \captionsetup{font=small,labelfont=bf}
 \pagestyle{fancy}\fancyhf{}
-\fancyhead[L]{\small Witness-CL v0.3}\fancyhead[R]{\small Research draft, 8 September 2026}
+\fancyhead[L]{\small Witness-CL v0.4}\fancyhead[R]{\small Research draft, 8 September 2026}
 \fancyfoot[C]{\thepage}\setlength{\headheight}{14pt}
 \setlength{\emergencystretch}{1.5em}
 \newtheorem{theorem}{Theorem}
@@ -19,597 +19,600 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \newcommand{\C}{\mathcal C}
 \newcommand{\M}{\mathcal M}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\D}{\mathcal D}
+\newcommand{\PP}{\mathcal P}
 \newcommand{\clip}[1]{[#1]_+}
-\title{\vspace{-1.2em}\textbf{Witness-CL: Continuation Contracts for\\Online Improvement and Retention}}
+\newcommand{\unk}{\textsc{Unknown}}
+\newcommand{\bad}{\textsc{Inconsistent}}
+\title{\vspace{-1.2em}\textbf{Witness-CL: Learning Latent Continuations\\without Trusting the Proposer}}
 \author{Samuel Mausberg\\\small AI-assisted research draft; author review and independent replication pending}
 \date{}
-\hypersetup{pdftitle={Witness-CL: Continuation Contracts for Online Improvement and Retention},pdfauthor={Samuel Mausberg},pdfsubject={Conditional theory, executed CPU experiments, unverified Lean attempts}}
+\hypersetup{pdftitle={Witness-CL: Learning Latent Continuations without Trusting the Proposer},pdfauthor={Samuel Mausberg},pdfsubject={Conditional latent-learning theory, executed CPU studies, unverified Lean attempts}}
 \begin{document}
 \raggedbottom
 \maketitle
 \begin{abstract}
-An agent can preserve its memories while forgetting how to use them, and a locally
-beneficial change can worsen the future state. We develop a continuation-aware
-revision of an evidence-preserving online learner. The integrated reference learns
-from its own executed transitions in a supplied finite deterministic environment
-family, checks full-horizon Bellman advantages, preserves its previous certified
-incumbent, and debits worst-case exploration loss before execution. We prove
-conditional all-state improvement, retention within a truth-preserving contracting
-model family, and a cumulative exploration-deficit bound. Separate components
-study closed-state continuation equivalence, fixed-family noise-aware evidence,
-immutable learned-feature modules, and coupled simulation. On 17,920 synthetic
-episodes, the budgeted controller matches rather than beats a strong full-history
-model-based learner's late return. A 384,000-interaction neural diagnostic shows
-zero measured forgetting with immutable modules, but replay is a strong alternative
-and versioning slightly lowers new-task accuracy. We report negative systems
-results and explicit counterexamples. The release contains 271 passing Python
-tests, 632 passing C++ cases plus an overflow check, 39 uncompiled Lean theorem
-attempts, and uncompiled CUDA drafts. It does not establish a native language-agent
-benchmark win, a general no-forgetting solution, or novelty of the combined design.
+A deployed learner needs reusable predictive state, not just a larger memory. We
+extend an evidence-preserving continual-learning reference from supplied world
+models and observable state to an unknown finite deterministic transducer. The
+learner consumes only executed action--output traces under a declared state bound,
+retains an exact set of partial models, trains a small proposal network online,
+and checks immutable candidate programs against the previous incumbent in every
+compatible completion. Paired symbolic execution closes identical future programs
+only after their hidden states also coincide. Informative exploration is charged
+a non-refundable worst-case deficit before execution. We give conditional written
+proofs of exact cover, reset-value retention independent of proposal quality, and
+a completed-prefix exploration bound. In 38,400 held-out synthetic episodes, the
+budgeted learner matches a strong full-history planner's late return but trails
+its average return by 0.0371 reward per episode. Informative probes reduce the
+worst observed prefix deficit from 40 to 4 relative to an unguided ablation.
+A shared-suffix optimization improves selected CPU checks but slows unrelated
+programs. The release contains 355 passing Python tests, 400 new and 632 legacy
+passing C++ cases, and 50 uncompiled Lean theorem attempts. It establishes neither
+a language-agent benchmark win nor general no-forgetting under misspecification,
+hidden drift, or fixed total storage.
 \end{abstract}
 
-\section{Problem and scope}
-The intended deployed learner improves from a sequence of its own episodes without
-an intervening offline retraining phase. The relevant target is transfer to later
-problems with shared structure, not merely recalling a transcript or solving an
-identical instance more often. CL-Bench reports that simple in-context learning
-(ICL) outperforms dedicated memory systems in its evaluated configurations across
-expert-validated stateful domains~\cite{clbench}. AgentCL separates controlled
-compositional streams from naive and held-out streams; the latter can reveal
-memory-induced degradation~\cite{agentcl}. Neither observation implies that online
-adaptation never works or that ICL is universally optimal.
+\section{Problem and the actual advance}
+CL-Bench evaluates whether frontier language agents improve across episodes that
+share learnable latent structure. Its tested raw-history in-context learning
+(ICL) systems outperform dedicated memory systems, with failures including
+immediate-observation overfitting and weak reuse across instances~\cite{clbench}.
+AgentCL uses controlled compositional, naive, and held-out streams to distinguish
+reuse from mere persistence; irrelevant memory can degrade performance~\cite{agentcl}.
+These results motivate a more exact question: what part of experience should a
+learner treat as state, and what evidence warrants letting that state change its
+future behavior?
 
-Our previous revision implements replay-safe rule growth, recurrence archives,
-local one-outcome audits, and fixed-feature protected residuals. Its main unresolved
-issues are continuation credit assignment, exploration loss before admission,
-protection when features change, and the gap between retaining a rule and retaining
-the complete deployed behavior. This revision addresses restricted forms of each
-and records where the resulting mechanism fails to offer an empirical advantage.
+The open target is a cost-effective, deployed learner that improves across useful
+stateful tasks from its own episodes without an offline retraining phase and
+without losing valuable prior behavior. Merely preserving weights, transcripts,
+or a skill file does not imply preserving downstream competence. Conversely,
+not every episode can be required to improve if useful information sometimes
+requires a costly experiment. A meaningful solution must separate retained
+competence from exploration loss and account for both.
 
-The main integrated result is deliberately narrower than a general language agent.
-We supply the possible finite worlds, but not the true world, and reveal only actual
-executed transitions. The learner performs online identification, policy improvement,
-and budgeted experiments. The primitive policy-improvement and concentration
-arguments are classical. The proposed research direction is an explicit
-continuation contract linking evidence, state, immutable versions, admission,
-and execution cost. Its high-impact hypothesis remains unproven: that compact
-contracts can be learned and reused cheaply enough to beat raw-history ICL.
+\paragraph{Starting point.}
+The uploaded Witness-CL v0.3 reference provides a finite list of possible worlds,
+observable complete state, continuation-aware improvement, incumbent retention,
+and prepaid exploration. Its synthetic late return matches rather than beats a
+strong full-history learner. Separate noisy-evidence and frozen-neural-module
+branches do not solve representation acquisition. We preserve that Git history
+and archive its paper and results rather than relabel them as new experiments.
 
-\paragraph{What is unsolved.}
-A practical learner must discover sufficient state, obtain feedback informative
-about future consequences, propose useful changes, route them correctly under
-recurrence or drift, and pay less for learning and verification than it gains in
-future episodes. A supplied finite environment class bypasses the hardest
-representation problem. We do not mistake its conditional theorem for an answer
-to that acquisition problem.
+\paragraph{Version 4.}
+We replace the supplied world list and observed latent state with a learned set of
+hidden transducers consistent with executed traces. Only a structural class
+bound, reset semantics, finite alphabets, and public reward functions are supplied.
+The same loop now contains online neural proposal updates, exact model-set
+conditioning, immutable observation-contingent programs, paired continuation
+verification, and informative prepaid probes. No hidden world table, state, or
+regime label is given to the learner.
 
-\section{Related approaches}
-\paragraph{Context and memory.}
-Raw-history ICL is a mandatory comparator because it retains information that a
-premature summary may discard. ACE evolves structured playbooks~\cite{ace};
-ALMA searches executable memory designs through a meta-agent~\cite{alma}.
-These approaches concern what is stored, retrieved, and updated, but memory
-quality alone does not certify downstream behavioral preservation. Meta-design
-search also has a cost that must be separated from strictly online deployment.
-AgentCL's MemProbe stores interactions, insights, and skills with a reliability
-filter, making it a stronger controlled-transfer comparator than an arbitrary
-retrieval baseline~\cite{agentcl}.
+The advance is deliberately restricted. Discovering compatible latent models
+inside a correctly declared finite class is not discovering a sufficient
+abstraction of arbitrary language or computer-use traces. Our proposed
+high-impact direction is to learn affordable continuation contracts: compact
+predictive descriptions sufficient to justify useful behavioral changes. The
+reference makes this direction executable and falsifiable. Its current empirical
+result is not benchmark superiority.
 
-\paragraph{Harness evolution.}
-EvoTest updates the agent's prompt, memory, parameters of the harness, and tool-use
-routines after episodes without weight fine-tuning~\cite{evotest}. TTHE evolves
-executable harnesses during evaluation and commits using execution-derived proxy
-signals; proxy reliability is an explicit challenge~\cite{tthe}. Decision-Aware
-Memory Cards focuses selection on downstream action utility rather than generic
-relevance~\cite{cards}. Our continuation framing does not establish superiority
-over any of these implementations. It asks for a stronger accounting of persistent
-state and delayed consequences than a next-action or proxy-score comparison alone.
+\section{Prior work constrains the claim}
+\paragraph{Memory and executable experience.}
+ACE develops evolving playbooks; ALMA meta-learns memory designs; EvoLib builds
+and consolidates reusable knowledge abstractions~\cite{ace,alma,evolib}. These are
+substantive adaptation mechanisms, not simply retrieval stores. ALMA's outer
+search also makes it important to distinguish prior design cost from strictly
+online adaptation. None of these comparisons has been reproduced here.
 
-\paragraph{Conservative learning and neural retention.}
-SPIBB bootstraps from a baseline in uncertain regions using a fixed dataset~\cite{spibb}.
-StepMix and EpsMix study conservative exploration with episode-wise guarantees
-in tabular MDPs~\cite{stepmix}. DeepSPI already connects online safe policy
-improvement, world models, and representation learning, with evaluation on
-ALE-57~\cite{deepspi}. These are direct prior-art constraints: our supplied-world
-result is narrower, not a first theorem for safe online learning. None of these
-settings alone establishes retention of heterogeneous language-agent skills under
-changing memory and routing. Accordingly, our budget is not the first safe
-exploration mechanism. Progressive neural networks already exploit frozen
-previous columns~\cite{progressive}; gradient projection protects specified
-functional directions~\cite{ogd}. We use isolation to address a concrete limitation
-of a saturated fixed-feature protected subspace, not to claim invention of
-architectural non-forgetting. Time-uniform confidence methods are likewise
-established~\cite{confidence}.
+EvoTest evolves system configurations between episodes, while TTHE evolves the
+executable harness and commits changes using execution-derived proxy
+signals~\cite{evotest,tthe}. A September 4, 2026 study constructs persistent
+versioned skills for computer-use agents, freezes the library during each
+iteration, and reports benefits over a configuration-matched empty-library
+control along with revision failures~\cite{persistent}. Versioned libraries and
+frozen execution snapshots are therefore not new contributions of Witness-CL.
+The unresolved distinction is when evidence supports a claim about later
+behavior, rather than only a favorable proxy or recent task.
+
+\paragraph{Latent state and conservative learning.}
+Predictive state representations already define state through predictions of
+future observable experiments~\cite{psr}. Dynamic shielding learns an approximate
+automaton from black-box interaction and filters potentially unsafe
+exploration~\cite{dynamicshield}. DeepSPI already combines online safe policy
+improvement, learned world models, and representations, with conditional theory
+and ALE-57 evaluation~\cite{deepspi}. These are direct precedents, not peripheral
+related work. Our exact deterministic class is narrower than those applications.
+
+Conservative exploration methods such as StepMix address explicit baseline
+performance constraints~\cite{stepmix}. The prepaid debit argument here is not
+the first conservative-exploration theorem. Progressive networks already isolate
+previous learned components~\cite{progressive}; neither freezing old functions
+nor changing parameters only online is novel by itself. We claim an implemented
+combination with explicit failure tests, not established novelty of the
+combination or a new universal learning principle.
 
 \begin{figure*}[t]
 \centering
-\begin{tikzpicture}[node distance=6mm and 5mm,>=Latex,
- box/.style={draw,rounded corners=1.5pt,align=center,text width=3.12cm,minimum height=13mm,font=\small},
+\begin{tikzpicture}[node distance=7mm and 6mm,>=Latex,
+ box/.style={draw,rounded corners=1.5pt,align=center,text width=3.22cm,minimum height=13mm,font=\small},
  every path/.style={line width=.55pt}]
- \node[box] (e) {Actual transitions\\immutable evidence};
- \node[box,right=of e] (m) {Plausible worlds\\replay and version checks};
- \node[box,right=of m] (c) {Continuation obligations\\preserve incumbent};
- \node[box,right=of c] (x) {Debit then execute\\observe one trajectory};
+ \node[box] (e) {Executed traces\\Trusted evidence};
+ \node[box,right=of e] (m) {Partial latent models\\Every completion\\retained};
+ \node[box,right=of m] (c) {Paired check\\Exact / unknown /\\inconsistent};
+ \node[box,right=of c] (x) {Frozen execution\\Incumbent or\\prepaid probe};
+ \node[box,below=11mm of c] (p) {Mutable proposer\\Online updates\\No commit authority};
  \draw[->] (e)--(m); \draw[->] (m)--(c); \draw[->] (c)--(x);
- \draw[->] (x.south)--++(0,-.45)-|(e.south);
- \node[align=center,font=\footnotesize,below=12mm of m,xshift=17mm]
- {Separate tested branches: noisy likelihood evidence; immutable learned modules; coupled simulator.};
+ \draw[->] (p)--(c);
+ \draw[->] (e.south)|-(p.west);
+ \draw[->] (x.south)--++(0,-2.95)--++(-14.6,0)|-(e.west);
 \end{tikzpicture}
-\caption{Implemented deterministic learning loop. Planned model rollouts are not
-observed outcomes. The independent branches are not yet a unified language-agent
-system. Learned abstract worlds are the proposed next step, not a feature supplied
-by this finite-world experiment.}
+\caption{Implemented loop. Model rollouts do not become observed training labels.
+The proposer may forget internally; only checked immutable programs replace a
+protected incumbent. All guarantees are conditional on a correct finite class,
+stationary dynamics, declared rewards, and genuine resets.}
 \label{fig:loop}
 \end{figure*}
 
-\section{Setting and four retention notions}
-Let $\M$ be a finite family of stationary deterministic environments with finite
-states $S$, actions $A$, and horizon $H$. World $m$ has transition
-$T_m(t,s,a)$ and integer reward $r_m(t,s,a)$. Time and the complete state are
-observable; the true world index $m^*$ is unknown. Episode boundaries are genuine
-resets. Every policy $p$ maps $(t,s)$ to an action and has remaining value
-\begin{align}
- V_m^p(H,s)&=0,\\
- V_m^p(t,s)&=r_m(t,s,p(t,s))\notag\\
- &\quad+V_m^p(t+1,T_m(t,s,p(t,s))).\label{eq:value}
-\end{align}
-The original immutable baseline is $b_0$. The consistency family $\C_n$ contains
-worlds agreeing with every actually observed reward and successor transition.
-Truth membership $m^*\in\C_n$ follows by induction if the family was initially
-realizable and observations are exact. This is an assumption, not an empirical
-calibration claim.
+\section{A precise latent-learning contract}
+Let $A$ and $O$ be known finite action and output alphabets. The unknown world
+$m^\star$ is a stationary deterministic transducer with at most $K$ states,
+embedded in $S=\{0,\ldots,K-1\}$. A complete table specifies
+\begin{equation}
+ T_m:S\times A\longrightarrow S\times O.
+\end{equation}
+Every episode begins at the same actual reset state $0$. Hidden state labels and
+the table are never observed. The learner receives the executed trace
+$\tau=((a_0,o_0),\ldots,(a_{H-1},o_{H-1}))$ at finite horizon $H$.
+There is no stochastic feedback in the integrated experiment.
 
-We distinguish four protections. \emph{Evidence retention} preserves observations.
-\emph{Function retention} preserves a stored module with unchanged input
-construction. \emph{Incumbent retention} protects the performance of already
-certified policies. \emph{Deployment retention} must also account for the router,
-exploration, hidden controller state, and the future environment. The first three
-alone do not imply the fourth.
+A public objective $g$ specifies a known bounded integer reward $r_g(o)$.
+A policy $p$ is a complete immutable tree: $p_t:O^t\to A$.
+The reset return is
+\begin{equation}
+ V_m(p,g)=\sum_{t=0}^{H-1}r_g(o_t),\qquad
+ a_t=p_t(o_{<t}).\label{eq:value}
+\end{equation}
+A protected incumbent $b_{n,g}$ is stored for each declared objective. The
+objective identifies the requested utility, not a hidden dynamics regime.
+The common initial anchor is $b_{0,g}$.
 
-\paragraph{Class growth and contradiction.}
-A constraint redundant in the old class need not be redundant after adding new
-models. All historical witnesses are therefore replayed on every new model.
-An empty $\C_n$ is a contradiction, never a vacuous certificate. A model-family
-expansion can invalidate a previous policy comparison and begins a separately
-marked trust era. Under hidden drift, an adverse outcome may occur before its
-first contradiction. Detection is not retroactive prevention.
+Let $\D_n$ contain all actually executed traces before episode $n$. Define
+\begin{equation}
+ \C_n=\{m\in\M_K:\ \forall\tau\in\D_n,\ m\models\tau\}.
+ \label{eq:class}
+\end{equation}
+Here $m\models\tau$ means that the table realizes the observed trace.
+The model class has $(K|O|)^{K|A|}$ labelled complete tables. Supplying $K$ is a
+substantial prior. Data consistency cannot prove that $m^\star\in\M_K$.
+Theorems below explicitly assume this coverage and unchanging reset semantics.
 
-\section{Continuation-aware admission}
-\subsection{Full state, not just matching actions}
-Let a complete system transition be $F(z,u)=(z',o)$, where $z$ includes environment
-state, controller memory, selected module, input normalization, relevant tool state,
-and random-generator state; $u$ is an exogenous input. Define $G$ for a replacement
-system on the same state space.
+\paragraph{Four different claims.}
+Preserving raw evidence is not the same as preserving a learned function.
+Preserving that function is not the same as preserving a routed incumbent's
+reset value. Preserving incumbent value does not require every exploratory
+episode to attain that value. We prove the third property under this contract
+and separately bound the fourth property's possible deficit. We do not prove
+that the mutable neural network itself avoids forgetting.
 
-\begin{theorem}[Closed continuation equality]\label{thm:closed}
-If a protected predicate $P$ satisfies, for every $z\in P$ and permitted $u$,
-$F(z,u)=G(z,u)$ and $F(z,u)_1\in P$, then every finite input sequence produces
-the same output trace and final complete state under $F$ and $G$, when started
-from the same state in $P$.
+\section{Learning an exact partial-model cover}
+A partial table $c$ assigns some state--action edges and leaves the rest undefined.
+Its denotation is
+\begin{equation}
+ [c]=\{m\in\M_K:\ c\subseteq T_m\},
+\end{equation}
+where inclusion means agreement on every assigned edge.
+A finite frontier $\F_n$ represents $\C_n=\bigcup_{c\in\F_n}[c]$.
+Initially the single all-undefined table represents the entire class.
+No complete list of worlds is passed to the learner.
+
+To process one reset trace, pair every frontier table with state zero.
+For observed $(a,o)$, retain a defined edge only when its output is $o$.
+For an undefined edge, branch over all $K$ successor states, assigning output
+$o$ in every branch. Retain the branch's hidden successor while processing the
+trace. Merge duplicate table--state pairs. At episode end discard the end state,
+since the next episode resets, and merge duplicate tables. Undefined edges are
+not filled with a likely default during inference.
+
+\begin{theorem}[Evidence-complete cover]\label{thm:cover}
+With exact feedback and no search truncation, the update above represents
+exactly $\C_n$. If $m^\star\in\M_K$, every updated cover contains $m^\star$.
 \end{theorem}
 \begin{proof}
-The empty sequence is immediate. Equality gives the same first output and
-successor state. Closure places that successor in $P$, so induction applies to the
-remaining input sequence.
+Induct on observations within each reset trace. For any compatible complete
+table, a defined visited edge must have the observed output; an undefined edge
+has its true successor among the $K$ branches. Thus no compatible table is lost.
+Conversely, every retained branch assigns the observed output to the visited
+edge and tracks its successor, so all its completions realize the processed
+prefix. Resetting the branch state between episodes is valid by assumption.
+Deduplication changes representation, not its union of completions. Induction
+over episodes gives equality; actual feedback gives truth membership.
 \end{proof}
 
-The condition is strong but precise. Equal current actions do not imply equal
-controller-memory updates. Two controllers can agree now and diverge on the next
-action. A finite test set is not a proof of closure on an unrestricted state space;
-the executable finite-domain checker requires an enumerated protected domain.
+This cover can overlap and can grow exponentially. The implementation caps the
+frontier and marks incomplete inference rather than silently retaining only a
+likely subset. Once coverage is unknown, new certificates are not issued.
+An empty exact class is reported as \bad, never as vacuous success.
 
-\subsection{Robust Bellman obligations}
-For incumbent $b$, define the continuation-aware advantage of action $a$:
+\paragraph{Changing capacity.}
+Appending a new candidate program does not change $\C_n$. Increasing $K$ does.
+The implementation replays all raw evidence under the new bound, starts a new
+contract era from the anchor, and does not inherit old certificates or the old
+budget claim. This is an explicit online recovery operation, not evidence that
+a fitted smaller model was sound before expansion.
+
+\section{Checking a pair rather than trusting a model}
+For a candidate $p$ and current incumbent $b$, define
 \begin{align}
- A_m^b(t,s,a)&=r_m(t,s,a)\notag\\
- &\quad+V_m^b(t+1,T_m(t,s,a))-V_m^b(t,s).
+ L_n(p,b,g)&=\min_{m\in\C_n}\big[V_m(p,g)-V_m(b,g)\big],\label{eq:lower}\\
+ U_n(p,b,g)&=\max_{m\in\C_n}\big[V_m(p,g)-V_m(b,g)\big].\label{eq:upper}
 \end{align}
-A candidate policy $c$ passes if
-\begin{equation}
- \min_{m\in\C_n} A_m^b(t,s,c(t,s))\geq0
- \qquad\text{for every }t,s.\label{eq:admit}
-\end{equation}
-The incumbent's own action is always admissible. The implementation maximizes
-summed model advantages among admissible actions and prefers the incumbent on
-ties. That ranking is a heuristic; the guarantee uses the minimum.
+Computing these extrema separately by materializing every complete world is
+unnecessary when many transitions cannot affect the comparison.
 
-\begin{theorem}[All-state improvement]\label{thm:improve}
-If $\C_n\ne\varnothing$ and~\eqref{eq:admit} holds, then
-$V_m^c(t,s)\geq V_m^b(t,s)$ for every $m\in\C_n,t,s$.
+The checker symbolically executes both programs in the \emph{same} partial
+table. It expands an undefined edge only when one execution reads it, branching
+over its $K|O|$ possible assignments. Both executions share each assignment.
+It accumulates their reward difference and retains a complete witness for the
+minimum. Unvisited slots remain universally quantified.
+
+\paragraph{Closing a suffix.}
+At the same time index, if both executions have the same hidden state and
+identical remaining observation-contingent programs, their remaining reward
+difference is zero for every completion. This follows by induction on future
+steps. Equal current observations alone do not justify closure: hidden states
+with the same emitted symbol can have different successors.
+
+We compile remaining program trees into exact pair-local directed acyclic graph
+(DAG) IDs. The interning key is the complete tuple consisting of the current
+action and child IDs. Dictionary equality checks the whole tuple, so a hash
+collision cannot equate different programs. This is not a shapes-only cache or
+a learned equivalence prediction. DAG construction cost is included in timings.
+
+\begin{theorem}[Exact paired extrema]\label{thm:checker}
+For a nonempty exact cover, a completed paired search returns precisely
+\eqref{eq:lower} and \eqref{eq:upper}. A returned lower-bound witness is a
+compatible complete table attaining the minimum.
 \end{theorem}
 \begin{proof}
-Terminal values agree. At an earlier stage, apply induction at the candidate's
-successor and then~\eqref{eq:admit}:
-\begin{align*}
- V_m^c(t,s)&=r_m(t,s,c)+V_m^c(t+1,T_m(t,s,c))\\
- &\geq r_m(t,s,c)+V_m^b(t+1,T_m(t,s,c))\\
- &\geq V_m^b(t,s).
-\end{align*}
+Expanding an unread edge partitions its completions into all possible assigned
+edges. A defined edge needs no split. Therefore every compatible world follows
+a search branch, and no branch introduces an incompatible visited edge.
+At the horizon the accumulated difference is constant over all unread
+completions. The same holds at an early closure because subsequent states,
+programs, observations, and rewards agree inductively. The minimum and maximum
+of these leaf differences are consequently the desired extrema. Any remaining
+undefined slots at a minimizing leaf may be completed arbitrarily, producing a
+compatible witness with the same difference.
 \end{proof}
 
-Theorem~\ref{thm:improve} is classical policy-improvement reasoning. It is a
-sufficient, not necessary, admission rule. Some coordinated policy changes improve
-full value even though an intermediate action has negative advantage relative to
-the old continuation. More expressive policy-level certificates could admit them.
-An average-return criterion would be cheaper but could sacrifice a protected rare
-state, so it is not substituted for the stated all-state guarantee.
+A node cap yields \unk\ with no usable bound. It does not turn visited leaves
+into a confidence interval. For each partial, at most
+$u=\min(K|A|,2H)$ distinct unresolved slots are read along a paired path, giving
+up to $(K|O|)^u$ assignments, in addition to horizon and frontier overhead.
+Full policy-tree construction itself costs
+$O(\sum_{t=0}^{H-1}|O|^t)$. Conditional sharing is not polynomial-time learning.
 
-\subsection{Protect acquired gains, not only the anchor}
-Within a contracting family, every previous universal obligation remains true.
-Consequently, each new improvement round begins from the \emph{previous certified
-incumbent}. By transitivity and truth membership, its true all-state value is
-nondecreasing. Rebuilding from $b_0$ each episode protects only the original floor;
-it can forget an earlier improvement. We found and corrected precisely that bug
-while developing this revision, then added update-by-update regression tests.
+\begin{corollary}[Maximality for the declared class]\label{cor:maximal}
+For a fixed candidate and incumbent, $L_n\geq0$ is necessary and sufficient for
+nonnegative return difference in every world of $\C_n$. If $L_n<0$, its witness
+refutes uniform admission within this contract.
+\end{corollary}
+\begin{proof}
+Sufficiency is the definition of a minimum. Necessity follows because the finite
+nonempty class attains that minimum. Theorem~\ref{thm:checker} supplies a witness.
+\end{proof}
+This does not make the overall learner optimal. A different experiment,
+candidate, objective, or weaker guarantee may yield higher return.
 
-Contracts bind the baseline hash, candidate hash, model-family identities, and
-generation. A changed encoder, model family, baseline, or scope requires a new
-contract. The implementation rejects stale or foreign certificates. After new
-plausible worlds are admitted, it starts a new trust era from $b_0$ rather than
-claiming that earlier incumbent guarantees extend to a larger family.
-
-\section{Accounting for exploration}
-A safe incumbent need not generate identifying evidence. We therefore examine
-candidate episode policies from surviving model optima and the immutable archive.
-For candidate $p$ at actual initial state $s_n$, reserve
+\section{Online training and informative exploration}
+\subsection{The proposer has no admission authority}
+The reference trains a small tanh network after every executed episode.
+Features combine the public objective with per-time action frequencies of a
+candidate program. With normalized observed return $y_n$, the loss is
 \begin{equation}
- D_n(p)=\max\left\{0,\max_{m\in\C_n}
- [V_m^{b_n}(0,s_n)-V_m^p(0,s_n)]\right\}.\label{eq:debit}
+ \ell_n(\theta)=\tfrac12\big(f_\theta(g_n,p_n)-y_n\big)^2.
 \end{equation}
-Run the trial only if past debits plus $D_n(p)$ do not exceed the declared budget
-$B$. Reserve this debit \emph{before} execution and never refund it merely because
-the realized trial was favorable. Among feasible trials, the reference prioritizes
-worst-case reduction in the plausible-family size, then optimistic gain and lower
-debit. Predicted trajectories are computed from supplied models; only the actual
-executed trajectory is admitted as evidence.
+One stochastic gradient update uses the selected program and its actual return.
+There are no evaluator-oracle labels, imaginary rollout labels, or offline
+optimization stages. A visit bonus encourages underexplored proposals.
+These features collapse distinct reactive trees and are intentionally weak;
+the primary library contains only open-loop words.
+
+Every proposal is a typed immutable program. A candidate replaces the incumbent
+only after an exact check proves strictly positive $L_n$; ties preserve the
+incumbent. An optional local-model driver accepts bounded JSON words or trees,
+not executable code or self-issued certificates. Its parser is tested, but no
+real LLM service was run. It is not a native benchmark adapter.
+
+\begin{theorem}[Proposer-independent retention]\label{thm:retention}
+Within a stationary realizable era, suppose every incumbent replacement is an
+immutable program with a completed check satisfying $L_n\geq0$. Then for each
+declared objective $g$, the true reset values of its successive incumbents are
+nondecreasing, regardless of how proposals are generated or updated.
+\end{theorem}
+\begin{proof}
+Theorem~\ref{thm:cover} retains $m^\star\in\C_n$. Substituting it into the
+universal bound gives $V_{m^\star}(p,g)\geq V_{m^\star}(b,g)$.
+Induct over admitted replacements. Proposal quality does not occur in the
+inequality, only in which candidate is checked. Frozen program semantics and
+unchanged objective/reset semantics are necessary for the substitution.
+\end{proof}
+
+\subsection{A non-refundable exploration ledger}
+For a non-admitted probe $p_n$, charge before execution
+\begin{equation}
+ d_n=\clip{-L_n(p_n,b_{n,g_n},g_n)}.
+\end{equation}
+Only a completed exact comparison can authorize a probe, and cumulative debits
+must remain at most $B$. Favorable realized outcomes do not refund debits.
+Incumbent execution and admitted improvements have zero debit.
+
+\begin{theorem}[Completed-prefix deficit]\label{thm:budget}
+Under Theorem~\ref{thm:retention}'s assumptions, every completed episode prefix
+$N$ satisfies
+\begin{equation}
+ \sum_{n=1}^{N}\big[V_{m^\star}(b_{0,g_n},g_n)-R_n\big]
+ \leq \sum_{n=1}^{N}d_n\leq B.\label{eq:budget}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Retention gives $V_{m^\star}(b_{0,g_n},g_n)\leq
+V_{m^\star}(b_{n,g_n},g_n)$. Exact debit validity bounds the latter by
+$R_n+d_n$ for each executed probe; the same relation holds with $d_n=0$ for
+incumbent or admitted execution. Summation and the prepaid ledger yield the
+claim for every completed prefix.
+\end{proof}
+
+Equation~\eqref{eq:budget} allows individual losses. It is not an all-state
+performance guarantee, a guarantee under hidden dynamics changes, or a safety
+specification for irreversible actions. It applies separately within each
+contract era, not across unbounded capacity restarts.
+
+\subsection{Do not pay for a certainly uninformative probe}
+Our initial integrated controller could spend repeated debits on programs whose
+observable outcome was already fixed. We now enumerate a feasible probe's set
+of distinct observable traces over $\C_n$. A probe is selected only when this
+set contains more than one trace and $U_n>0$.
+
+\begin{proposition}[Strict evidence reduction]\label{prop:informative}
+If a deterministic probe has at least two possible observable traces in
+$\C_n$, every realized trace removes at least one currently compatible world.
+\end{proposition}
+\begin{proof}
+Two different possible traces cannot both equal the observed trace. A compatible
+world realizing the other trace is eliminated by conditioning.
+\end{proof}
+
+This is not expected information gain. The controller orders feasible probes by
+smallest debit, most distinct observable traces, largest optimistic return
+difference, then proposer rank. Counts are not probabilities and do not count
+arbitrary latent-state labelings as information. At most $|\C_0|-1$ strictly
+eliminating events are possible in a finite class, but this exponential bound
+does not guarantee sufficient budget, available distinguishing programs, or
+identification of an optimal policy.
 
 \begin{algorithm}[t]
 \small
-\DontPrintSemicolon
-\KwIn{Family $\C$, incumbent $b$, anchor $b_0$, archive, spent budget $L$, cap $B$}
-Replay new observed transitions; reject certification if $\C=\varnothing$\;
-If plausible models were added, start a new trust era with $b\leftarrow b_0$\;
-Improve $b$ using all-model, all-state Bellman obligations\;
-Construct candidate trials from model optima and the archive\;
-Compute predicted signatures and $D(p)$; discard trials with $L+D(p)>B$\;
-Select an informative feasible trial $p$, or use $b$\;
-Reserve $L\leftarrow L+D(p)$; execute $p$ once\;
-Record the actual complete trajectory; update $\C$ and archive\;
-\caption{Deterministic continuation-contract learner. No step uses the evaluator's true-world index.}
-\label{alg:main}
+\caption{One reset episode of the implemented learner}
+\KwIn{Exact or flagged cover $\F_n$; public goal $g$; immutable incumbent $b_g$; spent debit $D$; budget $B$}
+Rank immutable candidate programs using the online proposer\;
+Check each candidate against $b_g$ by paired symbolic execution\;
+\eIf{some completed check has $L>0$}{
+Replace $b_g$ by a candidate with maximal $L$, using proposer rank to break ties\;
+Execute this frozen program with zero debit\;
+}{
+Among exact checks with $U>0$ and $D+[-L]_+\leq B$, enumerate possible traces\;
+\eIf{a feasible program has more than one possible trace}{
+Choose smallest debit, then most traces, then largest $U$, then rank\;
+Debit before executing the frozen program\;
+}{Execute the incumbent without debit\;}
+}
+Condition the cover on the actual action--output trace\;
+Apply one neural update using only its observed return\;
 \end{algorithm}
 
-\begin{theorem}[Completed-prefix deficit]\label{thm:budget}
-In a stationary realizable deterministic era with genuine episode resets,
-Algorithm~\ref{alg:main} satisfies, at every completed episode prefix $N$,
-\begin{equation}
- \sum_{n=1}^N\big[V_{m^*}^{b_0}(0,s_n)-R_n\big]
- \leq\sum_{n=1}^ND_n\leq B.\label{eq:budget}
-\end{equation}
-\end{theorem}
-\begin{proof}
-Incumbent improvement gives $V^{b_0}\leq V^{b_n}$. Truth membership and the
-maximization in~\eqref{eq:debit} give $V^{b_n}-V^{p_n}\leq D_n$ at $s_n$.
-Deterministic execution gives $R_n=V^{p_n}$. Add these inequalities. The admission
-ledger ensures the second inequality.
-\end{proof}
+\section{Executed experiments, including failures}
+\subsection{Protocol and comparators}
+Development uses seeds 0--19. An initial seven-arm run contains 6,720 episodes;
+the revised eight-arm development run contains 7,680. A local protocol record
+was written before generating 100 fresh seeds, 10000--10099. It is a local
+freeze, not external preregistration. The primary run comprises eight systems,
+48 episodes per seed, and 38,400 episode rows.
 
-Initial states need not be independently sampled. They must be the same actual
-states used for the baseline comparison. With cross-episode carryover,
-Equation~\eqref{eq:budget} is not a comparison to the baseline's counterfactual
-lifelong trajectory: prior actions may change later starts. One must include the
-missing continuation value or prove regeneration before making that stronger
-claim. The budget also does not prohibit individual adverse actions, privacy
-violations, or irreversible real-world harm.
+Each hidden transducer has two states, two actions, and two outputs. The horizon
+is four, and all 16 binary action words form the candidate library. The learner
+does not receive the generated table. Public rewards alternate in three
+16-episode blocks: $r_A=(0,2)$, $r_B=(2,0)$, then $r_A$ again. The transition
+model never changes. This is public-objective recurrence, not hidden-regime
+recurrence. Episode rewards lie in $[0,8]$.
 
-\begin{proposition}[A zero-risk obstruction]
-Consider two observationally indistinguishable worlds in which the baseline
-always returns $5$, while a trial returns $0$ in one and $10$ in the other.
-No algorithm required to have zero expected deficit in both worlds can assign
-positive trial probability before obtaining distinguishing information.
-\end{proposition}
-\begin{proof}
-A trial probability $p>0$ produces expected deficit $5p$ in the unfavorable world.
-Baseline observations cannot distinguish the worlds. Thus universal zero expected
-deficit requires $p=0$, preventing strict improvement in the favorable world.
-\end{proof}
+The strong full-history comparator enumerates all consistent models and selects
+the word with largest optimistic value, breaking ties by mean model value and
+then lexicographic order. It has no risk constraint. It is a symbolic planner,
+\emph{not} raw-history LLM ICL. A last-output model is a weak observation-reactive
+diagnostic. Other arms are the fixed anchor, Witness at budgets 0, 16, and 64,
+a no-training ablation, and an unguided-probe ablation.
 
-This does not end the research problem. It identifies the resource that must be
-provided: safe informative actions, a nonzero exposure allowance, trusted side
-information, or a legally available simulator.
-
-\section{Independent extensions}
-\subsection{Fixed-family noise-aware evidence}
-Hard deletion is incorrect when valid hypotheses sometimes produce an unexpected
-outcome. For a fixed finite probabilistic family and prior weights $\pi_m>0$
-chosen before data, let $L_{m,n}$ be the likelihood of actual observations under
-predictable chosen actions and let $L_{\mathrm{mix},n}=\sum_m\pi_mL_{m,n}$.
-The ratio $E_{m,n}=L_{\mathrm{mix},n}/L_{m,n}$ is a nonnegative supermartingale
-under true $m$; common-support conditions give martingale equality. Standard
-maximal-inequality reasoning yields~\cite{confidence}
-\begin{equation}
- \PP_m\{\exists n:E_{m,n}\geq1/\delta\}\leq\delta.
-\end{equation}
-The exact-rational reference retains $m$ when $\delta L_{\mathrm{mix},n}<L_{m,n}$.
-Tests enumerate all binary histories of length six and verify the likelihood-ratio
-expectation exactly in a common-support example.
-
-This does not justify assigning a new data-dependent model retrospective
-likelihood credit. Nor does it turn an uncalibrated neural score into a likelihood.
-The filter is not integrated into the deterministic controller. A stochastic
-controller would additionally need expected-value backups and a valid allowance
-for realized-return deviations. It cannot inherit~\eqref{eq:budget} by renaming a
-consistency set a confidence set.
-
-\subsection{Learning features without overwriting them}
-The earlier fixed-feature residual protects an old feature span but loses freedom
-when that span fills the representation. The new neural component trains both
-features and a head in a separate module, then freezes the resulting arrays as
-immutable bytes. Old public-schema dispatch and old input construction do not
-change. Accordingly, the old function is unchanged for every input still routed
-to that module. This is architectural isolation, related to progressive
-networks~\cite{progressive}, with growing storage rather than a fixed-memory
-solution. Functional preservation becomes full behavioral preservation only when
-the closed-state conditions of Theorem~\ref{thm:closed} are also satisfied.
-
-The executed diagnostic has two exhaustive actions and exact success feedback.
-Given the chosen action, success or failure determines the binary target. This
-own-feedback supervision argument is invalid for noisy outcomes or arbitrary
-multi-action tasks. Every baseline receives the same public scope tag. No latent
-scope inference, LLM weight update, or general transfer result is established.
-
-\subsection{Coupled simulator execution}
-The paired simulator advances two controller memories independently under a shared
-exogenous noise tape. It shares one environment transition exactly when the two
-actual states and actions agree, otherwise evaluates both. Actual reconvergence
-can permit later sharing; matching now never licenses skipping an unchecked suffix.
-For $H$ steps and $L$ shared transitions, the environment-call count is $2H-L$
-instead of $2H$, while controller calls remain $2H$. This is a semantic work-saving
-identity, not a claim that arbitrary external tools can be cloned or that LLM
-serving becomes proportionally faster.
-
-\section{Experiments and negative results}
-\subsection{Stateful online learning}
-We ran twenty independent seeds, sixty-four episodes, seven arms, and two finite
-world families: delayed damage and compositional navigation. Each has $H=5$,
-$|S|=4$, $|A|=3$, and a supplied family constructed from sixteen latent masks;
-semantically duplicate worlds are deduplicated. The hidden mask is not given to
-the learner. Episodes reset and initial states cycle through the public state
-space. All methods receive the same actual feedback protocol. The complete
-17,920 episode records are archived with seed-level summaries.
+All systems receive only their own executed feedback and have equal environment
+horizons. Total CPU time is not matched. Evaluator-only word oracles do not train
+the agents. The primary metric is mean return over all episodes; late-A return
+uses the last eight. We additionally track incumbent regressions, risk spent,
+and maximum completed-prefix deficit against the fixed anchor.
 
 \begin{table*}[t]
-\centering\small
-\input{v3_continuation.tex}
-\caption{Executed finite-world experiment, means over twenty seeds. Early and late
-are the first eight and final sixteen episodes. Worst deficit is the maximum
-cumulative anchor-relative deficit over all completed prefixes and seeds, in
-native reward units. This is a model-based mechanism study, not an ICL or LLM
-benchmark. Seed-level variability is retained in the result ledger.}
-\label{tab:continuation}
+\centering
+\input{v4_results.tex}
+\caption{Executed primary study: 100 fresh seeds, eight systems, 48 episodes,
+38,400 rows. Mean and late-A values are rewards, not percentages. Maximum deficit
+is the worst completed-prefix anchor deficit across all seeds. The strong
+full-history planner is symbolic, not an LLM ICL baseline.}
+\label{tab:main}
 \end{table*}
 
-The strong full-history optimistic baseline uses all observed transitions to filter
-the same supplied family and plans optimistically. It is not a language model and
-must not be labeled raw-history ICL. Uniform exploration followed by planning and
-immediate-reward greedy control isolate exploration and continuation effects.
-Our $B\in\{0,4,16\}$ arms isolate conservatism. Oracle values are computed only
-by the evaluator for diagnostics; they are not extra training feedback.
+\paragraph{Held-out limitations and audit.}
+The 256-table class is tiny. Development contains 19 distinct tables and the
+100 fresh seeds contain 81, with six tables shared between the two sets.
+Independent fresh seeds therefore do not establish unseen-world generalization.
+A secondary new-reward diagnostic in raw JSON preserves objective A's output
+ordering and is not treated as credible new-domain transfer.
 
-Table~\ref{tab:continuation} supports the continuation mechanism but rejects a
-performance-breakthrough interpretation. In delayed damage, immediate greedy
-control has worst cumulative deficit $133$, versus $2$ for $B=4$. However, the
-strong full-history baseline also has worst deficit $2$ and reaches exactly the
-same late return as $B=4$ on every seed in both domains. The paired late-return
-difference is identically zero in this study. Zero budget reduces delayed-damage
-late return from $13.1375$ to $12.5625$. The contract controller is also slower on
-these small CPU problems because it performs additional all-state and trial
-planning work. Its guarantee, rather than a measured performance advantage, is
-the positive result here.
+After the first held-out run, exact DAG IDs replaced repeated structural suffix
+checks and strict candidate registration was added. The controller's selection
+rule was not tuned on held-out outcomes. The primary run was repeated with the
+final code. An included audit verifies identical actions/programs, rewards,
+objectives, deficits, spent risk, and frontier sizes across all 38,400 rows.
+Original freeze hashes and pre-backend results are retained; timings and search
+counters are allowed to differ.
 
-The delayed-damage seed-level late-return standard deviation is $0.620$ for the
-full-history and $B=4$ methods, and $0.628$ for $B=0$. Episodes are correlated
-within a seed; treating 17,920 rows as independent observations would overstate
-statistical evidence. Generalization is limited by two small generated families,
-supplied model structure, exact feedback, and short horizons.
+\subsection{Learning and retention results}
+Table~\ref{tab:main} shows improvement over the fixed anchor, but not over the
+strong planner. Guided budgets 16 and 64 have mean return 6.3358 versus 6.3729.
+The paired-seed difference is $-0.037083$ reward per episode, with a 95\% paired
+$t$ interval of $[-0.055284,-0.018883]$. Average-return superiority is rejected
+in this experiment. Late-A return ties at 6.48. The planner also has a lower
+largest observed prefix deficit, 2 versus 4. The conditional bound is not
+evidence of an empirical risk--return advantage over this planner.
 
-\subsection{Online feature learning and retention}
-Twenty seeds cover three public scopes with 1,600 feedback examples each and four
-arms, totaling 384,000 online interactions. Shared and versioned networks use the
-same five input features: two numeric observations plus a public three-way scope
-tag. Each scope has 512 independent held-out probes. New-task online accuracy is
-measured before each update. Forgetting is the acquired held-out accuracy minus
-later accuracy, averaged across old-scope checkpoints. No separate offline training
-phase is inserted.
+The informative-probe refinement is useful within this controller. Guided B64
+exceeds unguided B64 by 0.056667 reward per episode, interval
+$[0.029805,0.083528]$, and reduces the largest observed prefix deficit from 40
+to 4. Training exceeds the no-training B64 ablation by only 0.014167,
+interval $[0.007394,0.020940]$. These secondary comparisons are descriptive
+and not multiplicity-corrected confirmatory findings. The small neural effect
+argues against presenting this as a major new training algorithm.
 
-\begin{table*}[t]
-\centering\small
-\input{v3_training.tex}
-\caption{Executed learned-feature diagnostic, means over twenty seeds. Early and
-late use the first 100 and last 200 examples per scope. Forgetting is in percentage
-points. The near-matched shared model has 4,040 parameter bytes versus 4,056 for
-three immutable modules. Replay additionally stores 10,752 payload bytes, excluding
-Python overhead, and approximately doubles online updates.}
-\label{tab:training}
-\end{table*}
+There are zero recorded incumbent regressions under the realizable contract.
+Mean B16 risk spent is 2.62, versus the allowed 16; mean incumbent promotions are
+1.4 per seed. The network receives 48 actual-return updates per seed. Its weight
+payload is 1,544 bytes, but this excludes features, visits, trees, evidence,
+frontiers, archives and Python overhead. Raw trace payload grows with episode
+count. No bounded-total-memory result follows.
 
-Table~\ref{tab:training} includes an online reservoir-replay baseline rather than
-relying only on naive shared SGD. Replay reduces mean forgetting to $2.65$
-percentage points. Versioned learned modules have exactly zero measured forgetting
-and old-logit drift, but late current-task accuracy is $95.43\%$, versus $96.23\%$
-for replay. Thus the experiment does not show a free stability--plasticity gain.
-The tiny parameter footprints describe this toy network, not an LLM deployment.
-Raw per-update neural rows are not archived; fixed generation seeds, code, and
-per-seed results are supplied for reproduction.
+\subsection{Checker cost and robustness}
+A separate 60-query CPU diagnostic compares paired execution with and without
+suffix closure, using seven timing repetitions per query and identical extrema.
+Median query speedups are 8.41 for identical programs, 1.55 for shared suffixes,
+and 0.90 for unrelated programs. The identical-program case is a trivial
+short-circuit, not an end-to-end systems claim. Unrelated programs remain slower.
+Before DAG IDs, repeated subtree work erased the shared-suffix benefit; those
+negative measurements are preserved.
 
-\subsection{Noise, sharing, and kernel costs}
-The noise experiment draws 1,000 independently seeded length-64 sequences with
-$10\%$ noise and $\delta=0.05$. The fixed-family likelihood filter ever excludes
-truth in 12 sequences ($1.2\%$); hard deletion loses truth in 997 ($99.7\%$).
-The finite test does not prove coverage. Correct likelihood specification remains
-an explicit premise of the probability argument.
+A 15-case scaling stress test varies state count and horizon with a 20,000-node
+cap. Four cases return \unk. This is correct abstention but unfavorable scaling,
+not a hidden success. The reference has no new GPU kernel, and its CPU
+microbenchmarks do not predict GH200 serving performance.
 
-Across 200 paired simulator tests of horizon 32, every coupled trace matches its
-independent reference. Mean environment calls fall from 64 to $39.405$, a $38.43\%$
-reduction. Controller calls remain 64. Late-divergence construction favors sharing;
-this does not estimate savings in real tool or LLM workloads.
+An additional 1,200-episode diagnostic overwrites proposer parameters with large
+arbitrary values between episodes. Incumbent and budget violations remain zero
+under the contract. This tests separation of proposal and admission, not
+adversarial safety of the whole Python process. An unannounced dynamics-change
+counterexample has old certified gain $+2$ and actual new-world difference $-2$.
+Feedback can detect some contradictions after execution; it cannot protect the
+first violation of an unobserved assumption.
 
-The packed NumPy continuation pass has essentially no cold end-to-end advantage
-in the measured shapes. At $M=4,16,64$, scalar times are $0.885,2.792,9.830$ ms,
-versus packed $0.809,2.725,10.024$ ms. Medians include table construction and value
-computation. Packing is slightly slower at 64 models. Device-resident caching may
-change that outcome, but no such measurement exists in this release.
+\section{Implementation and proof status}
+The release adds an exact partial-table learner, paired checker, online agent,
+strict proposal parser, three experiment drivers, independent C++ rollout
+reference, and tests. All 355 Python tests pass. Exact small-class tests compare
+model covers and paired extrema against exhaustive enumeration, including
+reactive policies, lower-bound witnesses, empty classes, search caps, capacity
+changes, and wrong-state-bound counterexamples. The neural gradient is checked
+by finite differences.
 
-\section{Engineering and verification}
-One dense all-model, all-action advantage pass costs $O(MHSA)$, with model storage
-of the same order. The implementation evaluates up to the number of unique model
-optima plus archived candidates; scoring $K$ candidates by predicted signatures
-costs $O(KMH)$ after their construction, and value computations add work. Repeated
-policy-improvement passes multiply admission cost. Model-family enumeration is
-not cheap simply because its arithmetic can be vectorized.
+The new C++ reference passes 400 paired observation-tree cases and a bounded
+reward rejection under undefined-behavior sanitization. The preserved legacy
+suite passes 632 cases plus an overflow check. These tests validate complete
+numeric rollouts and boundary handling, not a formal refinement of the symbolic
+search. No native benchmark, actual LLM inference, or CUDA experiment was run.
 
-The checked C++ scalar reference uses wide intermediates and rejects int64
-overflow. The NumPy primitive rejects unsafe magnitude bounds before arithmetic.
-The CUDA draft proposes one 256-thread block per $(t,s,a)$ to reduce across model
-advantages. It assumes valid indices, a positive model count, matching immutable
-model/value snapshots, and the documented integer bound. There is no executed
-host binding, sanitizer result, or GPU timing for that draft. A useful next
-optimization would retain immutable tables and generation-indexed value caches
-on device, but only if profiling shows this work matters after model fitting,
-LLM inference, and tool execution are included.
+Eleven new Lean declarations attempt abstract cover, refinement, evidence
+intersection, guarded update, arbitrary proposal, retained chains, informative
+elimination, observation aliasing, budget lifting, and shrinking-class
+preservation. Together with the prior files there are 50 declarations. The local
+\texttt{lake build} attempt failed because the compiler was unavailable; release
+retrieval attempts also failed. None is kernel-checked. The absence of
+\texttt{sorry} or \texttt{admit} is not proof verification. Moreover, even a
+successful future build would not establish that Python implements the assumed
+cover or that a native task satisfies the contract.
 
-\paragraph{Validation status.}
-All 271 Python tests pass, including delayed harm, hidden controller divergence,
-empty-family rejection, stale certificates, class expansion, prefix deficits,
-incumbent retention, noisy evidence, immutable arrays, and scalar/vector parity.
-All 432 legacy C++ cases and 200 new randomized cases pass, plus an explicit
-overflow rejection test. The new C++ test runs with undefined-behavior checking.
-These observations are not proofs of unrestricted implementation correctness.
+\section{Limitations and decisive next experiments}
+\paragraph{Where the guarantee breaks.}
+Consistency with observed traces does not validate $K$, stationarity, reset
+semantics, deterministic feedback, or output sufficiency. A point estimate or
+underspecified class can certify a change that fails in a larger compatible
+world. Hidden drift can invalidate a previous certificate before its first
+counterexample arrives. Public objectives do not solve hidden task routing.
+The fixed reset-value theorem is weaker than v3's supplied-model all-state
+claim and much weaker than broad capability retention.
 
-The repository has 39 Lean theorem declarations: thirteen original, sixteen in
-the prior refinement, and ten continuation declarations. All are attempts, not
-kernel-checked theorems. The local build fails because \texttt{lake} is absent,
-and the official toolchain download attempt also fails. The new source addresses
-closed traces, Bellman comparison, truth membership, shrinking obligations,
-integer debit addition, a zero-risk obstruction, and incumbent ordering. It does
-not formalize stochastic coverage, floating point, Python refinement, or CUDA.
-The included \texttt{\#print axioms} commands are unexecuted source, not evidence
-that a compiler checked their dependencies.
-
-\section{Learning compact abstractions}
-The strongest untested extension is counterexample-guided abstraction refinement.
-A deployed learner would construct a typed abstract state from observable schema
-and raw witnesses, synthesize a skill, and split abstract states when different
-future consequences were incorrectly merged. Earlier abstractions and modules
-remain versioned. New candidates need either a uniform model-error certificate
-or an independent prospective full-continuation audit. Training fit alone is not
-such a certificate.
-
-\begin{proposition}[Uniform approximate-model margin]\label{thm:approx}
-Suppose a true and abstract finite-horizon model share a valid policy/state
-correspondence. Both reward functions lie in $[0,R_{\max}]$, their absolute
-reward discrepancy is at most $\epsilon_r$, and their one-step transition total
-variation is at most $\epsilon_p$, uniformly on all relevant state--action pairs.
-For any fixed policy with $h$ remaining steps, the value error is at most
-\begin{equation}
- E_h=h\epsilon_r+R_{\max}\epsilon_p\frac{h(h-1)}2.
-\end{equation}
-An abstract candidate-minus-baseline advantage of at least $2E_h$ therefore
-implies nonnegative true value difference at that state.
-\end{proposition}
-\begin{proof}
-The terminal error is zero. Each recursion adds at most $\epsilon_r$ reward
-error, $E_{h-1}$ successor value error, and
-$\epsilon_p(h-1)R_{\max}$ distribution error, because the successor value span
-is at most $(h-1)R_{\max}$. Summing proves $E_h$. Apply the error bound to both
-policies and subtract. Adaptive policy selection requires a simultaneous envelope
-covering all policies that may be selected.
-\end{proof}
-
-This is a useful rejection rule, not a claim to have learned the required
-uniform envelope. Partial observability can make an abstraction non-Markovian;
-rare states can invalidate empirical coverage; longer horizons inflate the bound
-quadratically; and conservative margins can reject nearly every useful change.
-The first experiment should hide the generator family from the learner while
-keeping the exact world available to the evaluator, then independently vary
-aliasing, delayed rewards, horizon, grammar depth, and misspecification. Compare
-learned abstractions with supplied models, full-history planning, and a real
-retrieval-plus-LLM learner on held-out composition and recurrence.
-
-\paragraph{Memory cannot be free.}
-After $N$ independent binary facts, exact answers to arbitrary old-fact queries
-require distinguishing $2^N$ possible histories, hence at least $N$ bits of system
-state. Bounded active memory plus an external archive is compatible with this
-limit; uniformly bounded total storage and unlimited exact arbitrary recall are
-not. Learned abstractions must compress reusable structure, not claim to compress
-independent information without loss.
+There is also an unavoidable information--risk tradeoff within some classes.
+Two worlds can make the anchor observationally identical while a distinguishing
+action has opposite reward consequences. Zero-risk execution cannot both retain
+the anchor in the unfavorable world and guarantee learning the favorable one.
+The right target is therefore not an unconditional monotonicity slogan, but a
+useful, explicit and affordable tradeoff. Independent new information can also
+require growing total storage; our archive does not bypass that cost.
 
 \balance
-\section{External evaluation plan}
-No native CL-Bench, AgentCL, J-TTL, model-server, or GH200 run was executed. The
-current CL-Bench ICL source was inspected: it provides respond/observe/reset,
-usage logging, and FIFO context handling, but not the finite environment family
-required by our controller. A generic wrapper is not a completed native adapter.
-The repository records inspected file hashes and an integration protocol.
+\paragraph{Native falsification.}
+The next experiment must first acquire a valid abstraction from a real, resettable
+tool environment without using hidden tables or task answers. Then evaluate
+compatible CL-Bench domains and AgentCL streams with the same fixed backbone,
+permissions, generation settings and total compute budget. Include raw-history
+ICL, a strong memory/skill baseline, an evolving harness, point-estimate models,
+and removals of checking, training and informative probes. Count proposal
+sampling, gradient updates, checker work, retrieval, replay, resets, retries and
+environment interactions. An oracle-representation arm is diagnostic only.
 
-Use two fixed backbones, all six CL-Bench domains, and AgentCL's controlled,
-naive, and held-out streams. Mandatory applicable comparators include stateless,
-raw-history ICL, scratchpad ICL, ACE, Mem0, MemProbe, harness evolution, v0.2,
-and the proposed method. Charge all generated candidates, judges, replay,
-online updates, model fitting, failed verification, and simulator work. Compare
-both equal token/cost budgets and equal wall time. Use at least twenty paired
-independent seeds per domain where allowed and resample whole streams, not
-correlated episodes. A development-only power pilot should set a final sample
-size before test inspection.
+A concrete proposed success criterion is at least five percentage points of
+native normalized learning gain over the strongest cost-matched baseline,
+positive lower paired 95\% bound, and no protected old-task success loss larger
+than two percentage points. These are research targets, not achieved results.
+Reject the scalable hypothesis if no sufficient small abstraction survives
+held-out continuation tests, if over 90\% of candidate checks return \unk\ on
+the selected native tasks, if apparent gains vanish at matched compute, or if
+cost exceeds the strongest baseline without the predeclared gain.
 
-The proposed practical target is at least five percentage points higher native
-learning gain, a positive paired 95\% confidence lower bound in the prespecified
-pooled comparison, positive point estimates on at least four of six CL-Bench
-domains, and no protected domain regression beyond two percentage points. These
-are chosen research thresholds, not consequences of our theorems. Simultaneous
-per-domain claims require appropriate uncertainty correction. A nonsignificant
-loss is not evidence of noninferiority.
+\paragraph{Resources and execution design.}
+The current simulator requires CPU only. A native pilot can use one GH200-class
+accelerator for a fixed local backbone and a multicore Docker host for task
+isolation. Measure 100 pilot episodes before assigning a larger GPU-hour budget;
+no throughput or model fit has been measured here. Retain full provenance and
+measure actual peak host/GPU memory rather than payload estimates.
 
-Kill the claimed learning advantage if the strongest cost-matched baseline
-matches or wins inside the prespecified practical-equivalence margin. Kill the
-abstraction mechanism if honest coverage rejects over 90\% of otherwise useful
-proposals, state size grows with raw history rather than structure, or held-out
-aliasing breaks a claimed guarantee. Kill the systems speed claim if it disappears
-after packing, model fitting, launches, and cache management are charged. Any
-reproducible exact mismatch ends the associated correctness claim immediately.
-
-\paragraph{Resources.}
-The included mechanisms require CPU, NumPy, pytest, and a C++17 compiler. A single
-GH200 is a proposed open-model test platform, subject to the selected model's
-actual weight, cache, activation, optimizer, and module footprint. Native CL-Bench
-documents Python 3.13+, \texttt{uv}, and Docker. Paired execution requires legal,
-read-only snapshotable workspaces. As an explicit planning example, six domains,
-two backbones, seven arms, twenty seeds, and sixty-four episodes yield 107,520
-agent episodes before extra candidates. At an assumed 20,000 processed tokens
-per episode, this is 2.1504 billion tokens. Neither this assumption nor any actual
-GPU speed or native run duration was measured; use a pilot for resource budgeting.
+A possible systems extension groups partial-transition work by time and
+unresolved slot in structure-of-arrays queues, with exact residual IDs and
+checked reductions. CPU parallelism should precede a GPU rewrite for tiny
+irregular checks. A proof cache must include immutable programs, objective,
+reset contract and evidence ancestry; enlarging the class invalidates reuse.
+These are unimplemented engineering hypotheses. A GPU cannot remove exponential
+model ambiguity, and an approximation cannot inherit exact guarantees without
+a separate soundness argument.
 
 \section{Conclusion}
-This revision turns vague retention language into specific continuation,
-incumbent, and exploration contracts. The finite-world learner improves online
-without an offline retraining phase and has conditional retention and deficit
-proofs. The experiments support the mechanisms but do not beat a strong
-full-history model-based baseline, establish a cost-free neural retention gain,
-or demonstrate native language-agent superiority. The consequential open task is
-learning compact, reliable abstractions and useful reusable programs whose
-verification costs less than the future value they create. The artifact makes
-that hypothesis executable and falsifiable rather than presenting it as solved.
+Witness-CL v0.4 learns compatible hidden-state models from its own executed traces
+and uses them to protect a behavioral incumbent independently of a mutable
+proposer. It supplies exact conditional reasoning, tested implementation
+boundaries, informative-exploration evidence and reproducible negative results.
+It does not yet supply the requested general stateful benchmark winner. The
+remaining research obligation is concrete: learn sufficient continuation
+abstractions cheaply enough that verified reuse beats full-history learning at
+equal cost, without hiding class misspecification or old-skill loss behind the
+word ``memory.''
 
-\paragraph{Research and safety statement.}
-Prepared as an AI-assisted research draft for Samuel Mausberg. Independent author
-review, literature assessment, formal checking, and replication are required.
-All executed environments are pure numeric simulators. Do not authorize
-irreversible real-world actions from these reward-model certificates. A deployed
-implementation must isolate untrusted tool content and prevent proposed skills
-from altering evaluators, permissions, history, or the cost ledger. The artifact
-is MIT licensed and preserves the supplied earlier Git history.
+\section*{Reproducibility and disclosure}
+Source, tests, raw episode files, result generation, original Git history,
+failed Lean build evidence and paper sources are included in the local research
+repository. The main reproduction targets are \texttt{make test},
+\texttt{make cpp-check}, \texttt{make latent-heldout},
+\texttt{make latent-diagnostics}, and \texttt{make paper}.
+The optional model-service driver was not executed. This is an AI-assisted draft
+prepared for Samuel Mausberg; independent review, actual proof compilation and
+external replication are required before strengthening any claim.
 
-{\small\input{references_formatted.tex}}
+% The source .bib is retained for submission templates.
+% A strict brace-valued renderer avoids an external BibTeX dependency.
+\input{references_formatted}
 \end{document}

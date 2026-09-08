@@ -1,0 +1,52 @@
+{
+  "status": "all selected behavioral fields identical after backend refinement",
+  "rows_compared": 38400,
+  "fields": [
+    "seed",
+    "method",
+    "episode",
+    "goal",
+    "reward",
+    "anchor",
+    "oracle_word",
+    "program",
+    "deficit",
+    "spent",
+    "partials"
+  ],
+  "original_freeze": "heldout_protocol.json is retained unchanged; local record, not external preregistration",
+  "changes_after_first_holdout": [
+    "exact residual DAG replaces repeated structural suffix checks",
+    "strict JSON candidate registration and input validation added; no new candidates in fixed-library study"
+  ],
+  "no_holdout_controller_tuning": true,
+  "unique_development_tables": 19,
+  "unique_heldout_tables": 81,
+  "overlap_tables": 6,
+  "finite_class_size": 256,
+  "paired_secondary": [
+    {
+      "a": "latent_neural_B64",
+      "b": "latent_unguided_B64",
+      "mean_difference": 0.056666666666666685,
+      "ci95_t": [
+        0.029805382364030637,
+        0.08352795096930274
+      ]
+    },
+    {
+      "a": "latent_neural_B64",
+      "b": "latent_untrained_B64",
+      "mean_difference": 0.014166666666666715,
+      "ci95_t": [
+        0.007393759414173185,
+        0.020939573919160244
+      ]
+    }
+  ],
+  "sha256_final": {
+    "src/witness_cl/latent.py": "7eb12e7ffedbc84527e09fc18bc92660cbf4440f58b33620769807dfb0835fa0",
+    "src/witness_cl/latent_agent.py": "0cb116d9fbb3ee070d570e1b12d2fe3003b0587852ed1f1be24a91edc5956368",
+    "experiments/latent_continuation.py": "fc2529a137b29e21ef171aa31cdf87d969da09cdd402b985475f6af7bb5bffc9"
+  }
+}

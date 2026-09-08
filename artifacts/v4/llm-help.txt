@@ -1,0 +1,11 @@
+usage: latent_llm.py [-h] [--base-url BASE_URL] --model MODEL [--allow-remote]
+                     [--episodes EPISODES] [--seed SEED] [--out OUT]
+
+options:
+  -h, --help           show this help message and exit
+  --base-url BASE_URL
+  --model MODEL
+  --allow-remote
+  --episodes EPISODES
+  --seed SEED
+  --out OUT
