@@ -1,0 +1,422 @@
+[
+  {
+    "block": 32,
+    "seed": 0,
+    "reward": 0.423583984375,
+    "regret": 2361.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 1,
+    "reward": 0.41357421875,
+    "regret": 2402.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 2,
+    "reward": 0.414794921875,
+    "regret": 2397.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 3,
+    "reward": 0.419189453125,
+    "regret": 2379.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 4,
+    "reward": 0.409912109375,
+    "regret": 2417.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 5,
+    "reward": 0.409423828125,
+    "regret": 2419.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 6,
+    "reward": 0.405029296875,
+    "regret": 2437.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 7,
+    "reward": 0.421142578125,
+    "regret": 2371.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 8,
+    "reward": 0.398681640625,
+    "regret": 2463.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 9,
+    "reward": 0.41943359375,
+    "regret": 2378.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 10,
+    "reward": 0.405517578125,
+    "regret": 2435.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 11,
+    "reward": 0.414306640625,
+    "regret": 2399.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 12,
+    "reward": 0.41845703125,
+    "regret": 2382.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 13,
+    "reward": 0.4248046875,
+    "regret": 2356.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 14,
+    "reward": 0.4111328125,
+    "regret": 2412.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 15,
+    "reward": 0.43115234375,
+    "regret": 2330.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 16,
+    "reward": 0.43505859375,
+    "regret": 2314.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 17,
+    "reward": 0.4169921875,
+    "regret": 2388.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 18,
+    "reward": 0.40576171875,
+    "regret": 2434.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 32,
+    "seed": 19,
+    "reward": 0.400634765625,
+    "regret": 2455.0,
+    "expected_bound": 6292.950702961514
+  },
+  {
+    "block": 128,
+    "seed": 0,
+    "reward": 0.7138671875,
+    "regret": 1172.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 1,
+    "reward": 0.712890625,
+    "regret": 1176.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 2,
+    "reward": 0.71044921875,
+    "regret": 1186.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 3,
+    "reward": 0.716064453125,
+    "regret": 1163.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 4,
+    "reward": 0.71533203125,
+    "regret": 1166.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 5,
+    "reward": 0.71533203125,
+    "regret": 1166.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 6,
+    "reward": 0.71435546875,
+    "regret": 1170.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 7,
+    "reward": 0.722412109375,
+    "regret": 1137.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 8,
+    "reward": 0.723876953125,
+    "regret": 1131.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 9,
+    "reward": 0.72412109375,
+    "regret": 1130.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 10,
+    "reward": 0.716796875,
+    "regret": 1160.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 11,
+    "reward": 0.7138671875,
+    "regret": 1172.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 12,
+    "reward": 0.7138671875,
+    "regret": 1172.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 13,
+    "reward": 0.716064453125,
+    "regret": 1163.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 14,
+    "reward": 0.717529296875,
+    "regret": 1157.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 15,
+    "reward": 0.71875,
+    "regret": 1152.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 16,
+    "reward": 0.708251953125,
+    "regret": 1195.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 17,
+    "reward": 0.706787109375,
+    "regret": 1201.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 18,
+    "reward": 0.717041015625,
+    "regret": 1159.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 128,
+    "seed": 19,
+    "reward": 0.7060546875,
+    "regret": 1204.0,
+    "expected_bound": 2846.791090613434
+  },
+  {
+    "block": 512,
+    "seed": 0,
+    "reward": 0.876220703125,
+    "regret": 507.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 1,
+    "reward": 0.877197265625,
+    "regret": 503.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 2,
+    "reward": 0.891357421875,
+    "regret": 445.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 3,
+    "reward": 0.878662109375,
+    "regret": 497.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 4,
+    "reward": 0.878173828125,
+    "regret": 499.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 5,
+    "reward": 0.875732421875,
+    "regret": 509.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 6,
+    "reward": 0.884765625,
+    "regret": 472.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 7,
+    "reward": 0.875732421875,
+    "regret": 509.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 8,
+    "reward": 0.88427734375,
+    "regret": 474.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 9,
+    "reward": 0.894287109375,
+    "regret": 433.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 10,
+    "reward": 0.88427734375,
+    "regret": 474.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 11,
+    "reward": 0.8916015625,
+    "regret": 444.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 12,
+    "reward": 0.8779296875,
+    "regret": 500.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 13,
+    "reward": 0.884033203125,
+    "regret": 475.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 14,
+    "reward": 0.88427734375,
+    "regret": 474.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 15,
+    "reward": 0.890625,
+    "regret": 448.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 16,
+    "reward": 0.886962890625,
+    "regret": 463.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 17,
+    "reward": 0.884033203125,
+    "regret": 475.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 18,
+    "reward": 0.885498046875,
+    "regret": 469.0,
+    "expected_bound": 1754.13628217374
+  },
+  {
+    "block": 512,
+    "seed": 19,
+    "reward": 0.882080078125,
+    "regret": 483.0,
+    "expected_bound": 1754.13628217374
+  }
+]

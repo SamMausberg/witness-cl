@@ -44,6 +44,12 @@ def authors(value):
 
 def main():
     entries=parse((ROOT/'paper/references.bib').read_text())
+    used=set()
+    for keys in re.findall(r'\\cite(?:p|t)?\{([^}]+)\}', (ROOT/'paper/main.tex').read_text()):
+        used.update(keys.split(','))
+    entries=[(key,f) for key,f in entries if key in used]
+    if used-{key for key,f in entries}:
+        raise ValueError('unresolved bibliography keys: '+str(used-{key for key,f in entries}))
     lines=[r'\begin{thebibliography}{99}']
     for key,f in entries:
         lines += [r'\bibitem{'+key+'}', authors(f['author'])+'.',f['title']+'.']

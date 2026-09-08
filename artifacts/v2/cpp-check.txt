@@ -1,0 +1,5 @@
+make: Entering directory '/mnt/data/witness-cl-v2/kernels'
+g++ -std=c++17 -O2 -Wall -Wextra -pedantic cpu_test.cpp -o cpu_test
+./cpu_test
+{"cpu_cpp_cases_passed":432,"gpu_executed":false}
+make: Leaving directory '/mnt/data/witness-cl-v2/kernels'

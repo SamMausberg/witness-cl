@@ -1,0 +1,40 @@
+{
+  "version": "0.2.0",
+  "study_date": "2026-09-08",
+  "base_git_commit": "2a76f50109748e9bac986fd9f8af1b7792a6a0eb",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+  "numpy": "2.3.5",
+  "pytest": "9.0.2",
+  "gxx": "g++ (Debian 14.2.0-19) 14.2.0",
+  "python_tests_passed": 146,
+  "compiled_cpp_cases_passed": 432,
+  "lean_checked": false,
+  "lean_attempts": 29,
+  "cuda_compiled": false,
+  "gpu_executed": false,
+  "llm_calls_executed": false,
+  "public_benchmark_runs": false,
+  "raw_episode_counts": {
+    "arithmetic_episodes.csv.gz": 215040,
+    "integrated_episodes.csv.gz": 40960,
+    "relational_episodes.csv.gz": 92160
+  },
+  "new_raw_episode_count": 348160,
+  "pdf_pages": 9,
+  "timing_note": "CPU cube primitive vs direct Python only; no end-to-end learner speedup measured.",
+  "result_sha256": {
+    "arithmetic.json": "8189092b3d93b939001938a6070188d667022807da71e2a1933ef15f211d69ac",
+    "arithmetic_episodes.csv.gz": "b39a564a9f4bd53e1ef6fc7136d8e6f47e7eb187296558dc62ae77b2a9928eb3",
+    "audit_power.json": "6cefef20cf00d29a90066d7105993c4777ae09c1b8c3a7e95b404e5f19329403",
+    "cube_bench.json": "61ae7d3645795e5d04630bcc90741e1e2a2151def57a02993d58894f8bbe5154",
+    "integrated.json": "5536695d5f908480678789f099edaf6d7d86b0286ce6f0cfc6bb83298a27ae91",
+    "integrated_episodes.csv.gz": "5b706e81ea0217eb099acd5823d3027b2c443f625844d0aca6eb35c279d5b055",
+    "relational.json": "948f822ba4231471a464df2d59d9207737d391ad460ced8c236e8fca63960fb2",
+    "relational_episodes.csv.gz": "06ea4ebdc1d63b1a9a499fd8870cbcb140314c4aceee1e193722c5628e83f568",
+    "tracking.json": "2c172f98ac4750e949ab5449069f312d2f87ad97e3bd2a27cd4b7f8cc76ac31a",
+    "training.json": "626f9b6f5d3ee2dd1b6511d22a62a80ea243f9c7306a040f7c744eea3da7cf03"
+  },
+  "paper_sha256": "e64e004f87e561915980d73b81ce74c4f37d58eff7a0b5dedd32cb2a80272542"
+}

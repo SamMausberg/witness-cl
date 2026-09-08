@@ -13,3 +13,10 @@ paper/*.log
 paper/*.out
 .env
 artifacts/local_model*.jsonl
+
+artifacts/v2/*.pid
+kernels/cpu_test
+kernels/cuda_test
+paper/v1/*.aux
+paper/v1/*.log
+paper/v1/*.out

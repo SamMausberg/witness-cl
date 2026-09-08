@@ -1,0 +1,8 @@
+arithmetic stationary finished
+arithmetic novel_inputs finished
+arithmetic hidden_shift finished
+arithmetic misspecified finished
+arithmetic recurring finished
+arithmetic rapid_switch finished
+arithmetic noisy_feedback finished
+elapsed seconds 11.360664338000106

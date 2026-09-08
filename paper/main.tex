@@ -1,630 +1,717 @@
 \documentclass[10pt,twocolumn]{article}
 \usepackage[letterpaper,margin=0.78in,columnsep=0.26in]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern,microtype}
-\usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,array}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs,graphicx,array}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,fit}
 \usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
-\usepackage{fancyhdr,balance}
-\usepackage{caption}
+\usepackage{fancyhdr,balance,caption}
 \captionsetup{font=small,labelfont=bf}
-\pagestyle{fancy}
-\fancyhf{}\fancyhead[L]{\small Witness-CL}\fancyhead[R]{\small Research draft, 8 September 2026}\fancyfoot[C]{\thepage}
-\setlength{\headheight}{14pt}
-\setlength{\parindent}{1em}
-\setlength{\emergencystretch}{1em}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Witness-CL v0.2}\fancyhead[R]{\small Research draft, 8 September 2026}
+\fancyfoot[C]{\thepage}\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{1.5em}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{definition}[theorem]{Definition}
 \newcommand{\ind}{\mathbf{1}}
-\newcommand{\Hist}{\mathcal{H}}
-\newcommand{\Space}{\mathcal{V}}
-\newcommand{\Hyp}{\mathcal{H}}
-\newcommand{\Witness}{\mathcal{W}}
-\input{numbers}
-\title{\vspace{-1.2em}\textbf{Witness-CL: Counterexample-Preserving\\Online Skill Compilation for Continual Agents}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\KL}{\operatorname{kl}}
+\title{\vspace{-1.2em}\textbf{Witness-CL: Evidence-Preserving Skill Growth,\\Local Auditing, and Retention Under Recurrence}}
 \author{Samuel Mausberg\\\small AI-assisted research draft; author review and independent replication pending}
 \date{}
-\hypersetup{pdftitle={Witness-CL: Counterexample-Preserving Online Skill Compilation},pdfauthor={Samuel Mausberg},pdfsubject={AI-assisted research draft with synthetic tests and unverified Lean source}}
+\hypersetup{pdftitle={Witness-CL v0.2: Evidence-Preserving Skill Growth, Local Auditing, and Retention Under Recurrence},pdfauthor={Samuel Mausberg},pdfsubject={Research prototype, CPU experiments, unverified Lean sources and CUDA drafts}}
 \begin{document}
 \raggedbottom
 \maketitle
 \begin{abstract}
-We study agents that improve from deployment experience without an intervening
-offline retraining stage. We propose Witness-CL, a research architecture separating
-two kinds of admission: exact, scoped programs justified by a complete hypothesis
-class, and broader candidate systems tested on fresh paired episodes. Its exact
-path preserves a subset of observations that reproduces the full-history version
-space, retaining counterexamples instead of repeatedly summarizing advice.
-Elementary conditional proofs establish truth retention, persistent unanimous
-predictions, exact witness condensation and a finite mistake bound for symbolic
-voting. A CPU reference study across five scenarios and 20 seeds shows novel-input
-transfer and equal accuracy to full-history symbolic induction, not superiority
-to language-model in-context learning. Negative controls expose incorrect
-conditional certificates under hidden drift and class misspecification. An audit
-simulation shows that modest improvements may require more fresh episodes than
-a short deployment provides. The artifact contains tests, raw records, a local
-model experiment harness and uncompiled Lean proof attempts. Public-benchmark
-superiority, general no-forgetting and novelty of the overall combination remain
-unestablished.
+We study deployment-time learning from interaction feedback without an intervening
+offline retraining phase. An earlier evidence-preserving prototype failed when its
+rule class was misspecified or the environment changed without a public version.
+This revision supplies a schema-derived executable representation, correct replay
+when its class grows, immutable skill archives with recurrence-weighted recovery,
+and local admission tests using either real paired rollouts or one randomized
+observed outcome. We prove conditional replay, recovery, noninterference, and
+fixed-feature retention properties, while separating them from unrestricted
+no-forgetting claims. An information bound explains why small diffuse gains cannot
+generally be validated in a few episodes. A typed relational aggregate cube shares
+execution work across skills. Across 20-seed CPU mechanism experiments, late reward
+under hidden arithmetic change rises from 14.49\% to 96.19\%; recurrence-weighted
+relational recovery reaches 97.45\%, versus 63.59\% for reset-only learning. An
+integrated audited agent learns, but its audition cost lowers overall reward.
+Rapid switches, noisy feedback, unsupported operators, and full-rank protection
+remain explicit failures. The artifact contains 146 passing Python tests, 432
+passing C++ cases, 29 unverified Lean theorem attempts, and uncompiled CUDA drafts.
+No LLM or native public-benchmark superiority, GPU speedup, or novelty of the whole
+combination is established.
 \end{abstract}
 
-\section{Problem and evidence}
-A useful continual agent should turn earlier experience into improved decisions
-on later, non-identical problems. Merely appending a transcript, retrieving a
-similar episode, or retaining model weights does not establish that outcome.
-The question here is whether reusable behavior can be learned and admitted
-online while measuring interference, cost and the conditions under which old
-behavior remains valid.
+\section{Problem, scope, and existing approaches}
+An improving agent must turn earlier experience into better decisions on later,
+non-identical episodes. An archive that never deletes data does not imply that
+the agent selects the right evidence, preserves its meaning, or improves reward.
+CL-Bench evaluates shared learnable structure across stateful task streams and
+finds that dedicated memory mechanisms do not reliably dominate naive in-context
+learning (ICL) in its evaluated settings \cite{clbench}. AgentCL further separates
+compositional reuse from misleading learning curves \cite{agentcl}. Raw ICL must
+therefore remain a primary experimental competitor, not a weak straw baseline.
 
-CL-Bench directly tests learning in stateful environments; its reported aggregate
-results make raw in-context learning (ICL) a necessary control, not a weak baseline
-\citep{clbench}. The finding is not that every memory architecture loses on every
-task. AgentCL additionally uses controlled compositional streams to distinguish
-reuse of earlier sub-solutions from ordinary task competence \citep{agentcl}.
-Together they motivate a narrower unresolved target: a repeatable reward,
-transfer and retention advantage under a matched backbone and matched total
-resource budget.
+Several substantial ingredients already exist. ACE maintains evolving playbooks
+\cite{ace}; Voyager learns executable skills \cite{voyager}; EvoTest and TTHE
+change the surrounding agent configuration or executable harness during testing
+\cite{evotest,tthe}. ALMA searches executable memory designs \cite{alma}.
+Decision-Aware Memory Cards select context by its estimated influence on actions
+\cite{cards}. Selecting representative synthesis examples also predates this work
+\cite{representative}. None of ``memory as code,'' ``decision-relevant evidence,''
+or ``learning at test time'' is our novelty claim.
 
-\paragraph{Interpretation of the requirements.}
-The deployed system may update external state after each episode, and may perform
-online computation during those updates. The principal method holds neural
-parameters fixed. ``Without offline retraining'' excludes a separate post-deployment
-training phase, not online learning. ``Without forgetting'' is separated into
-retained bytes, retained parameters, retained behavior on protected inputs, and
-retained expected competence on a task distribution. None is silently substituted
-for another. We prove only conditional behavior retention for the exact branch;
-we formulate a weaker statistical claim for empirical changes.
+Safe policy improvement has its own strong literature. SPIBB constrains changes
+using baseline bootstrapping \cite{spibb}; Deep SPI studies online improvement
+with learned representations and world models \cite{deepspi}. Our local audit
+uses real outcomes rather than assuming a learned model is a sound counterfactual
+oracle. Its validity still needs appropriate sampling and frozen comparisons.
+Sequential inference and off-policy evaluation already provide the relevant
+statistical foundations \cite{confidence,offpolicy}. Our recurrence and projected
+learning mechanisms similarly draw on tracking experts and orthogonal updates
+\cite{tracking,auer,ogd}.
 
-\paragraph{Research hypothesis.}
-The proposed advantage is that \emph{decision-discriminating evidence} is a better
-unit of memory than a repeatedly rewritten natural-language conclusion. Where a
-sound model class is available, preserve exactly the observations needed to rule
-out competing behavior and compile the resulting rule. Where it is unavailable,
-maintain an empirical candidate rather than manufacture a logical certificate.
-The hypothesis is falsifiable: matched-budget raw ICL may remain better, and the
-delivered stress tests already refute an unconditional claim for the exact-only
-implementation.
+\paragraph{Research target.}
+Can evidence-preserving executable learning improve the reward/cost/retention
+frontier of real continual agents relative to strong, matched-budget ICL and
+harness-adaptation systems? The broad benchmark question remains open here.
+This revision resolves concrete implementation and mathematical defects in our
+initial approach, tests a restricted integrated system, and specifies the
+conditions under which the proposed mechanisms succeed or fail.
 
-\section{Position relative to prior work}
-\paragraph{Memory and adaptation.}
-ACE evolves structured playbooks with generation, reflection and curation,
-including online adaptation \citep{ace}. MemProbe separates interaction, insight
-and skill memory and filters unreliable consolidation \citep{agentcl}. Their
-successes make ``structured memory'' insufficient as a novelty claim. Inference
-from their design, rather than an asserted experimental result, is that a
-plausibility or syntactic check does not automatically certify future policy
-improvement.
+\paragraph{Assumptions.}
+The exact-elimination branch receives an immutable public input, its own chosen
+action, and truthful binary success. It sees no hidden regime ID or correct
+answer after failure. A fixed epoch's recovery theorem assumes a deterministic
+true rule in the current finite class. The live statistical branch assumes
+randomized treatment before reward and no cross-episode treatment carryover;
+it does not assume that unsuccessful actions reveal unchosen rewards. General
+language understanding, noisy labels, and multistep interaction require separate
+arguments. They are not solved by calling a generated candidate set complete.
 
-Voyager already stores reusable executable skills and learns from environment
-interaction without updating its underlying language model \citep{voyager}.
-EvoTest evolves a broader agent configuration across episodes, and TTHE adapts
-executable harnesses at test time using execution-derived proxy signals
-\citep{evotest,tthe}. These are direct competitors to a general self-improving
-harness, not peripheral memory baselines. Their existence rules out claiming the
-first deployed system that improves without gradients. The remaining question
-is reliable transfer and retention across regimes and budgets, not whether
-online improvement has ever occurred.
+\section{Architecture: grow, preserve, test, route}
+The system separates the proposer, the immutable skill registry, the currently
+selected behavior, and admission evidence. Figure~\ref{fig:system} illustrates the
+implemented one-step path. An observation can improve future proposals, but a
+proposal must be frozen before receiving the fresh observations used to admit it.
+A stored skill's identity never changes to reflect a new hypothesis.
 
-ALMA meta-learns executable memory designs \citep{alma}; predeployment
-meta-learning is not itself incompatible with avoiding offline retraining after
-deployment. User as Code further makes executable memory and an append-only
-evidence architecture prior art \citep{usercode}. Decision-Aware Memory Cards
-ranks context by decision-oriented utility and compresses it into typed evidence;
-its reviewed version explicitly separates counterfactual-inspired scores from
-identified randomized effects \citep{cards}. Witness-CL therefore cannot claim
-that code, ledgers, typed cards or outcome-aware retrieval are new.
-
-\paragraph{Learning theory and synthesis.}
-The exact branch is grounded in version-space reasoning and the KWIK principle
-of withholding confident predictions when evidence is insufficient \citep{kwik}.
-Counterexample-guided synthesis and representative-example selection also have
-substantial history \citep{sketching,representative}. The condensation proof below
-is an elementary invariant, not a newly discovered general learning theorem.
-Conservative bandits study baseline-relative learning under structural
-assumptions \citep{conservative}; time-uniform inference supplies tools for
-valid adaptive admission \citep{confidence}. The proposed contribution to test
-is their operational combination with scoped behavioral compilation and explicit
-episode provenance.
-
-\paragraph{Weight-based alternatives.}
-Regularization, episodic replay constraints and parameter isolation address
-catastrophic interference through different mechanisms
-\citep{ewc,gem,progressive}. End-to-end test-time training is another relevant
-adaptation direction \citep{ttt}. These methods should not be dismissed because
-the main design freezes weights. However, a frozen old parameter block does not,
-by itself, prove that a changing router or context continues to invoke the same
-behavior. The artifact includes an ordinary online regression baseline; a neural
-adapter extension is specified but not implemented.
-
-\section{Exact online compilation}
-\subsection{Setting and assumptions}
-An episode supplies observable scope/version $s_t$, input $x_t$, an action
-$a_t\in\mathcal A$, and subsequent success feedback $r_t\in\{0,1\}$. For each
-scope $s$, fix a finite class $\Hyp_s$ of total deterministic functions from
-inputs to actions. The exact theorem assumes a stationary target
-$h_s^*\in\Hyp_s$, with trusted feedback
-$r_t=\ind\{a_t=h_s^*(x_t)\}$. Public scope routing must be correct. A schema
-version can be public; an evaluator's hidden regime label is not.
-
-The reference grammar is deliberately small:
-\begin{equation}
- h_{a,b}(x)=(ax+b)\bmod p,\qquad a,b\in\{0,\ldots,p-1\}.
-\end{equation}
-For the executed study $p=7$. Every inductive control receives the same grammar.
-The learner does not receive hidden coefficients or the correct answer following
-a failed action. General language-agent tasks do not automatically satisfy these
-assumptions. In particular, agreement among an LLM's sampled programs is not
-agreement over an exhaustive, realizable class.
-
-\subsection{Version spaces and witnesses}
-For feedback record $e=(x,a,r)$ define
-\begin{equation}
- C_e(h) \equiv \big(\ind\{h(x)=a\}=r\big).
-\end{equation}
-Within each public scope, update
-\begin{equation}\label{eq:update}
- \Space_0=\Hyp,\qquad
- \Space_t=\{h\in\Space_{t-1}:C_{e_t}(h)\}.
-\end{equation}
-A failure excludes hypotheses predicting the failed action. It does not reveal
-which of the other actions is correct. Empty sets trigger quarantine, never
-vacuous unanimity or an automatic reset into a supposed proof.
-
-The active witness set retains an observation only when the live set strictly
-shrinks:
-\begin{equation}\label{eq:witness}
- \Witness_t=\begin{cases}
- \Witness_{t-1}\cup\{e_t\},&\Space_t\ne\Space_{t-1},\\
- \Witness_{t-1},&\text{otherwise}.
- \end{cases}
-\end{equation}
-The complete raw history remains available for auditing and empirical fallback.
-A witness is thus an exact-class compression object, not an assertion that the
-rest of the transcript lacks value to a language model.
-
-\begin{definition}[Conditional certificate]
-An action $a$ at input $x$ is certified by $\Space$ exactly when
-$\Space\ne\varnothing$ and $h(x)=a$ for every $h\in\Space$.
-\end{definition}
-
-Certificates carry the public scope, input, action, generation and live-class
-identity. Other public scopes retain their own state. If no certificate applies,
-the symbolic reference uses majority vote with deterministic tie breaking. The
-optional model experiment instead calls a frozen model on the available history.
-The statistical and mistake-bound implications of those fallbacks differ.
-
-\begin{algorithm}[t]
-\small
-\caption{Exact path for one observed public scope}
-\KwIn{Complete finite class $\Hyp$; fallback $\pi_0$}
-$\Space\gets\Hyp$; $\Witness\gets\varnothing$; $L\gets\varnothing$\;
-\For{each episode $(x,s)$}{
-  \eIf{scope valid, $\Space\ne\varnothing$, all $h\in\Space$ agree at $x$}{
-    execute the unanimous action; cache its conditional contract\;
-  }{execute fallback; do not label it certified\;}
-  receive actual action-success feedback $e$; append $e$ to $L$\;
-  $\Space'\gets\{h\in\Space:C_e(h)\}$\;
-  \If{$\Space'\ne\Space$}{append $e$ to $\Witness$\;}
-  $\Space\gets\Space'$\;
-  \If{$\Space=\varnothing$}{quarantine this scope; invalidate its contracts\;}
-}
-\end{algorithm}
-
-\begin{figure*}[t]
+\begin{figure}[t]
 \centering
-\begin{tikzpicture}[>=Latex,box/.style={draw,rounded corners=2pt,align=center,minimum height=0.95cm,text width=3.0cm,font=\small},arr/.style={->,thick}]
-\node[box] (obs) at (0,0) {Executed episode\\trusted feedback};
-\node[box] (log) at (4.0,0) {Raw evidence log\\public scope/version};
-\node[box] (v) at (8.0,0) {Version space\\informative witnesses};
-\node[box] (c) at (12.0,0) {Unanimous contract\\or frozen-model fallback};
-\draw[arr] (obs)--(log);\draw[arr] (log)--(v);\draw[arr] (v)--(c);
-\node[box] (prop) at (4.0,-1.8) {Broader candidate\\frozen full-system snapshot};
-\node[box] (audit) at (8.0,-1.8) {Fresh paired episodes\\anytime evidence};
-\node[box] (emp) at (12.0,-1.8) {Empirical admission\\not a logical certificate};
-\draw[arr,dashed] (log)--(prop);\draw[arr,dashed] (prop)--(audit);\draw[arr,dashed] (audit)--(emp);
+\begin{tikzpicture}[font=\scriptsize,node distance=5mm,
+ box/.style={draw,rounded corners=1pt,align=center,text width=31mm,minimum height=8mm},
+ arr/.style={-{Stealth[length=1.5mm]},thin}]
+\node[box] (obs) {Public input and\\observed action outcome};
+\node[box,right=7mm of obs] (grow) {Typed proposer\\full replay on growth};
+\node[box,below=of grow] (freeze) {Frozen candidate\\and comparator};
+\node[box,left=7mm of freeze] (gate) {Disagreement gate\\randomized live action};
+\node[box,below=of gate] (test) {Fresh sequential audit\\accept, retire, or continue};
+\node[box,right=7mm of test] (archive) {Immutable registry\\selected incumbent};
+\draw[arr] (obs)--(grow);\draw[arr] (grow)--(freeze);
+\draw[arr] (freeze)--(gate);\draw[arr] (gate)--(test);
+\draw[arr] (test)--(archive);\draw[arr] (archive.east)--++(2mm,0)|-(freeze.east);
+\draw[arr] (gate.west)--++(-2mm,0)|-(obs.west);
 \end{tikzpicture}
-\caption{The two admission paths deliberately have different guarantees. Solid arrows are the implemented finite-class reference. The empirical auditor is implemented and tested as a primitive, but the dashed general-agent integration and public-benchmark compiler are proposed, not executed.}
-\label{fig:architecture}
-\end{figure*}
+\caption{Implemented one-step architecture. Audit treatments are experiments,
+not guaranteed-safe actions. Archival retention is distinct from correct routing.
+No hidden task/version identifier enters the learner.}
+\label{fig:system}
+\end{figure}
 
-\subsection{Conditional guarantees}
-\begin{theorem}[Truth and contract preservation]\label{thm:truth}
-Under the assumptions above, $h^*\in\Space_t$ for all $t$. Every certified
-prediction is correct, and a certified prediction remains certified after any
-subsequent update in the same unchanged scope.
-\end{theorem}
-\begin{proof}
-Initially $h^*\in\Hyp$. Trusted feedback makes $C_{e_t}(h^*)$ true, so induction
-through Eq.~\eqref{eq:update} retains $h^*$. A unanimous prediction equals the
-prediction of $h^*$. Each future version space is a nonempty subset of the
-previous one, so unanimity persists. This also shows why nonemptiness cannot be
-dropped from the certificate definition.
-\end{proof}
+The unaudited proposer is useful for diagnosing information reuse independently
+of admission cost. The audited system is a separate measured configuration,
+not a label attached afterward to the proposer's higher scores. Soft expert
+tracking and projected parameter learning are independently implemented controls;
+they are not all integrated into one general-purpose LLM agent.
 
-\begin{theorem}[Exact witness condensation]\label{thm:witness}
-Replaying only $\Witness_t$ from $\Hyp$ yields exactly $\Space_t$. Moreover,
-$|\Witness_t|\le |\Hyp|-|\Space_t|$; under realizability,
-$|\Witness_t|\le |\Hyp|-1$.
-\end{theorem}
-\begin{proof}
-An omitted constraint was satisfied by every live hypothesis when it arrived.
-Every later live set is a subset, so the constraint remains redundant. Induction
-over retained and omitted constraints gives exact equality with full-history
-filtering. Every retained observation removes at least one previously live
-hypothesis, and no removed hypothesis returns. Summing these decreases gives the
-cardinality bound. Truth retention implies $|\Space_t|\ge1$ under realizability.
-\end{proof}
+\subsection{Executable representations grounded in public structure}
+The new relational intermediate representation consists of typed sum/difference
+plans, nullable-Boolean filters, explicit column references, and schema guards.
+Its grammar is generated from public column names and types. A strict JSON parser
+also accepts model-proposed plans without executing ambient SQL or arbitrary code.
+The reference interpreter and an independent read-only SQLite backend agree on
+empty tables, negative values, and explicit NULL behavior in the executed tests.
 
-This is not a minimal witness-set algorithm: later evidence can make an earlier
-retained witness redundant. Optional deletion would require checking equal live
-sets and paying for that computation. The bound counts observations, not the
-bit length of programs, and it does not make the raw evidence ledger bounded.
+A plan such as ``sum gross minus fee over completed, non-refunded rows, treating a
+missing refund flag as zero'' transfers to new rows without memorizing their
+answers. This solves a concrete representation problem left by the arithmetic
+prototype. It is not a complete SQL language or a demonstrated natural-language
+semantic parser. Schema guards validate dependencies and types, not business
+meaning. Unsupported multiplication is deliberately tested and fails.
 
-\begin{proposition}[Voting-policy mistake bound]\label{thm:mistakes}
-Let $m=|\Hyp|$ and $k=|\mathcal A|\ge2$. If uncertified decisions use a most
-frequent live prediction, the number $M$ of mistakes in one stationary realizable
-scope satisfies
+\subsection{A defect in fixed-class witness compression}
+For a finite class $H$ and evidence $E$, define
 \begin{equation}
- M\le\frac{\log m}{-\log(1-1/k)}.
+ V(H,E)=\{h\in H:\forall e\in E,\ C_e(h)\},
+\end{equation}
+where $C_e(h)$ states that $h$'s prediction agrees with the observed success or
+failure of the chosen action. Retain an observation as a witness only when it
+shrinks the live set. For a fixed class, replaying the witnesses gives the same
+set as replaying all evidence, including an empty result.
+
+\begin{proposition}[Growth requires backfill]
+For any classes $H,G$ and evidence $E$,
+\begin{equation}
+ V(H\cup G,E)=V(H,E)\cup V(G,E).
+\end{equation}
+A witness set sufficient for $H$ need not be sufficient for $H\cup G$.
+\end{proposition}
+\begin{proof}
+The equality follows by distributing membership in $H\cup G$ over the common
+constraint conjunction. For the counterexample, let $H$ contain only a constant
+zero rule and observe a successful zero answer at $x=1$. The witness set is empty,
+because nothing was eliminated. A newly proposed rule returning one at $x=1$
+passes that empty witness set and fails the original observation.
+\end{proof}
+
+The implementation stages an enlarged class, replays the full current epoch's
+raw evidence, reconstructs its witness set, and installs the result atomically.
+It never backfills a new rule only against an old summary. Historical incompatible
+epochs remain archived rather than being silently treated as stationary evidence.
+The raw log grows; the active sufficient witness set is not constant total memory.
+
+\subsection{Recovery without erasing old skills}
+When evidence becomes contradictory, the learner first tries the next bounded
+grammar tier. If full backfill remains inconsistent, it opens a new inference
+epoch, preserving old programs. This is an internal evidence epoch, not an oracle
+announcement of the environment's change point. It does not distinguish all cases
+of drift from misspecification.
+
+A fresh epoch uses prior
+\begin{equation}
+ \pi(h)=\frac{1-\beta}{|H|}
+       +\frac{\beta}{|A|}\ind\{h\in A\},
+\label{eq:archive}
+\end{equation}
+where $A$ is the archived subset; with an empty archive, use the uniform prior.
+The implementation uses $\beta=4/5$. It predicts the maximum-mass action and
+eliminates inconsistent rules after exact feedback. New ambiguous explanations
+are marked empirical, not certified.
+
+\begin{theorem}[Conditional recurrence recovery]
+Within a fixed realizable deterministic epoch, if at most $K\ge2$ distinct actions
+are predicted, the number $M$ of mistakes obeys
+\begin{equation}
+ M\le\frac{\log(1/\pi(h^*))}{-\log(1-1/K)}.
+\label{eq:mistakes}
+\end{equation}
+For an archived truth under Eq.~\eqref{eq:archive}, the numerator is at most
+$\log(|A|/\beta)$.
+\end{theorem}
+\begin{proof}
+Every mistaken maximum-mass action is supported by at least $1/K$ of surviving
+mass. Failure deletes all that mass. The true rule survives with its original
+positive mass $\pi(h^*)$. Thus $\pi(h^*)\le(1-1/K)^M$; rearrange. The archive bound
+uses $\pi(h^*)\ge\beta/|A|$.
+\end{proof}
+
+This is a weighted elimination argument, not a new general regret theorem.
+If a fixed final class uniquely identified the old rule, its first incorrect
+prediction after a hidden switch triggers contradiction. Earlier predictions
+remain correct until the first disagreement. That conditional one-mistake
+trigger does not cover noisy feedback, incomplete identification, rapid changes,
+or new mixed-history rules introduced by grammar expansion.
+
+\section{Admission that exploits locality}
+A general small improvement can be difficult to recognize. The remedy is not to
+use a looser significance threshold or recycle proposal data as validation. We
+restrict a proposed replacement to a frozen region of behavior and distinguish
+cheap screening from expensive fresh outcome collection.
+
+\subsection{Pointwise protection outside a patch}
+For pure one-step policies $b,c$ and an observable frozen gate $g$, let
+\begin{equation}
+ p(x)=\begin{cases}c(x)&g(x)=1,\\b(x)&g(x)=0.\end{cases}
+\end{equation}
+Outside the gate the complete action is unchanged. With common input/randomness,
+$D=R(p)-R(b)=0$ there. Under stationary contexts,
+\begin{equation}
+ \EE D=\rho\,\EE[D\mid g=1],\qquad \rho=\PP(g=1).
+\label{eq:local}
+\end{equation}
+Thus positive conditional mean benefit suffices when $\rho>0$.
+Protected inputs outside the patch need no statistical test. Protected subgroups
+inside it still need their own obligations or tests; an aggregate improvement
+cannot guarantee every subgroup's retention.
+
+For an arbitrary candidate, a one-step disagreement gate $g(x)=\ind[b(x)\ne c(x)]$
+makes the patch behavior equal to $c$ everywhere. Evaluating that gate costs both
+candidate predictions. It is not automatically cheap for LLMs. A syntactic
+applicability gate can be cheaper but must still bind the actual deployed patch.
+
+\subsection{Sequential evidence and honest rollout accounting}
+For fresh paired differences $D_i\in[-1,1]$ and predictable stakes
+$\lambda_i\in[0,1]$, define
+\begin{equation}
+ M_n=\prod_{i=1}^{n}(1+\lambda_i D_i).
+\end{equation}
+Under the null $\EE[D_i\mid\mathcal F_{i-1}]\le0$, each factor is nonnegative with
+conditional mean at most one. Therefore $M_n$ is a nonnegative supermartingale.
+Fixed mixtures preserve this property. The reference supplies fixed-stake tests
+and an additional small-stake/predictable-variance variant. These are applications
+of established anytime-valid inference \cite{confidence,offpolicy}.
+
+Candidate $j$ receives $\delta_j=\delta/[j(j+1)]$ and is admitted when its mixture
+crosses $1/\delta_j$. A conditional Ville bound followed by a union bound controls
+ever accepting a null candidate by $\delta$. The indices must be globally unique;
+candidates, guards, and comparators must be frozen before their audit data; an
+obsolete comparator cannot authorize a current replacement. These assumptions
+are operational requirements, not facts checked by a numerical threshold.
+
+\begin{proposition}[Zero-skipping changes cost, not evidence]
+Deleting observations whose true paired difference is zero leaves a fixed-stake
+multiplicative audit path unchanged. It also leaves the supplied predictable
+variant unchanged, since its statistics update only through $D_i,D_i^2$.
+\end{proposition}
+\begin{proof}
+A zero difference contributes factor one and changes neither running statistic.
+Induction over the omitted positions gives equality at every informative prefix.
+\end{proof}
+
+At $N$ deployment opportunities with $n_g$ gated cases, dense evaluation uses
+$2N$ rollouts and screened evaluation uses $N+n_g$. The extra rollout count falls
+from $N$ to $n_g$, approximately a $1/\rho$ factor. The \emph{total} rollout savings
+are bounded by two in this accounting, and calendar waiting is unchanged. A modern
+variance-adaptive test may already exploit the zeros statistically. We do not
+claim that merely omitting them invents information or improves test power.
+
+In a multistep environment, equality of the present action is insufficient. The
+valid extension runs both frozen policy states on the common observed prefix,
+then physically forks a simulator at the first behavioral divergence. Prefix
+computation and both suffixes must be charged. This extension is derived but not
+implemented in the present one-step harness.
+
+\subsection{One observed reward instead of two hypothetical rewards}
+When genuine paired forks are unavailable, independently randomize treatment
+$A\sim\operatorname{Bernoulli}(e)$ before its outcome. For
+$e\in[p_{\min},1-p_{\min}]$ and observed $R\in[0,1]$, use
+\begin{equation}
+ Z=\left(\frac{A}{e}-\frac{1-A}{1-e}\right)(R-1/2),
+ \quad B=\frac{1}{2p_{\min}}.
+\label{eq:randomized}
+\end{equation}
+Randomization implies $\EE Z=\EE R(c)-\EE R(b)$ and $|Z|\le B$.
+The same test uses factors $1+\lambda_i Z_i/B$. At $e=1/2$, $B=1$.
+The centered estimator is implemented with exact rational arithmetic and tested
+by enumerating treatment probabilities and reward pairs.
+
+The integrated system uses only the reward of the executed action. It freezes a
+provisional candidate even before unique identification, because an uninformative
+incumbent can otherwise prevent discovery forever. A candidate may be retired,
+but its audit cannot omit unfavorable samples and resume. A replacement proposal
+starts after its birth observation. Audit treatments can lower individual-episode
+reward: safe admission is not safe exploration.
+
+\subsection{An information limit on short auditions}
+\begin{proposition}[A standard testing lower bound]
+For iid $D\in\{-1,+1\}$ with null mean zero and alternative mean $\mu>0$, a test
+with $0<a<1-b<1$, null admission probability at most $a$, and alternative power
+at least $1-b$ satisfies, under finite-horizon or appropriate integrable stopping conditions,
+\begin{equation}
+ \EE_\mu N\ge
+ \frac{\KL(1-b\Vert a)}{\KL((1+\mu)/2\Vert 1/2)}.
+\label{eq:lower}
 \end{equation}
 \end{proposition}
 \begin{proof}
-A most frequent prediction is shared by at least $|\Space|/k$ hypotheses. A
-mistake eliminates all of them. Other observations cannot enlarge the set.
-Consequently $1\le |\Space_t|\le m(1-1/k)^M$, and taking logarithms gives the
-result. Sum independently over public scopes.
-\end{proof}
-The bound is an elementary elimination argument and is not claimed as novel.
-It does not apply to an arbitrary LLM fallback, which can select an unsupported
-action and learn nothing from its failure. Nor does it guarantee identification
-from an uninformative input sequence.
-
-\begin{corollary}[Transfer in the affine reference]
-For prime $p$, two successful observations at distinct inputs uniquely identify
-an affine hypothesis in $\mathbb F_p$, allowing prediction at unobserved inputs.
-\end{corollary}
-\begin{proof}
-If the successes are $(x_1,y_1)$ and $(x_2,y_2)$, then
-$a=(y_2-y_1)(x_2-x_1)^{-1}$ and $b=y_1-ax_1$. The inverse exists because
-$x_2-x_1\ne0$ in the field. The simulator supplies no successful observations for
-free; they must arise from the agent's executed actions.
+The likelihood-ratio chain rule accumulates one Bernoulli relative entropy per
+informative observation. Data processing to the final binary admission decision
+lower-bounds this total by $\KL(1-b\Vert a)$. This is the usual change-of-measure
+argument \cite{lowerbound}.
 \end{proof}
 
-\subsection{What the guarantees do not mean}
-Correct stored contracts can remain unused because of a bad router, or be applied
-to the wrong environment. Parameter immutability does not rule out those errors.
-The present implementation uses public keys rather than learning a hidden task
-identifier, and tests unrelated-key noninterference. Hidden regime changes,
-incorrect abstractions and noisy rewards violate the exact theorem. The negative
-experiments make those violations observable rather than interpreting
-quarantine as prevention of all bad actions.
+At $a=.025$, $b=.2$, and $\mu=.05$, Eq.~\eqref{eq:lower} requires at least
+$1963.79$ expected informative observations. A universally reliable 128-episode
+test for a five-point high-variance gain is not supported by the information.
+For a sparse patch with $\rho=.1$ and conditional gain $.5$, the same global
+five-point gain has a lower bound of $18.77$ \emph{gated} observations. Waiting for
+them still counts. The research opportunity is to construct useful low-variance
+local changes, not to hide the unavoidable cost of diffuse ones.
 
-A perfect full-history symbolic learner can reconstruct precisely the same
-version space and witnesses. No information-theoretic advantage over that
-control is claimed. Any advantage is due to computational amortization, context
-use, or more reliable decision execution, all of which require measurement with
-real model serving, including prefix caching and compiler overhead.
-
-\section{Empirical admission of broader skills}
-\subsection{Fresh evidence rather than self-approval}
-For a candidate outside the exact regime, freeze its entire system snapshot and
-that of the current incumbent before auditing. Snapshot identity includes code,
-model version, prompts, memory, dependencies, route and within-episode procedure.
-Record its birth episode. Proposal data may generate a candidate but cannot be
-reused as its fresh validation stream.
-
-Assign a globally unique index $j\ge1$ and budget
-\begin{equation}\label{eq:alpha}
- \delta_j=\frac{\delta}{j(j+1)},\qquad
- \sum_{j=1}^{\infty}\delta_j=\delta.
+\section{Retention with online parameter learning}
+Freezing existing modules preserves their definitions, not correct selection.
+For noisy or ambiguous feedback, hard deletion is inappropriate. We implement a
+fixed-share EXP4-style routing control over an immutable finite archive
+\cite{tracking,auer}. With action probabilities
+$p_t=(1-\gamma)q_t+\gamma/K$, selected-action loss estimates are
+\begin{equation}
+ \widehat\ell_{t,i}=
+ \frac{\ell_t(A_t)\ind[a_{t,i}=A_t]}{p_t(A_t)}.
 \end{equation}
-On fresh paired episodes measure
-$D_i=R_i(\pi_j)-R_i(\pi_{0,j})\in[-1,1]$. Pairing requires honest simulator forks
-or isolated test environments. Both branches count as interactions and compute.
-A saved trajectory does not reveal outcomes for actions never executed. For
-non-cloneable deployments, a randomized-assignment design is needed; the
-corresponding estimator and integration are future work.
-
-\subsection{An anytime test}
-For the fixed stake set
-$\Lambda=\{1/10,1/4,1/2,3/4,1\}$, define
-\begin{equation}\label{eq:eprocess}
- E_{j,n}=\frac{1}{|\Lambda|}\sum_{\lambda\in\Lambda}
-             \prod_{i=1}^{n}(1+\lambda D_i).
+After exponential updating, a share $\alpha/M$ restores each expert's positive
+weight. The standard potential analysis gives expected regret against an
+$S$-switch expert sequence bounded by
+\begin{equation}
+ \frac{B_S}{\eta}+\frac{\eta KT}{2(1-\gamma)}+\gamma T,
+\label{eq:tracking}
 \end{equation}
-The reference uses rational arithmetic and admits when the running process first
-crosses $1/\delta_j$. There is no optional-stopping exemption, repeated reset or
-unreported reuse of the same candidate index.
+where
+\begin{align}
+ B_S={}&\log M+S\log(M/\alpha)\nonumber\\
+ &+(T-1-S)\log(1/(1-\alpha)).
+\end{align}
+This is an expectation bound for a fixed archive with nonanticipating losses,
+not safe exploration, a growing-expert result, or regret against the different
+state trajectory of a reactive environment. It can be vacuous for rapid changes.
 
-\begin{theorem}[Conditional false-admission control]\label{thm:audit}
-Suppose each null candidate's fresh differences satisfy
-$\mathbb E[D_i\mid\mathcal F_{i-1}]\le0$, conditional on the history at its
-registration. With the frozen snapshots and unique allocation above, the
-probability of ever admitting any such null candidate is at most $\delta$.
+For trainable residuals, freeze the feature extractor $\phi$ and prior prediction
+$f$. Let $U$ have orthonormal columns spanning protected features and set
+$P=I-UU^\top$. Define
+\begin{equation}
+ f_{\mathrm{new}}(x)=f(x)+WP\phi(x).
+\label{eq:projection}
+\end{equation}
+
+\begin{theorem}[Exact fixed-feature protected span]
+If $\phi(x)\in\operatorname{span}(U)$, then Eq.~\eqref{eq:projection} equals $f(x)$
+for every $W$. For an approximate projection $\widetilde P$, drift is at most
+$\|W\|\,\|\widetilde P\phi(x)\|$ in compatible norms.
 \end{theorem}
 \begin{proof}
-Every factor in Eq.~\eqref{eq:eprocess} is nonnegative. For a fixed stake, the
-product has conditional next-step expectation at most its current value, since
-$1+\lambda\mathbb E[D_i\mid\mathcal F_{i-1}]\le1$. Each product, and their mixture,
-is therefore a nonnegative supermartingale starting at one. Ville's inequality
-bounds its probability of ever crossing $1/\delta_j$ by $\delta_j$. The bound
-holds conditional on each candidate's adaptive pre-audit history. A union bound
-and Eq.~\eqref{eq:alpha} give the result. These are standard sequential-inference
-arguments \citep{confidence}, not a new concentration result.
+Orthogonality gives $P\phi(x)=0$. For the approximate case, apply the operator-norm
+inequality to $W\widetilde P\phi(x)$.
 \end{proof}
 
-For stationary iid scoped tasks, the null is nonpositive mean benefit. The
-conclusion is not pointwise non-degradation, future robustness to drift, or a
-safety theorem about objectives not represented by reward. If an incumbent changes
-during an audit, passing against the old snapshot is insufficient. The primitive's
-promotion gate checks current incumbent identity, but a trusted harness must
-compute real snapshot hashes and maintain globally unique indices across restarts.
-Those operational assumptions are not verified by supplying matching strings.
+This is fixed-feature nullspace control, related to orthogonal-gradient methods
+\cite{ogd}, not a new neural retention theorem. It is exact in real arithmetic,
+not merely first-order, because the new residual is explicitly linear in projected
+features. The implementation uses float64 SVD and online SGD; measured drift,
+rather than bitwise equality, is reported. Changing the encoder, feature
+construction, router, or protected set changes the premise.
 
-If each admitted change affects only its guard's scope and all scoped task
-distributions remain stationary, expected scoped reward improves on the event
-of no false admission. Untouched scopes retain their policies. This conditional
-corollary does not merge with the exact theorem unless all exact-path assumptions
-are also true, and it does not guarantee a beneficial change will ever be admitted.
+\begin{proposition}[The capacity cost is explicit]
+For isotropic features and desired linear change $d^*$, the least achievable new
+population squared error under this restriction is $\|U^\top d^*\|^2$.
+If the protected span has full rank $d$, no residual learning is possible.
+\end{proposition}
+\begin{proof}
+Decompose $d^*$ into its orthogonal protected-span and complement components.
+Only the latter is adjustable. Isotropy makes squared prediction error equal to
+the squared coefficient norm. At full rank, $P=0$.
+\end{proof}
 
-\section{Implementation and measured mechanisms}
-\subsection{What was executed}
-The repository implements the finite DSL, binary-feedback elimination, witness
-condensation, certificate caching, scope quarantine, a single-writer hash-linked
-ledger, a rational paired auditor and an online regression control. The optional
-chat-completions client is mock-tested and records prompts, responses, usage and
-invalid outputs. No actual model request, GPU run or public-benchmark evaluation
-was executed. The empirical auditor is not yet connected to a general-agent
-candidate generator or a native CL-Bench adapter.
+Observable context-separated features or new frozen modules can supply additional
+capacity. An unobservable conflicting context cannot be resolved merely by
+projecting gradients. Thus exact protected behavior and learning capacity must be
+reported together.
 
-The synthetic study evaluates six symbolic methods over five scenarios, 20
-seeds and 384 episodes per run. Four publicly identified systems recur in
-12-episode blocks. The learners see their input, action and binary success, not
-the scoring target. Methods are a stateless constant, bounded exact-input lookup,
-unbounded lookup, 24-observation windowed induction, full-history replay induction,
-and Witness. Full replay rebuilds the same class from all previous observations
-for each decision, with identical tie breaking.
+\section{Execution: share semantics before optimizing kernels}
+\subsection{A shared relational aggregate cube}
+With $F$ nullable Boolean fields, each row belongs to exactly one of $3^F$
+patterns. For $C$ numeric columns, form the integer cube
+\begin{equation}
+ A[z,c]=\sum_{r:\operatorname{pattern}(r)=z}\operatorname{coalesce}(r_c,0).
+\end{equation}
+Each typed filter is a fixed subset of patterns. Its column sums are linear
+combinations of $A$, and a sum/difference plan selects one or two resulting
+columns. Disjoint partitioning and distributivity prove equivalence to the direct
+interpreter. The exact CPU implementation is tested against that interpreter,
+which is independently checked against SQLite.
 
-Scenarios are stationary interleaving, new inputs after the halfway point, a
-publicly versioned affine change, the same change without a public version update,
-and quadratic targets outside the affine class. The last case first exposes only
-inputs zero and one, where the wrong linear explanation fits, then tests new
-inputs. These are deliberately diagnostic constructed streams, not expert-validated
-language-agent tasks. Confidence intervals resample independent run seeds, not
-individual correlated episodes.
+Direct evaluation costs $O(HR(F+1))$ for $H$ plans and $R$ rows. With $P_f$
+distinct filter signatures, the cube costs
+\begin{equation}
+ O(R(F+C)+P_f3^F(F+C)+H).
+\end{equation}
+The cube itself uses $O(3^FC)$ storage; cached filter sums use $O(P_fC)$ and
+materialized outputs use $O(H)$. This only helps for a small number
+of flags. The reference caps $F$ at three and $C$ at eight and checks integer
+magnitude bounds. Exponentially large cubes require fallback, not optimistic
+extrapolation.
 
-\begin{table*}[t]
-\centering\small
-\input{results_table}
-\caption{Executed symbolic CPU results. Window means full induction from the most recent 24 global observations; lookup retains the entire exact-input history. Full-history symbolic induction and Witness have identical accuracy. Brackets are 95\% bootstrap intervals across 20 seeds. Wrong certificates are counts per 384-episode run. The negative rows explicitly violate the exact theorem's assumptions. None of these numbers is an LLM ICL or CL-Bench score.}
-\label{tab:results}
-\end{table*}
+\subsection{Packed evidence and query-consensus kernels}
+The CUDA draft assigns one warp to 32 hypotheses. Integer comparisons produce a
+consistency ballot; bitwise intersection updates the live mask. Per-word active
+counts and min/max predictions feed a second per-scope reduction. Nonempty equal
+min/max values indicate empirical unanimity. An empty set never does.
+New-input consensus has a separate entry point: the predictions computed for a
+feedback observation cannot be reused as predictions for a future query.
 
-\subsection{Transfer, retention and computation}
-Table~\ref{tab:results} shows that the inductive policy transfers beyond recorded
-inputs, whereas exact-input lookup must gather new evidence. Equality with full
-symbolic replay is the expected result: compilation does not create information.
-The stationary streams contain zero incorrect conditional contracts. Tests also
-check that updates in another scope leave existing contracts intact.
+The current fast path accepts int32 outputs, uint8 feedback, and uint32 masks.
+General relational sums use int64 and need a checked range or a future int64
+specialization. No silent truncation is allowed. NVIDIA's programming and tuning
+guides inform the layout, not a claim of hardware speedup \cite{cuda,hopper}.
+Tensor cores are unnecessary for this mask logic. A shared aggregate-cube GPU
+implementation is an explicit next kernel, not an already executed result.
 
-Across a stationary 384-episode run, Witness retains an average
-\WitnessCount{} active witness observations across all scopes, representing the
-same live class as the full record. This is a \WitnessRatio{}-fold observation-count
-reduction for that constructed setting. It still stores the complete raw history.
-It evaluates hypotheses \WitnessOps{} times on average, versus \ReplayOps{}
-for full symbolic reconstruction, a factor of \OpRatio{}. This deliberately
-redundant reconstruction is an information control, not a competitive serving
-kernel; its operation-count ratio is not an inference latency or GPU speedup.
+Buffers must bind owner, content epoch, schema, grammar, rule ordering, query,
+evidence generation, precision and stream dependencies. Shape-only reuse is not
+a valid content cache. Small classes should stay on the CPU when launch and
+transfer costs dominate. Prediction generation, replay, screens, and archive
+traffic belong in end-to-end accounting.
 
-\paragraph{A decisive failure.}
-The nonlinear test yields late reward 14.09\% for Witness versus 68.12\% for full
-lookup. Four wrong conditional certificates occur per seed, one per scope,
-before contradictions trigger quarantine. Hidden drift likewise causes wrong
-contracts before detection. Consequently the current exact-only prototype is
-\emph{already falsified} as a universal solution. The key unsolved bridge is
-obtaining useful, sound abstractions and recognizing invalid applicability,
-not merely making the version-space update faster.
+\section{Executed experiments}
+\subsection{Protocol and implementation status}
+We use 20 seeds per mechanism setting. Arithmetic experiments have 512 episodes
+and three methods across seven scenarios. Relational experiments have 384
+episodes and four methods across three scenarios. The integrated test has 512
+episodes, two configurations and two scenarios. Together they produce
+348,160 compressed per-episode records. Auditing simulations use 4,000 independent
+replications per condition. The fixed-share and protected-training controls have
+separate seeded result files. These are CPU mechanism tests, not CL-Bench,
+AgentCL, or LLM scores.
 
-\subsection{Audit cost as a second failure mode}
-We simulate 2,000 independent audit streams for each true mean difference, with
-$D\in\{-1,0,1\}$, disagreement probability $0.3$, and fixed first-candidate budget
-$\delta_1=0.025$. This is a floating log-space power diagnostic for the same
-betting mixture, not a simulation of an LLM. Unit tests use exact rational
-arithmetic and include exhaustive finite null paths as a separate check.
+The environment supplies public inputs and feedback for the learner's chosen
+action only. Hidden arithmetic coefficients and evaluator recipes are never passed
+to the learner. Relational test rows are newly generated each episode. Evaluation
+recipes are coded independently of grammar enumeration, although the grammar and
+in-grammar tasks are deliberately co-designed to test these mechanisms. That
+restriction must not be confused with broad semantic generalization.
 
+The repository currently passes 146 Python tests and 432 standalone C++ cases.
+The 29 Lean declarations remain unverified because the toolchain is absent.
+CUDA sources were neither compiled nor executed. Full raw histories and the
+original v0.1 results are retained. Seed-level bootstrap intervals are included
+in the arithmetic and relational result files; table means do not establish
+public-benchmark significance.
+
+\subsection{Repairing the first prototype's failure cases}
 \begin{table}[t]
-\centering\small
-\input{audit_table}
-\caption{Simulated admission fractions by number of fresh paired episodes, with 2,000 runs per row. Positive mean benefit is not enough for quick admission. These percentages are synthetic power estimates, not proof of the probability theorem or observed agent performance.}
+\centering\small\input{v2_arithmetic}
+\caption{Arithmetic late-half reward (\%), 20 seeds. Reset and reuse share the
+expanded grammar; reuse additionally weights immutable archived rules.}
+\label{tab:arithmetic}
+\end{table}
+
+Table~\ref{tab:arithmetic} compares the actual earlier implementation against the
+new proposer and its archive-prior ablation on identical streams. Stationary and
+novel-input performance remain equal, rather than being sacrificed for change
+handling. Hidden change and a quadratic truth outside the initial affine class
+are repaired. On recurrence, reuse improves late reward from 84.02\% to 97.70\%.
+This is a genuine behavioral improvement, not just removal of the certificate
+flag. The flag is also removed because the broader assumptions no longer justify
+logical certification.
+
+The limits remain visible. Rapid switches give only 22.48\% late reward for the
+reuse variant. Five-percent feedback flips reduce it to 65.18\% and can archive
+spurious rules. Exact elimination is not a noise-robust default. Archival outputs
+are checked throughout each run, but preserving a wrong or misrouted skill does
+not make its use correct.
+
+\subsection{Relational reuse and representation limits}
+\begin{table}[t]
+\centering\small\input{v2_relational}
+\caption{Fresh-database late-half reward (\%), 20 seeds. Replay knows the complete
+supplied grammar from the start but pools all history; it is not LLM ICL.}
+\label{tab:relational}
+\end{table}
+
+For a stationary net-aggregation task, all successful symbolic variants reach
+100\% late reward. The full-grammar replay control is \emph{better overall}:
+95.64\% versus 92.36\% for staged growth. Starting with the needed representation
+avoids discovery cost. On returning recipes, archive weighting raises late reward
+from 63.59\% to 97.45\% without a hidden regime identifier. Full-history stationary
+replay fails because it combines incompatible regimes.
+
+Unsupported multiplication defeats every variant. The reuse learner reaches
+only 0.05\% late reward. Grammar growth is bounded, not arbitrary synthesis, and
+no numerical confidence score repairs a missing operation. These failures belong
+in the main results.
+
+\subsection{The integrated system pays for admission}
+\begin{table}[t]
+\centering\small\input{v2_integrated}
+\caption{Integrated one-outcome experiment, reward (\%). Audited and ungated
+configurations see the same inputs and only their executed outcomes.}
+\label{tab:integrated}
+\end{table}
+
+The audited agent reaches 100\% late reward on the stationary relational task,
+showing that proposal, exploration, audit and promotion function together.
+However, overall reward is 89.05\%, versus 94.37\% for the unaudited proposer.
+On recurrence, the corresponding overall values are 75.44\% and 86.92\%.
+Audit conservatism is costly; the higher proposer's score must not be presented
+as a result of the audited system. On the recurring run, the audited agent averages
+110.65 live audit trials, 50.65 proposed comparisons, and four promotions.
+
+\subsection{Power depends on where benefit occurs}
+\begin{table}[t]
+\centering\small\input{v2_audit}
+\caption{Mixture-audit simulations, 4,000 replications. Cap is deployment
+opportunities. Dense and Local are mean \emph{extra} rollouts until crossing or
+cap, not total rollouts. Both audit paths have identical statistical evidence.}
 \label{tab:audit}
 \end{table}
 
-For a true five-percentage-point gain, only 6.4\% pass by 128 paired episodes;
-22.7\% pass by 512. Small effects or short-lived rules can therefore be practically
-unlearnable through this conservative admission branch at the available budget.
-The zero-mean row crosses in 1.95\% of runs by 2,048 episodes, consistent with,
-but not proving, the 2.5\% null crossing bound. Disagreement, effect size,
-registration index and the stake mixture all influence power. Stronger adaptive
-betting or variance-sensitive tests are possible, but cannot create unobserved
-information or remove the cost of honest audit feedback.
+Both positive cases in Table~\ref{tab:audit} have global mean difference $.05$.
+The diffuse case has $D=\pm1$ with probability of a win $.525$. The local case
+has a gate of probability $.1$ and conditional win probability $.75$.
+At 2,048 opportunities, the diffuse case admits 27.00\% of candidates, while the
+local case admits all simulated candidates. Local admission averages 34.46 extra
+rollouts, versus 344.31 for dense evaluation of the \emph{same} local process.
+This is about tenfold in marginal fork cost but only about 1.82-fold in total
+rollout count. It is not a tenfold speedup of an agent.
 
-\section{Experiment that would decide the proposal}
-\paragraph{Primary test.}
-Freeze the method, code, model identifiers and evaluation protocol before the
-public run. Compare raw ICL, Mem0, ACE, MemProbe and TTHE or EvoTest, then the
-exact and combined Witness variants, using matched backbones. Run native
-CL-Bench reward and gain, with a controlled-composition transfer evaluation as an
-independent diagnostic. Use real upstream implementations rather than assign
-published names to toy heuristics. Inspect feedback availability and scope
-metadata for every task; never provide hidden answer fields to the learner.
+The local null's observed crossing rate is 1.65\%, below the first candidate's
+allocated 2.5\% threshold; this finite simulation does not prove calibration.
+The separate live-randomized experiment has no paired reward oracle and also
+finds diffuse five-point gains difficult. The predictable paired variant is unit-
+tested, but no favorable power claim is assigned to it without a separate study.
 
-The proposed success threshold is at least five percentage points of aggregate
-normalized reward over the best prespecified baseline, improvement on at least
-four of six native tasks, and a paired 95\% interval excluding zero. These are
-research targets, not power-guaranteed predictions. A separate pilot should
-estimate variance; ten seeds alone is not a statistical justification.
+\subsection{Protected learning exposes its capacity tradeoff}
+\begin{table}[t]
+\centering\small\input{v2_training}
+\caption{Online linear-residual learning in 24 dimensions. MSE is new-task mean
+squared error. Optimum is the protected population error floor. Drift is mean
+maximum absolute protected-output change across seeds.}
+\label{tab:training}
+\end{table}
 
-\paragraph{Retention and leakage.}
-Reserve an authorized held-out probe distribution for each learned scope and
-compare frozen snapshots after intervening scopes. Probe outcomes cannot enter
-memory or candidate selection. Report worst-family degradation as well as mean
-backward transfer. A proposed noninferiority tolerance is one normalized
-percentage point with prespecified one-sided inference and multiplicity handling.
-Track unseen-input and unseen-composition transfer separately from repeated
-queries. Under exact assumptions, any wrong contract fails the correctness test.
+Each training run consumes 2,048 labeled examples online; no offline retraining
+stage is inserted. Initial new-task MSE averages 25.07. Protecting a rank-four span
+reduces new-task MSE to 4.23, with mean maximum protected drift approximately
+$2.02\times10^{-16}$. Unconstrained SGD fits the new target almost exactly but
+changes protected outputs. At rank 24, no new learning occurs. These are linear
+fixed-feature results, not neural-language-model retention scores.
 
-\paragraph{Costs and ablations.}
-Report both iso-feedback and iso-total-cost comparisons, charging all synthesis,
-audit branches, token usage, storage and latency. Measure learning-curve area,
-native reward/gain, memory bytes, certificate coverage, fallback frequency,
-audit decisions and time to useful behavior. Ablate negative evidence, witness
-condensation, scope guards, exact execution and fresh admission. The witness-only
-prompt ablation is important: equal symbolic version spaces do not prove equal
-behavior from a finite language model given compressed text.
+The fixed-share control separately tests 4,096-round recurring action streams.
+Mean reward is 41.49\%, 71.52\%, and 88.34\% for dwell times 32, 128, and 512.
+For dwell time 32 the displayed regret bound exceeds the horizon and is vacuous.
+This is a useful negative diagnostic, not an omitted setting.
 
-\paragraph{Resources.}
-The present reference needs a CPU. The model pilot needs one served frozen model,
-an inference device with sufficient weight and context memory, and permitted
-task environments. A GH200 is a plausible platform in the surrounding project,
-not a measured speed claim. BF16 weight storage alone is approximately $2P$ bytes
-for $P$ parameters; KV state, activations and runtime memory must be added. No
-neural optimizer state is needed for the primary method. Large-scale models may
-instead require an authorized API budget, with actual token accounting.
+\subsection{CPU execution measurements}
+\begin{table}[t]
+\centering\small\input{v2_kernel}
+\caption{64 relational plans, median CPU latency after two fixed warmup
+repetitions. Ratio compares the Python direct interpreter to the shared cube.
+It is neither a GPU kernel speedup nor an end-to-end learner measurement.}
+\label{tab:kernel}
+\end{table}
 
-Let $S$ be total episodes in the pinned native schedules, $M$ the model count,
-$A$ the arm count and $R$ the run count. Stateful plus corresponding stateless
-runs cost about $2MARS$ episode-agent evaluations before audit branches and
-ablations. For two models, seven arms and ten runs, this is $280S$, not a single
-cheap benchmark invocation. Begin with a small frozen-model pilot and three
-task families before funding the complete study. Exact wall-clock or dollar
-estimates require a selected model, endpoint and measured throughput.
+The factorization has exact output parity in these runs. Data change between
+repetitions and execution order alternates. Ratios range from 3.70 to 16.88 versus
+the direct Python interpreter. A vectorized database engine is a necessary future
+competitor. The current recurrent learner still calls the direct interpreter;
+its previously reported learning scores do not silently include this separately
+validated optimization. A GPU claim needs prediction construction, transfers,
+launches, and the complete serving loop, not just a precomputed mask table.
 
-\paragraph{Kill criteria.}
-Reject the main claim if matched-budget ICL remains better, gains disappear on
-novel inputs, hidden changes remain poorly handled, or average gains mask protected
-scope regressions. Reject the empirical branch for a regime if most useful
-candidates cannot pass within their relevance horizon. An improvement bought
-by extra hidden simulator calls is a resource tradeoff, not matched-budget
-learning. A sampled candidate pool masquerading as a complete hypothesis class
-invalidates the logical claim. Failure of Lean compilation invalidates any
-kernel-verification claim, independently of empirical results.
+\section{What would establish or kill the broader claim?}
+The primary next experiment must use native stateful benchmark interfaces and
+real frozen models. Compare raw ICL, an established memory/playbook method, an
+executable harness method, and Witness-CL under equal observable feedback and
+full accounting of proposal, audit, retrieval and training costs. Begin with
+relational and codebase tasks but do not present those as coverage of forecasting,
+opponent modeling, or arbitrary long-horizon control. Native CL-Bench and AgentCL
+runs were not executed for this draft \cite{clbench,agentcl}.
 
-\section{Training extension and deployment safety}
-The primary system changes external learned state, not neural parameters. An
-optional recursive least-squares control updates one scoped predictor from each
-actual scalar label; tests compare it to the corresponding batch solution. That
-batch computation is only a unit-test oracle, not a deployment training phase.
-A neural extension could freeze old adapters and learn a new scoped residual
-from genuine labels or verified outcomes. It remains unimplemented, and it
-would still require behavioral routing and retention evaluation.
+Use unseen schema names and compositions, key and NULL changes, unsupported
+operators, correlated failures, recurrence, and latent change without public
+version labels. A strong parser and ICL baseline must not receive a smaller
+context or fewer interactions than our system. Freeze implementations, budgets,
+normalization, retention strata and seeds before scoring. Report seed-level
+paired intervals and all negative settings. A five-point aggregate normalized
+reward gain with no more than a one-point protected-stratum loss remains a
+proposed success criterion, not a prediction or an achieved result.
 
-The shipped arithmetic DSL cannot run arbitrary supplied code, access files or
-call tools. A general compiler must preserve existing permission checks outside
-learned state. Outcome feedback needs trustworthy provenance; self-critique or
-user instructions are not substitutes. A hash chain is useful for detecting
-partial log edits with a trusted external head, but does not authenticate sources
-or resist rewriting both the log and its trusted reference.
+The main contribution is killed if gains disappear under matched budgets or
+stronger ICL, fail on unseen compositions, or hide protected-task regressions.
+The admission mechanism is killed for a workload if useful gates occur too
+rarely to amortize auditions. The kernel claim is killed if full prediction,
+replay, synchronization and transfer cost exceeds saved computation. The
+projected learner is inappropriate when the protected span removes all useful
+capacity and observable context separation is unavailable.
 
-Post-hoc quarantine does not prevent the first dangerous action after a hidden
-change. Irreversible actions require independent current validation or a safe
-abstention mechanism. An average-reward e-process does not certify all safety
-constraints. Privacy also takes precedence over indefinite retention: authorized
-deletion must invalidate dependent evidence and compiled behavior. The reference
-does not implement a complete deletion or unlearning system.
-
-\section{Formalization and artifact status}
-The repository supplies 13 Lean theorem attempts for the abstract logical core,
-including truth retention, conditional soundness, refinement preservation,
-certificate equivalence, persistent redundancy, sequential refinement and
-other-scope noninterference. No \texttt{sorry}, \texttt{admit} or custom axiom is
-provided in the source. The authoring environment lacked Lean and the official
-toolchain download was blocked; \texttt{lake build} exited with command-not-found.
-\textbf{These sources are not kernel-checked.} The probability theorem,
-cardinality/mistake bounds, field argument and refinement to Python are not
-formalized. Mathematical proofs and executable tests must not be relabeled as
-formal verification.
-
-Python tests, raw synthetic records and generated tables are included, together
-with the exact environment description and an optional model-facing runner.
-Public-benchmark integration remains a documented boundary: the upstream ICL
-interface was inspected, but task-specific compilers and native execution were
-not completed. The paper is a research draft with positive mechanism checks and
-negative controls, not a submission claiming a deployed benchmark winner.
+\paragraph{Resources and safety.}
+All executed experiments need only a CPU. A GH200 can host the next local-model
+and CUDA validation stage, subject to measured model/context memory requirements;
+no GPU-hour estimate is justified before a pilot. The supplied CUDA target
+includes compilation and sanitizer commands, not successful results. No model
+service calls, API spending, external dataset submission, repository publication,
+or irreversible actions were performed. A real agent needs an independent
+permission boundary and authenticated feedback. Mean-reward admission is not an
+irreversible-action safety certificate.
 
 \section{Conclusion}
-Witness-CL turns the question from ``what should the agent remember?'' into
-``which evidence rules out alternative behavior, and what justifies committing
-a change?'' The finite-class answer is implementable and supports conditional
-retention and transfer. Its failure modes are equally concrete: misspecified
-abstractions can confidently fail, hidden changes break applicability, and fresh
-statistical evidence can arrive too slowly. The next scientific contribution
-must close those gaps on genuine stateful tasks under matched resources. The
-artifact makes that claim testable without claiming it has already been proved.
+This revision replaces three unimplemented design questions with executable,
+falsifiable mechanisms: schema-grounded skill growth with honest replay,
+recurrence-aware archival recovery, and local admission with actual outcomes.
+It also supplies an explicit online protected-learning construction and shared
+execution primitive. The improvement is substantive within the tested setting,
+but the outcome is not a general no-forgetting learner or a demonstrated public-
+benchmark winner. The restricted proofs, failures, and measured admission cost
+specify exactly what a larger experiment must validate.
+
+\paragraph{Disclosure.}
+Prepared as an AI-assisted research draft for Samuel Mausberg. Authorship,
+literature, proofs, implementation and claims require author review and independent
+replication. No affiliation, accepted venue, funding award or DOI is asserted.
+Code is MIT-licensed. The complete old draft and evidence remain in the artifact.
 
 \appendix
-\section{Why unconditional guarantees need extra assumptions}
-\begin{proposition}[An information barrier to universally safe improvement]
-There exist two initially indistinguishable environments in which no learner can
-both improve and guarantee no expected degradation on every episode relative to
-a baseline, without an additional informative channel.
-\end{proposition}
-\begin{proof}
-In both environments, action $a_0$ returns $1/2$. In the first, action $a_1$
-returns $1$; in the second it returns $0$. Before $a_1$ is tried, the observation
-history is identical. Choosing $a_1$ with probability $q>0$ gives expected reward
-$1/2-q/2$ in the second environment, below the baseline. Thus the guarantee
-forces $q=0$. No distinguishing information arrives from $a_0$, so induction
-forces continued baseline behavior in the first environment as well. Safe audit
-channels, structural knowledge, or a relaxation of the guarantee change the
-problem; retaining more of the same uninformative history does not.
-\end{proof}
+\section{Additional proof and implementation details}
+\subsection{Fixed-class witness equivalence}
+Let $V_0=H$ and $V_t=V_{t-1}\cap C_t$. If a constraint does not shrink $V_{t-1}$,
+it holds for every later subset. Induction therefore permits its omission without
+changing the final version space. Every retained witness removes at least one
+previously surviving hypothesis, so $|W_t|\le |H|-|V_t|$. This is not a minimum
+cardinality witness construction. The bound counts observations, not their bits.
+The class-growth counterexample in Section~2 explains why this sufficiency
+contract must name its class explicitly.
 
-\begin{proposition}[Storage required by arbitrary exact retention]
-A deterministic system that must later answer every query about $N$ independently
-specified bits of experience exactly requires at least $2^N$ distinguishable
-persistent states, or $N$ bits of total persistent storage.
-\end{proposition}
-\begin{proof}
-There are $2^N$ possible histories. With fewer states, two distinct histories
-share a state by the pigeonhole principle. They differ at some bit. Given a
-query for that bit, the system receives the same retained state and query in both
-cases, so it must answer identically and be wrong in at least one. External memory
-counts as persistent state; structured compressible histories are a different
-assumption.
-\end{proof}
-The result permits a bounded active context backed by growing storage. It
-prevents presenting an ever-growing disk archive as constant total memory or
-claiming arbitrary lifelong exact retention from a fixed-size summary.
+\subsection{Sketch of the fixed-share expectation bound}
+Interpret sharing as a Markov prior over expert paths. The probability of an
+$S$-switch comparator is at least
+$M^{-1}(\alpha/M)^S(1-\alpha)^{T-1-S}$, giving code length $B_S$.
+The exponential-weights potential uses $e^{-z}\le1-z+z^2/2$ for $z\ge0$ and
+$\log(1+u)\le u$. It bounds estimated regret by the code length over $\eta$ plus
+$\eta/2$ times the summed estimated second moments. Conditional expectation of
+a round's second moment is
+\begin{equation}
+ \sum_a\frac{q_t(a)\ell_t(a)^2}{p_t(a)}\le\frac{K}{1-\gamma}.
+\end{equation}
+Comparator IPS estimates are unbiased. Mixing exploration adds at most $\gamma$
+loss per round. These steps give Eq.~\eqref{eq:tracking}. None compares against
+an expert's counterfactual environment trajectory after different earlier actions.
 
-\section{Reproduction and review checklist}
-Install the project with its test and analysis extras, then execute
-\texttt{make test}, \texttt{make experiment} and \texttt{make audit-power}.
-\texttt{make paper} regenerates numerical tables directly from recorded JSON and
-compiles this document. \texttt{make formal} requires the pinned Lean toolchain;
-a successful future run must replace the current unverified status only after
-reviewing actual compiler output.
+\subsection{Randomization and the audit filtration}
+The candidate and baseline functions, guard and reward normalization are fixed
+before their test data. Within a gated episode, assignment is independent of
+potential outcomes conditional on the preassignment information. Hence
+\begin{align}
+ \EE\!\left[\frac{A}{e}(R-1/2)\right]&=\EE[R(c)]-1/2,\\
+ \EE\!\left[\frac{1-A}{1-e}(R-1/2)\right]&=\EE[R(b)]-1/2.
+\end{align}
+Subtracting yields Eq.~\eqref{eq:randomized}. The uniform bound $B$ is deliberately
+constant. Using context-dependent normalizers can change the targeted average.
+After hidden drift, stationary interpretation is not automatic; a detected
+evidence-epoch change retires the ongoing test, but detection itself can lag.
 
-The episode CSV records scenario, seed, method, public scope/version, input,
-action, reward, certificate flag and live-class size. Audit simulation output
-states its synthetic distribution and random seed. Independent reproductions
-should check the equality of full replay and Witness, witness reconstruction,
-negative-feedback semantics, stale-comparator rejection, hidden-change failures
-and missing-label rejection in online regression. New real-model results must
-include exact model identifiers, complete costs, native feedback-access checks
-and failed runs before any claim of public-benchmark superiority is made.
+An audit stopped for a contradicted candidate is never resumed. Admissions remain
+a subset of crossings of its full, uncensored potential test path. A newly proposed
+candidate excludes the observation that produced it via its strict birth cut.
+Unlimited restarts without new global error indices would invalidate the claim.
+The reference allocator is single-process; durable distributed indexing is not
+implemented.
 
-\paragraph{Authorship and disclosure.}
-This is an AI-assisted draft prepared for Samuel Mausberg. Literature selection,
-proofs, implementation, data and scientific claims require author review and
-independent replication. No affiliation, funding award, accepted venue or DOI is
-asserted. The repository is distributed under the MIT license.
+\subsection{Formalization and execution boundaries}
+\texttt{Core.lean} contains 13 earlier theorem attempts. The 16 additions in
+\texttt{Refinement.lean} cover replay under class growth, its explicit
+counterexample, guarded patch noninterference, immutable archive outputs, an
+integer residual identity, and neutral-factor algebra. They use no placeholders
+or added axioms, but \texttt{lake build} did not execute because \texttt{lake}
+is unavailable. There is no kernel-checked Lean result to cite.
 
+Probability, real matrix algebra, the sample lower bound, and compiler refinement
+remain handwritten arguments. Python and C++ test results do not prove the CUDA
+program. The C++ oracle has 432 random/tail/idempotence cases. The unexecuted CUDA
+runner adds empty-mask and extreme-int sentinel cases. Multistream, graph replay,
+changing-content and buffer-reuse validation are still required before production.
+
+\subsection{Reproduction}
+Install the test/analysis extras; run \texttt{make test}, \texttt{make refine},
+\texttt{make cpp-check}, and \texttt{make paper}. Tables are regenerated from
+recorded JSON. Complete compressed episode records, raw timing repetitions, and
+the original draft and data are retained. CUDA checks require a CUDA device and
+compiler.
 \clearpage
 \balance
 \input{references_formatted}

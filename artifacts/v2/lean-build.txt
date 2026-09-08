@@ -1,0 +1,4 @@
+cd formal && lake build
+/bin/sh: 1: lake: not found
+make: *** [Makefile:16: formal] Error 127
+exit_code=2

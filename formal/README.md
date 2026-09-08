@@ -1,26 +1,24 @@
 # Formalization status
 
-**Source attempt, not kernel-checked in the authoring environment.** Lean/lake
-were absent and downloading the official toolchain was blocked. The build attempt
-and environment status are recorded in `../artifacts/lean-status.txt`.
+There are **29 theorem attempts**, 13 in `WitnessCL/Core.lean` and 16 in
+`WitnessCL/Refinement.lean`. There are no proof placeholders or added axioms.
+They are **not kernel-checked**. The command `make formal` failed because `lake`
+was not installed; see `artifacts/v2/lean-build.txt`. An attempted official
+Lean 4.19.0 binary download also failed. No successful Lean build is implied by
+the Python/C++ tests or by `#print axioms` commands present in unexecuted source.
 
-With Lean installed, run `cd formal && lake build`. The pinned toolchain is
-`leanprover/lean4:v4.19.0`; no mathlib dependency or network package is required
-once that compiler is installed. CI is configured but has not run here.
+The new file covers class-growth replay, a witness-compression counterexample,
+local patch noninterference, archival output identity, integer residual identity,
+and algebraic removal of neutral factors. It does NOT prove probability theorems,
+real orthogonal projection, regret bounds, SQL semantics, floating-point
+correctness, Python refinement, or CUDA correctness.
 
-`WitnessCL/Core.lean` contains proof terms for truth preservation, soundness of
-unanimous certificates, preservation under nonempty refinement, equivalence of
-certificates for equal version sets, persistence of redundant constraints,
-sequential refinement, and isolation of other public scopes. It includes a
-minimal incompatible-worlds lemma.
+To validate with the pinned compiler:
 
-The e-process probability result, finite-class witness cardinality bound,
-affine identification proof, Python implementation refinement, model-class
-realizability, and end-to-end LLM safety are **not formally verified**. They must
-not be advertised as Lean-proved. Abstract predicates model total deterministic
-hypotheses, not floating-point neural networks or arbitrary Python programs.
+```
+cd formal
+lake build
+```
 
-No custom axiom, `sorry`, or `admit` is supplied. This is an inspection fact, not
-a substitute for compilation. `#print axioms` statements make successful future
-checks auditable; standard Lean logical axioms must not be confused with new
-unproved assumptions added by an author.
+The CI job attempts this build on a machine that can install the toolchain. Until
+a successful log is obtained, do not describe these as verified Lean theorems.

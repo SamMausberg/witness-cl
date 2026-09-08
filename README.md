@@ -1,97 +1,79 @@
 # Witness-CL
 
-**Counterexample-preserving online skill compilation. Research prototype, not a benchmark winner.**
+**Evidence-preserving skill growth, local auditing, and retention under recurrence.**
 
-Learn reusable deterministic rules from deployment feedback, preserve a sufficient
-set of counterexamples, and distinguish conditional logical certificates from
-statistical evidence for broader skills. The foundation model need not be retrained.
+Research prototype, version 0.2.0. **146 Python tests and 432 C++ cases pass.**
+The nine-page [paper](paper/main.pdf), [mathematical notes](docs/v2/THEORY.md),
+[claim boundaries](docs/v2/RESEARCH_STATUS.md), and [recorded results](artifacts/v2/RESULTS.md)
+separate measured behavior from assumptions and hypotheses.
 
-**Status, 8 September 2026:** executable Python reference; CPU mechanism and
-failure experiments; unit/property-style tests; an optional local-LLM runner;
-a two-column LaTeX research draft. No LLM or public-benchmark result has been
-produced. Lean proof sources were attempted but could not be kernel-checked
-because Lean was unavailable. See [claim boundaries](docs/CLAIMS.md).
+No native CL-Bench/AgentCL or language-model experiment was run. The 29 Lean
+attempts are **not kernel-checked**. CUDA sources are **not compiled or timed**.
+This is not a benchmark-win or unrestricted no-forgetting claim.
 
-## Run
+## What changed
+
+The learner can grow its typed rule class, replay earlier evidence correctly,
+recover after unannounced changes, and reuse preserved old rules. It also learns
+schema-derived read-only aggregation programs. A separate integrated agent freezes
+candidate changes and uses randomized, actually observed outcomes to audit them
+before promotion. Fixed-feature online residual learning protects a specified
+span exactly in real arithmetic. Shared relational aggregates and packed evidence
+kernels target execution cost rather than expensive prompt accumulation.
+
+On the new 20-seed arithmetic streams, hidden-change late reward rises from
+14.49% for the original algorithm to 96.19%; class-misspecification recovery rises
+from 10.06% to 100%. Relational recurrence reaches 97.45% late reward versus
+63.59% for reset-only learning. These are symbolic mechanism tests, **not ICL
+results**. The audited agent pays an additional learning cost, and rapid change,
+noisy feedback, and unsupported operators remain published failure cases.
+
+## Reproduce
 
 ```bash
 python -m venv .venv
 . .venv/bin/activate
 python -m pip install -e '.[test,analysis]'
 make test
-make experiment
-make audit-power
-make paper
-# Requires the separately installed pinned Lean compiler:
-make formal
+make cpp-check
+make refine       # Reruns all new experiments and replaces their recorded outputs.
+make paper        # Uses recorded JSON; requires pdflatex and the packages in main.tex.
 ```
 
-The core algorithm uses only the Python standard library. NumPy is used by the
-optional recursive least-squares baseline and audit-power diagnostic.
-`artifacts/environment.json` records the actual environment, not a claimed lockfile.
+`make experiment` and `make audit-power` reproduce the original version's separate
+experiments. `make formal` needs the pinned Lean toolchain. `make cuda-check` needs
+a CUDA-capable SM90 machine, nvcc, and Compute Sanitizer. The latter two commands
+were not successfully executed here. See [execution contracts](docs/v2/EXECUTION.md).
 
-## What is implemented
+## Code map
 
-`src/witness_cl/core.py` maintains a complete finite hypothesis class per **public**
-environment/version, eliminates hypotheses using binary success feedback, stores
-only informative observations in an active witness set, and caches unanimous
-predictions. An empty class is quarantined. `audit.py` implements a fresh-episode,
-exact-rational paired e-process with candidate-wise error allocation and stale
-incumbent rejection. It is a primitive, not an integrated production auditor.
+| Location | Role |
+|---|---|
+| `src/witness_cl/adaptive.py`, `relational.py` | Replay-safe class growth, recurrence, public-schema plans, aggregate cube |
+| `system.py`, `local_audit.py` | Integrated one-outcome learner; local and randomized admission |
+| `tracking.py`, `protected.py` | Separate fixed-archive bandit and projected-training controls |
+| `kernels/` | Executed C++ oracle; unexecuted CUDA filtering and consensus drafts |
+| `formal/`, `docs/v2/` | Attempted Lean formalization; written proofs and explicit limits |
+| `artifacts/v2/`, `experiments/` | 348,160 new raw episode records, seeded scripts, power and timing data |
 
-`programs.py` provides a tiny typed, total, non-executable-input DSL for affine
-maps modulo an integer. `ledger.py` provides a single-writer hash-linked log,
-not authentication against a full rewrite. `online_ridge.py` is an established
-online-update control requiring actual scalar labels, not invented labels.
+The cube is an independently measured CPU primitive, not yet wired into the
+online learner's reported timing. It is faster than the direct Python interpreter
+in the recorded test, not a measured GPU or database-engine speedup. The neural,
+soft-router, and multistep branches are not unified into a general LLM agent.
 
-## What the measurements say
+The original optional `experiments/llm_synthetic.py` runner is retained. It supports
+an explicitly configured local chat-completions server; it is not a native
+CL-Bench adapter, and no model-service call was executed. The original paper and
+results remain under `paper/v1/` and `artifacts/synthetic/`.
 
-The executed synthetic study uses 20 seeds, 384 episodes, four public scopes,
-five scenarios, and six symbolic methods. The incremental method and unbounded
-full-history symbolic induction have identical accuracy. On stationary affine
-streams both score 94.17% overall and 100% in the late half. Full lookup scores
-78.12% overall. This is **not evidence of beating LLM ICL**.
+## Attribution and safety
 
-The exact path fails under deliberately hidden drift and a misspecified class.
-In the nonlinear stress test its late reward is 14.09%, versus 68.12% for full
-lookup, and it emits four wrong conditional certificates per seed before
-quarantine. These are published counterexamples, not excluded runs.
+Prepared as an AI-assisted research draft for Samuel Mausberg. Author review,
+independent proof checking, and external replication remain necessary. Algorithms
+build on version-space elimination, program synthesis, fixed-share experts,
+sequential inference, and orthogonal learning. [References](paper/references.bib)
+credit those foundations; novelty of the combination is not established.
 
-For the stationary case, an average 29.4 retained witness observations represents
-all 384 feedback records relative to the fixed hypothesis class. The source
-also retains the full history, so total persistent storage is not constant.
-
-Results and raw episode records: [artifacts/synthetic](artifacts/synthetic/).
-The audit-power simulation separately demonstrates the cost of fresh evidence.
-
-## Optional model experiment
-
-Run a user-chosen chat-completions server and supply its exact model identifier:
-
-```bash
-PYTHONPATH=src python experiments/llm_synthetic.py \
-  --base-url http://127.0.0.1:8000/v1 --model YOUR_SERVED_MODEL_ID \
-  --arms raw_full_icl witness witness_condensed \
-  --out artifacts/local_model_run.jsonl
-```
-
-This runner is synthetic, not CL-Bench. It logs complete prompts, responses,
-reported token usage, and errors. Remote calls require `--allow-remote` and are
-never made automatically. Context overflow aborts instead of silently truncating
-an arm named full ICL. Invalid structured outputs are scored as invalid actions.
-The model-service protocol has mock tests, not an executed provider integration.
-
-## Reading order
-
-[Paper](paper/main.pdf), [theory](docs/THEORY.md), [evaluation and kill criteria](docs/EVALUATION.md),
-[training/inference](docs/TRAINING_INFERENCE.md), [safety](docs/SAFETY.md),
-[prior work](docs/RELATED_WORK.md), [upstream integration boundary](integrations/README.md),
-and [Lean status](formal/README.md).
-
-The research claim to test is whether preserving decision-discriminating evidence,
-then compiling only justified behavior, improves the reward/cost/retention frontier
-of real continual agents. The individual ingredients are established. Novelty of
-the combination and public-benchmark effectiveness remain unestablished.
-
-MIT license. Paper author line: Samuel Mausberg. AI-assisted draft; author review
-and independent replication are required before submission.
+Only pure, read-only policies are used in the integrated experiments. Admission
+is not a guarantee that experimental treatments cannot harm individual episodes.
+Do not use the prototype to authorize irreversible actions. MIT license.

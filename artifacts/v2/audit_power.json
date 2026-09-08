@@ -1,0 +1,206 @@
+[
+  {
+    "case": "diffuse_gain",
+    "horizon": 128,
+    "replications": 4000,
+    "admission_rate": 0.0355,
+    "mean_deployment_opportunities": 124.9405,
+    "dense_mean_extra_rollouts": 124.9405,
+    "screened_mean_extra_rollouts": 124.9405,
+    "dense_mean_total_rollouts": 249.881,
+    "screened_mean_total_rollouts": 249.881
+  },
+  {
+    "case": "diffuse_gain",
+    "horizon": 512,
+    "replications": 4000,
+    "admission_rate": 0.07025,
+    "mean_deployment_opportunities": 488.25225,
+    "dense_mean_extra_rollouts": 488.25225,
+    "screened_mean_extra_rollouts": 488.25225,
+    "dense_mean_total_rollouts": 976.5045,
+    "screened_mean_total_rollouts": 976.5045
+  },
+  {
+    "case": "diffuse_gain",
+    "horizon": 2048,
+    "replications": 4000,
+    "admission_rate": 0.27,
+    "mean_deployment_opportunities": 1773.8995,
+    "dense_mean_extra_rollouts": 1773.8995,
+    "screened_mean_extra_rollouts": 1773.8995,
+    "dense_mean_total_rollouts": 3547.799,
+    "screened_mean_total_rollouts": 3547.799
+  },
+  {
+    "case": "sparse_local_gain",
+    "horizon": 128,
+    "replications": 4000,
+    "admission_rate": 0.17525,
+    "mean_deployment_opportunities": 119.20175,
+    "dense_mean_extra_rollouts": 119.20175,
+    "screened_mean_extra_rollouts": 11.84,
+    "dense_mean_total_rollouts": 238.4035,
+    "screened_mean_total_rollouts": 131.04175
+  },
+  {
+    "case": "sparse_local_gain",
+    "horizon": 512,
+    "replications": 4000,
+    "admission_rate": 0.78475,
+    "mean_deployment_opportunities": 305.0415,
+    "dense_mean_extra_rollouts": 305.0415,
+    "screened_mean_extra_rollouts": 30.42375,
+    "dense_mean_total_rollouts": 610.083,
+    "screened_mean_total_rollouts": 335.46524999999997
+  },
+  {
+    "case": "sparse_local_gain",
+    "horizon": 2048,
+    "replications": 4000,
+    "admission_rate": 1.0,
+    "mean_deployment_opportunities": 344.307,
+    "dense_mean_extra_rollouts": 344.307,
+    "screened_mean_extra_rollouts": 34.45625,
+    "dense_mean_total_rollouts": 688.614,
+    "screened_mean_total_rollouts": 378.76325
+  },
+  {
+    "case": "sparse_null",
+    "horizon": 128,
+    "replications": 4000,
+    "admission_rate": 0.0085,
+    "mean_deployment_opportunities": 127.5415,
+    "dense_mean_extra_rollouts": 127.5415,
+    "screened_mean_extra_rollouts": 12.727,
+    "dense_mean_total_rollouts": 255.083,
+    "screened_mean_total_rollouts": 140.2685
+  },
+  {
+    "case": "sparse_null",
+    "horizon": 512,
+    "replications": 4000,
+    "admission_rate": 0.01125,
+    "mean_deployment_opportunities": 507.89675,
+    "dense_mean_extra_rollouts": 507.89675,
+    "screened_mean_extra_rollouts": 50.69775,
+    "dense_mean_total_rollouts": 1015.7935,
+    "screened_mean_total_rollouts": 558.5945
+  },
+  {
+    "case": "sparse_null",
+    "horizon": 2048,
+    "replications": 4000,
+    "admission_rate": 0.0165,
+    "mean_deployment_opportunities": 2021.0865,
+    "dense_mean_extra_rollouts": 2021.0865,
+    "screened_mean_extra_rollouts": 201.8205,
+    "dense_mean_total_rollouts": 4042.173,
+    "screened_mean_total_rollouts": 2222.9069999999997
+  },
+  {
+    "case": "sparse_harm",
+    "horizon": 128,
+    "replications": 4000,
+    "admission_rate": 0.00175,
+    "mean_deployment_opportunities": 127.90275,
+    "dense_mean_extra_rollouts": 127.90275,
+    "screened_mean_extra_rollouts": 12.84775,
+    "dense_mean_total_rollouts": 255.8055,
+    "screened_mean_total_rollouts": 140.7505
+  },
+  {
+    "case": "sparse_harm",
+    "horizon": 512,
+    "replications": 4000,
+    "admission_rate": 0.002,
+    "mean_deployment_opportunities": 511.118,
+    "dense_mean_extra_rollouts": 511.118,
+    "screened_mean_extra_rollouts": 51.114,
+    "dense_mean_total_rollouts": 1022.236,
+    "screened_mean_total_rollouts": 562.232
+  },
+  {
+    "case": "sparse_harm",
+    "horizon": 2048,
+    "replications": 4000,
+    "admission_rate": 0.001,
+    "mean_deployment_opportunities": 2046.02,
+    "dense_mean_extra_rollouts": 2046.02,
+    "screened_mean_extra_rollouts": 204.54425,
+    "dense_mean_total_rollouts": 4092.04,
+    "screened_mean_total_rollouts": 2250.56425
+  },
+  {
+    "case": "live_randomized",
+    "gain": 0.0,
+    "horizon": 128,
+    "replications": 4000,
+    "admission_rate": 0.01225,
+    "rollouts_per_opportunity": 1
+  },
+  {
+    "case": "live_randomized",
+    "gain": 0.0,
+    "horizon": 512,
+    "replications": 4000,
+    "admission_rate": 0.01375,
+    "rollouts_per_opportunity": 1
+  },
+  {
+    "case": "live_randomized",
+    "gain": 0.0,
+    "horizon": 2048,
+    "replications": 4000,
+    "admission_rate": 0.02275,
+    "rollouts_per_opportunity": 1
+  },
+  {
+    "case": "live_randomized",
+    "gain": 0.05,
+    "horizon": 128,
+    "replications": 4000,
+    "admission_rate": 0.035,
+    "rollouts_per_opportunity": 1
+  },
+  {
+    "case": "live_randomized",
+    "gain": 0.05,
+    "horizon": 512,
+    "replications": 4000,
+    "admission_rate": 0.0705,
+    "rollouts_per_opportunity": 1
+  },
+  {
+    "case": "live_randomized",
+    "gain": 0.05,
+    "horizon": 2048,
+    "replications": 4000,
+    "admission_rate": 0.2665,
+    "rollouts_per_opportunity": 1
+  },
+  {
+    "case": "live_randomized",
+    "gain": 0.3,
+    "horizon": 128,
+    "replications": 4000,
+    "admission_rate": 0.6785,
+    "rollouts_per_opportunity": 1
+  },
+  {
+    "case": "live_randomized",
+    "gain": 0.3,
+    "horizon": 512,
+    "replications": 4000,
+    "admission_rate": 0.99975,
+    "rollouts_per_opportunity": 1
+  },
+  {
+    "case": "live_randomized",
+    "gain": 0.3,
+    "horizon": 2048,
+    "replications": 4000,
+    "admission_rate": 1.0,
+    "rollouts_per_opportunity": 1
+  }
+]

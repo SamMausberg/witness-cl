@@ -1,0 +1,4 @@
+relational stationary_net finished
+relational recurring_recipes finished
+relational out_of_grammar finished
+elapsed seconds 87.215891758

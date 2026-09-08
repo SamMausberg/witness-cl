@@ -1,3 +1,5 @@
+> Historical v0.1 document. Current claims and extensions are in [docs/v2](v2/RESEARCH_STATUS.md).
+
 # Claim ledger
 
 | Claim | Evidence/status | Explicit limitation |

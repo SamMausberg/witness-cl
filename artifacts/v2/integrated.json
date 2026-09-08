@@ -1,0 +1,846 @@
+{
+  "summary": [
+    {
+      "mode": "stationary",
+      "method": "audited_live",
+      "seeds": 20,
+      "reward": 0.89052734375,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 39.75,
+      "proposals": 25
+    },
+    {
+      "mode": "stationary",
+      "method": "ungated_proposer",
+      "seeds": 20,
+      "reward": 0.94365234375,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "method": "audited_live",
+      "seeds": 20,
+      "reward": 0.75439453125,
+      "late_reward": 0.8419921875,
+      "promotions": 4,
+      "audit_trials": 110.65,
+      "proposals": 50.65
+    },
+    {
+      "mode": "recurring",
+      "method": "ungated_proposer",
+      "seeds": 20,
+      "reward": 0.86923828125,
+      "late_reward": 0.88828125,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    }
+  ],
+  "per_seed": [
+    {
+      "mode": "stationary",
+      "seed": 0,
+      "method": "audited_live",
+      "reward": 0.861328125,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 49,
+      "proposals": 27
+    },
+    {
+      "mode": "stationary",
+      "seed": 0,
+      "method": "ungated_proposer",
+      "reward": 0.939453125,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 1,
+      "method": "audited_live",
+      "reward": 0.90625,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 27,
+      "proposals": 26
+    },
+    {
+      "mode": "stationary",
+      "seed": 1,
+      "method": "ungated_proposer",
+      "reward": 0.9296875,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 2,
+      "method": "audited_live",
+      "reward": 0.859375,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 53,
+      "proposals": 26
+    },
+    {
+      "mode": "stationary",
+      "seed": 2,
+      "method": "ungated_proposer",
+      "reward": 0.9453125,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 3,
+      "method": "audited_live",
+      "reward": 0.8515625,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 57,
+      "proposals": 27
+    },
+    {
+      "mode": "stationary",
+      "seed": 3,
+      "method": "ungated_proposer",
+      "reward": 0.92578125,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 4,
+      "method": "audited_live",
+      "reward": 0.87890625,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 44,
+      "proposals": 28
+    },
+    {
+      "mode": "stationary",
+      "seed": 4,
+      "method": "ungated_proposer",
+      "reward": 0.93359375,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 5,
+      "method": "audited_live",
+      "reward": 0.900390625,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 41,
+      "proposals": 21
+    },
+    {
+      "mode": "stationary",
+      "seed": 5,
+      "method": "ungated_proposer",
+      "reward": 0.97265625,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 6,
+      "method": "audited_live",
+      "reward": 0.880859375,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 49,
+      "proposals": 24
+    },
+    {
+      "mode": "stationary",
+      "seed": 6,
+      "method": "ungated_proposer",
+      "reward": 0.94140625,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 7,
+      "method": "audited_live",
+      "reward": 0.90625,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 29,
+      "proposals": 26
+    },
+    {
+      "mode": "stationary",
+      "seed": 7,
+      "method": "ungated_proposer",
+      "reward": 0.9375,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 8,
+      "method": "audited_live",
+      "reward": 0.890625,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 35,
+      "proposals": 27
+    },
+    {
+      "mode": "stationary",
+      "seed": 8,
+      "method": "ungated_proposer",
+      "reward": 0.947265625,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 9,
+      "method": "audited_live",
+      "reward": 0.896484375,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 35,
+      "proposals": 28
+    },
+    {
+      "mode": "stationary",
+      "seed": 9,
+      "method": "ungated_proposer",
+      "reward": 0.962890625,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 10,
+      "method": "audited_live",
+      "reward": 0.876953125,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 47,
+      "proposals": 28
+    },
+    {
+      "mode": "stationary",
+      "seed": 10,
+      "method": "ungated_proposer",
+      "reward": 0.9375,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 11,
+      "method": "audited_live",
+      "reward": 0.89453125,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 39,
+      "proposals": 24
+    },
+    {
+      "mode": "stationary",
+      "seed": 11,
+      "method": "ungated_proposer",
+      "reward": 0.9375,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 12,
+      "method": "audited_live",
+      "reward": 0.892578125,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 36,
+      "proposals": 27
+    },
+    {
+      "mode": "stationary",
+      "seed": 12,
+      "method": "ungated_proposer",
+      "reward": 0.943359375,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 13,
+      "method": "audited_live",
+      "reward": 0.892578125,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 40,
+      "proposals": 26
+    },
+    {
+      "mode": "stationary",
+      "seed": 13,
+      "method": "ungated_proposer",
+      "reward": 0.939453125,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 14,
+      "method": "audited_live",
+      "reward": 0.90625,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 36,
+      "proposals": 21
+    },
+    {
+      "mode": "stationary",
+      "seed": 14,
+      "method": "ungated_proposer",
+      "reward": 0.947265625,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 15,
+      "method": "audited_live",
+      "reward": 0.904296875,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 39,
+      "proposals": 22
+    },
+    {
+      "mode": "stationary",
+      "seed": 15,
+      "method": "ungated_proposer",
+      "reward": 0.939453125,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 16,
+      "method": "audited_live",
+      "reward": 0.8984375,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 33,
+      "proposals": 29
+    },
+    {
+      "mode": "stationary",
+      "seed": 16,
+      "method": "ungated_proposer",
+      "reward": 0.9453125,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 17,
+      "method": "audited_live",
+      "reward": 0.87890625,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 47,
+      "proposals": 22
+    },
+    {
+      "mode": "stationary",
+      "seed": 17,
+      "method": "ungated_proposer",
+      "reward": 0.9375,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 18,
+      "method": "audited_live",
+      "reward": 0.88671875,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 39,
+      "proposals": 27
+    },
+    {
+      "mode": "stationary",
+      "seed": 18,
+      "method": "ungated_proposer",
+      "reward": 0.947265625,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "stationary",
+      "seed": 19,
+      "method": "audited_live",
+      "reward": 0.947265625,
+      "late_reward": 1,
+      "promotions": 1,
+      "audit_trials": 20,
+      "proposals": 14
+    },
+    {
+      "mode": "stationary",
+      "seed": 19,
+      "method": "ungated_proposer",
+      "reward": 0.962890625,
+      "late_reward": 1,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 0,
+      "method": "audited_live",
+      "reward": 0.744140625,
+      "late_reward": 0.81640625,
+      "promotions": 4,
+      "audit_trials": 118,
+      "proposals": 42
+    },
+    {
+      "mode": "recurring",
+      "seed": 0,
+      "method": "ungated_proposer",
+      "reward": 0.875,
+      "late_reward": 0.87890625,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 1,
+      "method": "audited_live",
+      "reward": 0.73828125,
+      "late_reward": 0.83984375,
+      "promotions": 4,
+      "audit_trials": 113,
+      "proposals": 53
+    },
+    {
+      "mode": "recurring",
+      "seed": 1,
+      "method": "ungated_proposer",
+      "reward": 0.88671875,
+      "late_reward": 0.89453125,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 2,
+      "method": "audited_live",
+      "reward": 0.7109375,
+      "late_reward": 0.84375,
+      "promotions": 4,
+      "audit_trials": 134,
+      "proposals": 55
+    },
+    {
+      "mode": "recurring",
+      "seed": 2,
+      "method": "ungated_proposer",
+      "reward": 0.880859375,
+      "late_reward": 0.875,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 3,
+      "method": "audited_live",
+      "reward": 0.720703125,
+      "late_reward": 0.84375,
+      "promotions": 4,
+      "audit_trials": 123,
+      "proposals": 52
+    },
+    {
+      "mode": "recurring",
+      "seed": 3,
+      "method": "ungated_proposer",
+      "reward": 0.85546875,
+      "late_reward": 0.87890625,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 4,
+      "method": "audited_live",
+      "reward": 0.775390625,
+      "late_reward": 0.8828125,
+      "promotions": 4,
+      "audit_trials": 101,
+      "proposals": 52
+    },
+    {
+      "mode": "recurring",
+      "seed": 4,
+      "method": "ungated_proposer",
+      "reward": 0.88671875,
+      "late_reward": 0.89453125,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 5,
+      "method": "audited_live",
+      "reward": 0.73828125,
+      "late_reward": 0.8359375,
+      "promotions": 4,
+      "audit_trials": 118,
+      "proposals": 51
+    },
+    {
+      "mode": "recurring",
+      "seed": 5,
+      "method": "ungated_proposer",
+      "reward": 0.853515625,
+      "late_reward": 0.87890625,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 6,
+      "method": "audited_live",
+      "reward": 0.748046875,
+      "late_reward": 0.85546875,
+      "promotions": 4,
+      "audit_trials": 115,
+      "proposals": 51
+    },
+    {
+      "mode": "recurring",
+      "seed": 6,
+      "method": "ungated_proposer",
+      "reward": 0.86328125,
+      "late_reward": 0.8828125,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 7,
+      "method": "audited_live",
+      "reward": 0.8046875,
+      "late_reward": 0.875,
+      "promotions": 4,
+      "audit_trials": 94,
+      "proposals": 42
+    },
+    {
+      "mode": "recurring",
+      "seed": 7,
+      "method": "ungated_proposer",
+      "reward": 0.869140625,
+      "late_reward": 0.8984375,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 8,
+      "method": "audited_live",
+      "reward": 0.7578125,
+      "late_reward": 0.8359375,
+      "promotions": 4,
+      "audit_trials": 112,
+      "proposals": 53
+    },
+    {
+      "mode": "recurring",
+      "seed": 8,
+      "method": "ungated_proposer",
+      "reward": 0.873046875,
+      "late_reward": 0.8828125,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 9,
+      "method": "audited_live",
+      "reward": 0.751953125,
+      "late_reward": 0.8515625,
+      "promotions": 4,
+      "audit_trials": 111,
+      "proposals": 56
+    },
+    {
+      "mode": "recurring",
+      "seed": 9,
+      "method": "ungated_proposer",
+      "reward": 0.857421875,
+      "late_reward": 0.88671875,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 10,
+      "method": "audited_live",
+      "reward": 0.75390625,
+      "late_reward": 0.84765625,
+      "promotions": 4,
+      "audit_trials": 101,
+      "proposals": 55
+    },
+    {
+      "mode": "recurring",
+      "seed": 10,
+      "method": "ungated_proposer",
+      "reward": 0.859375,
+      "late_reward": 0.89453125,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 11,
+      "method": "audited_live",
+      "reward": 0.765625,
+      "late_reward": 0.83984375,
+      "promotions": 4,
+      "audit_trials": 109,
+      "proposals": 50
+    },
+    {
+      "mode": "recurring",
+      "seed": 11,
+      "method": "ungated_proposer",
+      "reward": 0.876953125,
+      "late_reward": 0.89453125,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 12,
+      "method": "audited_live",
+      "reward": 0.740234375,
+      "late_reward": 0.79296875,
+      "promotions": 4,
+      "audit_trials": 111,
+      "proposals": 53
+    },
+    {
+      "mode": "recurring",
+      "seed": 12,
+      "method": "ungated_proposer",
+      "reward": 0.892578125,
+      "late_reward": 0.9140625,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 13,
+      "method": "audited_live",
+      "reward": 0.763671875,
+      "late_reward": 0.875,
+      "promotions": 4,
+      "audit_trials": 105,
+      "proposals": 54
+    },
+    {
+      "mode": "recurring",
+      "seed": 13,
+      "method": "ungated_proposer",
+      "reward": 0.8828125,
+      "late_reward": 0.91015625,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 14,
+      "method": "audited_live",
+      "reward": 0.7578125,
+      "late_reward": 0.82421875,
+      "promotions": 4,
+      "audit_trials": 114,
+      "proposals": 51
+    },
+    {
+      "mode": "recurring",
+      "seed": 14,
+      "method": "ungated_proposer",
+      "reward": 0.85546875,
+      "late_reward": 0.875,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 15,
+      "method": "audited_live",
+      "reward": 0.77734375,
+      "late_reward": 0.828125,
+      "promotions": 4,
+      "audit_trials": 105,
+      "proposals": 43
+    },
+    {
+      "mode": "recurring",
+      "seed": 15,
+      "method": "ungated_proposer",
+      "reward": 0.869140625,
+      "late_reward": 0.8828125,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 16,
+      "method": "audited_live",
+      "reward": 0.78125,
+      "late_reward": 0.86328125,
+      "promotions": 4,
+      "audit_trials": 97,
+      "proposals": 54
+    },
+    {
+      "mode": "recurring",
+      "seed": 16,
+      "method": "ungated_proposer",
+      "reward": 0.86328125,
+      "late_reward": 0.8828125,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 17,
+      "method": "audited_live",
+      "reward": 0.73046875,
+      "late_reward": 0.84765625,
+      "promotions": 4,
+      "audit_trials": 112,
+      "proposals": 52
+    },
+    {
+      "mode": "recurring",
+      "seed": 17,
+      "method": "ungated_proposer",
+      "reward": 0.87109375,
+      "late_reward": 0.88671875,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 18,
+      "method": "audited_live",
+      "reward": 0.744140625,
+      "late_reward": 0.80859375,
+      "promotions": 4,
+      "audit_trials": 115,
+      "proposals": 48
+    },
+    {
+      "mode": "recurring",
+      "seed": 18,
+      "method": "ungated_proposer",
+      "reward": 0.861328125,
+      "late_reward": 0.890625,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    },
+    {
+      "mode": "recurring",
+      "seed": 19,
+      "method": "audited_live",
+      "reward": 0.783203125,
+      "late_reward": 0.83203125,
+      "promotions": 4,
+      "audit_trials": 105,
+      "proposals": 46
+    },
+    {
+      "mode": "recurring",
+      "seed": 19,
+      "method": "ungated_proposer",
+      "reward": 0.8515625,
+      "late_reward": 0.8828125,
+      "promotions": 0,
+      "audit_trials": 0,
+      "proposals": 0
+    }
+  ]
+}
