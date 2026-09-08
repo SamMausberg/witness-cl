@@ -1,7 +1,7 @@
 /-
-Witness-CL logical core. Lean 4 source attempt, NOT kernel-checked in the authoring
-container (Lean unavailable). No `sorry`, `admit`, or custom axioms are used.
-The probability theorem, cardinality bound, and Python refinement are NOT formalized.
+Witness-CL logical core. Kernel-checked with Lean 4.19.0 during the v5 audit.
+No placeholders or custom axioms. The probability theorem, cardinality bound,
+and Python refinement are NOT formalized. See formal/README.md for audit scope.
 -/
 import Std
 

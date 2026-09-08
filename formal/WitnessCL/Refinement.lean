@@ -1,6 +1,6 @@
 /-
-Witness-CL v0.2 logical proof attempts. NOT kernel-checked in this container.
-No placeholders or new axioms. These results do not formalize probability,
+Witness-CL v0.2 logical lemmas, kernel-checked with Lean 4.19.0 in the v5 audit.
+No placeholders or custom axioms. These results do not formalize probability,
 real-matrix projection, interpreter semantics, or the Python/CUDA implementation.
 -/
 import WitnessCL.Core
@@ -72,9 +72,9 @@ theorem patch_inside {X : Type u} {Y : Type v}
   simp [Patch, inside]
 
 theorem protected_domain_unchanged {X : Type u} {Y : Type v}
-    (protected : X → Prop) (guard : X → Bool) (base candidate : X → Y)
-    (separate : ∀ x, protected x → guard x = false) :
-    ∀ x, protected x → Patch guard base candidate x = base x := by
+    (protectedDomain : X → Prop) (guard : X → Bool) (base candidate : X → Y)
+    (separate : ∀ x, protectedDomain x → guard x = false) :
+    ∀ x, protectedDomain x → Patch guard base candidate x = base x := by
   intro x hx
   exact patch_outside guard base candidate x (separate x hx)
 
@@ -110,9 +110,9 @@ theorem annihilated_residual_preserves_output {X : Type u}
   simp [AddResidual, zero]
 
 theorem residual_preserves_protected_domain {X : Type u}
-    (protected : X → Prop) (base residual : X → Int)
-    (annihilates : ∀ x, protected x → residual x = 0) :
-    ∀ x, protected x → AddResidual base residual x = base x := by
+    (protectedDomain : X → Prop) (base residual : X → Int)
+    (annihilates : ∀ x, protectedDomain x → residual x = 0) :
+    ∀ x, protectedDomain x → AddResidual base residual x = base x := by
   intro x hx
   exact annihilated_residual_preserves_output base residual x (annihilates x hx)
 
@@ -137,7 +137,8 @@ theorem filter_one_factors (fs : List Int) (w : Int) :
     by_cases hf : f = 1
     · subst f
       simpa [Multiply] using ih w
-    · simpa [List.filter, hf, Multiply] using ih (w * f)
+    · have hne : (f != 1) = true := by simpa using hf
+      simpa [List.filter, hne, Multiply] using ih (w * f)
 
 #print axioms growth_decomposition
 #print axioms witness_growth_counterexample

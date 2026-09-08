@@ -1,5 +1,5 @@
 /-
-Witness-CL v0.3. Proof attempts, NOT kernel-checked in the authoring environment.
+Witness-CL v0.3 logical lemmas, kernel-checked with Lean 4.19.0 in the v5 audit.
 These declarations formalize abstract deterministic continuation algebra. They
 are not a verification of Python, floating-point code, CUDA, or probability.
 -/

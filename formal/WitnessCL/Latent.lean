@@ -1,5 +1,5 @@
 /-
-Witness-CL v0.4: ATTEMPTED formalization, not compiler-checked here.
+Witness-CL v0.4 logical lemmas, kernel-checked with Lean 4.19.0 in the v5 audit.
 Only Std is used. No Python/refinement or probabilistic calibration claim.
 -/
 import Std
