@@ -1,0 +1,66 @@
+$ /home/sam/.elan/bin/lake env lean .lake/AxiomAudit.lean
+'WitnessCL.V5.safe_policy_cannot_gain_under_aliasing' depends on axioms: [propext, Quot.sound]
+'WitnessCL.V3.closed_continuations_equal' does not depend on any axioms
+'WitnessCL.V3.closed_outputs_equal' does not depend on any axioms
+'WitnessCL.V3.bellman_improvement' depends on axioms: [propext, Quot.sound]
+'WitnessCL.V3.plausible_member_improves' does not depend on any axioms
+'WitnessCL.V3.obligation_survives_shrinking' does not depend on any axioms
+'WitnessCL.V3.total_deficit_bounded_by_debits' depends on axioms: [propext, Quot.sound]
+'WitnessCL.V3.debit_budget' depends on axioms: [propext, Quot.sound]
+'WitnessCL.V3.no_risk_no_gain' depends on axioms: [propext]
+'WitnessCL.V3.truncation_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WitnessCL.V3.incumbent_chain' depends on axioms: [propext, Quot.sound]
+'WitnessCL.step_refines' does not depend on any axioms
+'WitnessCL.truth_survives' does not depend on any axioms
+'WitnessCL.truthful_feedback_preserves' does not depend on any axioms
+'WitnessCL.certified_sound' does not depend on any axioms
+'WitnessCL.certified_under_refinement' does not depend on any axioms
+'WitnessCL.empty_not_certified' does not depend on any axioms
+'WitnessCL.equivalent_certificates' does not depend on any axioms
+'WitnessCL.redundant_constraint' does not depend on any axioms
+'WitnessCL.redundancy_persists' does not depend on any axioms
+'WitnessCL.fold_refines' does not depend on any axioms
+'WitnessCL.fold_truth' depends on axioms: [propext]
+'WitnessCL.other_scope_unchanged' depends on axioms: [propext]
+'WitnessCL.incompatible_worlds' does not depend on any axioms
+'WitnessCL.Executable.runFrom_actions' depends on axioms: [propext]
+'WitnessCL.Executable.run_actions' depends on axioms: [propext]
+'WitnessCL.Executable.runFrom_append' depends on axioms: [propext]
+'WitnessCL.Executable.traceMatches_iff' depends on axioms: [propext]
+'WitnessCL.Executable.mem_filterTrace_iff' depends on axioms: [propext]
+'WitnessCL.Executable.filterTrace_retains_executed_truth' depends on axioms: [propext]
+'WitnessCL.Executable.mem_filterHistory_iff' depends on axioms: [propext, Quot.sound]
+'WitnessCL.Executable.filterHistory_retains_executed_truth' depends on axioms: [propext, Quot.sound]
+'WitnessCL.Executable.executed_history_characterization' depends on axioms: [propext, Quot.sound]
+'WitnessCL.Executable.filterHistory_subset' depends on axioms: [propext, Quot.sound]
+'WitnessCL.Executable.filterHistory_append' depends on axioms: [propext]
+'WitnessCL.Executable.incompatible_evidence_eliminates' depends on axioms: [propext]
+'WitnessCL.V4.split_cover' depends on axioms: [propext]
+'WitnessCL.V4.assigned_refines' depends on axioms: [propext]
+'WitnessCL.V4.exact_evidence_intersection' does not depend on any axioms
+'WitnessCL.V4.covered_lower_bound' does not depend on any axioms
+'WitnessCL.V4.guarded_update' depends on axioms: [propext, Quot.sound]
+'WitnessCL.V4.arbitrary_proposer' does not depend on any axioms
+'WitnessCL.V4.retained_chain' depends on axioms: [propext, Quot.sound]
+'WitnessCL.V4.informative_probe_removes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WitnessCL.V4.hidden_state_alias_counterexample' does not depend on any axioms
+'WitnessCL.V4.reset_prefix_budget' depends on axioms: [propext, Quot.sound]
+'WitnessCL.V4.shrinking_retains' does not depend on any axioms
+'WitnessCL.V2.growth_replays_every_event' does not depend on any axioms
+'WitnessCL.V2.growth_decomposition' does not depend on any axioms
+'WitnessCL.V2.old_survivors_survive_class_growth' does not depend on any axioms
+'WitnessCL.V2.expanded_survivor_truth' does not depend on any axioms
+'WitnessCL.V2.witness_growth_counterexample' depends on axioms: [propext]
+'WitnessCL.V2.patch_outside' depends on axioms: [propext]
+'WitnessCL.V2.patch_inside' depends on axioms: [propext]
+'WitnessCL.V2.protected_domain_unchanged' depends on axioms: [propext]
+'WitnessCL.V2.multiple_patches_preserve_outside' depends on axioms: [propext]
+'WitnessCL.V2.disagreement_patch_is_candidate' depends on axioms: [propext]
+'WitnessCL.V2.archive_output_unchanged' depends on axioms: [propext]
+'WitnessCL.V2.annihilated_residual_preserves_output' depends on axioms: [propext]
+'WitnessCL.V2.residual_preserves_protected_domain' depends on axioms: [propext]
+'WitnessCL.V2.zero_difference_is_neutral' depends on axioms: [propext]
+'WitnessCL.V2.inserting_neutral_factor' depends on axioms: [propext]
+'WitnessCL.V2.filter_one_factors' depends on axioms: [propext, Quot.sound]
+
+exit_code=0

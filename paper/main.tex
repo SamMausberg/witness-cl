@@ -11,7 +11,7 @@
 \usepackage{fancyhdr,balance,caption}
 \captionsetup{font=small,labelfont=bf}
 \pagestyle{fancy}\fancyhf{}
-\fancyhead[L]{\small Witness-CL v0.5}\fancyhead[R]{\small Research draft, 8 September 2026}
+\fancyhead[L]{\small Witness-CL v0.6}\fancyhead[R]{\small Research draft, 8 September 2026}
 \fancyfoot[C]{\thepage}\setlength{\headheight}{14pt}
 \setlength{\emergencystretch}{1.5em}
 \newtheorem{theorem}{Theorem}
@@ -25,34 +25,33 @@
 \newcommand{\clip}[1]{[#1]_+}
 \newcommand{\unk}{\textsc{Unknown}}
 \newcommand{\bad}{\textsc{Inconsistent}}
-\title{\vspace{-1.2em}\textbf{Witness-CL: Evidence-Preserving Online Learning\\and the Limits of Greedy Probing}}
+\title{\vspace{-1.2em}\textbf{Witness-CL: Evidence-Preserving Online Learning\\and the Cost of Learning from Probes}}
 \author{Samuel Mausberg\\\small AI-assisted research draft; author review and independent replication pending}
 \date{}
-\hypersetup{pdftitle={Witness-CL: Evidence-Preserving Online Learning and the Limits of Greedy Probing},pdfauthor={Samuel Mausberg},pdfsubject={Checked abstract Lean lemmas, local inference, and falsified greedy exploration}}
+\hypersetup{pdftitle={Witness-CL: Evidence-Preserving Online Learning and the Cost of Learning from Probes},pdfauthor={Samuel Mausberg},pdfsubject={Executable Lean semantics and bounded probe-search experiments}}
 \begin{document}
 \raggedbottom
 \maketitle
 \begin{abstract}
-Continual improvement requires learning which past evidence changes future
-behavior while retaining useful prior decisions. Witness-CL is a finite,
-deterministic reference that learns compatible hidden models from executed
-traces, trains an online proposer, and admits immutable programs only after
-baseline-relative checking. We extend the supplied v0.4 artifact with actual
-Lean verification, a falsifiable decision-regret exploration rule, a local-model
-inference pilot, and native benchmark interface work. Lean 4.19.0 accepts all
-50 inherited statements after proof-script repairs and a new abstract
-information-obstruction lemma, with no custom axioms or proof placeholders.
-In a frozen 100-seed, 19,200-episode study, the new probe heuristic reduces mean
-return by 0.0946 relative to v4 (95\% paired interval $[-0.1692,-0.0200]$),
-while increasing measured mechanics cost. An executable counterexample explains
-one failure: individually zero-value free probes can jointly reveal a profitable
-decision, but greedy regret reduction refuses the first probe. We preserve this
-negative result and specify bounded adaptive probe plans as a falsifiable
-successor. A real quantized local model executes typed proposals, without a
-native benchmark or powered superiority claim. Formal guarantees remain about
-conditional abstract reset-value retention and prepaid deficits; they do not
-verify the Python implementation, model-class validity, general no-forgetting,
-or scalable deployment.
+We study when experience warrants a change in future behavior under an explicit
+retention contract. Witness-CL learns a finite class of hidden transducers from
+executed reset traces and admits immutable programs only after exact
+baseline-relative checking. A greedy decision-regret probe rule fails on
+complementary information. We implement a bounded two-probe successor, preserve
+the failed rule, and compare stronger cheap controls. All new selectors solve a
+four-world two-bit construction at zero loss, while three-bit parity at B0 defeats
+depth two and is solved by the cheap informative rule. In a frozen 40-stream,
+4,800-episode study, depth two improves mean reward by 0.3938 over free
+information seeking (95\% paired interval $[0.1585,0.6290]$), but loses 0.1948 to
+bounded optimism and uses $8.88\times$ the cheap control's planning time.
+Independent replay finds no protected-value, evidence-cover, or prepaid-budget
+violations under the finite contract. Lean 4.19.0 checks 63 statements, including
+an executable interpreter/filter bridge; exhaustive small-family tests compare
+262,144 filter memberships with Python. The v6 study freezes all neural weights;
+prior local-model pilots remain separate. These results support a narrow
+information-acquisition mechanism while rejecting its efficiency superiority.
+They do not establish learned abstraction validity, general no-forgetting,
+alignment, or a native continual-learning benchmark win.
 \end{abstract}
 
 \section{Problem and the actual advance}
@@ -108,6 +107,14 @@ native benchmark interface. The new exploration rule loses on the primary
 held-out metric. Its failed test and complementary-probe counterexample constrain
 the successor design; they are not presented as a solution to continual learning.
 The original v0.4 paper and data remain archived unchanged.
+
+\paragraph{Version 6 contribution and result.}
+The bounded successor gains reward over the zero-loss information rule but
+loses to bounded optimism while using more computation. Its three-bit failure
+and 30.7\% UNKNOWN rate limit the usefulness of greater planning depth. The
+new executable Lean bridge narrows the gap between abstract evidence retention
+and actual interpreter semantics; a general Python refinement proof remains
+open. Section~\ref{sec:v6} gives the frozen protocol and measured results.
 
 
 \section{Prior work constrains the claim}
@@ -547,7 +554,7 @@ search. The inherited v4 release did not run a native benchmark, actual LLM, or 
 experiment. Version 5 adds actual local-model inference as described below;
 no new CUDA kernel or native performance result is claimed.
 
-Lean 4.19.0 now accepts all 50 inherited declarations and one new
+The v5 Lean 4.19.0 audit accepts all 50 inherited declarations and one new
 history-aliasing obstruction. Two reserved binder names and one Boolean proof
 step required repair; no inherited hypothesis or conclusion was weakened.
 An automated inventory prints every theorem's axioms and ties the report to
@@ -580,6 +587,7 @@ claim a new lower bound for randomized or noisy learning. It makes the scope of
 universal zero-loss discovery explicit.
 
 \input{v5_section.tex}
+\input{v6_section.tex}
 
 \section{Limitations and decisive next experiments}
 \paragraph{Where the guarantee breaks.}
@@ -599,7 +607,6 @@ The right target is therefore not an unconditional monotonicity slogan, but a
 useful, explicit and affordable tradeoff. Independent new information can also
 require growing total storage; our archive does not bypass that cost.
 
-\balance
 \paragraph{Native falsification.}
 The next experiment must first acquire a valid abstraction from a real, resettable
 tool environment without using hidden tables or task answers. Then evaluate
@@ -637,11 +644,15 @@ model ambiguity, and an approximation cannot inherit exact guarantees without
 a separate soundness argument.
 
 \section{Conclusion}
-Witness-CL v0.5 learns compatible hidden-state models from its own executed traces
+Witness-CL v0.6 learns compatible hidden-state models from its own executed traces
 and uses them to protect a behavioral incumbent independently of a mutable
 proposer. Version 5 adds checked abstract Lean statements, real local inference, and a
-falsified regret-probe heuristic with an explicit complementary-information
-counterexample. These narrow results separate retention from learning efficiency.
+falsified regret-probe heuristic. Version 6 executes the bounded successor,
+exposes a stronger three-bit obstruction, and links evidence retention to an
+executable Lean interpreter. The v6 primary gain over free information is positive, yet bounded optimism
+still wins at much lower measured planning cost within the same B16 ceiling.
+Actual risk spending differs. These results separate retention, information
+acquisition, and learning efficiency.
 It does not yet supply the requested general stateful benchmark winner. The
 remaining research obligation is concrete: learn sufficient continuation
 abstractions cheaply enough that verified reuse beats full-history learning at

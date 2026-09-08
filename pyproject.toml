@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "witness-cl"
-version = "0.5.0"
+version = "0.6.0"
 description = "Evidence-complete latent continuation learning reference"
 requires-python = ">=3.11"
 authors = [{name = "Samuel Mausberg"}]

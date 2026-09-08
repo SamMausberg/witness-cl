@@ -1,3 +1,14 @@
+# v0.6.0, 8 September 2026
+
+- Removed the requested Codex automation; continued only the active finite local research phase, with all ranker weights frozen.
+- Added bounded depth-two, informative zero-loss and risk-budgeted optimistic selectors behind the unchanged exact checker.
+- Corrected path-sensitive work metering and joint branch-debit scoring before freezing the holdout; preserved both development versions.
+- Recorded 8,640 benchmark episodes and 180 mechanism episodes. The holdout gains 0.39375 reward over free information but loses 0.19479 to bounded optimism, at 8.88 times the cheap control's planning time.
+- Independently replayed 7,680 final-protocol episodes and 6,144 guarded prefixes, with zero contract violations; added deliberate-corruption rejection tests.
+- Added 12 executable-semantics Lean statements for 63 checked declarations and 262,144 Python/Lean membership comparisons. The general Python refinement and alignment claims remain open.
+- Passed 503 standard Python tests and the C++ reference checks; optional native checks retain their separate pinned CI environment.
+- Updated the professional LaTeX/TikZ manuscript, archived v5, audited direct antecedents and specified a bounded falsifiable next study. No new inference calls, model-weight adaptation, deployment or paid compute.
+
 # v0.5.0, 8 September 2026
 
 - Imported the complete v4 bundle into a verified private GitHub repository, preserving branch history and both release tags.

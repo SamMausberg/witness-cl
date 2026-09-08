@@ -1,0 +1,19 @@
+{
+  "status": "passed local release checks",
+  "python_passed": 503,
+  "python_optional_skipped": 8,
+  "lean_checked": 63,
+  "cpp_reference_checks": "passed; see cpp-check.log",
+  "paper_pages": 13,
+  "paper_overfull_boxes": 0,
+  "manuscript_sha256": "e6f8627dfd42db1198a168fb1c8d03bbad91d4487f967a0626cc014d96e0c142",
+  "unchanged_frozen_sources": true,
+  "unchanged_holdout_configuration": true,
+  "artifacts": {
+    "artifacts/v6/pytest.xml": "6de9bab99c01fda07c3c71e574542e275645f7a3519c198371e34660c9deb0c7",
+    "artifacts/v6/formal-audit.json": "aa7344609fc7dcac8b15e592e9534aa2c6f10cbf171ca650739979d99ea2bed0",
+    "artifacts/v6/cpp-check.log": "7e65013defa7b4810aa8f1f7c56520be4b5f84b58d7850d29aee88c8a4004e13",
+    "artifacts/v6/replay-audit.json": "9b65e62683b38e244aca3a4689c77087211aaa8bd06ef720a1f38e8f2eb12886",
+    "artifacts/v6/mechanisms.json": "bae0304f8410d911d43011687e911372e7b2bb6919bd0515c629b91bb5b8ae6e"
+  }
+}

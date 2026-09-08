@@ -1,0 +1,22 @@
+{
+  "holdout_source_sha256": "c9b52cf0baeefca16b38a2729c0fc1323649a725e528b9355a7e7e74ebd238af",
+  "primary": {
+    "candidate": "depth_two_B16",
+    "baseline": "informative_zero_loss_B16",
+    "metric": "mean_return",
+    "mean_difference": 0.39375,
+    "ci95_paired_t": [
+      0.15845051007905286,
+      0.6290494899209471
+    ],
+    "positive": 12,
+    "negative": 8,
+    "tied": 20
+  },
+  "planning_ratio": 8.878425291724827,
+  "total_learner_ratio": 8.870525911288983,
+  "holdout_unique_tables": 40,
+  "development_unique_tables": 8,
+  "overlap_unique_tables": 0,
+  "holdout_streams_matching_development": 0
+}

@@ -1,0 +1,54 @@
+[
+  {
+    "status": "passed independent raw-data replay",
+    "directory": "artifacts/v6/development-corrected",
+    "episodes": 960,
+    "streams": 40,
+    "guarded_prefixes": 768,
+    "promotions": 57,
+    "unknown_fallbacks": 54,
+    "violations": 0,
+    "source_sha256": "80e4a0874bdce70a6b685f4268aa95d9148e78096b6fb346ab0e9ce212d7a224",
+    "episodes_sha256": "0552589f113ac96729a370836f6980a9817955fee0fd949dc20f236494a361aa",
+    "summary_sha256": "19c37fcd5ff212516e6bb6a7fd42e4b334fb0f72c9de2ae2407952abf235e397"
+  },
+  {
+    "status": "passed independent raw-data replay",
+    "directory": "artifacts/v6/holdout",
+    "episodes": 4800,
+    "streams": 200,
+    "guarded_prefixes": 3840,
+    "promotions": 258,
+    "unknown_fallbacks": 296,
+    "violations": 0,
+    "source_sha256": "80e4a0874bdce70a6b685f4268aa95d9148e78096b6fb346ab0e9ce212d7a224",
+    "episodes_sha256": "27b52781939dabb4a1b588b8748c79cddb973377a62328215860b66ba8bcff83",
+    "summary_sha256": "c9b52cf0baeefca16b38a2729c0fc1323649a725e528b9355a7e7e74ebd238af"
+  },
+  {
+    "status": "passed independent raw-data replay",
+    "directory": "artifacts/v6/work-25000",
+    "episodes": 960,
+    "streams": 40,
+    "guarded_prefixes": 768,
+    "promotions": 47,
+    "unknown_fallbacks": 318,
+    "violations": 0,
+    "source_sha256": "80e4a0874bdce70a6b685f4268aa95d9148e78096b6fb346ab0e9ce212d7a224",
+    "episodes_sha256": "035a293971597d4a1fd43e13ed06a44b521a96589fe86eb7e92057fe053933de",
+    "summary_sha256": "15af03b291d72e8e28f23687b3b9357ce28f8bbc37aa63ef00ab314fbfab8747"
+  },
+  {
+    "status": "passed independent raw-data replay",
+    "directory": "artifacts/v6/work-250000",
+    "episodes": 960,
+    "streams": 40,
+    "guarded_prefixes": 768,
+    "promotions": 55,
+    "unknown_fallbacks": 92,
+    "violations": 0,
+    "source_sha256": "80e4a0874bdce70a6b685f4268aa95d9148e78096b6fb346ab0e9ce212d7a224",
+    "episodes_sha256": "fec7e2653601ea4c2b551cf8460a85c0b49376eae2a2cb99e6b1dc1c6cbd24af",
+    "summary_sha256": "d4ef3d47e6de3c866aada71059bdbff5a28eb8b2b8b2892b9d9feadfe75c7818"
+  }
+]

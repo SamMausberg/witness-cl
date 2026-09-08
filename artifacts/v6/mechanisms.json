@@ -1,0 +1,1797 @@
+{
+  "status": "passed all declared mechanism and no-headroom controls",
+  "records": [
+    {
+      "case": "parity_2",
+      "world": 0,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 10556,
+          "seconds": 0.03747450700029731,
+          "guaranteed_gain": 5
+        },
+        {
+          "program": 2,
+          "work": 6121,
+          "seconds": 0.0325458110019099,
+          "guaranteed_gain": 5
+        },
+        {
+          "program": 3,
+          "work": 1205,
+          "seconds": 0.028931520999321947,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_2",
+      "world": 0,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 2057,
+          "seconds": 0.03021738300230936,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 1624,
+          "seconds": 0.028651493001234485,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 1205,
+          "seconds": 0.02920132000144804,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_2",
+      "world": 0,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 2762,
+          "seconds": 0.028877340999315493,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 1966,
+          "seconds": 0.0286028480004461,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 1205,
+          "seconds": 0.02812107000136166,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_2",
+      "world": 1,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 10556,
+          "seconds": 0.035367291999136796,
+          "guaranteed_gain": 5
+        },
+        {
+          "program": 2,
+          "work": 6121,
+          "seconds": 0.03272998399916105,
+          "guaranteed_gain": 5
+        },
+        {
+          "program": 4,
+          "work": 1205,
+          "seconds": 0.027971296996838646,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_2",
+      "world": 1,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 2057,
+          "seconds": 0.029140866001398535,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 1624,
+          "seconds": 0.029344761998800095,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 4,
+          "work": 1205,
+          "seconds": 0.028222529999766266,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_2",
+      "world": 1,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 2762,
+          "seconds": 0.029219410997029627,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 1966,
+          "seconds": 0.02815194600043469,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 4,
+          "work": 1205,
+          "seconds": 0.029167841999878874,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_2",
+      "world": 2,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 10556,
+          "seconds": 0.04858024599889177,
+          "guaranteed_gain": 5
+        },
+        {
+          "program": 2,
+          "work": 6121,
+          "seconds": 0.03320769199854112,
+          "guaranteed_gain": 5
+        },
+        {
+          "program": 4,
+          "work": 1205,
+          "seconds": 0.028959254999790573,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_2",
+      "world": 2,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 2057,
+          "seconds": 0.02932336099911481,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 1624,
+          "seconds": 0.02808011799788801,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 4,
+          "work": 1205,
+          "seconds": 0.027898826003365684,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_2",
+      "world": 2,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 2762,
+          "seconds": 0.02849515900015831,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 1966,
+          "seconds": 0.030128927999612642,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 4,
+          "work": 1205,
+          "seconds": 0.029472595000697765,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_2",
+      "world": 3,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 10556,
+          "seconds": 0.03378221599996323,
+          "guaranteed_gain": 5
+        },
+        {
+          "program": 2,
+          "work": 6121,
+          "seconds": 0.03304495599877555,
+          "guaranteed_gain": 5
+        },
+        {
+          "program": 3,
+          "work": 1205,
+          "seconds": 0.030978839000454172,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_2",
+      "world": 3,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 2057,
+          "seconds": 0.0368741210004373,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 1624,
+          "seconds": 0.030917714997485746,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 1205,
+          "seconds": 0.030371721000847174,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_2",
+      "world": 3,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 2762,
+          "seconds": 0.03034958100033691,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 1966,
+          "seconds": 0.029024421000940492,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 1205,
+          "seconds": 0.028311166999628767,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 0,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.05617508000068483,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04495919300097739,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04426772099759546,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04311778599731042,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 0,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 3623,
+          "seconds": 0.031039682999107754,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 2558,
+          "seconds": 0.029376778002188075,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2025,
+          "seconds": 0.02843408600165276,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 4,
+          "work": 1506,
+          "seconds": 0.028490271997725358,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 0,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 5220,
+          "seconds": 0.031390211999678286,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 3340,
+          "seconds": 0.029860141999961343,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2400,
+          "seconds": 0.030302573002700228,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 4,
+          "work": 1506,
+          "seconds": 0.027903987000172492,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 1,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.03989401199942222,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.044203221001225756,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04063788200073759,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04194778300006874,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 1,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 3623,
+          "seconds": 0.030751669997698627,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 2558,
+          "seconds": 0.029270916002133163,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2025,
+          "seconds": 0.02795513899764046,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 5,
+          "work": 1506,
+          "seconds": 0.02871411900196108,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 1,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 5220,
+          "seconds": 0.031647795000026235,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 3340,
+          "seconds": 0.02963766399989254,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2400,
+          "seconds": 0.035628219000500394,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 5,
+          "work": 1506,
+          "seconds": 0.03328225299992482,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 2,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.040289665001182584,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.0398446100007277,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.043565527001192095,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04485352600022452,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 2,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 3623,
+          "seconds": 0.029924021000624634,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 2558,
+          "seconds": 0.028878892000648193,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2025,
+          "seconds": 0.028281049999350216,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 5,
+          "work": 1506,
+          "seconds": 0.027330646000336856,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 2,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 5220,
+          "seconds": 0.031553281001833966,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 3340,
+          "seconds": 0.02909380799974315,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2400,
+          "seconds": 0.029546878002292942,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 5,
+          "work": 1506,
+          "seconds": 0.028365539998048916,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 3,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04355709899755311,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04373900100108585,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.03870726199966157,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.042419499997777166,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 3,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 3623,
+          "seconds": 0.029350539000006393,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 2558,
+          "seconds": 0.02911998900162871,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2025,
+          "seconds": 0.028753717000654433,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 4,
+          "work": 1506,
+          "seconds": 0.02871810299984645,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 3,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 5220,
+          "seconds": 0.03942626500065671,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 3340,
+          "seconds": 0.030884334999427665,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2400,
+          "seconds": 0.02736893800101825,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 4,
+          "work": 1506,
+          "seconds": 0.028253428998141317,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 4,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.0387498689997301,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.041699278001033235,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04352599299818394,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04293825300192111,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 4,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 3623,
+          "seconds": 0.028772912999556866,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 2558,
+          "seconds": 0.028558924997923896,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2025,
+          "seconds": 0.02724885900170193,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 5,
+          "work": 1506,
+          "seconds": 0.027893439000763465,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 4,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 5220,
+          "seconds": 0.029238162998808548,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 3340,
+          "seconds": 0.029229892999865115,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2400,
+          "seconds": 0.028256549998332048,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 5,
+          "work": 1506,
+          "seconds": 0.027963694999925792,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 5,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.0411490890001005,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04182811899954686,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04028176599967992,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04077639400202315,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 5,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 3623,
+          "seconds": 0.029155123000236927,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 2558,
+          "seconds": 0.02779851599916583,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2025,
+          "seconds": 0.028534756998851663,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 4,
+          "work": 1506,
+          "seconds": 0.029160145000787452,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 5,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 5220,
+          "seconds": 0.029955092002637684,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 3340,
+          "seconds": 0.028974280001420993,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2400,
+          "seconds": 0.02705152699854807,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 4,
+          "work": 1506,
+          "seconds": 0.027922655001020757,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 6,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04066684000281384,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.0410590579995187,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04072241100220708,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.03882218600119813,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 6,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 3623,
+          "seconds": 0.02855945700139273,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 2558,
+          "seconds": 0.02818019099868252,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2025,
+          "seconds": 0.028397377998771844,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 4,
+          "work": 1506,
+          "seconds": 0.026885073999437736,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 6,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 5220,
+          "seconds": 0.03149563099941588,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 3340,
+          "seconds": 0.02905695099980221,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2400,
+          "seconds": 0.02834302600240335,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 4,
+          "work": 1506,
+          "seconds": 0.028474783001001924,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 7,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.03892110300148488,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.047169105000648415,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04304205600055866,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 21601,
+          "seconds": 0.04150413299794309,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 7,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 3623,
+          "seconds": 0.028848599002230912,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 2558,
+          "seconds": 0.028713266998238396,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2025,
+          "seconds": 0.02865105100136134,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 5,
+          "work": 1506,
+          "seconds": 0.027880337998794857,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "parity_3",
+      "world": 7,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        5,
+        5,
+        5,
+        10
+      ],
+      "plans": [
+        {
+          "program": 1,
+          "work": 5220,
+          "seconds": 0.029998825000802753,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 2,
+          "work": 3340,
+          "seconds": 0.029686579000554048,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 3,
+          "work": 2400,
+          "seconds": 0.029003920997638488,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 5,
+          "work": 1506,
+          "seconds": 0.029799234001984587,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "no_reward_headroom",
+      "world": 0,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 2843,
+          "seconds": 0.030171856000379194,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 1889,
+          "seconds": 0.027912528999877395,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 1889,
+          "seconds": 0.027414733998739393,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 1889,
+          "seconds": 0.028847825997218024,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "no_reward_headroom",
+      "world": 0,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 642,
+          "seconds": 0.028073602999938885,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 1,
+          "work": 618,
+          "seconds": 0.025824247000855394,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 439,
+          "seconds": 0.02544816599765909,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 439,
+          "seconds": 0.024862468002538662,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "no_reward_headroom",
+      "world": 0,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 974,
+          "seconds": 0.02773871799945482,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 1,
+          "work": 779,
+          "seconds": 0.028828571001213277,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 515,
+          "seconds": 0.027068868999776896,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 1,
+          "work": 593,
+          "seconds": 0.028656201000558212,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "no_reward_headroom",
+      "world": 1,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 2843,
+          "seconds": 0.03260640399821568,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 1889,
+          "seconds": 0.028790986001695273,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 1889,
+          "seconds": 0.0288099979989056,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 1889,
+          "seconds": 0.02895961600006558,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "no_reward_headroom",
+      "world": 1,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 642,
+          "seconds": 0.027761923000070965,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 1,
+          "work": 618,
+          "seconds": 0.028464297000027727,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 439,
+          "seconds": 0.02827218700258527,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 439,
+          "seconds": 0.026850107999052852,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "no_reward_headroom",
+      "world": 1,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 974,
+          "seconds": 0.028889918001368642,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 1,
+          "work": 779,
+          "seconds": 0.02862793899839744,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 515,
+          "seconds": 0.027491118999023456,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 1,
+          "work": 593,
+          "seconds": 0.028556272001878824,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "no_reward_headroom",
+      "world": 2,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 2843,
+          "seconds": 0.029471960002410924,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 1889,
+          "seconds": 0.028335222999885445,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 1889,
+          "seconds": 0.027639095002086833,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 1889,
+          "seconds": 0.028470049001043662,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "no_reward_headroom",
+      "world": 2,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 642,
+          "seconds": 0.026842193998163566,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 1,
+          "work": 618,
+          "seconds": 0.028122274001361802,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 439,
+          "seconds": 0.0267734989974997,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 439,
+          "seconds": 0.02715374299805262,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "no_reward_headroom",
+      "world": 2,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 974,
+          "seconds": 0.027752752001106273,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 1,
+          "work": 779,
+          "seconds": 0.028518982999230502,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 515,
+          "seconds": 0.027739378001570003,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 1,
+          "work": 593,
+          "seconds": 0.027571184997214004,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "no_reward_headroom",
+      "world": 3,
+      "method": "DepthTwoProbeAgent",
+      "returns": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 2843,
+          "seconds": 0.027981546998489648,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 1889,
+          "seconds": 0.028589524001290556,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 1889,
+          "seconds": 0.028115485001762863,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 1889,
+          "seconds": 0.02856103199883364,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "no_reward_headroom",
+      "world": 3,
+      "method": "InformativeZeroLossAgent",
+      "returns": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 642,
+          "seconds": 0.027479628999572014,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 1,
+          "work": 618,
+          "seconds": 0.028091571999539156,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 439,
+          "seconds": 0.028277437999349786,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 439,
+          "seconds": 0.02789333100008662,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    },
+    {
+      "case": "no_reward_headroom",
+      "world": 3,
+      "method": "OptimisticProbeAgent",
+      "returns": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "plans": [
+        {
+          "program": 0,
+          "work": 974,
+          "seconds": 0.028073239998775534,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 1,
+          "work": 779,
+          "seconds": 0.02815397299855249,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 0,
+          "work": 515,
+          "seconds": 0.027044014001148753,
+          "guaranteed_gain": 0
+        },
+        {
+          "program": 1,
+          "work": 593,
+          "seconds": 0.027547499998036074,
+          "guaranteed_gain": 0
+        }
+      ],
+      "spent": 0,
+      "violations": 0
+    }
+  ],
+  "source_sha256": {
+    "/mnt/c/Users/Sam/Documents/Codex/2026-09-08/we-are-working-together-on-open-2/outputs/witness-cl/experiments/mechanisms_v6.py": "0be58466941d164e58b67fc3dc40c6737ed15f7d4bf1be061bc2dbfbec55203e",
+    "src/witness_cl/probe_v6.py": "a5c19b98365648bc5ebc331b5892c36485841db08282d613038578a26194c043"
+  }
+}

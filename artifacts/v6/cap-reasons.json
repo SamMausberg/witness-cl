@@ -1,0 +1,66 @@
+{
+  "development": {
+    "depth_two_B16": {
+      "elapsed cap": 54,
+      "completed": 138
+    },
+    "informative_zero_loss_B16": {
+      "completed": 192
+    },
+    "optimistic_B16": {
+      "completed": 192
+    }
+  },
+  "development-corrected": {
+    "depth_two_B16": {
+      "elapsed cap": 54,
+      "completed": 138
+    },
+    "informative_zero_loss_B16": {
+      "completed": 192
+    },
+    "optimistic_B16": {
+      "completed": 192
+    }
+  },
+  "holdout": {
+    "depth_two_B16": {
+      "elapsed cap": 295,
+      "completed": 665
+    },
+    "informative_zero_loss_B16": {
+      "completed": 960
+    },
+    "optimistic_B16": {
+      "completed": 959,
+      "elapsed cap": 1
+    }
+  },
+  "work-25000": {
+    "depth_two_B16": {
+      "work cap": 184,
+      "completed": 8
+    },
+    "informative_zero_loss_B16": {
+      "work cap": 8,
+      "completed": 184
+    },
+    "optimistic_B16": {
+      "work cap": 126,
+      "completed": 66
+    }
+  },
+  "work-250000": {
+    "depth_two_B16": {
+      "work cap": 84,
+      "completed": 108
+    },
+    "informative_zero_loss_B16": {
+      "completed": 192
+    },
+    "optimistic_B16": {
+      "work cap": 8,
+      "completed": 184
+    }
+  }
+}

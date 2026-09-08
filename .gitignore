@@ -28,3 +28,7 @@ paper/v3/*.out
 paper/v4/*.aux
 paper/v4/*.log
 paper/v4/*.out
+
+paper/v5/*.aux
+paper/v5/*.log
+paper/v5/*.out

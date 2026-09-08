@@ -4,3 +4,7 @@ defaultTargets = ["WitnessCL"]
 
 [[lean_lib]]
 name = "WitnessCL"
+
+[[lean_exe]]
+name = "witness_fixture"
+root = "ExecutableFixture"

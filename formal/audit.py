@@ -3,7 +3,8 @@
 
 Run from the repository root: python3 formal/audit.py --output artifacts/v5
 Requires the pinned Lean toolchain. LAKE may specify a non-PATH lake executable.
-The audit does not verify the Python/C++ runtime or research assumptions.
+The audit also emits a finite executable fixture for Python differential tests.
+This is not a general verification of the Python/C++ runtime or research assumptions.
 """
 from __future__ import annotations
 
@@ -73,7 +74,7 @@ def main() -> int:
     if len(names) != len(set(names)) or not names:
         raise SystemExit('Duplicate or empty theorem inventory.')
     version = run([lake, 'env', 'lean', '--version'], formal, output / 'formal-version.txt')
-    build = run([lake, 'build'], formal, output / 'formal-build.txt')
+    build = run([lake, 'build', 'WitnessCL', 'witness_fixture'], formal, output / 'formal-build.txt')
     report = {
         'checked_at_utc': datetime.now(timezone.utc).isoformat(),
         'toolchain': (formal / 'lean-toolchain').read_text().strip(),
@@ -82,6 +83,9 @@ def main() -> int:
         'theorem_count': len(names),
         'theorems_by_file': by_file,
         'source_sha256': hashes,
+        'build_input_sha256': {name: hashlib.sha256((formal / name).read_bytes()).hexdigest()
+                               for name in ['WitnessCL.lean', 'ExecutableFixture.lean',
+                                            'lakefile.toml', 'lean-toolchain']},
         'source_placeholder_or_custom_axiom_tokens': forbidden,
         'allowed_standard_axioms': ['Classical.choice', 'Quot.sound', 'propext'],
         'theorem_axioms': {},
@@ -105,6 +109,20 @@ def main() -> int:
             'axiom_free_theorems': sum(not group for group in parsed.values()),
             'passed': audit.returncode == 0 and set(parsed) == set(names) and not unexpected,
         })
+    if report['passed']:
+        fixture = subprocess.run([str(formal / '.lake/build/bin/witness_fixture')],
+                                 cwd=formal, text=True, stdout=subprocess.PIPE,
+                                 stderr=subprocess.PIPE, check=False)
+        fixture_path = output / 'formal-runtime.jsonl'
+        fixture_path.write_text(fixture.stdout)
+        (output / 'formal-runtime-stderr.txt').write_text(fixture.stderr)
+        report['executable_fixture'] = {
+            'path': fixture_path.name,
+            'exit_code': fixture.returncode,
+            'sha256': hashlib.sha256(fixture_path.read_bytes()).hexdigest(),
+            'line_count': len(fixture.stdout.splitlines()),
+        }
+        report['passed'] = fixture.returncode == 0 and bool(fixture.stdout)
     (output / 'formal-audit.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps({key: report.get(key) for key in
                      ['passed', 'theorem_count', 'build_exit_code', 'audit_exit_code',

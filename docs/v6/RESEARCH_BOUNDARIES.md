@@ -1,0 +1,11 @@
+# Scope of the current research phase
+
+The user asked to continue now, remove the scheduled automation, and avoid misalignment risks. The `advance-witness-cl-research` automation was deleted and its saved configuration was verified absent on 8 September 2026. No replacement schedule is authorized. Existing authorization to maintain the private research repository persists.
+
+This phase consists of finite local simulations, ordinary implementation tests, and Lean proofs. The learned ranker selects only immutable finite action programs for simulated environments. It cannot submit shell commands, change the checking code, grant permissions, write arbitrary executable code, contact external services, or deploy an agent. There is no new language-model call, model-weight adaptation, unbounded agent loop, or paid compute in this phase. Read-only primary-source research and verified private Git commits/pushes support the user's existing task.
+
+Planning runs over hypothetical model outcomes, which remain separate from actually observed traces. Only the selected simulator action produces learning evidence. A fixed checker must finish before any protected incumbent changes or any exploration debit is spent. UNKNOWN and INCONSISTENT never become positive certificates. Interrupted planning must leave the evidence, neural ranker, incumbent, and ledger unchanged. Exact comparisons remain conditional on a valid stationary finite class and genuine resets.
+
+Budget limits constrain local planner computation, with explicit counters for the operations they actually cover. Cooperative Python execution limits are not operating-system real-time or memory-isolation guarantees. Tests include failure/cap paths and state preservation. Any admission or ledger violation under valid simulator assumptions stops the experiment and is retained as a failed result.
+
+These controls reduce practical exposure by restricting what the experimental system can do. They do not prove general alignment, establish that a real-world model class is correct, or guarantee universal no-forgetting. Improving the research code is an ordinary reviewed engineering action; the experimental learner has no authority to rewrite its own checking or deployment rules.

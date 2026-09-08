@@ -1,0 +1,15 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 1.623241257002519,
+  "tests": 5,
+  "lean_theorems_total": 63,
+  "new_executable_theorems": 12,
+  "machines": 256,
+  "trace_cases": 7936,
+  "nonempty_program_word_cases": 7680,
+  "history_filter_cases": 1024,
+  "individual_membership_comparisons": 262144,
+  "fixture_sha256": "be2c79a6cb1b1fcc657494a202716412b09a0999a1ca962400ca44c17f6b50f6",
+  "test_source_sha256": "407360a45c95e3e66b115a37b6d8b49921e9fd96b2fe4120eb14ada96300a301",
+  "boundary": "Finite deterministic reset machine tests; not a proof of general Python equivalence or alignment."
+}

@@ -1,42 +1,12 @@
 # Formalization status
 
-The v5 audit successfully kernel-checked **51 theorem declarations with Lean
-4.19.0**: the 50 inherited statements and one general history-aliasing obstruction.
-The original build failed on two uses of the reserved binder name `protected`
-and on one Boolean inequality simplification. The repair renames the binders and
-adds the missing Boolean equality fact; it does not weaken any statement.
-
-Run the build and complete axiom audit from the repository root:
+Lean 4.19.0 checks **63 theorem declarations**: the prior 51 abstract statements and 12 new executable-semantics statements. The new interpreter and history filter construct truth retention from actual executions. See [v6 scope and reproduction](../docs/v6/FORMAL.md).
 
 ```bash
-python3 formal/audit.py --output artifacts/v5
+python3 formal/audit.py --output artifacts/v6
+python3 -m pytest tests/test_formal_v6.py -q
 ```
 
-`lake` must be on PATH, installed at `~/.elan/bin/lake`, or specified with `LAKE`.
-The pinned version is in `lean-toolchain`; there are no external Lean package
-dependencies. A direct build is also available:
+The audit builds the library and fixture executable, inventories all declarations, and rejects placeholders, custom source axioms and unexpected dependencies. The only dependencies are standard Lean `propext`, `Quot.sound`, and `Classical.choice`; 24 statements are axiom-free. The prior failure/repair logs remain in `artifacts/v5/`.
 
-```bash
-cd formal
-lake build
-```
-
-The audit compiles the library, inventories every project theorem, executes
-`#print axioms` for all of them, checks that none is missing, and rejects
-placeholders, custom source axioms, or dependencies outside Lean's standard
-`propext`, `Classical.choice`, and `Quot.sound` axioms. In the recorded build,
-24 theorems have no axioms; 27 use `propext`, 11 use `Quot.sound`, and 2 use
-`Classical.choice` (these counts overlap). No theorem depends on `sorryAx`.
-
-Exact compiler output, the complete axiom inventory, and source hashes are in
-`artifacts/v5/formal-{build,axioms,version}.txt` and `formal-audit.json`. The
-initial inherited-source failure is preserved in `formal-initial-build.txt`.
-These logs supersede the historical v1-v4 inability to run Lean, not the old
-versions' claim boundaries. See `docs/v5/FORMAL.md` for the precise scope.
-
-The proofs certify conditional abstract algebra: retaining the true model,
-checking all live models, and preserving already acquired values. They do not
-establish that the Python DFS produces its claimed complete cover, that real
-tasks satisfy the finite deterministic reset contract, or that the trainer,
-C++, CUDA, noisy feedback, or an LLM is correct. Kernel acceptance does not
-establish practical continual-learning progress or a stateful benchmark win.
+The executable fixture covers all 256 binary two-state machines. Differential tests compare 7,936 interpreter traces, 7,680 nonempty word programs, and 262,144 filter membership decisions against Python. These finite checks are not a general Python refinement proof. Reliable reset, stationary deterministic transitions, genuine feedback, and initial inclusion of the true machine remain assumptions. No proof establishes general alignment or a benchmark win.
