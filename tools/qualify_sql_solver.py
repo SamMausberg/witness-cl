@@ -4,21 +4,26 @@
 from __future__ import annotations
 
 import argparse
+from copy import deepcopy
 from dataclasses import asdict
 from datetime import datetime, timezone
 import hashlib
 import json
 import math
 from pathlib import Path
+import sqlite3
 import subprocess
 import sys
 import time
+
+import sqlglot
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT / "src")]
 from experiments import stateful_sql as study
 from tools.replay_study import RecordedClient, semantic, validate_call
 from witness_cl.evidence_memory import EvidenceMemory
+from witness_cl.model_bounded_reasoning import LocalInferenceBoundedReasoning
 from witness_cl.model_v8 import BudgetStop, InferenceBudget
 from witness_cl.model_v9 import DecodingV9
 from witness_cl.model_v9_compatible import LocalInferenceV9Compatible
@@ -33,6 +38,7 @@ LIMITS = {
     "reflection_output_tokens": 2048,
 }
 DECODING = asdict(DecodingV9(temperature=0.7, top_p=0.8, thinking=False))
+REASONING_BUDGET = None
 CONFIG = ROOT / "configs/query_transfer_runtime.json"
 SOURCES = (
     *study.SOURCE_FILES,
@@ -41,7 +47,23 @@ SOURCES = (
     "tools/gh200_runtime.py",
     "configs/query_transfer_runtime.json",
     "docs/research/SOLVER_QUALIFICATION.md",
+    "src/witness_cl/model_bounded_reasoning.py",
 )
+
+
+def select_bounded_reasoning():
+    """One explicitly selected prospective policy, never an in-run fallback."""
+    global SEEDS, LIMITS, DECODING, REASONING_BUDGET, SOURCES
+    SEEDS = (95102, 95103)
+    LIMITS = {
+        **LIMITS,
+        "total_tokens": 1500000,
+        "solve_output_tokens": 4096,
+        "reflection_output_tokens": 4096,
+    }
+    DECODING = asdict(DecodingV9(temperature=0.6, top_p=0.95, thinking=True))
+    REASONING_BUDGET = 1024
+    SOURCES = tuple(dict.fromkeys((*SOURCES, "docs/research/BOUNDED_REASONING_QUALIFICATION.md")))
 
 
 def sha(path):
@@ -60,17 +82,24 @@ def utc():
     return datetime.now(timezone.utc).isoformat()
 
 
+def environment():
+    return {"python": sys.version, "sqlite": sqlite3.sqlite_version, "sqlglot": sqlglot.__version__}
+
+
 def client_config(config):
     s = config["server"]
-    return {
+    result = {
         "endpoint": f"http://{s['host']}:{s['port']}",
         "model": config["model"]["alias"],
         "context_tokens": s["context_tokens"],
-        "max_output": 2048,
+        "max_output": LIMITS["solve_output_tokens"],
         "timeout": 120.0,
         "response_mode": "schema",
         "decoding": DECODING,
     }
+    if REASONING_BUDGET is not None:
+        result["reasoning_budget_tokens"] = REASONING_BUDGET
+    return result
 
 
 def snapshot_client(client):
@@ -100,6 +129,7 @@ def create_freeze(out, runtime_receipt):
     result = {
         "kind": "cold_sql_qualification_freeze",
         "created_utc": utc(),
+        "runtime_environment": environment(),
         "source_sha256": sources(),
         "git_revision": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
@@ -125,7 +155,8 @@ def create_freeze(out, runtime_receipt):
 
 def check_freeze(frozen):
     if (
-        frozen["source_sha256"] != sources()
+        frozen["runtime_environment"] != environment()
+        or frozen["source_sha256"] != sources()
         or frozen["system_prompt"] != study.V9_SYSTEM
         or frozen["seeds"] != list(SEEDS)
         or frozen["indices"] != list(range(16))
@@ -229,8 +260,8 @@ def run(out, client, *, allow_test_double=False):
                         budget,
                         phase="ordinary",
                         learn=False,
-                        solve_output_tokens=2048,
-                        reflection_output_tokens=2048,
+                        solve_output_tokens=LIMITS["solve_output_tokens"],
+                        reflection_output_tokens=LIMITS["reflection_output_tokens"],
                     )
                     trace.update(
                         seed=seed,
@@ -354,7 +385,7 @@ def audit(out):
     replayed, sql_count, partial = 0, 0, []
     for trace in rows:
         for call in trace["model_calls"]:
-            validate_call(call, trace, native_manifest)
+            validate_qualification_call(call, trace, native_manifest)
         memory = EvidenceMemory("full_history", frozen["system_prompt"])
         if (
             trace["learn"] is not False
@@ -375,7 +406,7 @@ def audit(out):
             if session.answer(trace["answer"]).reward != trace["reward"]:
                 raise ValueError("independent reward mismatch")
         if all(c["status"] == "completed" for c in trace["model_calls"]):
-            client = RecordedClient(trace["model_calls"], max_output=2048)
+            client = RecordedClient(trace["model_calls"], max_output=LIMITS["solve_output_tokens"])
             repeated = study.execute_episode(
                 spec,
                 memory,
@@ -383,7 +414,8 @@ def audit(out):
                 InferenceBudget(),
                 phase="ordinary",
                 learn=False,
-                reflection_output_tokens=2048,
+                solve_output_tokens=LIMITS["solve_output_tokens"],
+                reflection_output_tokens=LIMITS["reflection_output_tokens"],
             )
             if client.errors or client.index != len(trace["model_calls"]):
                 raise ValueError("model call replay mismatch")
@@ -421,13 +453,48 @@ def audit(out):
     }
 
 
+def validate_qualification_call(call, trace, manifest):
+    """Check the added native wire field before the inherited schema audit."""
+    if REASONING_BUDGET is None or call.get("test_double") is True:
+        validate_call(call, trace, manifest)
+        return
+    expected = manifest["client_config"]["reasoning_budget_tokens"]
+    if (
+        call.get("native_reasoning_budget_tokens") != expected
+        or call["request_config"].get("reasoning_budget_tokens") != expected
+    ):
+        raise ValueError("native reasoning budget differs from freeze")
+    wire = call.get("native_wire_requests", [])
+    paths = ["/v1/chat/completions/input_tokens"]
+    if call["generation_attempted"]:
+        paths.append("/v1/chat/completions")
+    if [r["path"] for r in wire] != paths:
+        raise ValueError("native preflight/generation wire inventory mismatch")
+    messages_digest = hashlib.sha256(
+        json.dumps(
+            call["messages"], allow_nan=False, separators=(",", ":"), sort_keys=True
+        ).encode()
+    ).hexdigest()
+    if any(
+        r["request_config"] != call["request_config"] or r["messages_sha256"] != messages_digest
+        for r in wire
+    ):
+        raise ValueError("native wire request differs from recorded request")
+    checked = deepcopy(call)
+    checked["request_config"].pop("reasoning_budget_tokens")
+    validate_call(checked, trace, manifest)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("freeze", "run", "audit"))
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--runtime-receipt", type=Path)
     parser.add_argument("--key-file", type=Path)
+    parser.add_argument("--bounded-reasoning", action="store_true")
     args = parser.parse_args()
+    if args.bounded_reasoning:
+        select_bounded_reasoning()
     if args.action == "freeze":
         if args.runtime_receipt is None:
             parser.error("freeze requires --runtime-receipt")
@@ -447,7 +514,12 @@ def main():
         check_freeze(frozen)
         cfg = dict(frozen["client_config"])
         cfg["decoding"] = DecodingV9(**cfg["decoding"])
-        result = run(args.out, LocalInferenceV9Compatible(key_file=args.key_file, **cfg))
+        cls = (
+            LocalInferenceBoundedReasoning
+            if REASONING_BUDGET is not None
+            else LocalInferenceV9Compatible
+        )
+        result = run(args.out, cls(key_file=args.key_file, **cfg))
         print(json.dumps(result))
     else:
         result = audit(args.out)

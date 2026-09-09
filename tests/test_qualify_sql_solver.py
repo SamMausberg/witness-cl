@@ -1,11 +1,17 @@
 """Offline cold-state, accounting and tamper checks; fixtures are never qualified."""
 
 import json
+from copy import deepcopy
 
 import pytest
 
 from test_sql_harness_v9 import Client
 from tools import qualify_sql_solver as q
+from witness_cl.memory_v8 import ACTION_SCHEMA
+from witness_cl.model_bounded_reasoning import LocalInferenceBoundedReasoning
+from witness_cl.model_v8 import InferenceBudget
+from witness_cl.model_v9 import DecodingV9
+from witness_cl.model_v9_compatible import LocalInferenceV9Compatible
 
 
 @pytest.fixture
@@ -108,3 +114,70 @@ def test_tampered_cost_and_live_run_rejected(completed):
     q.save(path, manifest)
     with pytest.raises(ValueError, match="integrity"):
         q.audit(completed)
+
+
+@pytest.fixture
+def bounded(monkeypatch):
+    for name in ("SEEDS", "LIMITS", "DECODING", "REASONING_BUDGET", "SOURCES"):
+        monkeypatch.setattr(q, name, deepcopy(getattr(q, name)))
+    q.select_bounded_reasoning()
+
+
+def test_bounded_policy_has_independent_seeds_limits_and_frozen_native_budget(bounded, frozen):
+    cfg = json.loads((frozen / "freeze.json").read_text())
+    assert cfg["seeds"] == [95102, 95103]
+    assert cfg["limits"]["total_tokens"] == 1500000
+    assert cfg["limits"]["solve_output_tokens"] == 4096
+    assert cfg["client_config"]["reasoning_budget_tokens"] == 1024
+    assert cfg["client_config"]["decoding"]["thinking"] is True
+    assert cfg["gate"] == {"warm_minimum": 7, "composition_minimum": 6, "per_family_n": 8}
+    q.check_freeze(cfg)
+    cfg["client_config"]["reasoning_budget_tokens"] = 1023
+    with pytest.raises(ValueError, match="freeze"):
+        q.check_freeze(cfg)
+
+
+def test_bounded_call_auditor_checks_both_native_wire_requests(bounded, tmp_path, monkeypatch):
+    def post(self, path, body, timeout):
+        if path.endswith("input_tokens"):
+            return {"input_tokens": 17}
+        return {
+            "model": self.model,
+            "usage": {"prompt_tokens": 17, "completion_tokens": 9, "total_tokens": 26},
+            "choices": [
+                {
+                    "finish_reason": "stop",
+                    "message": {
+                        "content": '{"action":"ANSWER","value":0}',
+                        "reasoning_content": "test",
+                    },
+                }
+            ],
+        }
+
+    monkeypatch.setattr(LocalInferenceV9Compatible, "_post", post)
+    cfg = q.client_config(json.loads(q.CONFIG.read_text()))
+    kwargs = {**cfg, "decoding": DecodingV9(**cfg["decoding"])}
+    key = tmp_path / "test.key"
+    key.write_text("explicit-offline-test-key")
+    c = LocalInferenceBoundedReasoning(key_file=key, **kwargs)
+    records = []
+    c.complete(
+        [{"role": "user", "content": "fixture"}],
+        InferenceBudget(),
+        phase="ordinary:solve",
+        records=records,
+        output_tokens=4096,
+        response_schema=ACTION_SCHEMA,
+    )
+    manifest = {"client_config": cfg, "limits": q.LIMITS, "contains_test_double_calls": False}
+    trace = {"phase": "ordinary", "arm": "full_history"}
+    q.validate_qualification_call(records[0], trace, manifest)
+    changed = deepcopy(records[0])
+    changed["native_wire_requests"][0]["request_config"]["reasoning_budget_tokens"] = 1023
+    with pytest.raises(ValueError, match="native wire"):
+        q.validate_qualification_call(changed, trace, manifest)
+    changed = deepcopy(records[0])
+    changed["native_wire_requests"][1]["messages_sha256"] = "0" * 64
+    with pytest.raises(ValueError, match="native wire"):
+        q.validate_qualification_call(changed, trace, manifest)
