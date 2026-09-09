@@ -32,7 +32,12 @@ class EpisodeSessionV9(_EpisodeSessionV8):
             rows = self._db.execute('PRAGMA module_list').fetchall()
             if not rows or any(len(row) != 1 or type(row[0]) is not str for row in rows):
                 raise RuntimeError('SQLite virtual-module inventory unavailable')
-            self._virtual_module_names = frozenset(row[0].casefold() for row in rows)
+            # Recent SQLite builds lazily register JSON table-valued functions:
+            # they can be usable before appearing in PRAGMA module_list. Include
+            # all four documented built-ins, even when absent from the inventory.
+            self._virtual_module_names = frozenset(row[0].casefold() for row in rows) | {
+                'json_each', 'json_tree', 'jsonb_each', 'jsonb_tree',
+            }
         except Exception:
             self.close()
             raise
