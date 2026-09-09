@@ -8,3 +8,7 @@ name = "WitnessCL"
 [[lean_exe]]
 name = "witness_fixture"
 root = "ExecutableFixture"
+
+[[lean_exe]]
+name = "statistical_fixture"
+root = "StatisticalFixture"

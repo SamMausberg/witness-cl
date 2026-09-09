@@ -1,0 +1,35 @@
+$ /home/sam/.elan/bin/lake build WitnessCL witness_fixture statistical_fixture
+ℹ [2/18] Replayed WitnessCL.Core
+info: ././././WitnessCL/Core.lean:128:0: 'WitnessCL.certified_sound' does not depend on any axioms
+info: ././././WitnessCL/Core.lean:129:0: 'WitnessCL.certified_under_refinement' does not depend on any axioms
+info: ././././WitnessCL/Core.lean:130:0: 'WitnessCL.equivalent_certificates' does not depend on any axioms
+info: ././././WitnessCL/Core.lean:131:0: 'WitnessCL.fold_truth' depends on axioms: [propext]
+info: ././././WitnessCL/Core.lean:132:0: 'WitnessCL.other_scope_unchanged' depends on axioms: [propext]
+ℹ [3/18] Replayed WitnessCL.Refinement
+info: ././././WitnessCL/Refinement.lean:143:0: 'WitnessCL.V2.growth_decomposition' does not depend on any axioms
+info: ././././WitnessCL/Refinement.lean:144:0: 'WitnessCL.V2.witness_growth_counterexample' depends on axioms: [propext]
+info: ././././WitnessCL/Refinement.lean:145:0: 'WitnessCL.V2.protected_domain_unchanged' depends on axioms: [propext]
+info: ././././WitnessCL/Refinement.lean:146:0: 'WitnessCL.V2.archive_output_unchanged' depends on axioms: [propext]
+info: ././././WitnessCL/Refinement.lean:147:0: 'WitnessCL.V2.residual_preserves_protected_domain' depends on axioms: [propext]
+info: ././././WitnessCL/Refinement.lean:148:0: 'WitnessCL.V2.filter_one_factors' depends on axioms: [propext, Quot.sound]
+ℹ [4/18] Replayed WitnessCL.Continuation
+info: ././././WitnessCL/Continuation.lean:129:0: 'WitnessCL.V3.closed_continuations_equal' does not depend on any axioms
+info: ././././WitnessCL/Continuation.lean:130:0: 'WitnessCL.V3.bellman_improvement' depends on axioms: [propext, Quot.sound]
+info: ././././WitnessCL/Continuation.lean:131:0: 'WitnessCL.V3.debit_budget' depends on axioms: [propext, Quot.sound]
+info: ././././WitnessCL/Continuation.lean:132:0: 'WitnessCL.V3.no_risk_no_gain' depends on axioms: [propext]
+ℹ [5/18] Replayed WitnessCL.Latent
+info: ././././WitnessCL/Latent.lean:135:0: 'WitnessCL.V4.split_cover' depends on axioms: [propext]
+info: ././././WitnessCL/Latent.lean:136:0: 'WitnessCL.V4.covered_lower_bound' does not depend on any axioms
+info: ././././WitnessCL/Latent.lean:137:0: 'WitnessCL.V4.arbitrary_proposer' does not depend on any axioms
+info: ././././WitnessCL/Latent.lean:138:0: 'WitnessCL.V4.informative_probe_removes' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [6/18] Replayed WitnessCL.Ambiguity
+info: ././././WitnessCL/Ambiguity.lean:31:0: 'WitnessCL.V5.safe_policy_cannot_gain_under_aliasing' depends on axioms: [propext, Quot.sound]
+✔ [12/18] Built WitnessCL.StatisticalBridge
+✔ [13/18] Built WitnessCL.StatisticalBridge:c.o
+✔ [14/18] Built WitnessCL
+✔ [16/18] Built StatisticalFixture
+✔ [17/18] Built StatisticalFixture:c.o
+✔ [18/18] Built statistical_fixture
+Build completed successfully.
+
+exit_code=0

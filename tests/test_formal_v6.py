@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import tomllib
 from itertools import product
 from pathlib import Path
 
@@ -18,6 +19,52 @@ from witness_cl.latent import LatentSpace, Machine, Program
 
 ROOT = Path(__file__).resolve().parents[1]
 ARTIFACTS = ROOT / 'artifacts/v6'
+
+# Preserve the exact archived v6 build inputs, then permit only additive imports
+# and targets in later versions. Every v6 module and fixture remains hash-exact.
+V6_BUILD_INPUTS = {'WitnessCL.lean': 'import WitnessCL.Core\n'
+                   'import WitnessCL.Refinement\n'
+                   '\n'
+                   'import WitnessCL.Continuation\n'
+                   '\n'
+                   'import WitnessCL.Latent\n'
+                   '\n'
+                   'import WitnessCL.Ambiguity\n'
+                   '\n'
+                   'import WitnessCL.Executable\n',
+ 'lakefile.toml': 'name = "witnesscl"\n'
+                  'version = "0.1.0"\n'
+                  'defaultTargets = ["WitnessCL"]\n'
+                  '\n'
+                  '[[lean_lib]]\n'
+                  'name = "WitnessCL"\n'
+                  '\n'
+                  '[[lean_exe]]\n'
+                  'name = "witness_fixture"\n'
+                  'root = "ExecutableFixture"\n'}
+
+
+def assert_additive_build_input(name, archived_digest):
+    archived = V6_BUILD_INPUTS[name]
+    assert hashlib.sha256(archived.encode()).hexdigest() == archived_digest
+    current = (ROOT / 'formal' / name).read_text()
+    if name == 'WitnessCL.lean':
+        def imports(source):
+            lines = [line.strip() for line in source.splitlines() if line.strip()]
+            assert all(line.startswith('import ') and len(line.split()) == 2 for line in lines)
+            return [line.split()[1] for line in lines]
+        old_imports, current_imports = imports(archived), imports(current)
+        assert [item for item in current_imports if item in old_imports] == old_imports
+    else:
+        old_config, current_config = tomllib.loads(archived), tomllib.loads(current)
+        assert old_config.keys() == current_config.keys()
+        for field, value in old_config.items():
+            if field in ('defaultTargets', 'lean_lib', 'lean_exe'):
+                assert all(item in current_config[field] for item in value), field
+                assert isinstance(current_config[field], list)
+            else:
+                assert current_config[field] == value, field
+
 
 
 def machine_from_id(identifier: int) -> Machine:
@@ -39,7 +86,10 @@ def test_lean_fixture_matches_audited_sources(oracle):
     assert hashlib.sha256((ARTIFACTS / 'formal-runtime.jsonl').read_bytes()).hexdigest() == (
         report['executable_fixture']['sha256'])
     for source, digest in {**report['source_sha256'], **report['build_input_sha256']}.items():
-        assert hashlib.sha256((ROOT / 'formal' / source).read_bytes()).hexdigest() == digest, source
+        if source in V6_BUILD_INPUTS:
+            assert_additive_build_input(source, digest)
+        else:
+            assert hashlib.sha256((ROOT / 'formal' / source).read_bytes()).hexdigest() == digest, source
     assert not report['source_placeholder_or_custom_axiom_tokens']
     assert not report['unexpected_axioms']
     names = report['theorems_by_file']['WitnessCL/Executable.lean']

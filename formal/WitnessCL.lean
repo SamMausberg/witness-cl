@@ -8,3 +8,5 @@ import WitnessCL.Latent
 import WitnessCL.Ambiguity
 
 import WitnessCL.Executable
+
+import WitnessCL.StatisticalBridge

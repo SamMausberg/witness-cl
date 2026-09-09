@@ -74,7 +74,7 @@ def main() -> int:
     if len(names) != len(set(names)) or not names:
         raise SystemExit('Duplicate or empty theorem inventory.')
     version = run([lake, 'env', 'lean', '--version'], formal, output / 'formal-version.txt')
-    build = run([lake, 'build', 'WitnessCL', 'witness_fixture'], formal, output / 'formal-build.txt')
+    build = run([lake, 'build', 'WitnessCL', 'witness_fixture', 'statistical_fixture'], formal, output / 'formal-build.txt')
     report = {
         'checked_at_utc': datetime.now(timezone.utc).isoformat(),
         'toolchain': (formal / 'lean-toolchain').read_text().strip(),
@@ -84,7 +84,7 @@ def main() -> int:
         'theorems_by_file': by_file,
         'source_sha256': hashes,
         'build_input_sha256': {name: hashlib.sha256((formal / name).read_bytes()).hexdigest()
-                               for name in ['WitnessCL.lean', 'ExecutableFixture.lean',
+                               for name in ['WitnessCL.lean', 'ExecutableFixture.lean', 'StatisticalFixture.lean',
                                             'lakefile.toml', 'lean-toolchain']},
         'source_placeholder_or_custom_axiom_tokens': forbidden,
         'allowed_standard_axioms': ['Classical.choice', 'Quot.sound', 'propext'],
@@ -117,6 +117,20 @@ def main() -> int:
         fixture_path.write_text(fixture.stdout)
         (output / 'formal-runtime-stderr.txt').write_text(fixture.stderr)
         report['executable_fixture'] = {
+            'path': fixture_path.name,
+            'exit_code': fixture.returncode,
+            'sha256': hashlib.sha256(fixture_path.read_bytes()).hexdigest(),
+            'line_count': len(fixture.stdout.splitlines()),
+        }
+        report['passed'] = fixture.returncode == 0 and bool(fixture.stdout)
+    if report['passed']:
+        fixture = subprocess.run([str(formal / '.lake/build/bin/statistical_fixture')],
+                                 cwd=formal, text=True, stdout=subprocess.PIPE,
+                                 stderr=subprocess.PIPE, check=False)
+        fixture_path = output / 'formal-statistical.jsonl'
+        fixture_path.write_text(fixture.stdout)
+        (output / 'formal-statistical-stderr.txt').write_text(fixture.stderr)
+        report['statistical_fixture'] = {
             'path': fixture_path.name,
             'exit_code': fixture.returncode,
             'sha256': hashlib.sha256(fixture_path.read_bytes()).hexdigest(),

@@ -1,0 +1,29 @@
+{
+  "checked_at_utc": "2026-09-09T00:41:20.601867+00:00",
+  "command": [
+    "python3",
+    "-m",
+    "pytest",
+    "tests/test_statistical_bridge_v7.py",
+    "tests/test_formal_v6.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "test_output": "11 passed in 1.31s",
+  "tests_total": 11,
+  "new_v7_tests": 6,
+  "lean_theorems_total": 77,
+  "new_bridge_theorems": 14,
+  "finite_contexts": 2,
+  "return_bound": 2,
+  "versions": 9,
+  "two_promotion_chains": 2916,
+  "historical_positions_checked": 8748,
+  "promotion_failure_comparisons": 5832,
+  "fixture_sha256": "444e2298c9289848c966902238bcfef3ceacf211422e500e24fdd9256e921960",
+  "test_source_sha256": {
+    "tests/test_statistical_bridge_v7.py": "a087e368ceca6573f161550cd428b755e9164943febf86252773bb546c7cc145",
+    "tests/test_formal_v6.py": "913629ee16ff3ff8cf5aa85c51427b87aa118d603f43cf6f375403fbea24ba4c"
+  },
+  "scope": "Deterministic finite-population arithmetic; no probability, sampling, gate-validity, deployment, or alignment proof."
+}
