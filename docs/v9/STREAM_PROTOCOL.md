@@ -1,0 +1,21 @@
+# Frozen v9 prospective development stream
+
+## Decision and scope
+
+Seven adaptive diagnostic runs on seed 92000 are retained. The selected explicit interactive-contract prompt with Qwen3.5-9B Q8_0 and reasoning scored 7/8 warm questions, with real paid catalog reads and correct nonzero SQL results. Its one failure included a valid read-only CTE query rejected by the v8 authorizer. The new executor and ordinary-action parser repair this tool boundary for every arm. Scores in those frozen diagnostics remain unchanged.
+
+The next run is one fresh prospective **development** stream on seed 92001, reuse condition. It starts all memories empty and runs three methods: full legal history, an evolving SQL-capable textual context, and checked executable abstractions. The eight ordinary warm questions run first; all three arms must complete and score at least 7/8 before continuing. A failed gate stops this stream with the warm traces preserved. Passing is a feasibility screen, not a claim of statistical superiority.
+
+The explicitly selected full schedule is eight warm ordinary questions, eight fresh fixed old-before probes, the remaining 16 ordinary learning questions, the same eight old-after probes, and eight final questions with new compositions. This is 48 episodes per arm, 144 total. Evaluation panels never modify memories. All model-selected reads, failed requests, guard checks and post-answer reconstruction queries consume the same eight-SELECT episode allowance. No catalog observation is supplied free. No task IDs, evaluator gold, hidden semantic features or future questions are supplied.
+
+## Frozen common configuration
+
+Backbone: Qwen3.5-9B Q8_0, pinned model and runtime provenance in artifacts/v9. Decoding: temperature 0.6, top_p 0.95, top_k 20, min_p 0, presence_penalty 1.5, seed 42, thinking enabled. Server reasoning budget 1536 tokens; solve allowance 2048 and reflection allowance 4096, including reasoning tokens. The same client and caps apply to all arms. Native/client context 65536 prevents an unnecessarily small full-history ceiling; history is never silently truncated. This capacity change from 32768 in diagnosis is reported, and it supplies no additional task evidence. JSON-schema output, prompt caching disabled, one model slot, loopback authentication and built-in server tools disabled.
+
+Each arm has ordinary and panel budgets of 1,000,000 tokens and 280/260 generation calls respectively. The entire stream has stricter shared ceilings of 3,000,000 tokens, 1200 calls and 1800 seconds including all task setup, model preflight/inference, learning, checks, evaluation and incremental export. Model load is separately recorded. Before this run the seven diagnostics consumed 369.033911084 seconds, 161432 tokens and 136 calls with no unknown usage. Thus the declared 45-minute/4M-token/1600-call development ceiling remains respected even at the stream caps. Stops and missing records are reported, never excluded from aggregate accounting.
+
+## Comparisons and success evidence
+
+Do not weaken direct SQL in the controls or force needless catalog reads. Text memory may retain complete SQL procedures, observed conventions and failures; it has the same 65536-byte active-memory cap as executable memory. No arm receives another arm's experiences. Every reflection and proposal is charged. The pilot must identify actual proposals, accepted reconstruction witnesses, later changed bindings and new outer compositions on fresh rows. A correct answer or an admitted CTE alone is insufficient: inspect whether the result depends on the relation, and report coincidental/constant successes separately.
+
+Report accuracy, SELECT attempts, model calls/tokens, measured time and retained state separately, with acquisition and evaluation included. The original interaction-saving claim remains an open claim. A competent direct-SQL solver may need just one SELECT; the current checked path generally needs a guard and execution. Do not rebrand token savings as interaction savings or report a significance interval from one correlated development stream. No heldout 93000+ task or further model run is authorized by this protocol. Any later run needs its own saved pre-run specification and must fit the remaining aggregate development budget.

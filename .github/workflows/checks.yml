@@ -15,6 +15,8 @@ jobs:
         run: |
           PYTHONPATH=src python experiments/audit_sql_abstractions_v8.py artifacts/v8/development --freeze artifacts/v8/prepilot-freeze.json --output artifacts/v8/development-replay.json
           python tools/v8_results.py
+      - name: Replay v9 solver diagnostics
+        run: PYTHONPATH=src python experiments/audit_competence_v9.py artifacts/v9/diagnostics/*/ --output artifacts/v9/diagnostics/replay-all.json
   lean:
     runs-on: ubuntu-latest
     steps:

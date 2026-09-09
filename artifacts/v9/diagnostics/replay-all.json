@@ -1,0 +1,347 @@
+[
+  {
+    "directory": "/mnt/c/Users/Sam/Documents/Codex/2026-09-08/we-are-working-together-on-open-2/outputs/witness-cl/artifacts/v9/diagnostics/4b-original",
+    "status": "passed",
+    "claim_confirmed": false,
+    "auditor_source_sha256": "d57c33f5647c119b86206537ef21ae99e0285f811dccbd0c9be22bb968da05e3",
+    "complete_warm_grid": true,
+    "competence_threshold_met": false,
+    "limitations": [
+      "Saved consistency does not authenticate execution, model weights, exact backend tokenization or timing.",
+      "Environment, parser and public prompt definitions are shared source; SQLite execution is independently replayed.",
+      "A development competence screen does not establish transfer, efficiency or retention."
+    ],
+    "protocol_source": "experiments/competence_v9.py",
+    "manifest_status": "completed",
+    "recorded_budget": {
+      "max_calls": 100,
+      "max_total_tokens": 400000,
+      "total_tokens": 10438,
+      "prompt_tokens": 10050,
+      "completion_tokens": 388,
+      "calls": 16,
+      "tokenization_seconds": 0.15401807200396433,
+      "inference_seconds": 6.802218396000171,
+      "unknown_usage_calls": 0
+    },
+    "elapsed_seconds": 7.172258245000194,
+    "known_usage_complete": true,
+    "manifest_sha256": "7fd28efbd1460cd436d0403a52d9151e3d17ded8a78478019271a01cc7bcb332",
+    "raw_sha256": "8b27e9986672f90a5b812809f1adb99d6e31609777e70178683b3c36b1292ba2",
+    "checked_source_sha256": {
+      "experiments/competence_v9.py": "04491fd3f2300d71b9ecb0e0c0828597cefb004be9913b7d364b12a0658de7f7",
+      "src/witness_cl/model_v9.py": "3ee5743c7c150158e8e8ec7c1137184864b0af6ca5245f8aca85f32da98c6438",
+      "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+      "src/witness_cl/memory_v8.py": "18a0c2994c7f8b437f1ff070f791bc0f6c8d344bdfc4ad9687af6396e6db1b47",
+      "src/witness_cl/fragments_v8.py": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd",
+      "src/witness_cl/sql_env_v8.py": "8199b4714cd3460157a3acb81dcbf0581bd540129dd5c230db7a609cd2155a6d"
+    },
+    "checked": {
+      "independent_reference_cases": 8,
+      "recorded_model_calls": 16,
+      "select_attempts": 8,
+      "query_errors": 0,
+      "episodes": 8,
+      "correct_episodes": 0,
+      "noncompleted_episodes": 0
+    },
+    "failures": [],
+    "protocol_issues": []
+  },
+  {
+    "directory": "/mnt/c/Users/Sam/Documents/Codex/2026-09-08/we-are-working-together-on-open-2/outputs/witness-cl/artifacts/v9/diagnostics/4b-evidence",
+    "status": "passed",
+    "claim_confirmed": false,
+    "auditor_source_sha256": "d57c33f5647c119b86206537ef21ae99e0285f811dccbd0c9be22bb968da05e3",
+    "complete_warm_grid": true,
+    "competence_threshold_met": false,
+    "limitations": [
+      "Saved consistency does not authenticate execution, model weights, exact backend tokenization or timing.",
+      "Environment, parser and public prompt definitions are shared source; SQLite execution is independently replayed.",
+      "A development competence screen does not establish transfer, efficiency or retention."
+    ],
+    "protocol_source": "experiments/competence_v9.py",
+    "manifest_status": "completed",
+    "recorded_budget": {
+      "max_calls": 100,
+      "max_total_tokens": 400000,
+      "total_tokens": 13985,
+      "prompt_tokens": 13588,
+      "completion_tokens": 397,
+      "calls": 17,
+      "tokenization_seconds": 0.15898370499598968,
+      "inference_seconds": 6.792959018999682,
+      "unknown_usage_calls": 0
+    },
+    "elapsed_seconds": 7.175256901000466,
+    "known_usage_complete": true,
+    "manifest_sha256": "fac3990608057041efd317fd97f66c3191ae25ba7e23db4a15eb63260ac16b37",
+    "raw_sha256": "f14756d6cde9757d4c1c2e8bd6497ac66042e39031ebfba125bec77eff2a3feb",
+    "checked_source_sha256": {
+      "experiments/competence_v9.py": "04491fd3f2300d71b9ecb0e0c0828597cefb004be9913b7d364b12a0658de7f7",
+      "src/witness_cl/model_v9.py": "3ee5743c7c150158e8e8ec7c1137184864b0af6ca5245f8aca85f32da98c6438",
+      "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+      "src/witness_cl/memory_v8.py": "18a0c2994c7f8b437f1ff070f791bc0f6c8d344bdfc4ad9687af6396e6db1b47",
+      "src/witness_cl/fragments_v8.py": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd",
+      "src/witness_cl/sql_env_v8.py": "8199b4714cd3460157a3acb81dcbf0581bd540129dd5c230db7a609cd2155a6d"
+    },
+    "checked": {
+      "independent_reference_cases": 8,
+      "recorded_model_calls": 17,
+      "select_attempts": 9,
+      "query_errors": 1,
+      "episodes": 8,
+      "correct_episodes": 0,
+      "noncompleted_episodes": 0
+    },
+    "failures": [],
+    "protocol_issues": []
+  },
+  {
+    "directory": "/mnt/c/Users/Sam/Documents/Codex/2026-09-08/we-are-working-together-on-open-2/outputs/witness-cl/artifacts/v9/diagnostics/4b-sampled",
+    "status": "passed",
+    "claim_confirmed": false,
+    "auditor_source_sha256": "d57c33f5647c119b86206537ef21ae99e0285f811dccbd0c9be22bb968da05e3",
+    "complete_warm_grid": true,
+    "competence_threshold_met": false,
+    "limitations": [
+      "Saved consistency does not authenticate execution, model weights, exact backend tokenization or timing.",
+      "Environment, parser and public prompt definitions are shared source; SQLite execution is independently replayed.",
+      "A development competence screen does not establish transfer, efficiency or retention."
+    ],
+    "protocol_source": "experiments/competence_v9.py",
+    "manifest_status": "completed",
+    "recorded_budget": {
+      "max_calls": 100,
+      "max_total_tokens": 400000,
+      "total_tokens": 14957,
+      "prompt_tokens": 14511,
+      "completion_tokens": 446,
+      "calls": 18,
+      "tokenization_seconds": 0.15403391900690622,
+      "inference_seconds": 8.492380058007257,
+      "unknown_usage_calls": 0
+    },
+    "elapsed_seconds": 8.849630089998755,
+    "known_usage_complete": true,
+    "manifest_sha256": "a1208300a6add1477769614dec7ad3b095d9e49e45407625a5c0f5e753031bd4",
+    "raw_sha256": "15c53828cb5f99b77ea2ee2c24dfb15f5d8dda4c4aa76c7cc3fb8940a58ede6b",
+    "checked_source_sha256": {
+      "experiments/competence_v9.py": "04491fd3f2300d71b9ecb0e0c0828597cefb004be9913b7d364b12a0658de7f7",
+      "src/witness_cl/model_v9.py": "3ee5743c7c150158e8e8ec7c1137184864b0af6ca5245f8aca85f32da98c6438",
+      "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+      "src/witness_cl/memory_v8.py": "18a0c2994c7f8b437f1ff070f791bc0f6c8d344bdfc4ad9687af6396e6db1b47",
+      "src/witness_cl/fragments_v8.py": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd",
+      "src/witness_cl/sql_env_v8.py": "8199b4714cd3460157a3acb81dcbf0581bd540129dd5c230db7a609cd2155a6d"
+    },
+    "checked": {
+      "independent_reference_cases": 8,
+      "recorded_model_calls": 18,
+      "select_attempts": 10,
+      "query_errors": 1,
+      "episodes": 8,
+      "correct_episodes": 0,
+      "noncompleted_episodes": 0
+    },
+    "failures": [],
+    "protocol_issues": []
+  },
+  {
+    "directory": "/mnt/c/Users/Sam/Documents/Codex/2026-09-08/we-are-working-together-on-open-2/outputs/witness-cl/artifacts/v9/diagnostics/4b-thinking",
+    "status": "passed",
+    "claim_confirmed": false,
+    "auditor_source_sha256": "d57c33f5647c119b86206537ef21ae99e0285f811dccbd0c9be22bb968da05e3",
+    "complete_warm_grid": true,
+    "competence_threshold_met": false,
+    "limitations": [
+      "Saved consistency does not authenticate execution, model weights, exact backend tokenization or timing.",
+      "Environment, parser and public prompt definitions are shared source; SQLite execution is independently replayed.",
+      "A development competence screen does not establish transfer, efficiency or retention."
+    ],
+    "protocol_source": "experiments/competence_v9.py",
+    "manifest_status": "completed",
+    "recorded_budget": {
+      "max_calls": 100,
+      "max_total_tokens": 400000,
+      "total_tokens": 25706,
+      "prompt_tokens": 11200,
+      "completion_tokens": 14506,
+      "calls": 14,
+      "tokenization_seconds": 0.10883481599739753,
+      "inference_seconds": 138.89375987800122,
+      "unknown_usage_calls": 0
+    },
+    "elapsed_seconds": 139.20499234899944,
+    "known_usage_complete": true,
+    "manifest_sha256": "542cee730fe87b4908460df37e9ae448fee1c378bb5d4284d163d7a40d896fe4",
+    "raw_sha256": "86cbf02422a5f1347e3e525d1b67dc5b46843c7d0ec8bc55ba70c8ce30fff24e",
+    "checked_source_sha256": {
+      "experiments/competence_v9.py": "04491fd3f2300d71b9ecb0e0c0828597cefb004be9913b7d364b12a0658de7f7",
+      "src/witness_cl/model_v9.py": "3ee5743c7c150158e8e8ec7c1137184864b0af6ca5245f8aca85f32da98c6438",
+      "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+      "src/witness_cl/memory_v8.py": "18a0c2994c7f8b437f1ff070f791bc0f6c8d344bdfc4ad9687af6396e6db1b47",
+      "src/witness_cl/fragments_v8.py": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd",
+      "src/witness_cl/sql_env_v8.py": "8199b4714cd3460157a3acb81dcbf0581bd540129dd5c230db7a609cd2155a6d"
+    },
+    "checked": {
+      "independent_reference_cases": 8,
+      "recorded_model_calls": 14,
+      "calls_with_reasoning": 14,
+      "episodes": 8,
+      "correct_episodes": 0,
+      "noncompleted_episodes": 0,
+      "select_attempts": 6,
+      "query_errors": 1
+    },
+    "failures": [],
+    "protocol_issues": []
+  },
+  {
+    "directory": "/mnt/c/Users/Sam/Documents/Codex/2026-09-08/we-are-working-together-on-open-2/outputs/witness-cl/artifacts/v9/diagnostics/9b-evidence",
+    "status": "passed",
+    "claim_confirmed": false,
+    "auditor_source_sha256": "d57c33f5647c119b86206537ef21ae99e0285f811dccbd0c9be22bb968da05e3",
+    "complete_warm_grid": true,
+    "competence_threshold_met": false,
+    "limitations": [
+      "Saved consistency does not authenticate execution, model weights, exact backend tokenization or timing.",
+      "Environment, parser and public prompt definitions are shared source; SQLite execution is independently replayed.",
+      "A development competence screen does not establish transfer, efficiency or retention."
+    ],
+    "protocol_source": "experiments/competence_v9.py",
+    "manifest_status": "completed",
+    "recorded_budget": {
+      "max_calls": 100,
+      "max_total_tokens": 400000,
+      "total_tokens": 23588,
+      "prompt_tokens": 22851,
+      "completion_tokens": 737,
+      "calls": 23,
+      "tokenization_seconds": 0.1148682029943302,
+      "inference_seconds": 21.06867270099974,
+      "unknown_usage_calls": 0
+    },
+    "elapsed_seconds": 21.372058663000644,
+    "known_usage_complete": true,
+    "manifest_sha256": "f6247e151aa531b54969443b86f691fc29b50e94184343554561653d191f0778",
+    "raw_sha256": "2c492fed0ce6117eb72a1edf9635847c0ee5055a3d2b9916aa93b39f226bcbaf",
+    "checked_source_sha256": {
+      "experiments/competence_v9.py": "04491fd3f2300d71b9ecb0e0c0828597cefb004be9913b7d364b12a0658de7f7",
+      "src/witness_cl/model_v9.py": "3ee5743c7c150158e8e8ec7c1137184864b0af6ca5245f8aca85f32da98c6438",
+      "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+      "src/witness_cl/memory_v8.py": "18a0c2994c7f8b437f1ff070f791bc0f6c8d344bdfc4ad9687af6396e6db1b47",
+      "src/witness_cl/fragments_v8.py": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd",
+      "src/witness_cl/sql_env_v8.py": "8199b4714cd3460157a3acb81dcbf0581bd540129dd5c230db7a609cd2155a6d"
+    },
+    "checked": {
+      "independent_reference_cases": 8,
+      "recorded_model_calls": 23,
+      "select_attempts": 15,
+      "query_errors": 1,
+      "episodes": 8,
+      "correct_episodes": 1,
+      "noncompleted_episodes": 0
+    },
+    "failures": [],
+    "protocol_issues": []
+  },
+  {
+    "directory": "/mnt/c/Users/Sam/Documents/Codex/2026-09-08/we-are-working-together-on-open-2/outputs/witness-cl/artifacts/v9/diagnostics/9b-interactive",
+    "status": "passed",
+    "claim_confirmed": false,
+    "auditor_source_sha256": "d57c33f5647c119b86206537ef21ae99e0285f811dccbd0c9be22bb968da05e3",
+    "complete_warm_grid": true,
+    "competence_threshold_met": false,
+    "limitations": [
+      "Saved consistency does not authenticate execution, model weights, exact backend tokenization or timing.",
+      "Environment, parser and public prompt definitions are shared source; SQLite execution is independently replayed.",
+      "A development competence screen does not establish transfer, efficiency or retention."
+    ],
+    "protocol_source": "experiments/competence_interactive_v9.py",
+    "manifest_status": "completed",
+    "recorded_budget": {
+      "max_calls": 100,
+      "max_total_tokens": 400000,
+      "total_tokens": 25799,
+      "prompt_tokens": 24815,
+      "completion_tokens": 984,
+      "calls": 20,
+      "tokenization_seconds": 0.10729694200199447,
+      "inference_seconds": 29.40588454400313,
+      "unknown_usage_calls": 0
+    },
+    "elapsed_seconds": 29.701301543000227,
+    "known_usage_complete": true,
+    "manifest_sha256": "ee068ad836c364f7c05f980c584201cebf678180b3dbadbdb6b5376eaf18db9f",
+    "raw_sha256": "ca286be9f4b3871ceea29977662d471e479748c5c75b9849fcb24c0c9df413ad",
+    "checked_source_sha256": {
+      "experiments/competence_interactive_v9.py": "8b59d8dd596b183cd50172aa72ae30c05adb39e8a1767d671377fedb84f0f649",
+      "src/witness_cl/model_v9.py": "3ee5743c7c150158e8e8ec7c1137184864b0af6ca5245f8aca85f32da98c6438",
+      "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+      "src/witness_cl/memory_v8.py": "18a0c2994c7f8b437f1ff070f791bc0f6c8d344bdfc4ad9687af6396e6db1b47",
+      "src/witness_cl/fragments_v8.py": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd",
+      "src/witness_cl/sql_env_v8.py": "8199b4714cd3460157a3acb81dcbf0581bd540129dd5c230db7a609cd2155a6d"
+    },
+    "checked": {
+      "independent_reference_cases": 8,
+      "recorded_model_calls": 20,
+      "select_attempts": 12,
+      "query_errors": 1,
+      "episodes": 8,
+      "correct_episodes": 0,
+      "noncompleted_episodes": 0
+    },
+    "failures": [],
+    "protocol_issues": []
+  },
+  {
+    "directory": "/mnt/c/Users/Sam/Documents/Codex/2026-09-08/we-are-working-together-on-open-2/outputs/witness-cl/artifacts/v9/diagnostics/9b-interactive-thinking",
+    "status": "passed",
+    "claim_confirmed": false,
+    "auditor_source_sha256": "d57c33f5647c119b86206537ef21ae99e0285f811dccbd0c9be22bb968da05e3",
+    "complete_warm_grid": true,
+    "competence_threshold_met": true,
+    "limitations": [
+      "Saved consistency does not authenticate execution, model weights, exact backend tokenization or timing.",
+      "Environment, parser and public prompt definitions are shared source; SQLite execution is independently replayed.",
+      "A development competence screen does not establish transfer, efficiency or retention."
+    ],
+    "protocol_source": "experiments/competence_interactive_v9.py",
+    "manifest_status": "completed",
+    "recorded_budget": {
+      "max_calls": 100,
+      "max_total_tokens": 400000,
+      "total_tokens": 46959,
+      "prompt_tokens": 38064,
+      "completion_tokens": 8895,
+      "calls": 28,
+      "tokenization_seconds": 0.16057716399154742,
+      "inference_seconds": 155.19051982200472,
+      "unknown_usage_calls": 0
+    },
+    "elapsed_seconds": 155.55841329299983,
+    "known_usage_complete": true,
+    "manifest_sha256": "94312f5f7f87e4e827881867f203ee9cd34d69443ceff8e8b6ba03d22da2b997",
+    "raw_sha256": "18996fcd0b76788889824ba2bbfced3540ca3c151bfbfe319a9b7e2d0eddcba3",
+    "checked_source_sha256": {
+      "experiments/competence_interactive_v9.py": "8b59d8dd596b183cd50172aa72ae30c05adb39e8a1767d671377fedb84f0f649",
+      "src/witness_cl/model_v9.py": "3ee5743c7c150158e8e8ec7c1137184864b0af6ca5245f8aca85f32da98c6438",
+      "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+      "src/witness_cl/memory_v8.py": "18a0c2994c7f8b437f1ff070f791bc0f6c8d344bdfc4ad9687af6396e6db1b47",
+      "src/witness_cl/fragments_v8.py": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd",
+      "src/witness_cl/sql_env_v8.py": "8199b4714cd3460157a3acb81dcbf0581bd540129dd5c230db7a609cd2155a6d"
+    },
+    "checked": {
+      "independent_reference_cases": 8,
+      "recorded_model_calls": 28,
+      "calls_with_reasoning": 28,
+      "select_attempts": 20,
+      "query_errors": 3,
+      "episodes": 8,
+      "correct_episodes": 7,
+      "noncompleted_episodes": 0
+    },
+    "failures": [],
+    "protocol_issues": []
+  }
+]

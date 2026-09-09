@@ -1,0 +1,57 @@
+{
+  "kind": "adaptive_development_competence_diagnostic",
+  "seed": 92000,
+  "variant": "evidence",
+  "model": "witness-v9-qwen35-9b-q8",
+  "indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "wall_seconds": 300,
+  "decoding": {
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "seed": 42,
+    "thinking": false
+  },
+  "source_sha256": {
+    "experiments/competence_v9.py": "04491fd3f2300d71b9ecb0e0c0828597cefb004be9913b7d364b12a0658de7f7",
+    "src/witness_cl/model_v9.py": "3ee5743c7c150158e8e8ec7c1137184864b0af6ca5245f8aca85f32da98c6438",
+    "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+    "src/witness_cl/memory_v8.py": "18a0c2994c7f8b437f1ff070f791bc0f6c8d344bdfc4ad9687af6396e6db1b47",
+    "src/witness_cl/fragments_v8.py": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd",
+    "src/witness_cl/sql_env_v8.py": "8199b4714cd3460157a3acb81dcbf0581bd540129dd5c230db7a609cd2155a6d"
+  },
+  "started_unix": 1788971186.9702256,
+  "status": "completed",
+  "output_tokens": 384,
+  "max_selects": 8,
+  "max_actions": 10,
+  "claim_confirmed": false,
+  "feedback_used_for_learning": false,
+  "elapsed_seconds": 21.372058663000644,
+  "budget": {
+    "max_total_tokens": 400000,
+    "max_calls": 100,
+    "total_tokens": 23588,
+    "prompt_tokens": 22851,
+    "completion_tokens": 737,
+    "calls": 23,
+    "tokenization_seconds": 0.1148682029943302,
+    "inference_seconds": 21.06867270099974,
+    "unknown_usage_calls": 0
+  },
+  "correct": 1.0,
+  "n": 8,
+  "source_unchanged": true,
+  "raw_sha256": "2c492fed0ce6117eb72a1edf9635847c0ee5055a3d2b9916aa93b39f226bcbaf"
+}

@@ -1,9 +1,10 @@
 PYTHON ?= python3
+TEST_ARTIFACTS ?= artifacts/v9
 .PHONY: test experiment audit-power refine refine-learning refine-audit refine-training cube-bench cpp-check cuda-check paper formal clean
 
 test:
-	mkdir -p artifacts/v8
-	PYTHONPATH=src $(PYTHON) -m pytest -q --junitxml=artifacts/v8/pytest.xml
+	mkdir -p $(TEST_ARTIFACTS)
+	PYTHONPATH=src $(PYTHON) -m pytest -q --junitxml=$(TEST_ARTIFACTS)/pytest.xml
 experiment:
 	PYTHONPATH=src $(PYTHON) experiments/synthetic.py --seeds 20 --episodes 384 --out artifacts/synthetic
 audit-power:
