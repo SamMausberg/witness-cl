@@ -1,0 +1,38 @@
+[
+  {
+    "seed": 95100,
+    "family": "warm",
+    "n": 8,
+    "correct": 3,
+    "minimum_correct": 7,
+    "complete": true,
+    "meets_accuracy_gate": false
+  },
+  {
+    "seed": 95100,
+    "family": "composition",
+    "n": 8,
+    "correct": 0,
+    "minimum_correct": 6,
+    "complete": true,
+    "meets_accuracy_gate": false
+  },
+  {
+    "seed": 95101,
+    "family": "warm",
+    "n": 8,
+    "correct": 5,
+    "minimum_correct": 7,
+    "complete": true,
+    "meets_accuracy_gate": false
+  },
+  {
+    "seed": 95101,
+    "family": "composition",
+    "n": 8,
+    "correct": 1,
+    "minimum_correct": 6,
+    "complete": true,
+    "meets_accuracy_gate": false
+  }
+]

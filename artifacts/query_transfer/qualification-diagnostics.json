@@ -1,0 +1,50 @@
+{
+  "kind": "posthoc_scalar_and_transport_diagnostics",
+  "new_model_calls": 0,
+  "qualified": false,
+  "finish_reasons": {
+    "stop": 181
+  },
+  "reasoning_nonempty_calls": 0,
+  "episode_statuses": {
+    "completed": 32
+  },
+  "wrong_answers_after_correct_last_scalar": [],
+  "last_scalar_answer_correct": [
+    [
+      95100,
+      0
+    ],
+    [
+      95100,
+      5
+    ],
+    [
+      95100,
+      6
+    ],
+    [
+      95101,
+      0
+    ],
+    [
+      95101,
+      2
+    ],
+    [
+      95101,
+      5
+    ],
+    [
+      95101,
+      6
+    ],
+    [
+      95101,
+      14
+    ]
+  ],
+  "total_sql_attempts": 147,
+  "ordinary_query_errors": 6,
+  "scope": "Posthoc diagnostic using last recorded complete finite scalar and independent evaluator; does not alter observed scores or predict a new answer interface."
+}

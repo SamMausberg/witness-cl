@@ -1,0 +1,68 @@
+{
+  "kind": "read_only_prior_runtime_analysis",
+  "new_model_calls": 0,
+  "source_sha256": {
+    "artifacts/v10/development-94001/94001-reuse-evidence.jsonl": "08a8d6f29a525a9ebaf77161cae655decc0b05e7fd5bf0446f30047e661c4cf5",
+    "artifacts/v10/development-94001/94001-reuse-fragments.jsonl": "678d5d86ea700cfe6fb5a0eccf076a20aa6d34e2ffa6e4d53958e57d6a30a580",
+    "artifacts/v10/development-94001/94001-reuse-full_history.jsonl": "3752704ae2cdf135f92e9aa7994dfb440b1119174f7933824a0cc8c83efa02e4"
+  },
+  "records": 66,
+  "generation_attempts": 174,
+  "known_usage_calls": 173,
+  "unknown_usage_calls": 1,
+  "backend_prompt_seconds_known_calls": 234.075576,
+  "backend_generation_seconds_known_calls": 2443.1073960000003,
+  "length_finish_calls": 34,
+  "length_finish_generated_tokens": 69632,
+  "length_finish_inference_seconds": 1187.3898533339998,
+  "median_generation_tokens_per_second": 62.92306172715396,
+  "median_prompt_tokens_per_second": 2702.0480147222843,
+  "maximum_prompt_tokens": 9553,
+  "ordinary10": {
+    "records": 3,
+    "calls": 29,
+    "length_finish_calls": 26,
+    "elapsed_seconds": 954.0993934620005,
+    "fraction_whole_run_wall": 0.35336701761463896
+  },
+  "interpretation": "Measured prior thinking=true run, not causal comparison or benchmark of candidate. Missing usage excluded from known sums, never imputed zero. Mean text lengths do not establish nonthinking token count.",
+  "scenario_formula": "time = total_generated_tokens / 60 + total_prompt_tokens / 2500; rates conservative assumptions, not guarantees; excludes overhead",
+  "unmeasured_scenarios": [
+    {
+      "scenario": "light",
+      "records": 144,
+      "solve_calls_per_episode": 2,
+      "mean_solve_output": 100,
+      "mean_solve_prompt": 4000,
+      "reflection_calls": 48,
+      "mean_reflection_output": 200,
+      "mean_reflection_prompt": 3500,
+      "estimated_seconds": 1168.0,
+      "estimated_tokens": 1358400
+    },
+    {
+      "scenario": "planning",
+      "records": 144,
+      "solve_calls_per_episode": 3,
+      "mean_solve_output": 180,
+      "mean_solve_prompt": 6000,
+      "reflection_calls": 72,
+      "mean_reflection_output": 200,
+      "mean_reflection_prompt": 3500,
+      "estimated_seconds": 2673.6,
+      "estimated_tokens": 2936160
+    },
+    {
+      "scenario": "heavy",
+      "records": 144,
+      "solve_calls_per_episode": 4,
+      "mean_solve_output": 300,
+      "mean_solve_prompt": 8000,
+      "reflection_calls": 72,
+      "mean_reflection_output": 387,
+      "mean_reflection_prompt": 5000,
+      "estimated_seconds": 5331.6,
+      "estimated_tokens": 5168664
+    }
+  ]
+}

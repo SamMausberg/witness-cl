@@ -1,0 +1,52 @@
+    i=0: token=100, finite_count=103, finite_token=102
+    i=1: token=50, finite_count=103, finite_token=102
+    i=2: token=51, finite_count=103, finite_token=102
+    i=3: token=101, finite_count=103, finite_token=102
+    i=4: token=52, finite_count=103, finite_token=102
+  Test 'natural end before budget exhausted' passed (force_start=18446744073709551615, force_end=18446744073709551615)
+    i=0: token=100, finite_count=103, finite_token=102
+    i=1: token=50, finite_count=103, finite_token=102
+    i=2: token=51, finite_count=103, finite_token=102
+    i=3: token=52, finite_count=1, finite_token=102
+    i=4: token=53, finite_count=1, finite_token=101
+  Test 'budget exhausted forcing' passed (force_start=3, force_end=4)
+    i=0: token=100, finite_count=1, finite_token=102
+    i=1: token=50, finite_count=1, finite_token=101
+    i=2: token=51, finite_count=103, finite_token=102
+  Test 'activate immediately budget=0' passed (force_start=0, force_end=1)
+    i=0: token=50, finite_count=103, finite_token=102
+    i=1: token=51, finite_count=103, finite_token=102
+    i=2: token=52, finite_count=103, finite_token=102
+    i=3: token=53, finite_count=103, finite_token=102
+  Test 'no start/end configured' passed (force_start=18446744073709551615, force_end=18446744073709551615)
+    i=0: token=50, finite_count=103, finite_token=102
+    i=1: token=51, finite_count=103, finite_token=102
+    i=2: token=52, finite_count=1, finite_token=102
+    i=3: token=53, finite_count=1, finite_token=101
+  Test 'activate immediately with budget' passed (force_start=2, force_end=3)
+    i=0: token=100, finite_count=103, finite_token=102
+    i=1: token=50, finite_count=103, finite_token=102
+    i=2: token=101, finite_count=103, finite_token=102
+    i=3: token=100, finite_count=103, finite_token=102
+    i=4: token=60, finite_count=103, finite_token=102
+    i=5: token=61, finite_count=103, finite_token=102
+    i=6: token=62, finite_count=1, finite_token=102
+    i=7: token=63, finite_count=1, finite_token=101
+  Test 'multi-block re-arms budget after DONE' passed (force_start=6, force_end=7)
+    i=0: token=110, finite_count=112, finite_token=111
+    i=1: token=111, finite_count=112, finite_token=111
+    i=2: token=50, finite_count=112, finite_token=111
+    i=3: token=51, finite_count=112, finite_token=111
+    i=4: token=52, finite_count=1, finite_token=102
+    i=5: token=53, finite_count=1, finite_token=101
+  Test 'multiple start sequences' passed (force_start=4, force_end=5)
+    i=0: token=100, finite_count=105, finite_token=104
+    i=1: token=50, finite_count=105, finite_token=104
+    i=2: token=103, finite_count=105, finite_token=104
+    i=3: token=104, finite_count=105, finite_token=104
+    i=4: token=52, finite_count=105, finite_token=104
+  Test 'multiple end sequences' passed (force_start=18446744073709551615, force_end=18446744073709551615)
+  Test 'manual force transition' passed
+  Test 'matched end sequence' passed
+Testing reasoning budget sampler... OK (12 tests passed)
+Testing UTF-8 boundary detection... OK
