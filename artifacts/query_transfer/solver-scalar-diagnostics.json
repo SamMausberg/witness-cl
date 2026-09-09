@@ -1,0 +1,746 @@
+{
+  "qualification_runs": [
+    {
+      "kind": "posthoc_final_query_scalar_diagnostic",
+      "model_calls": 0,
+      "input_directory": "artifacts/query_transfer/qualification",
+      "freeze_sha256": "55fe74dac0c2c91e678ac7a8aa8f78ca44e7d6905617942a93e149662708e35d",
+      "raw_sha256": "fa78c07bbf5bd40dab22a659c75ac6bf214a5827756ceff8957fd76992685cde",
+      "manifest_sha256": "53b5b30a9cfbe9aadddf542f533ce2b5a7a62e375d3e59e0ac405163ab5c1188",
+      "diagnostic_source_sha256": "82e728e2e233756bd5affa286fc3a748934de598b5f1c05ec11d543b197946ee",
+      "observed_qualified": false,
+      "groups": [
+        {
+          "seed": 95100,
+          "family": "warm",
+          "n": 8,
+          "observed_answer_correct": 3,
+          "final_query_scalar_available": 7,
+          "final_query_scalar_correct": 3,
+          "wrong_answer_with_correct_final_scalar": 0
+        },
+        {
+          "seed": 95100,
+          "family": "composition",
+          "n": 8,
+          "observed_answer_correct": 0,
+          "final_query_scalar_available": 5,
+          "final_query_scalar_correct": 0,
+          "wrong_answer_with_correct_final_scalar": 0
+        },
+        {
+          "seed": 95101,
+          "family": "warm",
+          "n": 8,
+          "observed_answer_correct": 5,
+          "final_query_scalar_available": 7,
+          "final_query_scalar_correct": 4,
+          "wrong_answer_with_correct_final_scalar": 0
+        },
+        {
+          "seed": 95101,
+          "family": "composition",
+          "n": 8,
+          "observed_answer_correct": 1,
+          "final_query_scalar_available": 6,
+          "final_query_scalar_correct": 1,
+          "wrong_answer_with_correct_final_scalar": 0
+        }
+      ],
+      "episodes": [
+        {
+          "seed": 95100,
+          "episode_index": 0,
+          "family": "warm",
+          "observed_answer": 7543.5,
+          "observed_answer_correct": true,
+          "final_query_scalar": 7543.5,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95100,
+          "episode_index": 1,
+          "family": "warm",
+          "observed_answer": 305.78,
+          "observed_answer_correct": false,
+          "final_query_scalar": 305.7767857142857,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95100,
+          "episode_index": 2,
+          "family": "warm",
+          "observed_answer": 1456.25,
+          "observed_answer_correct": false,
+          "final_query_scalar": 1456.25,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95100,
+          "episode_index": 3,
+          "family": "warm",
+          "observed_answer": 3,
+          "observed_answer_correct": false,
+          "final_query_scalar": null,
+          "final_query_scalar_available": false,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95100,
+          "episode_index": 4,
+          "family": "warm",
+          "observed_answer": 6921.0,
+          "observed_answer_correct": false,
+          "final_query_scalar": 6921.0,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95100,
+          "episode_index": 5,
+          "family": "warm",
+          "observed_answer": 2137.5,
+          "observed_answer_correct": true,
+          "final_query_scalar": 2137.5,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95100,
+          "episode_index": 6,
+          "family": "warm",
+          "observed_answer": 22,
+          "observed_answer_correct": true,
+          "final_query_scalar": 22,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95100,
+          "episode_index": 7,
+          "family": "warm",
+          "observed_answer": 649.75,
+          "observed_answer_correct": false,
+          "final_query_scalar": 649.75,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95100,
+          "episode_index": 8,
+          "family": "composition",
+          "observed_answer": -46.75,
+          "observed_answer_correct": false,
+          "final_query_scalar": -46.75,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95100,
+          "episode_index": 9,
+          "family": "composition",
+          "observed_answer": 0,
+          "observed_answer_correct": false,
+          "final_query_scalar": null,
+          "final_query_scalar_available": false,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95100,
+          "episode_index": 10,
+          "family": "composition",
+          "observed_answer": 48.49,
+          "observed_answer_correct": false,
+          "final_query_scalar": 48.49108367626886,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95100,
+          "episode_index": 11,
+          "family": "composition",
+          "observed_answer": 1,
+          "observed_answer_correct": false,
+          "final_query_scalar": 1,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95100,
+          "episode_index": 12,
+          "family": "composition",
+          "observed_answer": 0,
+          "observed_answer_correct": false,
+          "final_query_scalar": null,
+          "final_query_scalar_available": false,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95100,
+          "episode_index": 13,
+          "family": "composition",
+          "observed_answer": 100.0,
+          "observed_answer_correct": false,
+          "final_query_scalar": 1762.0,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95100,
+          "episode_index": 14,
+          "family": "composition",
+          "observed_answer": 1.7272727272727273,
+          "observed_answer_correct": false,
+          "final_query_scalar": 1.7272727272727273,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95100,
+          "episode_index": 15,
+          "family": "composition",
+          "observed_answer": 734.75,
+          "observed_answer_correct": false,
+          "final_query_scalar": null,
+          "final_query_scalar_available": false,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95101,
+          "episode_index": 0,
+          "family": "warm",
+          "observed_answer": 9183.0,
+          "observed_answer_correct": true,
+          "final_query_scalar": 9183.0,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95101,
+          "episode_index": 1,
+          "family": "warm",
+          "observed_answer": 420.3482142857143,
+          "observed_answer_correct": false,
+          "final_query_scalar": 420.3482142857143,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95101,
+          "episode_index": 2,
+          "family": "warm",
+          "observed_answer": 59,
+          "observed_answer_correct": true,
+          "final_query_scalar": 59,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95101,
+          "episode_index": 3,
+          "family": "warm",
+          "observed_answer": 4,
+          "observed_answer_correct": true,
+          "final_query_scalar": null,
+          "final_query_scalar_available": false,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95101,
+          "episode_index": 4,
+          "family": "warm",
+          "observed_answer": 599650.0,
+          "observed_answer_correct": false,
+          "final_query_scalar": 599650,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95101,
+          "episode_index": 5,
+          "family": "warm",
+          "observed_answer": 2248.25,
+          "observed_answer_correct": true,
+          "final_query_scalar": 2248.25,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95101,
+          "episode_index": 6,
+          "family": "warm",
+          "observed_answer": 22,
+          "observed_answer_correct": true,
+          "final_query_scalar": 22,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95101,
+          "episode_index": 7,
+          "family": "warm",
+          "observed_answer": 5563.0,
+          "observed_answer_correct": false,
+          "final_query_scalar": 5563.0,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95101,
+          "episode_index": 8,
+          "family": "composition",
+          "observed_answer": 24.25,
+          "observed_answer_correct": false,
+          "final_query_scalar": 24.25,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95101,
+          "episode_index": 9,
+          "family": "composition",
+          "observed_answer": 0,
+          "observed_answer_correct": false,
+          "final_query_scalar": null,
+          "final_query_scalar_available": false,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95101,
+          "episode_index": 10,
+          "family": "composition",
+          "observed_answer": 32.0,
+          "observed_answer_correct": false,
+          "final_query_scalar": 2064.25,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95101,
+          "episode_index": 11,
+          "family": "composition",
+          "observed_answer": 6,
+          "observed_answer_correct": false,
+          "final_query_scalar": 6,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95101,
+          "episode_index": 12,
+          "family": "composition",
+          "observed_answer": 119.0,
+          "observed_answer_correct": false,
+          "final_query_scalar": null,
+          "final_query_scalar_available": false,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95101,
+          "episode_index": 13,
+          "family": "composition",
+          "observed_answer": 37.57,
+          "observed_answer_correct": false,
+          "final_query_scalar": 1557.0,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95101,
+          "episode_index": 14,
+          "family": "composition",
+          "observed_answer": 1.5294117647058822,
+          "observed_answer_correct": true,
+          "final_query_scalar": 1.5294117647058822,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95101,
+          "episode_index": 15,
+          "family": "composition",
+          "observed_answer": 120.25,
+          "observed_answer_correct": false,
+          "final_query_scalar": 120.25,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        }
+      ],
+      "scope": "Final recorded query only, if complete finite 1x1 numeric. Evaluator scoring is posthoc; observed gates unchanged. This neither predicts a new interface nor establishes causal model dependence."
+    },
+    {
+      "kind": "posthoc_final_query_scalar_diagnostic",
+      "model_calls": 0,
+      "input_directory": "artifacts/query_transfer/reasoning-qualification",
+      "freeze_sha256": "d5cd0a760ada3a85240ffea6fa920dd4d50b92797b7320aedc41f3b367f68093",
+      "raw_sha256": "c97d098783d1994b19faa5182c8ac1de98f14e2040a10612b22f20a0ae60c552",
+      "manifest_sha256": "4bfb9b6d344810bd4e2316995a2a20444b04faaf65f48a0bfe05579fe5c8d670",
+      "diagnostic_source_sha256": "82e728e2e233756bd5affa286fc3a748934de598b5f1c05ec11d543b197946ee",
+      "observed_qualified": false,
+      "groups": [
+        {
+          "seed": 95102,
+          "family": "warm",
+          "n": 8,
+          "observed_answer_correct": 5,
+          "final_query_scalar_available": 8,
+          "final_query_scalar_correct": 6,
+          "wrong_answer_with_correct_final_scalar": 1
+        },
+        {
+          "seed": 95102,
+          "family": "composition",
+          "n": 8,
+          "observed_answer_correct": 5,
+          "final_query_scalar_available": 8,
+          "final_query_scalar_correct": 7,
+          "wrong_answer_with_correct_final_scalar": 2
+        },
+        {
+          "seed": 95103,
+          "family": "warm",
+          "n": 8,
+          "observed_answer_correct": 8,
+          "final_query_scalar_available": 8,
+          "final_query_scalar_correct": 8,
+          "wrong_answer_with_correct_final_scalar": 0
+        },
+        {
+          "seed": 95103,
+          "family": "composition",
+          "n": 8,
+          "observed_answer_correct": 7,
+          "final_query_scalar_available": 8,
+          "final_query_scalar_correct": 7,
+          "wrong_answer_with_correct_final_scalar": 0
+        }
+      ],
+      "episodes": [
+        {
+          "seed": 95102,
+          "episode_index": 0,
+          "family": "warm",
+          "observed_answer": 7819.5,
+          "observed_answer_correct": true,
+          "final_query_scalar": 7819.5,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95102,
+          "episode_index": 1,
+          "family": "warm",
+          "observed_answer": 301.21,
+          "observed_answer_correct": false,
+          "final_query_scalar": 301.20535714285717,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95102,
+          "episode_index": 2,
+          "family": "warm",
+          "observed_answer": 51,
+          "observed_answer_correct": true,
+          "final_query_scalar": 51,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95102,
+          "episode_index": 3,
+          "family": "warm",
+          "observed_answer": 4,
+          "observed_answer_correct": true,
+          "final_query_scalar": 4,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95102,
+          "episode_index": 4,
+          "family": "warm",
+          "observed_answer": 3553.5,
+          "observed_answer_correct": false,
+          "final_query_scalar": 3553.5,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95102,
+          "episode_index": 5,
+          "family": "warm",
+          "observed_answer": 2809.25,
+          "observed_answer_correct": true,
+          "final_query_scalar": 2809.25,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95102,
+          "episode_index": 6,
+          "family": "warm",
+          "observed_answer": 8,
+          "observed_answer_correct": false,
+          "final_query_scalar": 8,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95102,
+          "episode_index": 7,
+          "family": "warm",
+          "observed_answer": 4725.75,
+          "observed_answer_correct": true,
+          "final_query_scalar": 4725.75,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95102,
+          "episode_index": 8,
+          "family": "composition",
+          "observed_answer": 1630.5,
+          "observed_answer_correct": true,
+          "final_query_scalar": 1630.5,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95102,
+          "episode_index": 9,
+          "family": "composition",
+          "observed_answer": 155.29,
+          "observed_answer_correct": false,
+          "final_query_scalar": 155.28571428571428,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95102,
+          "episode_index": 10,
+          "family": "composition",
+          "observed_answer": 41.53,
+          "observed_answer_correct": false,
+          "final_query_scalar": 41.53141905950895,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95102,
+          "episode_index": 11,
+          "family": "composition",
+          "observed_answer": 3,
+          "observed_answer_correct": true,
+          "final_query_scalar": 3,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95102,
+          "episode_index": 12,
+          "family": "composition",
+          "observed_answer": -139.92857142857142,
+          "observed_answer_correct": true,
+          "final_query_scalar": -139.92857142857142,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95102,
+          "episode_index": 13,
+          "family": "composition",
+          "observed_answer": 38.76179996525163,
+          "observed_answer_correct": true,
+          "final_query_scalar": 38.76179996525163,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95102,
+          "episode_index": 14,
+          "family": "composition",
+          "observed_answer": 1.545,
+          "observed_answer_correct": false,
+          "final_query_scalar": 11,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95102,
+          "episode_index": 15,
+          "family": "composition",
+          "observed_answer": 941.5,
+          "observed_answer_correct": true,
+          "final_query_scalar": 941.5,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 0,
+          "family": "warm",
+          "observed_answer": 9090.75,
+          "observed_answer_correct": true,
+          "final_query_scalar": 9090.75,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 1,
+          "family": "warm",
+          "observed_answer": 296.125,
+          "observed_answer_correct": true,
+          "final_query_scalar": 296.125,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 2,
+          "family": "warm",
+          "observed_answer": 32,
+          "observed_answer_correct": true,
+          "final_query_scalar": 32,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 3,
+          "family": "warm",
+          "observed_answer": 5,
+          "observed_answer_correct": true,
+          "final_query_scalar": 5,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 4,
+          "family": "warm",
+          "observed_answer": 4746.25,
+          "observed_answer_correct": true,
+          "final_query_scalar": 4746.25,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 5,
+          "family": "warm",
+          "observed_answer": 2692.75,
+          "observed_answer_correct": true,
+          "final_query_scalar": 2692.75,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 6,
+          "family": "warm",
+          "observed_answer": 22,
+          "observed_answer_correct": true,
+          "final_query_scalar": 22,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 7,
+          "family": "warm",
+          "observed_answer": 1813.25,
+          "observed_answer_correct": true,
+          "final_query_scalar": 1813.25,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 8,
+          "family": "composition",
+          "observed_answer": 1496.0,
+          "observed_answer_correct": true,
+          "final_query_scalar": 1496.0,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 9,
+          "family": "composition",
+          "observed_answer": 291.3125,
+          "observed_answer_correct": true,
+          "final_query_scalar": 291.3125,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 10,
+          "family": "composition",
+          "observed_answer": 56.234845860755115,
+          "observed_answer_correct": false,
+          "final_query_scalar": 56.234845860755115,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": false
+        },
+        {
+          "seed": 95103,
+          "episode_index": 11,
+          "family": "composition",
+          "observed_answer": 2,
+          "observed_answer_correct": true,
+          "final_query_scalar": 2,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 12,
+          "family": "composition",
+          "observed_answer": 103.46666666666665,
+          "observed_answer_correct": true,
+          "final_query_scalar": 103.46666666666665,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 13,
+          "family": "composition",
+          "observed_answer": 24.53635014836795,
+          "observed_answer_correct": true,
+          "final_query_scalar": 24.53635014836795,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 14,
+          "family": "composition",
+          "observed_answer": 1.5,
+          "observed_answer_correct": true,
+          "final_query_scalar": 1.5,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        },
+        {
+          "seed": 95103,
+          "episode_index": 15,
+          "family": "composition",
+          "observed_answer": 1809.5,
+          "observed_answer_correct": true,
+          "final_query_scalar": 1809.5,
+          "final_query_scalar_available": true,
+          "final_query_scalar_correct": true
+        }
+      ],
+      "scope": "Final recorded query only, if complete finite 1x1 numeric. Evaluator scoring is posthoc; observed gates unchanged. This neither predicts a new interface nor establishes causal model dependence."
+    }
+  ]
+}
