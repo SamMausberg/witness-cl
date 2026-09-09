@@ -27,7 +27,7 @@ cpp-check:
 cuda-check:
 	$(MAKE) -C kernels cuda-check
 paper:
-	$(PYTHON) tools/v7_results.py
+	$(PYTHON) tools/v8_results.py
 	$(PYTHON) tools/render_bibliography.py
 	cd paper && pdflatex -interaction=nonstopmode -halt-on-error main.tex
 	cd paper && pdflatex -interaction=nonstopmode -halt-on-error main.tex
@@ -64,3 +64,7 @@ relational-heldout:
 	OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=src $(PYTHON) experiments/relational_v7.py --seeds 81000 81001 81002 81003 81004 81005 81006 81007 81008 81009 81010 81011 81012 81013 81014 81015 --protocol both --freeze artifacts/v7/freeze.json --out $(V7_OUT)
 relational-audit:
 	PYTHONPATH=src $(PYTHON) experiments/audit_relational_v7.py artifacts/v7/holdout --freeze artifacts/v7/freeze.json --out artifacts/v7/holdout-replay.json
+
+.PHONY: sql-abstraction-audit
+sql-abstraction-audit:
+	PYTHONPATH=src $(PYTHON) experiments/audit_sql_abstractions_v8.py artifacts/v8/development --freeze artifacts/v8/prepilot-freeze.json --output artifacts/v8/development-replay.json

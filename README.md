@@ -1,68 +1,55 @@
 # Witness-CL
 
-**Version0.8 implementation checkpoint:** a local SQL abstraction-discovery agent, six legal-history/memory controls, charged reconstruction checks, fresh old-task panels, and89 Lean statements are implemented. The development cost pilot has not yet run. The research claim is unestablished. See the [v8 protocol](docs/v8/EVALUATION.md), [compiler proof boundary](docs/v8/FORMAL.md), and [composition audit](docs/v8/COMPOSITION_AUDIT.md). The v7 study below and its [archived paper](paper/v7/main.pdf) remain unchanged.
+**The requested online-abstraction claim is not established.** Version 0.8 implements an agent that can propose executable SQL relations from its own successful experience, but its frozen model pilot failed the prerequisite competence test: all six arms scored **0/8 on warm questions**, and neither fragment arm admitted or reused an abstraction.
 
-**Online learning from executed experience, with explicit retention assumptions and falsifiable results.**
+Version 0.8.0 · [Paper](paper/main.pdf) · [Results](docs/v8/RESULTS.md) · [Frozen protocol](docs/v8/EVALUATION.md) · [Compiler proof boundary](docs/v8/FORMAL.md)
 
-Version 0.7.0 · [Paper](paper/main.pdf) · [Results](docs/v7/RESULTS.md) · [Protocol](docs/v7/EVALUATION.md) · [Formal bridge](docs/v7/FORMAL.md) · [Next experiment](docs/v7/NEXT_STEP.md)
+The complete development pilot contains **288 arm-episodes**, **621 real local-model calls**, **1,138,451 tokens**, and **307 SELECT attempts**, completing in **690.13 seconds**. Independent replay passes for every record. Only **14 answers are correct, all zero**; all old-task panels score **0/8 before and after**. Zero observed regression here does not establish preservation of a useful capability. The full-history and evolving-insight implementations did not qualify as competent controls. There is no strong-baseline superiority, heldout result or native benchmark performance claim.
 
-This private research repository continues `Witness_CL_v4.bundle`, preserving its Git history, release tags, original results and archived papers. Version 7 learns small numerical predictors from its own ordinary SQLite observations and subsequent scalar feedback. It selects reusable features from a supplied 84-monomial grammar, then tests frozen changes on fresh paired instances. No list of possible hidden worlds is given.
+The model is official Qwen3-4B Q8_0 on an authenticated local llama.cpp server, with pinned weights, source and settings. The failure belongs to this model/interface configuration; it does not establish that stronger models or revised shared solving instructions would fail. The server has been stopped. [Model provenance](artifacts/v8/model-provenance.json) · [Runtime cleanup](artifacts/v8/runtime-cleanup.json)
 
-**The general continual-learning problem remains open.** On 16 untouched streams, audited feature reuse changes shared-novel reward by **+0.12240** relative to no reuse (nominal paired 95% Student interval **[0.03158, 0.21321]**). The predeclared transfer target is **met**. At the common 4096-SELECT ceiling, its final-panel score is **47.44%**, versus **100.00%** for ungated sparse full-history learning and **100.00%** for full ridge. The requirement to beat every fixed simple control is **not met**. SELECT matching is not equal CPU time or equal all-resource computation. [Interpretation and failure mechanism](docs/v7/INTERPRETATION.md)
+The implementation supplies natural-language questions, opaque schemas and a queryable documentation catalog. The learner receives no task IDs, gold answers or enumerated semantic feature library. After a correct ordinary episode, it may propose a new parameterized relation and an outer SELECT that reconstructs its own observed scalar answer. The check must execute within the same eight-SELECT allowance before admission. Later content retrieval supports checked use or composition with a new outer query. A constant-answer reconstruction is insufficient evidence of transfer. [Abstraction review](docs/v8/PILOT_ABSTRACTION_REVIEW.md)
 
-The new mechanism removes hidden-world enumeration from this experiment, but gives the learner complete small-table observations, a fixed feature grammar, exact scalar supervision and authentic report IDs. Reuse changes candidate search order. It does not learn task identity, synthesize arbitrary SQL or demonstrate native LLM benchmark superiority. Other reports retain identical installed policies during novel learning; that is structural retention under fixed routing.
+**1,063 Python tests pass**, with eight optional skips; C++ reference and sanitizer checks pass. [Validation ledger](artifacts/v8/validation.json)
 
-**656 standard Python tests pass**, with eight optional native-environment tests skipped in the ordinary runtime. The C++ reference/sanitizer checks pass. **Lean 4.19.0 checks 77 statements**, including 14 new finite-population promotion-accounting results; no custom source axioms, placeholders or unexpected dependencies appear. Its probability argument is **not Lean proved**. Independent finite fixtures check 8,748 historical bounds, and saved-data replay verifies the actual experiment's predictions, journals, policy transitions and query accounting.
+**Lean 4.19.0 checks 89 statements**, including 12 new typed-fragment statements. These establish exact prepared-request compilation, binding and composition properties, plus explicitly modeled conditional identities and counterexamples. They do not prove that the runtime discovers abstractions, solves new tasks, saves interaction, or retains behavior. Runtime guard rejection returns feedback and consumes budget, so the abstract answer-level fallback identity is not an unconditional runtime retention guarantee. [Formal audit](artifacts/v8/formal-audit.json)
 
-A separate power counterexample matters: the fixed half-bet can have eventual admission probability below .159 for a policy with positive .1 mean gain, even with unlimited samples. Correct false-acceptance control alone does not make useful learning affordable. [Gate and counterexample](docs/v7/GATE.md)
-
-The holdout records **78,081 ordinary episodes**, **61,790 audit pairs**, and **61,440 panel contexts**. All 192 arm/runs passed independent replay. Four development streams remain separate. Small scalar weights are fitted online; this phase uses no new LLM calls, deployment or paid compute. The requested Codex background automation remains removed. [Execution boundaries](docs/v7/RESEARCH_BOUNDARIES.md)
-
-## Reproduce
+## Reproduce saved-data checks
 
 ```bash
 python3 -m pip install -e '.[test,analysis]'
-make formal
 make test
+make formal
 make cpp-check
-PYTHONPATH=src python3 experiments/audit_relational_v7.py \
-  artifacts/v7/holdout --freeze artifacts/v7/freeze.json \
-  --out artifacts/v7/holdout-replay.json
+PYTHONPATH=src python3 experiments/audit_sql_abstractions_v8.py \
+  artifacts/v8/development --freeze artifacts/v8/prepilot-freeze.json \
+  --output artifacts/v8/development-replay.json
 make paper
 ```
 
-The paper analysis requires a passing independent replay tied to the exact raw files, manifest, freeze and current frozen source. It rejects partial runs and missing evaluation panels. `make formal` uses pinned Lean 4.19.0; `LAKE` may specify its launcher. `make paper` needs pdfLaTeX and regenerates statistics and figures from saved results. Native integration has separate pinned dependencies and a CI job; see [its README](integrations/clbench/README.md).
+The saved-data audit invokes no model. It independently replays actual SQL and reconstructs prompts, provenance, memory, phase schedules, usage and costs. It shares compiler/admission/memory definitions, and it does not cryptographically authenticate original inference. Paper generation rejects stale source, data or replay receipts, incomplete grids and unknown usage. CI also checks the pinned native CL-Bench interface in its separate dependency environment; that job is an interface test, not a benchmark result.
 
-For a new development reproduction, choose an unused directory:
+A new pilot requires the model server specified in the provenance record, a secret key file outside the repository, and an unused output directory. The frozen harness accepts only development seeds 90000–90003. The first protocol has a total 30-minute model-pilot ceiling, and cannot establish the confirmatory margins from one stream. Existing studies cannot be overwritten. Any revised solver/model protocol needs a new source and evaluation freeze. No recurring research automation is active.
 
-```bash
-make relational-development V7_OUT=artifacts/v7/new-development
-```
-
-The evaluation freeze is committed before the untouched run. Replaying that exact frozen configuration into an unused directory is supported:
-
-```bash
-make relational-heldout V7_OUT=artifacts/v7/new-holdout
-```
-
-Completed experiment directories cannot be overwritten. Audit that new directory before analysis. Changing frozen inputs requires a new study and a new source/protocol record; it cannot silently update this evidence. Dependency versions are recorded in [environment.json](artifacts/v7/environment.json).
-
-Each ordinary instance costs three post-setup SELECTs and each pair costs five, including authoritative scoring. The 4096-SELECT companion reserves 768 for the final panel; controls spend saved audit queries on more ordinary feedback. Setup SQL is outside this named budget, with setup time reported separately. Per-run timing excludes initial harness construction and final artifact export; whole-grid elapsed time includes that surrounding work. Numeric and serialized payload sizes do not measure process RAM.
-
-## Repository map
+## Evidence and implementation
 
 | Path | Purpose |
 |---|---|
-| `src/witness_cl/relational_v7.py` | Read-only SQLite measurements, bounded online fitting and feature-bank reuse |
-| `src/witness_cl/statistical_gate_v7.py` | Fresh paired betting tests, immutable identities and permanent error spending |
-| `experiments/relational_v7.py` | Frozen six-arm matched-example and SELECT-budget protocols |
-| `experiments/audit_relational_v7.py` | Independent standard-library replay, including own SQL and policy evaluation |
-| `tools/freeze_v7.py`, `tools/v7_results.py` | Development-gated source freeze and stream-level analysis |
-| `formal/` | 77 checked statements and executable finite fixtures |
-| `artifacts/v7/`, `docs/v7/` | Raw data, freeze, replay receipts, costs, validation and claim boundaries |
-| `paper/` | Current professional LaTeX/TikZ paper, PDF and generated figures |
-| `paper/v6/`, `artifacts/v6/`, `docs/v6/` | Preserved earlier planning experiment and negative comparisons |
+| `src/witness_cl/sql_env_v8.py` | Bounded read-only SQLite, public schema/catalog, fresh instances and evaluator-only target recipes |
+| `src/witness_cl/fragments_v8.py` | Immutable typed text/hole compiler, strict bindings and CTE composition |
+| `src/witness_cl/abstraction_v8.py` | Own-experience proposal, charged reconstruction and admission provenance |
+| `src/witness_cl/memory_v8.py`, `model_v8.py` | Six memory arms and measured authenticated loopback inference |
+| `experiments/sql_abstractions_v8.py` | Frozen actual-model pilot with reserved panel resources |
+| `experiments/audit_sql_abstractions_v8.py` | Saved-data replay and cost/completeness checks |
+| `tools/v8_results.py` | Descriptive single-stream reporting; no unsupported confidence interval |
+| `formal/WitnessCL/TypedFragments.lean` | New compiler contracts and limitation counterexamples |
+| `artifacts/v8/`, `docs/v8/` | Raw traces, source receipts, proof/test evidence and independent reviews |
+| `paper/main.tex`, `paper/main.pdf` | Current professional LaTeX report and PDF |
 
-Earlier versions' local-model pilots and benchmark integrations remain archived; they are not relabeled as new native CL-Bench or AgentCL performance. The next proposed test learns schema facts and query fragments under each benchmark's permitted feedback rules. Gold-guided admission would be an augmented-feedback track, not native AgentCL memory construction.
+The [environment review](docs/v8/PILOT_ENVIRONMENT_REVIEW.md) distinguishes genuine target recombination opportunities from actual acquisition. Seven of eight fresh-old targets change; refunded-order count remains structurally 22. A future heldout protocol must use disjoint numeric seeds because the split label alone does not ensure independent data seeds. The [next decision](docs/v8/NEXT_STEP.md) addresses shared solver competence before scaling the memory comparison.
 
-MIT software license retained. AI-assisted research draft for Samuel Mausberg; author review and independent replication remain necessary.
+## Preserved earlier research
+
+This private repository continues `Witness_CL_v4.bundle` and preserves its Git history and release tags. In the [archived v7 study](docs/v7/RESULTS.md), a supplied-grammar numerical learner gained +0.12240 reward from reuse on shared-novel questions, but lost the common-SELECT-budget final comparison to simple full-history controls (47.44% versus 100%). That result does not demonstrate discovered SQL abstractions. Its [paper](paper/v7/main.pdf), [source freeze](artifacts/v7/freeze.json), raw evidence and earlier archives remain unchanged.
+
+MIT software license. AI-assisted research draft; author review and independent replication remain necessary before publication.

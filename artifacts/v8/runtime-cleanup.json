@@ -1,0 +1,8 @@
+{
+  "owned_server_pid": 205371,
+  "alias_verified_before_signal": true,
+  "signal": "SIGTERM",
+  "loopback_listener_closed": true,
+  "new_model_calls_after_pilot": 0,
+  "temporary_key_removed": true
+}

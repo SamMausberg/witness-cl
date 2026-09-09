@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.8.0 — September 2026
+
+- Implemented real model-generated SQL relations from own experience, typed binding/composition, charged reconstruction, strict provenance and content-only retrieval without task IDs or a predefined semantic feature library.
+- Added six memory/control arms, opaque-schema SQLite tasks, fresh old panels, explicit compositional taxonomy and complete model/SELECT/storage accounting.
+- Froze and completed a six-arm development pilot: 288 episodes, 621 local-model calls, 1,138,451 tokens, 307 SELECT attempts and 690.13 seconds. All six arms scored 0/8 warm; neither fragment arm admitted or reused a program. The target claim is not established.
+- Independently replayed every saved episode and actual SQL outcome. Recorded low competence, false interpretation of failure feedback, constant-answer successes and split/retention limitations. No heldout or native benchmark result.
+- Added 12 Lean statements, bringing the checked total to 89; request compilation properties and modeled conditional identities do not prove discovery or runtime retention.
+- Archived the v7 paper and rewrote the current LaTeX manuscript around the actual negative pilot. Stopped the owned model server; retained the private Git destination and all earlier frozen evidence.
+
 ## 0.7.0 — September 2026
 
 - Added real bounded read-only SQLite measurements and small online feature learners, including full-history sparse and ridge controls.

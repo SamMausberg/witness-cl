@@ -1,0 +1,392 @@
+{
+  "kind": "single_development_stream_descriptive_report",
+  "claim_confirmed": false,
+  "competence_thresholds_met": false,
+  "stream_count": 1,
+  "elapsed_seconds": 690.1266342039962,
+  "rows": [
+    {
+      "arm": "full_history",
+      "phases": {
+        "warm": {
+          "correct": 0,
+          "n": 8,
+          "selects": 9
+        },
+        "middle": {
+          "correct": 0,
+          "n": 8,
+          "selects": 12
+        },
+        "late": {
+          "correct": 0,
+          "n": 8,
+          "selects": 7
+        },
+        "old_before": {
+          "correct": 0,
+          "n": 8,
+          "selects": 8
+        },
+        "old_after": {
+          "correct": 0,
+          "n": 8,
+          "selects": 7
+        },
+        "final": {
+          "correct": 1,
+          "n": 8,
+          "selects": 9
+        }
+      },
+      "selects": 52,
+      "model_calls": 100,
+      "tokenization_calls": 100,
+      "preflight_only_calls": 0,
+      "prompt_tokens": 621930,
+      "completion_tokens": 2897,
+      "model_seconds": 219.38585429299565,
+      "query_seconds": 0.006422453967388719,
+      "episode_seconds": 219.53385396697558,
+      "peak_memory_bytes": 37254,
+      "peak_active_memory_bytes": 33364,
+      "last_memory_bytes": 37254,
+      "accepted_reconstruction_witnesses": 0,
+      "rejected_proposals": 0,
+      "use_actions": 0,
+      "compose_actions": 0,
+      "executed_fragments": 0,
+      "zero_query_correct": 0,
+      "zero_answers": 10,
+      "catalog_queries": 0,
+      "sql_errors": 13,
+      "actions": {
+        "QUERY": 52,
+        "ANSWER": 48
+      },
+      "old_constant_item_before": 0.0,
+      "old_constant_item_after": 0.0
+    },
+    {
+      "arm": "verbatim",
+      "phases": {
+        "warm": {
+          "correct": 0,
+          "n": 8,
+          "selects": 14
+        },
+        "middle": {
+          "correct": 1,
+          "n": 8,
+          "selects": 15
+        },
+        "late": {
+          "correct": 0,
+          "n": 8,
+          "selects": 22
+        },
+        "old_before": {
+          "correct": 0,
+          "n": 8,
+          "selects": 16
+        },
+        "old_after": {
+          "correct": 0,
+          "n": 8,
+          "selects": 8
+        },
+        "final": {
+          "correct": 2,
+          "n": 8,
+          "selects": 10
+        }
+      },
+      "selects": 85,
+      "model_calls": 133,
+      "tokenization_calls": 133,
+      "preflight_only_calls": 0,
+      "prompt_tokens": 159411,
+      "completion_tokens": 3882,
+      "model_seconds": 115.77161455104215,
+      "query_seconds": 0.007785153007716872,
+      "episode_seconds": 115.8838960349749,
+      "peak_memory_bytes": 23779,
+      "peak_active_memory_bytes": 19899,
+      "last_memory_bytes": 23779,
+      "accepted_reconstruction_witnesses": 0,
+      "rejected_proposals": 0,
+      "use_actions": 0,
+      "compose_actions": 0,
+      "executed_fragments": 0,
+      "zero_query_correct": 0,
+      "zero_answers": 33,
+      "catalog_queries": 0,
+      "sql_errors": 39,
+      "actions": {
+        "QUERY": 47,
+        "ANSWER": 48,
+        "invalid": 38
+      },
+      "old_constant_item_before": 0.0,
+      "old_constant_item_after": 0.0
+    },
+    {
+      "arm": "insights",
+      "phases": {
+        "warm": {
+          "correct": 0,
+          "n": 8,
+          "selects": 3
+        },
+        "middle": {
+          "correct": 0,
+          "n": 8,
+          "selects": 8
+        },
+        "late": {
+          "correct": 0,
+          "n": 8,
+          "selects": 0
+        },
+        "old_before": {
+          "correct": 0,
+          "n": 8,
+          "selects": 0
+        },
+        "old_after": {
+          "correct": 0,
+          "n": 8,
+          "selects": 0
+        },
+        "final": {
+          "correct": 2,
+          "n": 8,
+          "selects": 0
+        }
+      },
+      "selects": 11,
+      "model_calls": 83,
+      "tokenization_calls": 83,
+      "preflight_only_calls": 0,
+      "prompt_tokens": 61027,
+      "completion_tokens": 5011,
+      "model_seconds": 81.98290698696655,
+      "query_seconds": 0.0007059989948174916,
+      "episode_seconds": 82.04465782302577,
+      "peak_memory_bytes": 4486,
+      "peak_active_memory_bytes": 1359,
+      "last_memory_bytes": 4486,
+      "accepted_reconstruction_witnesses": 0,
+      "rejected_proposals": 0,
+      "use_actions": 0,
+      "compose_actions": 0,
+      "executed_fragments": 0,
+      "zero_query_correct": 2,
+      "zero_answers": 46,
+      "catalog_queries": 0,
+      "sql_errors": 7,
+      "actions": {
+        "ANSWER": 48,
+        "QUERY": 4,
+        "invalid": 7
+      },
+      "old_constant_item_before": 0.0,
+      "old_constant_item_after": 0.0
+    },
+    {
+      "arm": "fragments",
+      "phases": {
+        "warm": {
+          "correct": 0,
+          "n": 8,
+          "selects": 0
+        },
+        "middle": {
+          "correct": 1,
+          "n": 8,
+          "selects": 2
+        },
+        "late": {
+          "correct": 0,
+          "n": 8,
+          "selects": 1
+        },
+        "old_before": {
+          "correct": 0,
+          "n": 8,
+          "selects": 0
+        },
+        "old_after": {
+          "correct": 0,
+          "n": 8,
+          "selects": 0
+        },
+        "final": {
+          "correct": 2,
+          "n": 8,
+          "selects": 27
+        }
+      },
+      "selects": 30,
+      "model_calls": 79,
+      "tokenization_calls": 79,
+      "preflight_only_calls": 0,
+      "prompt_tokens": 59674,
+      "completion_tokens": 3221,
+      "model_seconds": 51.27928102207079,
+      "query_seconds": 0.0030794680205872282,
+      "episode_seconds": 51.34811285501928,
+      "peak_memory_bytes": 3917,
+      "peak_active_memory_bytes": 28,
+      "last_memory_bytes": 3917,
+      "accepted_reconstruction_witnesses": 0,
+      "rejected_proposals": 1,
+      "use_actions": 0,
+      "compose_actions": 0,
+      "executed_fragments": 0,
+      "zero_query_correct": 2,
+      "zero_answers": 47,
+      "catalog_queries": 0,
+      "sql_errors": 16,
+      "actions": {
+        "ANSWER": 48,
+        "QUERY": 22,
+        "invalid": 8
+      },
+      "old_constant_item_before": 0.0,
+      "old_constant_item_after": 0.0
+    },
+    {
+      "arm": "fragments_unchecked",
+      "phases": {
+        "warm": {
+          "correct": 0,
+          "n": 8,
+          "selects": 0
+        },
+        "middle": {
+          "correct": 1,
+          "n": 8,
+          "selects": 2
+        },
+        "late": {
+          "correct": 0,
+          "n": 8,
+          "selects": 1
+        },
+        "old_before": {
+          "correct": 0,
+          "n": 8,
+          "selects": 0
+        },
+        "old_after": {
+          "correct": 0,
+          "n": 8,
+          "selects": 0
+        },
+        "final": {
+          "correct": 2,
+          "n": 8,
+          "selects": 27
+        }
+      },
+      "selects": 30,
+      "model_calls": 79,
+      "tokenization_calls": 79,
+      "preflight_only_calls": 0,
+      "prompt_tokens": 59674,
+      "completion_tokens": 3221,
+      "model_seconds": 48.67483228005585,
+      "query_seconds": 0.0030248690163716674,
+      "episode_seconds": 48.74402442399878,
+      "peak_memory_bytes": 3927,
+      "peak_active_memory_bytes": 28,
+      "last_memory_bytes": 3927,
+      "accepted_reconstruction_witnesses": 0,
+      "rejected_proposals": 1,
+      "use_actions": 0,
+      "compose_actions": 0,
+      "executed_fragments": 0,
+      "zero_query_correct": 2,
+      "zero_answers": 47,
+      "catalog_queries": 0,
+      "sql_errors": 16,
+      "actions": {
+        "ANSWER": 48,
+        "QUERY": 22,
+        "invalid": 8
+      },
+      "old_constant_item_before": 0.0,
+      "old_constant_item_after": 0.0
+    },
+    {
+      "arm": "stateless",
+      "phases": {
+        "warm": {
+          "correct": 0,
+          "n": 8,
+          "selects": 8
+        },
+        "middle": {
+          "correct": 0,
+          "n": 8,
+          "selects": 22
+        },
+        "late": {
+          "correct": 0,
+          "n": 8,
+          "selects": 21
+        },
+        "old_before": {
+          "correct": 0,
+          "n": 8,
+          "selects": 8
+        },
+        "old_after": {
+          "correct": 0,
+          "n": 8,
+          "selects": 8
+        },
+        "final": {
+          "correct": 2,
+          "n": 8,
+          "selects": 32
+        }
+      },
+      "selects": 99,
+      "model_calls": 147,
+      "tokenization_calls": 147,
+      "preflight_only_calls": 0,
+      "prompt_tokens": 145402,
+      "completion_tokens": 13101,
+      "model_seconds": 171.21607419593784,
+      "query_seconds": 0.009384445955220144,
+      "episode_seconds": 171.3091747510116,
+      "peak_memory_bytes": 3819,
+      "peak_active_memory_bytes": 28,
+      "last_memory_bytes": 3819,
+      "accepted_reconstruction_witnesses": 0,
+      "rejected_proposals": 0,
+      "use_actions": 0,
+      "compose_actions": 0,
+      "executed_fragments": 0,
+      "zero_query_correct": 0,
+      "zero_answers": 26,
+      "catalog_queries": 0,
+      "sql_errors": 50,
+      "actions": {
+        "QUERY": 57,
+        "ANSWER": 48,
+        "invalid": 42
+      },
+      "old_constant_item_before": 0.0,
+      "old_constant_item_after": 0.0
+    }
+  ],
+  "source_manifest_sha256": "18e43657ffd7bd59c645bb222e70b37602cc2660443d3fb354387775e2cddb97",
+  "source_replay_sha256": "ba26d32d6c7b9ba67ca5e63270a62e18f5924333d296faf30da7c683b77a9156",
+  "analysis_source_sha256": "cefbf4b260f79667c8328b3dcd78a8ccf069fb81ba26a0275f4d55f2b49f92e0",
+  "confidence_intervals": "not estimated from a single correlated stream",
+  "storage_measure": "serialized retained learner state including journals; not Python heap, process RSS or model memory",
+  "catalog_query_count_method": "case-insensitive SQL text mention, not an SQL AST classification"
+}

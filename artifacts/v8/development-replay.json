@@ -1,0 +1,63 @@
+[
+  {
+    "status": "passed",
+    "directory": "/mnt/c/Users/Sam/Documents/Codex/2026-09-08/we-are-working-together-on-open-2/outputs/witness-cl/artifacts/v8/development",
+    "scope": "saved-data consistency, independent SQLite outcomes, shared-code prompt/memory reconstruction",
+    "auditor_source_sha256": "3e31e968edcef8713d4b0e0febc8314dc4c83f9e50a512be32b0931c1306b29c",
+    "claim_confirmed": false,
+    "pilot_completeness": "complete",
+    "planned_records_complete": true,
+    "required_records_complete": true,
+    "known_usage_complete": true,
+    "sqlite_outcomes_complete": true,
+    "resource_comparison_complete": true,
+    "limitations": [
+      "Uses frozen environment generation and learner memory/compiler definitions; no runner or model client imported.",
+      "Does not authenticate original execution, backend token counts, model weights or reported runtime.",
+      "A development pilot cannot establish the requested interaction/accuracy/retention claim.",
+      "Machine-specific SQL timeouts that cannot be reproduced are reported separately, never treated as verified results."
+    ],
+    "manifest_sha256": "18e43657ffd7bd59c645bb222e70b37602cc2660443d3fb354387775e2cddb97",
+    "summary_sha256": "8d2b7fb786e247532bb205e1d2ab5651891cf04e30128ce5a5b92edb26af965a",
+    "manifest_status": "completed",
+    "checked_source_sha256": {
+      "src/witness_cl/sql_env_v8.py": "8199b4714cd3460157a3acb81dcbf0581bd540129dd5c230db7a609cd2155a6d",
+      "src/witness_cl/fragments_v8.py": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd",
+      "src/witness_cl/memory_v8.py": "18a0c2994c7f8b437f1ff070f791bc0f6c8d344bdfc4ad9687af6396e6db1b47",
+      "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+      "src/witness_cl/abstraction_v8.py": "1bf54a2d273533238d0dc3940f4460efb37e60694818c7dfd1a4b669faf24b44",
+      "experiments/sql_abstractions_v8.py": "a8d3ed49f45106b0d9193c414ab57ee7ef85249ca876157d224a165d22178447",
+      "docs/v8/EVALUATION.md": "632939f6c8119bfbc0ca7ae15fb56d60cb5bf80d157c13fd2b7fca0b65014e85"
+    },
+    "checked_model_provenance_sha256": "38a36832163d3648dea7798e84980542facc830718daf8bf96cd37228706e1fc",
+    "checked_freeze_sha256": "dafd2a2b3bff906656e5f3e6b3f1f49d6c6127501cef4db2f8b7fded769abd6b",
+    "wall_cap_respected": true,
+    "full_six_arm_grid": true,
+    "independent_reference_cases": 48,
+    "checked": {
+      "recorded_model_calls": 621,
+      "generation_attempts": 621,
+      "known_prompt_tokens": 1107118,
+      "known_completion_tokens": 31333,
+      "known_total_tokens": 1138451,
+      "independently_replayed_queries": 307,
+      "select_attempts": 307,
+      "query_errors": 141,
+      "episodes": 288,
+      "correct_episodes": 14,
+      "resource_stopped_episodes": 0,
+      "runtime_failed_episodes": 0,
+      "unanswered_episodes": 0
+    },
+    "failures": [],
+    "protocol_issues": [],
+    "raw_sha256": {
+      "90000-reuse-fragments.jsonl": "8f86278217fed7c10055bda3462b445f28b4e2d436d18fd28e129773a661b788",
+      "90000-reuse-fragments_unchecked.jsonl": "444bd08685c8af6a489ecf8458562fb21d0bddccac50ae9064b7cad3f7770b09",
+      "90000-reuse-full_history.jsonl": "d47527d2795c0f0f9e4f752acb0e13b0c81ed0d3fa95407a960c8d7187d5bd79",
+      "90000-reuse-insights.jsonl": "37694b00a35f10a534c576c3430961f6eafe18d334cc6c5be123298270606f50",
+      "90000-reuse-stateless.jsonl": "4bdddcc59c2835d7535bed8cd32e9e222d7f9da23670327e358e0d5e3858d21a",
+      "90000-reuse-verbatim.jsonl": "2c03b5689f36e3faba2e8f9a808be91ad8eb5dadb305a902f8486a975350a5d6"
+    }
+  }
+]

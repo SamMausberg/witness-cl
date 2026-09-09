@@ -105,8 +105,14 @@ over its fragment AST, while validation of the Python lexer, deduplication,
 UTF-8 handling, SQLite parameter lookup and namespace construction is executable
 testing rather than a machine-checked refinement proof of Python or SQLite.
 
-The guard result is conditional, not a claim that observed agreement supplies
-its premise. If the check passes and the candidate returns a wrong answer,
+The guard result is conditional and concerns an abstract answer-level operator,
+not a refinement proof of the model-driven fallback loop. The actual agent
+receives guard feedback and resumes solving with a changed prompt and reduced
+SELECT allowance. Its later answer need not equal an ordinary solver's answer
+without that check. The theorem supplies the ordinary answer as an argument;
+it does not prove that the runtime can recover that answer under its budget.
+Observed agreement does not supply the acceptance premise. If the check passes
+and the candidate returns a wrong answer,
 fallback is not invoked on that execution. An unchanged old policy also cannot
 force the database, question interpretation or distribution to remain unchanged.
 

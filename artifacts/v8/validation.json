@@ -1,0 +1,37 @@
+{
+  "version": 8,
+  "claim_confirmed": false,
+  "python": {
+    "passed": 1063,
+    "skipped": 8,
+    "failed": 0,
+    "errors": 0
+  },
+  "lean": {
+    "statements": 89,
+    "new_statements": 12,
+    "scope": "typed request compiler plus modeled conditional identities, not successful learning or runtime retention"
+  },
+  "cpp": "reference and sanitizer checks passed before pilot; source unchanged",
+  "pilot": {
+    "status": "completed",
+    "episodes": 288,
+    "accepted_executable_memories": 0,
+    "heldout_model_calls": 0,
+    "strong_baselines_qualified": false
+  },
+  "checkpoint_ci": {
+    "commit": "54cd9c833e28454ab9c679185eaddd91028d0efd",
+    "url": "https://github.com/SamMausberg/witness-cl/actions/runs/34306059579",
+    "conclusion": "success"
+  },
+  "artifact_sha256": {
+    "artifacts/v8/pytest.xml": "42592b9bf21ec1e0da6ece34fcb0dfdeb2717b4ff0d074e4175208019824bdc2",
+    "artifacts/v8/pytest.txt": "c7c9cc497ba14379e9ceff8673e363a1895669e8a80935e69bf1c170801e757d",
+    "artifacts/v8/formal-audit.json": "3e2f53353476e90f289bbf230125bc8d406793f7fd314a737cbdb107fb33fb23",
+    "artifacts/v8/cpp-check.txt": "7e65013defa7b4810aa8f1f7c56520be4b5f84b58d7850d29aee88c8a4004e13",
+    "artifacts/v8/development-replay.json": "ba26d32d6c7b9ba67ca5e63270a62e18f5924333d296faf30da7c683b77a9156",
+    "artifacts/v8/results.json": "82e152362081ad91b3614e7b52b7272f9e2a6a49715c26e02c9944f68f0a1948",
+    "artifacts/v8/prepilot-freeze.json": "dafd2a2b3bff906656e5f3e6b3f1f49d6c6127501cef4db2f8b7fded769abd6b"
+  }
+}

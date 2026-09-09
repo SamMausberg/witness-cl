@@ -4,461 +4,445 @@
 \usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs,graphicx,array}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,fit}
+\usetikzlibrary{arrows.meta,positioning}
 \usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr,balance,caption}
 \captionsetup{font=small,labelfont=bf}
 \pagestyle{fancy}\fancyhf{}
-\fancyhead[L]{\small Witness-CL v0.7}\fancyhead[R]{\small Research draft, September 2026}
+\fancyhead[L]{\small Witness-CL v0.8}\fancyhead[R]{\small Development study, September 2026}
 \fancyfoot[C]{\thepage}\setlength{\headheight}{14pt}
 \setlength{\emergencystretch}{1.5em}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
 \newcommand{\E}{\mathbb E}
-\newcommand{\Prb}{\mathbb P}
-\newcommand{\D}{\mathcal D}
-\newcommand{\G}{\mathcal G}
-\title{\vspace{-1.2em}\textbf{Witness-CL: Online Feature Reuse\\Under a Statistical Promotion Contract}}
+\title{\vspace{-1.2em}\textbf{Witness-CL: Checked Executable Memories\\and a Failed Online-Abstraction Pilot}}
 \author{Samuel Mausberg\\\small AI-assisted research draft; author review and independent replication pending}
 \date{}
-\hypersetup{pdftitle={Witness-CL: Online Feature Reuse Under a Statistical Promotion Contract},pdfauthor={Samuel Mausberg},pdfsubject={Bounded online learning, audit opportunity cost, and formal retention accounting}}
+\hypersetup{pdftitle={Witness-CL: Checked Executable Memories and a Failed Online-Abstraction Pilot},pdfauthor={Samuel Mausberg},pdfsubject={Typed SQL fragments, experience provenance, competence failures, and limits of retention guarantees}}
 \begin{document}
 \raggedbottom
 \maketitle
 \begin{abstract}
-\input{v7_abstract.tex}
+Can an online agent discover executable abstractions from its own experience,
+reuse them on new compositional tasks without task identifiers or an enumerated
+semantic feature library, reduce interaction relative to full-history and
+evolving-memory controls, and retain prior competence? We implement a bounded
+SQL agent intended to test that conjunction. Its model may synthesize a new
+parameterized relation after a correct episode; admission requires a charged
+execution that reconstructs its own observed scalar result. A typed compiler
+supports rebinding and a new outer SELECT, with exact prepared-request properties
+checked in Lean. A frozen six-arm development pilot uses one local Qwen3-4B
+backbone, opaque schemas, queryable business documentation, fresh database rows,
+and separate frozen evaluation panels. All six arms score zero on the eight
+warm questions. Neither executable-memory arm admits or uses an abstraction.
+The run therefore fails the predeclared competence prerequisites and does not
+establish the target claim. We report the complete cost and outcome record,
+identify transcript-level failure mechanisms, and distinguish compiler correctness,
+finite reconstruction evidence, observed transfer and behavioral retention.
 \end{abstract}
 
-\section{Problem and contribution boundary}
-The target is a deployed learner that improves across useful stateful episodes
-from its own experience, without an offline retraining phase and without losing
-valuable prior behavior. Preserving a transcript or weights is insufficient:
-the relevant object is future behavior under an explicitly declared task law.
-CL-Bench reports weak cross-instance reuse and a strong raw-history in-context
-learning (ICL) aggregate baseline~\cite{clbench}. AgentCL separates compositional
-transfer from persistence and exposes damage from irrelevant memory~\cite{agentcl}.
-A useful solution must beat such controls after accounting for adaptation costs.
-Neither retaining history nor validating changes alone establishes that result.
+\section{Question and scope}
+The intended contribution is a conjunction of discovery, transfer, efficiency
+and preservation. Each is necessary. A smaller prompt does not establish lower
+interaction at equal accuracy; a correct answer does not establish use of a
+learned abstraction; and unchanged failure does not establish retention of a
+useful capability. This report makes the attempted mechanism concrete and records
+why its first model pilot does not satisfy that conjunction.
 
-Witness-CL's supplied v4 ancestor learns hidden transducers inside a correctly
-declared finite class and checks immutable continuation policies. Our v5 and v6
-extensions preserve its history and report rejected exploration hypotheses.
-In v6, two-probe planning improves reward over a cheap zero-loss informative
-rule by 0.3938 per episode on 40 frozen streams, but loses 0.1948 to bounded
-optimism and uses $8.88\times$ the cheap rule's planning time. Those results
-remain archived; they do not justify scaling enumerative planning as a solution.
+CL-Bench evaluates learning across stateful domains and reports a strong raw-history
+ICL baseline relative to dedicated memory systems~\cite{clbench}. AgentCL constructs
+streams with reusable components and separates transfer from performance on less
+structured task streams~\cite{agentcl}. These motivate both mandatory history
+controls and an explicit audit of task relationships. This custom SQLite study
+is not an execution of either benchmark and gives no native benchmark score.
 
-This version asks a different bounded question: can useful feature reuse pay for
-fresh statistical auditing when there is no enumerated hidden-world class?
-Small numerical predictors learn after ordinary query episodes, promote frozen
-versions after paired testing, and reuse promoted feature syntax in later
-reports. Real SQLite queries replace simulated tool responses. The evaluator
-keeps report recipes private from the learner, but gives exact scalar feedback
-after ordinary predictions. This is supervised online feature search within a
-fixed grammar, not autonomous tool discovery or native LLM continual learning.
+The implementation removes two major restrictions of the preceding Witness-CL
+experiment: the learner receives neither authentic report IDs nor an enumerated
+84-monomial feature library. Instead, a language model writes ordinary SQL from
+public instructions and its own tool observations. SQL syntax, the action API,
+the pretrained model, and the bounded memory representation remain inductive
+biases. Removing a semantic feature list does not mean removing every grammar
+or proving that the foundation model has never encountered similar programs.
 
-The contributions are an executable separation of fitting and fresh admission
-data; a query-budget comparison that charges the audit's opportunity cost;
-a deterministic Lean accounting bridge for erroneous promotions; and explicit
-failure tests for the grammar, fixed routing and statistical power. The
-statistical machinery and component isolation have established antecedents.
-Any practical contribution must come from measured transfer over strong controls,
-not a novelty claim for attaching confidence tests to a memory library.
+The new evidence consists of a complete executable pipeline, 12 additional
+Lean statements, differential compiler fixtures, independent saved-data replay,
+and a negative development pilot. The previous v7 empirical result and its
+source freeze are preserved separately; neither its positive within-family
+transfer contrast nor its structural routing guarantee is relabeled as a result
+for this agent.
 
-\section{Existing approaches and unresolved gaps}
-\paragraph{Learned memory and executable libraries.}
-ACE evolves contextual playbooks, ALMA searches memory designs, and EvoLib
-consolidates reusable abstractions~\cite{ace,alma,evolib}. These mechanisms are
-stronger than passive retrieval. Outer design search is nevertheless a cost and
-training distinction from solely online experience. TTHE evolves executable
-harnesses; its authors distinguish its same-batch adaptation/evaluation from
-future-batch generalization~\cite{tthe}. Recent computer-use work freezes
-versioned skill libraries within iterations and reports benefits as well as
-revision failures~\cite{persistent}. Neither frozen snapshots nor an evolving
-library is new here, and we have not reproduced these systems head to head.
+\section{Environment and information boundary}
+An episode supplies a natural-language scalar question and SQLite CREATE
+statements with randomized table and column names. Four data relations represent
+orders, customer profiles, refunds and shipments. A queryable \texttt{catalog}
+table documents column meanings, monetary units, missing-value conventions,
+profile multiplicity and the rule identifying current profiles. Meaning is
+therefore discoverable by legal interaction. It is not supplied through a
+hidden family label or a model-visible oracle program.
 
-\paragraph{Online parameters and isolation.}
-Gradient constraints and orthogonal updates address interference in shared
-parameters~\cite{gem,ogd}; progressive networks isolate earlier
-components~\cite{progressive}. Such techniques require a matching task,
-memory and resource contract. Parameter isolation retains a function, but
-changing retrieval or dispatch can still change its use. Our report-specific
-frozen policies make that boundary explicit while assuming authentic report IDs.
-The numerical proposer may forget; deployed incumbents are separate objects.
-This does not show that a shared neural network retains arbitrary capabilities.
+Each database has 32 orders, eight customers and bounded related records.
+Each ordinary and distinct panel fixture has independently generated rows;
+the same fixed fresh-old fixtures are reused in both retention measurements.
+A SELECT returns
+at most 50 rows and is subject to cell, byte, VM-step and time limits. All
+attempts count, including failed SQL, malformed actions, applicability checks,
+fragment execution and post-answer reconstruction. Each episode permits eight
+attempts and ten model action calls. The host rejects writes, attachments,
+extensions, file functions and recursive CTEs. The model emits structured text
+and has no Python, shell or network tool authority.
 
-\paragraph{Model-based and statistical policy improvement.}
-Predictive state representations model future observable experiments~\cite{psr}.
-Deep SPI already joins representations, learned world models and safe online
-improvement~\cite{deepspi}. Their abstraction and sampling assumptions remain
-substantive. High Confidence Policy Improvement (HCPI) separates candidate
-selection from testing expected-return constraints~\cite{hcpi}. Its erratum
-corrects repeated testing to a bound growing with the number of tests~\cite{hcpierrata}.
-A per-test confidence level is not a lifetime error budget.
+Correctness feedback is one binary outcome after a submitted finite numeric
+answer. The model never receives the numerical target. The evaluator records
+reference information only after model interaction is finished. During ordinary
+learning, an unused query allowance may support a reconstruction check after
+scoring; this cannot revise the scored answer. Evaluation panels disable that
+learning path and cannot update cross-episode memory. The interface is a
+restricted executor for model-generated SQL, not an operating-system isolation
+claim against arbitrary host-process introspection.
 
-Time-uniform confidence sequences and betting processes support valid optional
-stopping~\cite{confidence,betting}. Anytime off-policy evaluation offers a
-model-free route when only logged actions are available, with support,
-propensity and exogeneity obligations~\cite{offpolicy}. Conservative bandits
-protect cumulative arm means under their stochastic contract~\cite{conservativebandits};
-that is different from protecting each realized task. Thresholdout controls
-adaptive access to holdout data through a specified mechanism~\cite{thresholdout}.
-Simply renaming reused test examples is not such a mechanism. We choose fresh
-paired local execution because identical read-only starting instances are cheap,
-while explicitly measuring that cost. This convenience is an application
-assumption that a real deployment may not provide.
+\subsection{Composition and retention}
+Each stream has eight warm questions, eight middle questions that recombine
+previously required relations, and eight later questions involving more complex
+operations. The middle block includes profile-conditioned net value, refund/gross
+ratios, grouped extrema and differences of conditional averages. Its required
+target structures differ from the warm questions after literal normalization.
+Question 17 introduces shipment delivery; question 18 adds latest-shipment timing.
+The late block is reported separately because these operations are new learning
+requirements, not pure transfer of already practiced skills.
 
-\section{A bounded learner from its own episodes}
-\subsection{Actual relational measurements}
-A context contains an in-memory SQLite database with 12--40 item rows and 3--8
-group rows. Each item has four integer attributes in $[-3,3]$ and a foreign key;
-each group has two weights in $[-2,2]$. Two fixed ordered SELECTs expose both
-bounded tables. An immutable learner observation joins these rows by key,
-giving six values $z_i\in\mathbb Z^6$ per item. These measurements reveal the
-complete small tables; there is no active information acquisition in this phase.
+The composition audit uses normalized target syntax and manually specified
+minimal semantic dependencies. It avoids raw SQL hashes that can differ merely
+because of unused CTEs. This verifies opportunities in the task construction;
+it does not prove arbitrary SQL inequivalence or show that a learner acquired
+or used the annotated components. Correct transfer additionally requires a
+traceable earlier learned relation, changed arguments or a new outer operation,
+and a correct result causally dependent on that relation.
 
-The supplied typed grammar is
-\begin{equation}
- \begin{aligned}
- \G&=\{m\in\mathbb N^6:\|m\|_1\leq3\},\quad |\G|=84,\\
- \phi_m(o)&=\sum_i\prod_{k=1}^6z_{ik}^{m_k}.
- \end{aligned}
-\end{equation}
-It contains count, six linear sums and all pairwise/cubic monomials.
-The evaluator's private report is a one- or two-term integer combination of
-these aggregates. Independent SQL JOIN/SUM execution produces its target $y$.
-A prediction receives binary reward
-\begin{equation}
- R(\hat y,y)=\mathbf1\{|\hat y-y|\leq10^{-6}(1+|y|)\}.
-\end{equation}
-Only after an ordinary prediction does the learner receive $y$. Report recipes,
-context seeds and evaluator phase labels are excluded from its API. Exact
-post-prediction feedback is a strong supervision assumption, not self-verification
-of an unobserved task answer.
+Eight old questions keep the initial public instructions, schema and conventions,
+with independent fresh rows. The same fixed fresh-old panel runs with memory
+frozen after warm learning and after all ordinary learning. Eight final questions
+then test new compositions with final memory frozen. In the actual development
+fixture seven of eight old targets differ from their corresponding warm targets.
+Refunded-order count is structurally 22 because order $i$ has $i\bmod3$ refund
+records. We retain this item in the declared endpoint and report it separately;
+its answer can be cached. Fresh data alone does not guarantee a fresh answer.
 
-\subsection{Online fitting, search and reuse}
-For each public report token $s$, the learner retains its own bounded ordinary
-history $H_s$. A policy consists of immutable feature and coefficient tuples,
-\begin{equation}
- p_{s}(o)=\sum_{m\in A_s}\theta_{sm}\phi_m(o).
-\end{equation}
-After each ordinary episode it fits small scaled least-squares systems; no
-offline phase or neural-model inference is used. The growing learner starts
-with seven features and adds at most five. Once observations outnumber active
-features by two, it scores up to 16 candidate features by correlation with the
-residual after projecting away the active span, then adds the best informative
-feature. A proposal can fail to find the relevant feature and cannot delete a
-bad early feature after reaching its cap.
+Development and prospective heldout conventions use opposite parities of four
+binary convention bits. Post-warm templates also differ. The name/data seed
+function does not incorporate the split label, so a future evaluation must use
+predeclared disjoint numeric seeds. No heldout model run was performed. The
+observed pilot contains only the reusable condition; drift and nonreuse
+conditions are implemented but have no measured result here.
 
-Promoted nonlinear feature syntax enters a bounded shared bank. On a later
-report the bank changes candidate search order; coefficients are still fitted
-from that report's own observations. Thus cross-report transfer is search reuse
-within a known basis, not transfer of an evaluator answer. The no-reuse arm
-removes only bank priority. A full-84-candidate growth arm tests whether a bank
-advantage merely substitutes for a restrictive search cap. All arms cache
-feature values already extracted from each ordinary observation.
+\section{Experience-derived executable memory}
+An ordinary successful episode may trigger one additional model call. The
+proposal specifies a new SELECT relation, typed named literal bindings, an outer
+SELECT over a CTE named \texttt{reused}, a description, and indices identifying
+its own source query and applicability observation. The source must be a
+successful scalar query consistent with the episode's confirmed answer. All
+indices refer to the immutable pre-proposal prefix, preventing a model from
+retroactively manufacturing its source evidence.
 
-Two strong controls use all legal ordinary history: three-step matching pursuit
-over the complete grammar and an 84-feature ridge regressor. The ridge penalty
-is $10^{-10}$ after column scaling. Small samples can leave this model
-underidentified even though the task is realizable; sparse recovery may exploit
-the much stronger sparsity prior sooner. We compare both audited and ungated
-sparse controls. An ungated control installs each ordinary proposal, making the
-audit's delay and opportunity cost visible rather than holding those costs free.
+The host compiles the proposed relation and wrapper, then executes their
+composition on the same database using one remaining SELECT attempt. Admission
+requires a single finite numeric result within
+$10^{-6}(1+|a|)$ of the witnessed answer $a$. This empirical comparison ignores
+column labels; the applicability comparison below is stricter. The request,
+result, attempt index, trace digest and proposal fields are recorded. A missing
+witness, failed execution, invalid binding or mismatch prevents admission.
+The prior answer remains scored even when its later proposal fails.
+
+Up to 16 immutable entries are stored. Content overlap between the current
+question and memory descriptions retrieves at most two entries. This router
+uses no task identity, phase, evaluator recipe or hidden convention bit. A
+\texttt{USE} action rebinds one relation. A \texttt{COMPOSE} action places it under
+a new outer SELECT. Composition supports one learned inner relation and one
+new wrapper, not arbitrary multi-library program synthesis.
+
+Before checked reuse, the host executes the stored applicability query and
+compares all returned columns and rows with its complete witnessed result.
+A mismatch returns the observed evidence and permits ordinary solving. If this
+check consumes the last allowed query, the fragment is not executed. The
+unchecked arm omits this check to expose its potential benefit and cost.
 
 \begin{figure*}[t]
 \centering
-\begin{tikzpicture}[node distance=7mm and 6mm,>=Latex,
- box/.style={draw,rounded corners=1.5pt,align=center,text width=3.35cm,minimum height=16mm,font=\small}]
- \node[box] (o) {Ordinary episode\\Two SELECT reads\\Prediction, then\\scalar feedback};
- \node[box,right=of o] (p) {Mutable learner\\Bounded feature search\\Own ordinary history\\Promoted syntax bank};
- \node[box,right=of p] (a) {Frozen paired audit\\Fresh query contexts\\Permanent error\\spending};
- \node[box,right=of a] (i) {Report incumbent\\Immutable feature\\and coefficient tuples};
- \draw[->] (o)--(p);\draw[->] (p)--(a);
- \draw[->] (a)--(i);
- \draw[->] (i.south)--++(0,-.9)-|node[pos=.25,below,font=\scriptsize]{next ordinary prediction}(o.south);
- \draw[->] (i.north)--++(0,.6)-|node[pos=.25,above,font=\scriptsize]{promoted syntax only}(p.north);
+\begin{tikzpicture}[node distance=0.38cm,box/.style={draw,rounded corners,align=center,font=\small,text width=2.62cm,minimum height=1.06cm},>=Latex]
+\node[box] (a) {Own query\\and observed outcome};
+\node[box,right=of a] (b) {Proposed relation\\and typed bindings};
+\node[box,right=of b] (c) {Charged execution\\checks witness};
+\node[box,right=of c] (d) {Immutable library\\with retrieval};
+\node[box,right=of d] (e) {Fresh guarded use\\or composition};
+\draw[->] (a)--(b);\draw[->] (b)--(c);\draw[->] (c)--(d);\draw[->] (d)--(e);
 \end{tikzpicture}
-\caption{The v7 experiment. Fresh audit observations and targets never enter
-fitting. Public report dispatch and fixed read permissions belong to the trusted
-reference harness. Accepted policies change only their own report. Selection
-from the supplied grammar and the audit outcome can affect later proposals,
-which must face new audit samples.}
-\label{fig:v7loop}
+\caption{Implemented discovery path. Compiler contracts apply to prepared-request
+construction. A passing reconstruction is finite evidence, not proof of future
+semantic correctness. In the actual pilot neither fragment arm reached admission;
+this diagram describes the implemented algorithm, not observed discovery.}
+\label{fig:path}
 \end{figure*}
 
-\subsection{Execution authority and accounting}
-Candidates never execute SQL. Trusted code sets up an ephemeral database, disables
-extensions, then enables query-only mode and an authorizer admitting fixed table
-reads and approved aggregate functions. VM steps, query time, rows and bytes
-are bounded. These checks do not isolate hostile Python running in the same
-process. Timing caps are cooperative execution controls, not hard real-time
-operating-system guarantees. Gold feedback and task dispatch are evaluator-owned.
+\subsection{Why admission is insufficient}
+A relation returning the already known scalar can reconstruct it perfectly.
+A wrapper may ignore \texttt{reused} entirely. Neither demonstrates abstraction
+or compositional transfer. Mutation and execution tests deliberately include
+these cases: they may satisfy the finite witness check yet fail on fresh data.
+The evidence standard therefore separates accepted reconstruction witnesses
+from successful new-task uses. This is also why a zero answer that happens to
+be correct without any query cannot supply a source-query witness.
 
-Ordinary execution uses two measurement SELECTs and one gold SELECT. A paired
-audit repeats the measurements for each policy and shares one gold SELECT on
-the unchanged database, costing five. Database creation, inserts, PRAGMAs and
-commit are outside the named \emph{post-setup SELECT} budget; their time is
-reported separately. Feature extraction, fitting, screening and policy execution
-are measured too. Numeric or serialized payload sizes are not actual resident
-memory or a claim of bounded lifelong storage.
+Memory caps are explicit. A fragment has at most 32 Text/Hole parts, 4,096 SQL
+bytes and an 8,192-byte serialized payload. A Text part may contain many SQL
+syntax nodes: this is not a 32-node parsed-SQL bound. The active library cap is
+65,536 bytes. FIFO eviction and failed routing can lose useful behavior.
+Serialized retained history, descriptions, provenance and journals count toward
+storage; exported audit files are reported separately and are not retrievable.
 
-\section{What statistical admission establishes}
-\subsection{Frozen candidates and summable error spending}
-Before audit $j$, freeze the candidate $p_j$, incumbent $b_j$, scope $s_j$ and
-reward definition. Let paired fresh outcomes satisfy
-$D_t=R_t(p_j)-R_t(b_j)\in[-1,1]$. The implemented process is
-\begin{equation}
- \begin{aligned}
- E_0&=1,\qquad E_t=\prod_{i=1}^{t}(1+D_i/2),\\
- \alpha_j&=\frac{\alpha}{j(j+1)},\quad\alpha=.05.
- \end{aligned}
-\end{equation}
-Acceptance requires $E_t\geq1/\alpha_j$. A floating log-wealth calculation is
-checked by exact rational capital for the represented reward values, so upward
-rounding alone cannot admit a candidate. Each started comparison spends alpha
-permanently, including abandoned or inconclusive comparisons. No audit exceeds
-64 pairs and no run gate exceeds 1,024 starts. Complete hashes and globally
-unique sample IDs bind records, with actual data freshness an execution obligation.
+\section{What is formally established}
+The added Lean module uses typed values, SQL text parts, parameter holes,
+assignments and a fixed compiler. Python transports integers, finite binary64
+values, text and null using SQLite bindings. Named values never substitute SQL
+identifiers. Inner and outer parameter names are renamed into disjoint scopes,
+including repeated names and quoted colons. The following statements summarize
+the checked contracts; details and theorem inventory are in the repository.
 
-\begin{proposition}[Statistical argument; not Lean formalized]
-Suppose each null comparison has
-$\E[D_t\mid\mathcal F_{t-1}]\leq0$ at every pair, conditional on all information
-that selected its frozen policies. Then its probability of acceptance at any
-stopping time is at most $\alpha_j$. Across an adaptive sequence of fresh
-comparisons, the probability of any false acceptance is at most $\alpha$.
-\end{proposition}
+\begin{theorem}[Captured-request identity]
+For a fragment $f$ and its captured assignment $\theta_0$, binding $f$ at
+$\theta_0$ and compiling under any later assignment yields exactly the captured
+SQL text and parameter values. Supplying this identical request to the same
+fixed executor function and database yields the identical modeled result.
+\end{theorem}
 \begin{proof}
-The factors are nonnegative and
-$\E[E_t\mid\mathcal F_{t-1}]=E_{t-1}(1+\E[D_t\mid\mathcal F_{t-1}]/2)
-\leq E_{t-1}$. Ville's inequality bounds the crossing probability. Conditional
-validity and a union bound compose because
-$\sum_{j=1}^{\infty}1/(j(j+1))=1$~\cite{betting,confidence}.
+Binding replaces each typed parameter occurrence with its captured value while
+preserving text parts. Compilation concatenates the same text and occurrences.
+Structural induction establishes the request identity; congruence of the fixed
+executor gives the result identity. These are checked Lean equalities, not a
+postulated SQL correctness theorem.
 \end{proof}
 
-Fresh independent draws from the same stationary scope distribution make the
-conditional mean a fixed policy-value difference. Under those assumptions the
-test supplies evidence of positive future scoped mean improvement. It does not
-protect every context or the failure tail. Under drift, a historical average
-conditional-mean interpretation is not a guarantee about tomorrow. Changed
-policies, routing or persistent state require a new valid comparison. The .05
-allocation is per gate/run, not simultaneous across the benchmark's many arms
-and random streams. An unchanged report is protected separately by immutable
-execution identity, not by passing another report's statistical test.
+Typed substitution also commutes with the compiler under the correspondingly
+substituted assignment. Changing bound values cannot change SQL text, and
+parameter-node renaming preserves transported values. The composition theorem
+identifies compilation with the stated CTE expansion and its separated inner
+and outer bindings. These statements cover the representation, not whether a
+model-generated query expresses a user's intended computation.
 
-The implementation's journal preserves allocations through restoration and can
-reject rollback when supplied an external trusted monotone counter or journal
-head. An unkeyed hash chain cannot authenticate a rewritten journal or reward
-origin. The bounded local experiment does not implement a deployed durable
-consensus or crash-recovery service. Policy hashes freeze these small tuples,
-not arbitrary language-agent behavior outside the reference harness.
+\begin{proposition}[Conditional retention of the modeled fallback]
+In the abstract answer-level guard operator, a failed or unavailable check
+returns a supplied ordinary-policy answer. If every accepted protected
+execution also produces that answer, this operator agrees pointwise with the
+ordinary policy.
+\end{proposition}
+\begin{proof}
+Split on the applicability decision. The rejecting branch is the ordinary
+answer by definition. The accepting branch agrees by the stated premise.
+\end{proof}
 
-\subsection{Validity can coexist with poor power}
-The first audit has $\alpha_1=.025$. With constant difference $d$, 64 pairs can
-cross only if $(1+d/2)^{64}\geq40$, requiring approximately $d\geq.118664$.
-Perfect wins need ten pairs; a constant difference .2 needs 39. These are
-zero-variance diagnostics, not power guarantees for stochastic binary rewards.
+This operator is not a refinement proof of the model-driven fallback loop.
+The implemented agent receives check feedback and resumes solving with a
+changed prompt and reduced SELECT allowance; its resulting answer need not
+equal the answer of an ordinary solver that never ran the check. The premise
+is substantive and is not implied by observing a passing check.
+The module gives counterexamples: observation of zero cannot identify scale
+one versus scale 100, and a check that still passes after drift can accept one
+when the correct answer becomes 100. Thus the construction cannot guarantee
+unconditional preservation in arbitrary future environments. An immutable
+library also does not force retrieval or later interpretation to be correct.
 
-A stronger limitation holds even without the cap. Let independent differences
-be $+1$ with probability .55 and $-1$ otherwise. Their mean is .1, but
-\begin{equation}
- \E\log(1+D/2)=.55\log1.5+.45\log.5<0.
-\end{equation}
-Moreover $q=.55\sqrt{1.5}+.45\sqrt{.5}<1$, making $\sqrt{E_t}$ a
-supermartingale under this \emph{positive-mean alternative}. Ville's inequality
-then bounds eventual acceptance by $\sqrt{\alpha_j}$, below .159 for the first
-audit. The fixed large bet can therefore remain inconclusive on a better
-policy with substantial probability even after infinitely many pairs. A smaller
-prespecified bet has positive log growth for this example; predictable betting
-or a properly weighted fixed mixture is a standard next control~\cite{betting}.
-This calculation exposes a power limitation, not a violation of null validity.
+The complete repository now has 89 checked statements, including these 12 new
+statements. The audit records standard logical dependencies and finds no custom
+source axioms, proof placeholders or unexpected dependencies. A finite suite
+compares 36 Lean-generated request cases with Python capture, rebinding,
+composition and actual SQLite execution. It covers repeated parameters, quoted
+colons, nulls, exact binary64 transport and SQL-shaped text values. These are
+correspondence tests, not a machine-checked refinement of all Python or SQLite.
 
-\section{The checked deterministic retention bridge}
-Lean 4.19.0 checks 77 theorem declarations in the accumulated project, including
-14 new finite-population accounting statements. No placeholders, custom source
-axioms or unexpected dependencies appear in the axiom inventory. Standard Lean
-logical axioms are recorded explicitly. The statistical supermartingale,
-probability model and sampling implementation above are \emph{not} Lean proved.
+A \emph{compiler witness} preserves the captured proposed request exactly.
+A \emph{learning witness} is the separately executed reconstruction of a prior
+successful scalar result. No theorem equates the new proposed relation with
+the original successful SQL on every database or future argument. Neither
+successful discovery, interaction advantage, model quality nor the statistical
+retention margin is proved in Lean.
 
-For the new layer, a version stores $C$ integer returns in $[0,B]$ on the same
-finite context population. Let $T(p)$ be their sum. Given a nonnegative integer per-promotion total
-allowance $\tau_j$, its actual error indicator is
-\begin{equation}
- F_j=\mathbf1\{T(p_j)+\tau_j<T(p_{j-1})\}.
-\end{equation}
-This event is computed from population values, not identified with an observed
-audit rejection. The learner need not know those values. The formal layer has
-no enumerated class of hidden transition tables or uninterpreted consistency
-oracle; finite return vectors express the evaluated policies' actual values.
+\section{Frozen model pilot}
+The development pilot was frozen before any database-task model call and
+committed as \texttt{54cd9c8}. The official Qwen3-4B Q8\_0 weights, model-file
+hash, llama.cpp revision, prompts, seven executed source files and protocol are
+recorded. The backbone uses native 32,768-token context, one inference slot,
+temperature zero, fixed seed 42 and thinking disabled. Solve outputs are capped
+at 384 tokens and reflections at 1,024. This greedy setting differs from the
+model card's non-thinking sampling recommendation~\cite{qwen3gguf}; the result
+is specific to the frozen model/interface configuration, not a claim about
+optimal Qwen performance. Weights are never updated.
 
-\begin{theorem}[Lean-checked promotion accounting]
-For every finite promotion history,
-\begin{equation}
- T(p_0)\leq T(p_n)+\sum_{j=1}^n\tau_j+CB\sum_{j=1}^nF_j.
-\end{equation}
-The same inequality applies to the suffix following any historical version.
-\end{theorem}
-For $C>0$, division by $C$ gives an expected-return bound under the uniform
-population distribution. Zero erroneous promotions and zero accumulated
-allowance imply that the final version's population value is at least each
-historical version's. No probability statement is smuggled into these premises.
-Nonzero allowances accumulate: totals $4\to3\to2$ each pass allowance one while
-losing two overall. Equal means also allow context loss: vectors $[1,1]$ and
-$[0,2]$ agree in total but regress on context zero, and under drift concentrated
-there. Both boundaries are checked examples.
+Every request has an exact backend tokenization preflight. Its time, inference,
+output usage and failures are recorded. No hidden retry, prompt truncation or
+prompt-cache reuse is allowed. Each arm has the same 500,000 ordinary-token and
+500,000 panel-token ceilings, respectively 280 and 260 model-call ceilings, and
+the same episode SELECT allowance. The complete pilot has a 1,800-second global
+ceiling including setup, solving, learning, checks, panels and incremental export.
+Download, load and two transport-only preflights are separately reported setup.
 
-An executable Lean fixture enumerates 2,916 two-promotion chains with two-context
-returns in $0..2$ and allowances in $0..1$. Independent Python comparisons check
-all 5,832 failure decisions and 8,748 historical bounds. This validates a bounded
-executable correspondence, not every Python implementation or a general
-probabilistic theorem. Authenticating that a real executor supplies the declared
-return vectors also remains outside Lean. Earlier interpreter/filter fixtures remain exact in their
-archive and coexist through additive imports and build targets.
+The six arms are full history, content-retrieved complete episodes, evolving
+natural-language insights, checked fragments, unchecked fragments and stateless.
+All share the model and initial solving instructions. Full history retains every
+own ordinary interaction without truncation. Retrieved episodes keep their full
+backing archive but display two entries. Insights are revised by a charged
+reflection after every ordinary episode, retaining at most 16 entries of at
+most 512 characters each. That arm is a transparent evolving-memory control,
+not a reproduction or strongest tuning of ExpeL or ACE.
 
-\section{Frozen evaluation design}
-\subsection{Reports, streams and prediction timing}
-Four development seeds (80000--80003) precede a source/configuration freeze.
-Sixteen untouched evaluation seeds (81000--81015) are the independent statistical
-replicates. A stream samples four distinct $x_iw_j$ warm rules. Shared novel
-reports sum warm rules 0+1 and 2+3; two unshared reports use distinct cubic
-$x_ix_jw_k$ rules. Public report names are opaque hashes. Ordinary instances are
-shared across arms by cursor; audit and evaluation instances use disjoint seed
-namespaces. Seeds and phase labels never reach the learner.
+The arm order rotates by scheduled question. A run has 24 ordinary and three
+eight-question frozen panels, producing 288 arm-episodes across six arms.
+The qualification rule requires at least six of eight warm answers correct
+for both full-history and insight controls, at least six of eight fresh-old
+answers before later learning for the proposed agent, and correctly traced
+parameter reuse/composition. Failing that rule prevents a strong-control
+superiority interpretation even if costs are fully accounted.
 
-The matched-example stream runs four warm reports round-robin for 24 examples
-each, four novel reports for 24 each, and four old reports for eight each: 224
-predictions, each preceding its feedback. History cap 64 retains every ordinary
-example. Fresh old-report panels of 16 contexts each occur after warm and after
-novel learning with identical panel seeds and no learner updates. A final panel
-uses 32 fresh contexts for each report. These are all charged evaluation queries.
+\section{Results and failure analysis}
+\begin{table*}[t]
+\centering\small
+\input{v8_accuracy.tex}
+\caption{Correct answers on every declared block of the single development
+stream. Each cell is out of eight. Old pre/post use the same fresh fixtures
+with memory frozen. Correlated questions are not independent replication units.
+The full-history and insight warm qualification threshold is 6/8; both fail.}
+\label{tab:acc}
+\end{table*}
+\begin{table*}[t]
+\centering\small
+\input{v8_costs.tex}
+\caption{All recorded interaction and model costs across 48 episodes per arm,
+including panels and charged learning calls. Model seconds include tokenization
+and inference. Storage is the reported peak serialized retained state, not
+process RAM or GPU memory. Low cost at low accuracy is not efficiency evidence.}
+\label{tab:cost}
+\end{table*}
+Tables~\ref{tab:acc} and~\ref{tab:cost} report every declared block and total costs.
+\input{v8_run_details.tex}
 
-An audited candidate is considered every four ordinary examples, starting at
-four, if it gets at least .75 accuracy on its own history and at least one more
-history example correct than the incumbent. This screening may overfit and is
-never admission evidence. A successful audit changes only its report's policy.
-Audit outcomes do not train weights or enter ordinary history. All later
-candidates, including those influenced by previous acceptance, face fresh pairs.
+The failure occurs before useful abstraction learning. All six arms score
+0/8 on warm questions. The checked and unchecked fragment arms end their
+warm episodes by submitting zero without querying. Both later obtain one
+correct ordinary zero answer without an observed query. Each proposes a
+fragment afterward, but admission rejects it for lacking a source witness.
+No fragment is admitted, rebound or composed in this pilot. All 14 correct
+scored answers equal zero; none uses an admitted program. Consequently there
+is no observed path from own experience to a reusable executable abstraction.
 
-The primary transfer estimand is mean prequential reward over the first 24
-examples of the two shared novel reports, paired by seed between reuse and no
-reuse. The first eight examples are a predeclared negative control: feature-bank
-search cannot yet affect an installed policy. Unshared transfer, retention,
-final return and control comparisons are reported separately. The primary
-hypothesis needs at least .05 mean gain with a positive paired 95\% lower bound.
+The other arms also fail to discover the documented conventions. For the first
+gross-value question, full history and stateless issue a sum over a guessed
+physical amount column, returning 284,375. The target is 7,817.75 dollars and
+requires documented quantity and unit semantics. This is not a SQL-execution
+failure: the legal query executes correctly and computes the wrong quantity.
+None of the arms queries the catalog during ordinary learning. The first
+insight reflection incorrectly describes a zero answer as correct despite the
+recorded feedback being zero. Later reuse of such text cannot repair its source
+misinterpretation automatically.
 
-\subsection{Audit opportunity cost}
-Matching ordinary examples gives different actual query costs. A second protocol
-gives every arm 4,096 post-setup SELECTs and reserves 768 for the final panel.
-At most 3,328 remain for ordinary episodes and audits. Ungated learners spend
-saved audit queries on more ordinary feedback from the same stream prefix;
-after episode 224 the stream cycles through all eight reports. No arm skips
-warm episodes to reach later reports. An audit stops inconclusive if fewer than
-five queries remain; an ordinary episode starts only with at least three.
-Unreached reports remain at the zero anchor and still appear in the final panel.
-All histories use cap 256, sufficient for every possible ordinary exposure.
-There are no intermediate panels in this companion.
+Empty memory is still represented by an arm-specific context prefix. Different
+first actions under the same model coincide with different empty-memory
+prefixes, but do not isolate the causal role of that prefix. The frozen comparison includes
+memory representation and its prompting; no post-hoc ablation was run. We do
+not attribute the failure uniquely to backbone capacity, quantization, greedy
+decoding, the prompt, action grammar or retrieval design without such tests.
 
-The fixed practical control set is audited sparse history, ungated sparse
-history and ungated full ridge. Practical usefulness requires at least .05
-final-panel gain and a positive paired 95\% lower bound against \emph{each}
-control, with no old-policy mutation. This conjunction prevents selecting an
-easy comparator after seeing outcomes. All paired comparisons are retained.
-We use stream-level Student intervals; contexts within a stream are not
-independent experimental replicates. The criterion combines an estimated gain
-of .05 with evidence of positive gain; it does not establish a 95\% lower
-guarantee of a gain at least .05. All experimental intervals are nominal Student intervals; sixteen bounded
-stream scores do not establish exact coverage. Other estimates and observed
-rankings are descriptive, without a blanket familywise confidence claim.
+The old-panel comparison reports absolute competence as well as its change.
+An agent with no correct old answers before and after later learning has zero
+observed regression but has not preserved a demonstrated useful capability.
+The constant refunded-count item is retained in both evaluations; its structural
+answer must not be mistaken for retained execution skill. No confidence interval
+for the desired population margins is estimated from this one correlated stream.
 
-\section{Results and independent replay}
-In the companion rows of Table~\ref{tab:v7results}, Shared averages only the
-ordinary examples actually reached among each shared report's first 24; the
-budget usually stops before all 24 arrive. It is a censored-prefix descriptive
-score, not the matched protocol's complete-window transfer estimand. The
-feedback-free final macro score is the companion's prespecified comparison.
-\input{v7_results.tex}
+\section{Inference, limitations and the next decision}
+The implementation passes its compiler, execution and provenance obligations
+within their stated scope. The empirical hypothesis fails to become testable
+against competent controls in this configuration. This is neither evidence
+that executable abstraction learning is impossible nor a positive demonstration
+of the requested claim. It is a concrete failure of the attempted model/interface
+combination on the declared development tasks.
 
-\section{What remains unsolved}
-The experiment gives stable scope identifiers, full small-table observations,
-exact scalar feedback, cheap independent instances and a realizable sparse
-polynomial grammar. These assumptions remove latent routing, scarce feedback,
-non-resettable actions and most representation uncertainty. A win here would
-be a mechanism result, not the requested stateful benchmark solution. A loss
-to simple sparse recovery is evidence against this instance of useful reuse.
-The 84-candidate ablation distinguishes search-order savings from an intrinsically
-better representation. A stronger grammar prior can make an expensive memory
-system unnecessary even if its contents are correct.
+Three distinctions determine the next experiment. First, shared solver
+competence must be established before comparing memory designs. A revised
+protocol could make documentation acquisition explicit, clarify that zero
+feedback means failure, and evaluate task solving under independently frozen
+model settings. All arms must receive any such change. A stronger backbone or
+reasoning budget is another candidate, with its costs measured rather than
+assumed. These are untested repairs and require a new versioned development
+study; this run is preserved without retuning or relabeling.
 
-Auditing changes the problem too. It pays for evidence that ordinary deployment
-may not supply, excludes its labels from fitting, and can stall useful changes
-under finite budgets or the fixed bet's low power. Retention follows authentic
-routing and immutability for untouched reports; those must be learned or
-independently justified in a native agent. A finite registry with growing history
-is not a fixed-memory lifelong learner. Noise and degree-four parity tests expose
-rather than solve misspecification. No check provides alignment or future
-protection under arbitrary environment drift.
+Second, actual abstraction evidence requires more than a matching scalar.
+A later correct query must depend on the previously admitted relation under
+changed arguments or a novel outer computation. Constant answers and unused
+CTEs must be excluded from the transfer count. Component ablation or matched
+replacement can test whether the learned executable object matters beyond the
+same information expressed as history or insights.
 
-\paragraph{A falsifiable next mechanism.}
-A more useful hypothesis is that a learned typed library can reduce later tool
-work on tasks whose grammar is not enumerated as complete aggregate features.
-Use one fixed, permitted backbone to propose bounded read-only query fragments
-from its own ordinary traces; freeze the fragment interpreter and permissions.
-Learn applicability from public schema and observed outputs, withholding hidden
-report identity. Store executable fragments with explicit preconditions and
-versioned evidence rather than memorized task answers. A separate resettable
-track can compare admission with a prespecified small-bet mixture, auditing each
-execution path an update can change. That track requires authoritative feedback
-and fresh paired tasks. Such a design joins known components; novelty and
-usefulness would require new evidence, not the architecture's name.
+Third, interaction costs constrain the hypothesis. A competent full-history
+agent may already answer in one SELECT. A checked fragment use costs a fresh
+guard plus execution, before counting synthesis and failed checks. Therefore
+checked reuse cannot mechanically promise fewer SELECTs on every task. Any
+advantage must arise from reducing other exploration enough to amortize these
+costs; fewer generated SQL tokens is a separate outcome. This pilot supplies no
+such evidence.
 
-First measure throughput on at most four development streams with bounded local
-inference, record all proposal/audit calls and size a feasible budget. Then
-freeze model, prompts, selectors, token caps, tool permissions and seeds. Compare
-raw legal-history ICL, a strong evolving-library method, exact memoization,
-ungated proposals and the learned library on untouched CL-Bench-compatible
-resettable tasks and AgentCL compositional streams. Preserve each native
-benchmark's actual information contract. AgentCL excludes ground-truth guidance
-during memory construction: even using gold scores only to accept a memory
-changes that contract. Such admission belongs in an explicitly augmented-feedback
-track, not a claimed native AgentCL result~\cite{agentcl}. Give each method the same
-actual inference and environment budget; unused audit budget must be available
-to the controls. Track future ordinary reward and feedback-free old-task panels.
-No such native run is claimed in this version.
+A future confirmatory study would freeze disjoint streams and use streams as
+replication units. For each mandatory control $b$, the target decision rule
+requires simultaneous one-sided bounds
+\[
+ \mathrm{UCB}\,\E[Q_f-0.75Q_b]<0,\qquad
+ \mathrm{LCB}\,\E[A_f-A_b]>-0.02,
+\]
+and a retention lower bound exceeding $-0.02$ for old-post minus old-pre
+accuracy. Failures remain in accuracy and costs are not restricted to solved
+questions. The five endpoints require multiplicity control; a predeclared
+Bonferroni allocation gives one-sided $\alpha=0.01$ each. As a planning
+illustration, 90\% power for a two-point margin needs approximately 326 streams
+at paired standard deviation 0.1, or 82 at 0.05. Those are illustrative normal
+approximations, not measured variance or an authorization to scale this pilot.
+Competence and a feasible resource plan must come first.
 
-Require .05 normalized future gain over every fixed strong control, positive
-paired lower intervals over independent streams, and an old-task margin no worse
-than .02 under a declared total error budget. Kill the proposal if gains vanish
-under authentic task-identity removal, equal resource accounting or full-history
-controls; if library growth mainly memorizes answers; or if most useful proposals
-cannot be audited before the budget expires. Any reproducible data leakage,
-missing protected path or reset error-spending bug defeats the corresponding
-statistical claim. If fresh pairs are unavailable, move to an explicit supported
-logging design and off-policy inference rather than treating deterministic logs
-as counterfactual evidence~\cite{offpolicy}.
+\section{Related work}
+DreamCoder learns program libraries and search guidance through a wake--sleep
+procedure~\cite{dreamcoder}. Stitch synthesizes reusable library functions by
+compressing program corpora through corpus-guided top-down search~\cite{stitch}.
+They provide direct precedents for learned symbolic abstractions. Our new code
+uses a fixed pretrained model to propose SQL relations online and supplies a
+charged finite reconstruction check; it implements neither their complete
+learning procedures nor a superiority comparison.
+
+ExpeL extracts natural-language knowledge from experience and recalls that
+knowledge for later tasks~\cite{expel}. ACE develops evolving contexts for
+agent improvement~\cite{ace}. They motivate checking executable memory against
+an evolving textual control, but our 4B insight implementation cannot stand in
+for strong published systems. CL-Bench's history result and AgentCL's controlled
+composition design are evaluation constraints on the target claim, not scores
+that can be borrowed by a custom fixture~\cite{clbench,agentcl}.
+
+\section{Reproducibility and evidence map}
+The pre-pilot receipt hashes seven source/protocol files and model provenance.
+Raw JSONL contains every question, actual model prompt and response, SQL request
+and result, memory snapshot, answer, reward, timing and usage record. The
+independent auditor replays SQL on fresh SQLite connections and compares the
+Python reference evaluator, reconstructs legal prompts and memory provenance,
+checks complete schedules and shared budgets, and verifies the source freeze.
+It does not call the model. It imports the same fragment/memory/admission
+components, so independence applies to execution replay and reconstruction,
+not a second implementation of every lexical or admission rule.
+
+\input{v8_validation.tex}
+
+The current paper, generated tables and detailed outcome ledger are in
+\texttt{paper/} and \texttt{docs/v8/}. Raw data, source receipts, model provenance,
+replay and formal inventories are in \texttt{artifacts/v8/}. The archived v7
+paper and frozen sources remain unchanged. Reproduce saved-data replay before
+running \texttt{make paper}; \texttt{make test}, \texttt{make formal} and
+\texttt{make cpp-check} validate the implementation without new model calls.
+Generating a new pilot requires an authenticated loopback model server and an
+unused output directory. Existing studies cannot be overwritten.
 
 \balance
-\paragraph{Resources and safety boundary.}
-The completed numerical phase runs on one CPU thread per BLAS pool with local
-ephemeral databases; it has no new LLM calls, deployments or paid compute. Native
-throughput must be measured before assigning GPU-hours. The existing integration
-contract is pinned and tested, but that is not native benchmark performance.
-Future model work must use a permitted standard model and controlled local tools.
-The user's removed background automation remains removed. This phase does not
-schedule or authorize unattended deployment.
-
-\section*{Reproducibility and disclosure}
-The private repository preserves the supplied Git history, release tags, prior
-raw data and the v6 paper under \texttt{paper/v6}. Current source, tests, complete
-gate journals, policy versions, context seeds, experiment freeze, independent
-replay, theorem/axiom inventory and generated tables accompany this draft.
-Reproduction commands and exact resource semantics appear in the README and
-\texttt{docs/v7/EVALUATION.md}. The probability proof above is a conventional
-mathematical argument; only the specified deterministic statements are checked
-in Lean. This is an AI-assisted research draft for Samuel Mausberg, with author
-review and independent replication pending. The general native continual-learning
-problem remains open.
-
-\input{references_formatted}
+\input{references_formatted.tex}
 \end{document}

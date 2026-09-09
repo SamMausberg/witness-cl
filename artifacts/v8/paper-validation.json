@@ -1,0 +1,18 @@
+{
+  "pages": 6,
+  "compiled_successfully": true,
+  "overfull_lines": 0,
+  "undefined_references": 0,
+  "rendered_visual_review": "all six pages reviewed; final wording/layout pages rechecked",
+  "source_sha256": {
+    "paper/main.tex": "80c42583e7166c07b99ebfb5f1680b24c69285ac8d67fcc385179f6048c3b0af",
+    "paper/main.pdf": "3eb33944f78547140c2c43db1df28cb6274eb81c97e02bcb48a2a6c7e025c222",
+    "paper/v8_accuracy.tex": "b55fde1b4662a77beec8155fdf11b66215f29ee4b7508535734f57056d08352d",
+    "paper/v8_costs.tex": "e0a2fed75a04bdbbad440fe246fc83f1789902b94eadc6157fd6963661b55949",
+    "paper/v8_run_details.tex": "9c96561fc9ce091fad32761a58ef8e0994c454337218c1a5d6f00dfb04519271",
+    "paper/v8_validation.tex": "32f7750d985ecb1097fb1f5d65cc43ff9540256891383015517d96f8bcf37e98",
+    "paper/references.bib": "33600e60f7fd716a4991e516b0d548dd3a0abe76df00893a6ef3a97ec7a034ba",
+    "paper/references_formatted.tex": "65b9b0c21a969a1ee6e122249805bbdb5ecab7852c037b727a2f39c53e3e5113"
+  },
+  "v7_archive_preserved_files": 30
+}

@@ -351,3 +351,14 @@ reading a constant or unused projected value need not causally contribute to the
 answer. The model study still needs observed useful parameter changes, a novel
 outer composition, correct fresh answers and a removal/rebinding diagnostic
 supporting the claimed dependence on the learned relation.
+
+The independent receipt auditor also received a targeted source review. Its
+SQL replay owns a separate SQLite connection and authorization callback; its
+prompt/memory reconstruction explicitly shares the frozen learner/compiler
+code. The review corrected omitted serial model durations in elapsed-time
+checks, wall-cap overruns that could otherwise qualify as resource-complete,
+and impossible continuation after a global wall-time stop. A combined rerun of
+the auditor and synthesis test files passed **138 tests** in 9.22 seconds.
+These checks establish internal consistency of saved evidence. They do not
+authenticate original execution, model weights, exact backend tokenization or
+reported durations, and they do not establish the research claim.

@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "Witness-CL: Executable Abstractions from Experience"
+title: "Witness-CL: Checked Executable Memories and a Failed Online-Abstraction Pilot"
 message: "Research draft. Includes checked abstract Lean lemmas; no native benchmark win or universal retention claim."
 type: software
 version: 0.8.0

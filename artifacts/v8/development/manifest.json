@@ -1,0 +1,57 @@
+{
+  "version": 8,
+  "kind": "development_cost_and_competence_pilot",
+  "status": "completed",
+  "seeds": [
+    90000
+  ],
+  "conditions": [
+    "reuse"
+  ],
+  "arms": [
+    "full_history",
+    "verbatim",
+    "insights",
+    "fragments",
+    "fragments_unchecked",
+    "stateless"
+  ],
+  "ordinary_questions": 24,
+  "old_panel_questions": 8,
+  "final_panel_questions": 8,
+  "wall_seconds_cap": 1800,
+  "ordinary_token_cap_per_arm_stream": 500000,
+  "panel_token_cap_per_arm_stream": 500000,
+  "max_selects_per_question": 8,
+  "max_actions_per_question": 10,
+  "solve_output_tokens": 384,
+  "reflection_output_tokens": 1024,
+  "model": "witness-v8-qwen3-4b-q8",
+  "context_tokens": 32768,
+  "source_sha256": {
+    "src/witness_cl/sql_env_v8.py": "8199b4714cd3460157a3acb81dcbf0581bd540129dd5c230db7a609cd2155a6d",
+    "src/witness_cl/fragments_v8.py": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd",
+    "src/witness_cl/memory_v8.py": "18a0c2994c7f8b437f1ff070f791bc0f6c8d344bdfc4ad9687af6396e6db1b47",
+    "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+    "src/witness_cl/abstraction_v8.py": "1bf54a2d273533238d0dc3940f4460efb37e60694818c7dfd1a4b669faf24b44",
+    "experiments/sql_abstractions_v8.py": "a8d3ed49f45106b0d9193c414ab57ee7ef85249ca876157d224a165d22178447",
+    "docs/v8/EVALUATION.md": "632939f6c8119bfbc0ca7ae15fb56d60cb5bf80d157c13fd2b7fca0b65014e85"
+  },
+  "native_benchmark": false,
+  "claim_confirmed": false,
+  "started_unix": 1788923376.0586941,
+  "timing_includes": "all pilot setup, model tokenization/inference, extraction, checks, evaluation and incremental export; model load separately",
+  "stop_after_debug": null,
+  "elapsed_seconds": 690.1266342039962,
+  "completed_episode_records": 288,
+  "source_unchanged": true,
+  "raw_sha256": {
+    "90000-reuse-fragments.jsonl": "8f86278217fed7c10055bda3462b445f28b4e2d436d18fd28e129773a661b788",
+    "90000-reuse-fragments_unchecked.jsonl": "444bd08685c8af6a489ecf8458562fb21d0bddccac50ae9064b7cad3f7770b09",
+    "90000-reuse-full_history.jsonl": "d47527d2795c0f0f9e4f752acb0e13b0c81ed0d3fa95407a960c8d7187d5bd79",
+    "90000-reuse-insights.jsonl": "37694b00a35f10a534c576c3430961f6eafe18d334cc6c5be123298270606f50",
+    "90000-reuse-stateless.jsonl": "4bdddcc59c2835d7535bed8cd32e9e222d7f9da23670327e358e0d5e3858d21a",
+    "90000-reuse-verbatim.jsonl": "2c03b5689f36e3faba2e8f9a808be91ad8eb5dadb305a902f8486a975350a5d6"
+  },
+  "required_records_complete": true
+}
