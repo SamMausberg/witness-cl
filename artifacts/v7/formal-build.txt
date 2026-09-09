@@ -24,12 +24,6 @@ info: ././././WitnessCL/Latent.lean:137:0: 'WitnessCL.V4.arbitrary_proposer' doe
 info: ././././WitnessCL/Latent.lean:138:0: 'WitnessCL.V4.informative_probe_removes' depends on axioms: [propext, Classical.choice, Quot.sound]
 ℹ [6/18] Replayed WitnessCL.Ambiguity
 info: ././././WitnessCL/Ambiguity.lean:31:0: 'WitnessCL.V5.safe_policy_cannot_gain_under_aliasing' depends on axioms: [propext, Quot.sound]
-✔ [12/18] Built WitnessCL.StatisticalBridge
-✔ [13/18] Built WitnessCL.StatisticalBridge:c.o
-✔ [14/18] Built WitnessCL
-✔ [16/18] Built StatisticalFixture
-✔ [17/18] Built StatisticalFixture:c.o
-✔ [18/18] Built statistical_fixture
 Build completed successfully.
 
 exit_code=0
