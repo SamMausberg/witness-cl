@@ -1,0 +1,20 @@
+{
+  "recorded_utc": "2026-09-09T23:01:45.174345+00:00",
+  "launcher_pid": 222182,
+  "command": [
+    "/home/ubuntu/witness-cl/.venv/bin/python",
+    "-u",
+    "tools/campaign_runtime.py",
+    "serve",
+    "--config",
+    "configs/campaign_runtime_dense.json",
+    "--cache",
+    "/home/ubuntu/.local/share/witness-cl/campaign-dense",
+    "--backend",
+    "/home/ubuntu/.local/share/witness-cl/llama.cpp-dense",
+    "--receipt",
+    "artifacts/campaign/runtime-dense-restart/server.json"
+  ],
+  "detached_session": true,
+  "reason": "Original server no longer existed; failed fast launch made no model calls. Identical runtime configuration restarted before new freeze."
+}

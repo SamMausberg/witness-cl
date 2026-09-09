@@ -1,0 +1,18 @@
+{
+  "status": "startup_rejected_before_model_invocation",
+  "recorded_utc": "2026-09-09T23:02:24.496128+00:00",
+  "reason": "Frozen serving PID161293 no longer exists; runtime identity check failed before creating a model journal. Exit cause is unknown.",
+  "planned_records": 240,
+  "completed_records": 0,
+  "model_calls": 0,
+  "model_tokens": 0,
+  "unknown_usage_calls": 0,
+  "freeze_sha256": "32736fb2be4a161189ba7b70f7b5f9d6e1c5c2ab2a028819e5db2ed04c0a9a65",
+  "error_log_sha256": "3cba5dc4d3d3d81e73a00bb11450897bc818691e874211f8020b926a0d7ea592",
+  "original_freeze_preserved": true,
+  "replacement_directory": "artifacts/campaign/fast-dense-v2-restart",
+  "replacement_seeds": [
+    101302,
+    101303
+  ]
+}

@@ -23,8 +23,13 @@ The first new-interface candidate completed both frozen cold qualifications:
 all 155 calls and 325,588 tokens are retained and independently replayed. A
 separate dense-model and common-planning candidate passed both qualifications at
 64/64, using 131 calls and 339,668 measured tokens with no unknown usage. Its
-four-stream development block is running; it is now the first block of a frozen
-32-stream pilot with 28 additional independent streams, totaling 17,664 episodes.
+four-stream development block is the first block of a frozen 32-stream pilot
+with 28 additional independent streams, totaling 17,664 episodes. That pilot is
+paused at 161 completed episodes following the author's two-hour time limit.
+A [separate diagnostic](docs/campaign/TIME_BUDGET_AMENDMENT.md) assigns 240 episodes
+across two fresh streams and all three arms, retaining all learning episodes
+and reducing the probe panels. It cannot establish confirmatory efficacy or
+two-point retention noninferiority.
 The full mechanism census, future-panel ceiling and measured retention variance
 must be reported before auxiliary collection or confirmation sizing. See the
 [pilot registry](artifacts/campaign/pilot-dense-v2/manifest.json) and
@@ -77,6 +82,7 @@ for the upstream pins and documented adaptations.
 .venv/bin/python tools/campaign_results.py --help
 .venv/bin/python tools/campaign_sequence.py --help
 .venv/bin/python tools/campaign_pilot_report.py --help
+.venv/bin/python tools/campaign_fast.py --help
 .venv/bin/python tools/campaign_supervisor.py --help
 .venv/bin/python tools/campaign_assay.py --help
 .venv/bin/python tools/native_campaign.py --help
@@ -123,6 +129,7 @@ need a separately recorded protocol; no result is overwritten or selected away.
 | `experiments/delayed_sql.py` | Common current-query interface and charged learning checks |
 | `tools/campaign.py` | Source freezing, complete schedules, durable calls, recovery and replay |
 | `tools/campaign_sequence.py` | Disjoint seed registry and audited progression between stages |
+| `tools/campaign_fast.py` | Separate, prospectively bounded two-stream diagnostic and complete replay |
 | `tools/campaign_assay.py` | Matched-history evidence controls and relation-deletion reruns |
 | `tools/publish_campaign.py` | Tables and status from complete audited artifacts, including negatives |
 | `src/witness_cl/ace_memory.py` | Official-pinned Generator/Reflector/Curator baseline |
@@ -140,5 +147,4 @@ Git revision. Numbered implementation modules and original data remain where
 current tests, proofs and replay depend on them. They are not separate supported
 product releases.
 
-MIT software. Downloaded models have their own licenses. Research manuscript;
-author review and independent replication remain necessary before publication.
+MIT software. Downloaded models have their own licenses.

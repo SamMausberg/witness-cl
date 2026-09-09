@@ -27,6 +27,7 @@ LABELS = ("Future accuracy: delayed $-$ history", "Future accuracy: delayed $-$ 
           "Old accuracy: after $-$ before")
 MAX_JSON_BYTES = 256 * 1024 * 1024
 PRUNED = {"sources", "runtime", ".git", "calls", "episodes", "runs", "publication"}
+FAST_PROTOCOL = "descriptive_fast_240_v1"
 
 
 def digest(value):
@@ -133,6 +134,57 @@ def bound(inputs, directory, receipt, bindings):
                 "receipt is not bound to current " + name)
 
 
+def saved_custom_progress(inputs, directory, frozen, *, assay=False):
+    """Count committed schedule-prefix records without computing outcomes."""
+    directory = Path(directory)
+    schedule = inputs.read(directory / "schedule.json")
+    require(isinstance(schedule, list) and type(frozen.get("planned_records")) is int
+            and len(schedule) == frozen["planned_records"]
+            and digest(schedule) == frozen.get("schedule_sha256"), "frozen schedule changed")
+    require(all(isinstance(item, dict) and isinstance(item.get("key"), str)
+                and item["key"] not in {"", ".", ".."}
+                and Path(item["key"]).name == item["key"] for item in schedule),
+            "invalid frozen schedule identity")
+    names = [item["key"] + ".json" for item in schedule]
+    require(len(set(names)) == len(names), "duplicated frozen schedule identity")
+    episodes = directory / "episodes"
+    require(not episodes.is_symlink() and (not episodes.exists() or episodes.is_dir()),
+            "raw episode directory is invalid")
+    paths = {str(path.relative_to(episodes)): path for path in episodes.rglob("*.json")}
+    sidecars = {name for name in paths if assay and name.endswith(".sha256.json")}
+    saved = set(paths) - sidecars
+    require(saved <= set(names), "unplanned raw episode file")
+    require(saved == set(names[:len(saved)]), "raw episodes are not a contiguous frozen schedule prefix")
+    require(sidecars <= {name[:-5] + ".sha256.json" for name in saved},
+            "unplanned episode checksum file")
+    freeze_hash = inputs.hash(directory / "freeze.json")
+    completed = 0
+    for item in schedule[:len(saved)]:
+        path = paths[item["key"] + ".json"]
+        require(not path.is_symlink(), "raw receipt symlinks are not accepted")
+        record = inputs.read(path)
+        require(isinstance(record, dict), "raw episode is not a record object")
+        require(all(record.get(key) == value for key, value in item.items()),
+                "raw episode does not match its scheduled assignment")
+        require(record.get("freeze_sha256") == freeze_hash, "raw episode belongs to another freeze")
+        trace = record["trace"]
+        require(isinstance(trace, dict), "raw episode trace is not an object")
+        expected_arm = "sql_archive" if item["arm"] == "sql_archive_extra_evidence" else item["arm"]
+        require(trace.get("phase") == item["phase"] and trace.get("arm") == expected_arm,
+                "raw episode trace identity differs from its assignment")
+        require(trace.get("status") in {"completed", "no_valid_answer", "resource_stop", "runtime_failure"},
+                "raw episode has no terminal status")
+        completed += trace["status"] in {"completed", "no_valid_answer"}
+        checksum = item["key"] + ".sha256.json"
+        if checksum in sidecars:
+            require(not paths[checksum].is_symlink(), "raw receipt symlinks are not accepted")
+            require(inputs.read(paths[checksum]) == {"record_sha256": digest(record)},
+                    "episode checksum differs from saved record")
+    return {"saved_records": len(saved), "completed_records": completed,
+            "stopped_attempt_records": len(saved) - completed, "planned_records": len(schedule),
+            "progress_source": "contiguous_frozen_schedule_prefix"}
+
+
 def verified_custom(inputs, directory, frozen, summary, audit, *, assay=False):
     require(frozen.get("contains_test_double_calls") is False,
             "explicit real-model source declaration is required")
@@ -162,6 +214,10 @@ def verified_custom(inputs, directory, frozen, summary, audit, *, assay=False):
         require(frozen.get("arms") == ["sql_archive_extra_evidence", "view_text", "immediate", "delayed"]
                 and frozen.get("checkpoints") == [8, 16, 24]
                 and frozen.get("probes_per_checkpoint") == 8, "assay protocol denominator changed")
+    elif frozen.get("experiment") == FAST_PROTOCOL or frozen.get("kind") == FAST_PROTOCOL:
+        from tools.campaign_fast import planned_records as fast_plan, summarize as fast_summary
+        expected_schedule = fast_plan(frozen)
+        summarize = fast_summary
     else:
         require(type(frozen.get("old_replicates")) is int and frozen["old_replicates"] >= 1,
                 "frozen old-panel count is missing")
@@ -203,7 +259,7 @@ def verified_custom(inputs, directory, frozen, summary, audit, *, assay=False):
                     "raw model invocation is pending or ambiguous")
             raw_calls.extend(receipt["calls"])
         require(raw_calls == trace["model_calls"], "raw journal differs from episode model calls")
-        small = {**item, "trace": {"reward": trace["reward"], "model_calls": [
+        small = {**item, "trace": {"reward": trace["reward"], "status": trace["status"], "model_calls": [
             {"generation_attempted": c["generation_attempted"], "usage": c.get("usage")}
             for c in trace["model_calls"]]}}
         if assay:
@@ -524,7 +580,8 @@ def verified_deletion(inputs, directory, frozen, summary, audit):
         # A zero-case diagnostic legitimately never creates receipt directories.
         actual = inputs.tree(path) if path.exists() else digest({})
         require(audit.get(field) == actual, "deletion audit raw inputs changed")
-    source = Path(frozen["source_study"])
+    from tools.campaign_assay import resolve_deletion_source
+    source = resolve_deletion_source(directory, frozen)
     require(inputs.hash(source / "freeze.json") == frozen["source_freeze_sha256"]
             and inputs.hash(source / "audit.json") == frozen["source_audit_sha256"],
             "deletion source study changed")
@@ -540,6 +597,30 @@ def verified_deletion(inputs, directory, frozen, summary, audit):
     source_freeze = inputs.read(source / "freeze.json")
     require(digest(source_schedule) == source_freeze["schedule_sha256"], "deletion source schedule changed")
     from tools.campaign import planned_records
+    source_adapter = frozen.get("source_schedule", "campaign")
+    require(source_adapter in {"campaign", "fast240"}, "unknown deletion source schedule adapter")
+    if source_adapter == "fast240":
+        from tools.campaign_fast import planned_records
+        require(source_freeze.get("experiment") == FAST_PROTOCOL
+                and source_freeze.get("planned_records") == 240,
+                "fast deletion requires the complete 240-record parent")
+        require(inputs.hash(source / "schedule.json") == frozen.get("source_schedule_sha256"),
+                "fast deletion parent schedule binding changed")
+        require(all(frozen.get(key) == source_freeze.get(key) for key in (
+            "last_call_start_utc", "generation_deadline_utc", "report_deadline_utc")),
+            "fast deletion cutoffs differ from the parent freeze")
+        name = "tools/campaign_fast.py"
+        require(source_freeze["source_sha256"].get(name) == inputs.hash(ROOT / name),
+                "fast deletion schedule implementation differs from its frozen parent")
+        source_summary = inputs.read(source / "summary.json")
+        verified_custom(inputs, source, source_freeze, source_summary, source_audit)
+        require(summary.get("source_schedule") == source_adapter
+                and summary.get("agent_reruns_performed") == len(cases)
+                and summary.get("status") == ("complete" if cases else "no_reruns_performed"),
+                "fast deletion rerun status differs from the frozen census")
+    else:
+        require(source_freeze.get("experiment") != FAST_PROTOCOL,
+                "fast deletion parent requires the explicit fast240 schedule adapter")
     require(source_schedule == planned_records(source_freeze)
             and len(source_schedule) == source_audit.get("records_replayed") == selection.get("records"),
             "deletion source or selection census omits scheduled records")
@@ -565,6 +646,10 @@ def verified_deletion(inputs, directory, frozen, summary, audit):
                 and case["original_episode_nonce"] == original["trace"]["episode_nonce"]
                 and case["episode_index"] == original["trace"]["episode_index"],
                 "deletion episode, nonce or paired sampling differs from baseline")
+        if source_adapter == "fast240":
+            require(isinstance(case.get("original_data_sha256"), str)
+                    and case["original_data_sha256"] == original["trace"]["evaluator"]["data_sha256"],
+                    "fast deletion database binding differs from its source episode")
         memory = DelayedMemory.from_snapshot(original["before_snapshot"])
         previous = len(memory.registry.entries)
         memory.registry.entries = [entry for entry in memory.registry.entries if entry.key != case["removed_entry_key"]]
@@ -577,6 +662,9 @@ def verified_deletion(inputs, directory, frozen, summary, audit):
                 and record.get("freeze_sha256") == inputs.hash(Path(directory) / "freeze.json"),
                 "deletion outcome belongs to another case or freeze")
         trace = record["trace"]
+        if source_adapter == "fast240":
+            require(trace["evaluator"]["data_sha256"] == case["original_data_sha256"],
+                    "fast deletion rerun database differs from its source episode")
         require(trace.get("status") in {"completed", "no_valid_answer"}
                 and trace.get("learn") is False and trace.get("reward") in (0, 1)
                 and trace.get("phase") == case["phase"] and trace.get("arm") == case["arm"]
@@ -610,6 +698,8 @@ def verified_deletion(inputs, directory, frozen, summary, audit):
             "deletion denominators or outcomes differ from the frozen census")
     return {"eligible_cases": len(cases), "answer_flips_to_wrong": flips,
             "correct_despite_deletion": len(cases) - flips,
+            "source_schedule": source_adapter, "agent_reruns_performed": len(cases),
+            "status": "complete" if cases else "no_reruns_performed",
             "physical_diagnostic_cost": summary["physical_diagnostic_cost"],
             "original_acquisition_and_evaluation_cost": source_audit["cost"],
             "scope": "conditional frozen event census; no independent-stream population claim",
@@ -634,6 +724,10 @@ def inspect_study(directory, inputs):
                       planned_records=frozen.get("planned_records", frozen.get("planned_cases")),
                       streams=len(frozen.get("seeds", [])),
                       conditions=frozen.get("conditions", []))
+        if frozen.get("kind") == FAST_PROTOCOL:
+            result.update(descriptive_only=True, original_32_stream_pilot_completed=False,
+                          inference_scope="Two-stream descriptive diagnostic; accuracy superiority, two-point retention "
+                                          "noninferiority and original pilot completion are not established.")
         if frozen.get("contains_test_double_calls") is True:
             result.update(status="excluded_test_double", reason="Scripted software tests supply no model results.")
             return result
@@ -647,6 +741,21 @@ def inspect_study(directory, inputs):
         summary = inputs.read(summary_path) if summary_path.exists() else {}
         complete = summary.get("status") == "completed" if native else summary.get("complete") is True
         if not complete:
+            if not native and not deletion:
+                progress = saved_custom_progress(inputs, directory, frozen, assay=assay)
+                result["progress"] = {**result.get("progress", {}), **progress}
+            elif deletion and (summary or (directory / "calls").exists()):
+                result["progress"] = {key: summary[key] for key in
+                                      ("status", "recorded_cases", "completed_cases") if key in summary}
+                result["progress"]["planned_records"] = frozen["planned_cases"]
+                if type(summary.get("completed_cases")) is int:
+                    result["progress"]["completed_records"] = summary["completed_cases"]
+                calls = directory / "calls"
+                if calls.exists():
+                    from witness_cl.campaign_io import journal_usage
+                    inputs.tree(calls)
+                    result["physical_cost"] = journal_usage(calls)
+                    result["physical_cost_scope"] = "incomplete diagnostic; raw invocation accounting only"
             result.update(status="incomplete", reason="Awaiting the complete frozen schedule; no outcome estimates published.")
             return result
         if not (directory / "audit.json").exists():
@@ -804,13 +913,14 @@ def render_tex(snapshot):
             elif study.get("deletion"):
                 deletion = study["deletion"]
                 decision = (str(deletion["answer_flips_to_wrong"]) + "/" + str(deletion["eligible_cases"]) + " answers flip to wrong"
-                            if deletion["eligible_cases"] else "Zero eligible cases; no rerun estimate")
+                            if deletion["eligible_cases"] else "Zero eligible cases; no reruns performed")
             else:
                 decision = "Descriptive; no primary claim"
             count = ("Fixed-database permutations" if study["kind"] == "native" else
                      "All " + str(study["deletion"]["eligible_cases"]) + " frozen eligible events" if study.get("deletion") else
                      str(study["streams"]) + " streams; " + ", ".join(study["conditions"] or ["reuse"]))
-            lines.append(" & ".join(map(latex, (study["name"], study["kind"], count, decision))) + r"\\")
+            evidence_class = "Descriptive diagnostic" if study["kind"] == FAST_PROTOCOL else study["kind"]
+            lines.append(" & ".join(map(latex, (study["name"], evidence_class, count, decision))) + r"\\")
         lines += [r"\bottomrule\end{tabular}\caption{Complete audited studies, including negative results.",
                   r"Full per-arm counts and costs appear in the accompanying status artifact; distinct",
                   r"studies are never pooled to enlarge the confirmation denominator.}\end{table*}"]
@@ -839,7 +949,7 @@ def render_markdown(snapshot):
              "|---|---|---|---:|---|"]
     for s in snapshot["studies"]:
         progress = s.get("progress", {})
-        count = f"{progress.get('completed_records', 'unknown')}/{s.get('planned_records', 'unknown')}"
+        count = f"{progress.get('saved_records', progress.get('completed_records', 'unknown'))}/{s.get('planned_records', 'unknown')}"
         decision = ("All five pass" if s["primary_claim"] else "Five-endpoint conjunction does not pass") if s.get("analysis") else s.get("reason", "Descriptive only")
         if "qualification_passed" in s:
             decision = "Qualification passes" if s["qualification_passed"] else "Qualification fails"
@@ -849,12 +959,19 @@ def render_markdown(snapshot):
         lines += ["", "No frozen campaign studies are present. Confirmation and native gain are unmeasured."]
     for s in snapshot["studies"]:
         lines += ["", "## " + s["name"], "", f"Source: `{s['path']}`."]
-        for field in ("reason", "analysis_error", "mechanism_error", "diagnostic_error", "power_error"):
+        for field in ("reason", "inference_scope", "analysis_error", "mechanism_error", "diagnostic_error", "power_error"):
             if field in s:
                 lines += ["", field.replace("_", " ").capitalize() + ": " + s[field]]
         if s.get("physical_cost"):
             c = s["physical_cost"]
-            lines += ["", f"Complete physical usage: {c['calls']:,} calls, {c['total_tokens']:,} measured tokens."]
+            if s.get("physical_cost_scope"):
+                lines += ["", f"Incomplete diagnostic usage: {c['calls']:,} calls, "
+                          f"{c['known_total_tokens']:,} known token subtotal, "
+                          f"{c['unknown_usage_calls']:,} calls with unknown usage.",
+                          "", "Saved progress (not an audited outcome estimate):",
+                          "```json", canonical(s["progress"]), "```"]
+            else:
+                lines += ["", f"Complete physical usage: {c['calls']:,} calls, {c['total_tokens']:,} measured tokens."]
         elif s.get("progress"):
             lines += ["", "Saved progress (not an audited outcome estimate):", "```json", canonical(s["progress"]), "```"]
         if s.get("analysis"):
@@ -902,7 +1019,7 @@ def render_markdown(snapshot):
                 lines += ["", f"Agent relation deletion: {deletion['answer_flips_to_wrong']}/{deletion['eligible_cases']} answers flip to wrong; "
                           f"{deletion['correct_despite_deletion']} remain correct despite deletion."]
             else:
-                lines += ["", "The complete source campaign has **zero eligible deletion cases**. No rerun outcomes are measured."]
+                lines += ["", "The complete source campaign has **zero eligible deletion cases**: no reruns performed."]
             lines += ["", "Every eligible case was frozen before rerunning. Original direct SQL evidence remains; "
                       "rerun feedback does not reach the source campaign. These are conditional event counts, not independent-stream estimates.",
                       "", "Original acquisition/evaluation cost (separate from these additional reruns): "

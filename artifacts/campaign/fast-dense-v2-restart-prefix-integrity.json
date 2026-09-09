@@ -1,0 +1,50 @@
+{
+  "audit": {
+    "complete": false,
+    "consistent": true,
+    "journals_sha256": "43b45e825b9aa712c565d05e4c932525a97ec8051b8f136364628afd5b91a601",
+    "network_calls": 0,
+    "planned_records": 240,
+    "recorded_records": 12,
+    "records_replayed": 12,
+    "records_sha256": "25387d4ff0e97e3091d1bf5e90f585efe59a29a3fba628740877ea4d85db2367",
+    "stopped_records": []
+  },
+  "audit_entrypoint": "sources/tools/campaign_fast.py audit",
+  "audit_sha256": "6cb82b63e4f7357fa677c3f768c2adb927eb3b5bb905722af1e65c1622a7c466",
+  "checked_utc": "2026-09-09T23:10:51.634788+00:00",
+  "copied_source_files": 79,
+  "derived_prefix_summary_is_audit_input_only": true,
+  "freeze_sha256": "180ce0c3c61ea3150eb723b7db295e356a92703db6c456e4f735ec8f1cb39b9b",
+  "frozen_seeds": [
+    101302,
+    101303
+  ],
+  "input_inventory_path": "artifacts/campaign/fast-dense-v2-restart-prefix-integrity-inputs.json",
+  "input_inventory_sha256": "fb6437b64d4bb00db8feee80fce7446d539e67a9a4727379fc2682fd40075728",
+  "kind": "early_fixed_prefix_integrity_check",
+  "live_study": "/home/ubuntu/witness-cl/artifacts/campaign/fast-dense-v2-restart",
+  "live_study_locked_or_modified": false,
+  "mechanism_conclusion": null,
+  "model_calls_made": 0,
+  "partial_outcome_estimates_reported": false,
+  "scope": "Frozen-source transcript, SQL, memory-transition, model-policy and raw-journal integrity only; not completion or outcome analysis.",
+  "selected_keys": [
+    "101302-reuse-ordinary-000-ace",
+    "101302-reuse-ordinary-000-delayed",
+    "101302-reuse-ordinary-000-full_history",
+    "101302-reuse-ordinary-001-delayed",
+    "101302-reuse-ordinary-001-full_history",
+    "101302-reuse-ordinary-001-ace",
+    "101302-reuse-ordinary-002-full_history",
+    "101302-reuse-ordinary-002-ace",
+    "101302-reuse-ordinary-002-delayed",
+    "101302-reuse-ordinary-003-ace",
+    "101302-reuse-ordinary-003-delayed",
+    "101302-reuse-ordinary-003-full_history"
+  ],
+  "selected_prefix_length": 12,
+  "selection": "First 12 scheduled records, fixed before replay, without outcome selection.",
+  "temporary_copy": "/tmp/witness-fast-prefix-e5kxmclk",
+  "unknown_usage_calls": 0
+}

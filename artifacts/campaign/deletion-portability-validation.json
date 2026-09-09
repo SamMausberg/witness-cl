@@ -1,0 +1,20 @@
+{
+  "recorded_utc": "2026-09-09T23:30:17.305598+00:00",
+  "scope": "Post-full-suite relocation, parent-integrity and legacy-compatibility checks; no model calls",
+  "assay_test_counts": {
+    "tests": 14,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "assay_junit": "artifacts/campaign/deletion-portability-software-tests.xml",
+  "assay_junit_sha256": "5423043713948bd17f376f49c6437bfbc3bc6e5a0d36dce2a4fea37c72f2899f",
+  "publisher_tests_passed": 57,
+  "publisher_test_result_reported_by": "paper_audit",
+  "source_sha256": {
+    "tools/campaign_assay.py": "6ca55247f0f3f66826314a504e53d28c5fd124e6b9badbc937aa298bf8b53dbd",
+    "tools/publish_campaign.py": "2be777645250c4db8dfae4ad3f586a4222f64649767c4fafa19c4d9a15b022d1",
+    "tests/test_campaign_fast_deletion.py": "d429fe5db79114fcb3a8cb27cfa9373bb9fcc1432c89da380ac90fab63376964",
+    "tests/test_publish_campaign_deletion_fast.py": "861bd77ad755b4f1ff40ee61b172be789b68f46b8a486e45010dfaf625e8eb14"
+  }
+}

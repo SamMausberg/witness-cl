@@ -1,3 +1,20 @@
+# Paused by the subsequent time-budget amendment
+
+**Subsequent runtime loss:** the original serving PID disappeared before the
+reduced-study launch. Do not resume these old processes against the restarted
+server: their frozen runtime identity differs. All original records remain
+preserved. See `docs/campaign/TIME_BUDGET_AMENDMENT.md`.
+The author requested a one-to-two-hour maximum. On 2026-09-09 at 22:50:19 UTC,
+the original runner, sequence and supervisor were suspended at a complete
+episode boundary. Exactly 161/17,664 episodes and 178 call journals were
+complete; there were no pending or orphan calls. The runtime was unchanged.
+See `time-budget-amendment-pause.json` for process identities and the preserved
+denominator. Status files written before the pause may still say running.
+Do not resume this supervisor concurrently with the separate 240-episode
+diagnostic described in `docs/campaign/TIME_BUDGET_AMENDMENT.md`.
+
+---
+
 # Frozen 32-stream pilot
 
 The pilot contains seeds 101100–101131, all three independently learning arms,

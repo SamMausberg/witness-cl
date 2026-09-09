@@ -3,16 +3,18 @@
 This is a deterministic snapshot of saved local receipts, not a live process monitor.
 Partial runs have no published outcome estimates. Complete negative results remain visible.
 
-Input snapshot SHA256: `bcd8c010571b22d63618f431da9bef945d39a3b1b434ae9201dec219ad3e5d9d`.
+Input snapshot SHA256: `21bced5ddc8541086ddf3e088f4f844b852ec9274523192323d81c661d0eb7c2`.
 
 | Study | Class | Status | Saved records | Decision |
 |---|---|---|---:|---|
 | coder-v1 / qualification-drift | qualification | complete | 64/64 | Qualification fails |
 | coder-v1 / qualification-reuse | qualification | complete | 64/64 | Qualification fails |
-| dense-v2 / development | development | incomplete | 61/2208 | Awaiting the complete frozen schedule; no outcome estimates published. |
+| dense-v2 / development | development | incomplete | 161/2208 | Awaiting the complete frozen schedule; no outcome estimates published. |
 | dense-v2 / qualification-drift | qualification | complete | 64/64 | Qualification passes |
 | dense-v2 / qualification-reuse | qualification | complete | 64/64 | Qualification passes |
-| pilot-dense-v2 / additional-28 | development | incomplete | unknown/15456 | Awaiting the complete frozen schedule; no outcome estimates published. |
+| fast-dense-v2 | descriptive_fast_240_v1 | incomplete | 0/240 | Awaiting the complete frozen schedule; no outcome estimates published. |
+| fast-dense-v2-restart | descriptive_fast_240_v1 | incomplete | 45/240 | Awaiting the complete frozen schedule; no outcome estimates published. |
+| pilot-dense-v2 / additional-28 | development | incomplete | 0/15456 | Awaiting the complete frozen schedule; no outcome estimates published. |
 
 ## coder-v1 / qualification-drift
 
@@ -72,7 +74,7 @@ Reason: Awaiting the complete frozen schedule; no outcome estimates published.
 
 Saved progress (not an audited outcome estimate):
 ```json
-{"completed_records":61,"planned_records":2208,"started_utc":"2026-09-09T22:10:54.754263+00:00","status":"running"}
+{"completed_records":161,"planned_records":2208,"progress_source":"contiguous_frozen_schedule_prefix","saved_records":161,"started_utc":"2026-09-09T22:10:54.754263+00:00","status":"running","stopped_attempt_records":0}
 ```
 
 ## dense-v2 / qualification-drift
@@ -125,11 +127,42 @@ Every qualification cell:
 | 100201 | full_history | new_outer | 8/8 | 6 | True |
 | 100201 | full_history | future | 8/8 | 6 | True |
 
+## fast-dense-v2
+
+Source: `artifacts/campaign/fast-dense-v2`.
+
+Reason: Awaiting the complete frozen schedule; no outcome estimates published.
+
+Inference scope: Two-stream descriptive diagnostic; accuracy superiority, two-point retention noninferiority and original pilot completion are not established.
+
+Saved progress (not an audited outcome estimate):
+```json
+{"completed_records":0,"planned_records":240,"progress_source":"contiguous_frozen_schedule_prefix","saved_records":0,"stopped_attempt_records":0}
+```
+
+## fast-dense-v2-restart
+
+Source: `artifacts/campaign/fast-dense-v2-restart`.
+
+Reason: Awaiting the complete frozen schedule; no outcome estimates published.
+
+Inference scope: Two-stream descriptive diagnostic; accuracy superiority, two-point retention noninferiority and original pilot completion are not established.
+
+Saved progress (not an audited outcome estimate):
+```json
+{"completed_records":45,"planned_records":240,"progress_source":"contiguous_frozen_schedule_prefix","saved_records":45,"started_utc":"2026-09-09T23:03:35.448728+00:00","status":"running","stopped_attempt_records":0}
+```
+
 ## pilot-dense-v2 / additional-28
 
 Source: `artifacts/campaign/pilot-dense-v2/additional-28`.
 
 Reason: Awaiting the complete frozen schedule; no outcome estimates published.
+
+Saved progress (not an audited outcome estimate):
+```json
+{"completed_records":0,"planned_records":15456,"progress_source":"contiguous_frozen_schedule_prefix","saved_records":0,"stopped_attempt_records":0}
+```
 
 ## Separate runtime setup calls
 

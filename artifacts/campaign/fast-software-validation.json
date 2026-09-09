@@ -1,0 +1,11 @@
+{
+  "scope": "Offline focused fast-study schedule, accounting, deadline, replay and diagnostics tests; no model inference",
+  "counts": {
+    "tests": 15,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "junit": "artifacts/campaign/fast-software-validation.xml",
+  "sha256": "304cb1f259237c1a760d4654e52cf5a4802d4a76412ad7e958e9703f9d6f1025"
+}

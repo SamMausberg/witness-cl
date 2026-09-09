@@ -1,0 +1,33 @@
+{
+  "status": "paused_at_complete_episode_boundary",
+  "recorded_utc": "2026-09-09T22:50:19.187098+00:00",
+  "reason": "User requested a one-to-two-hour maximum; original 32-stream assignment remains incomplete and unchanged.",
+  "processes": [
+    {
+      "pid": 182323,
+      "cmdline_sha256": "72ec4e4d2f846353978bccd266cbef687d9a0cbb5cdd3b2f993dfee0cab435e6",
+      "start_ticks": "1351147"
+    },
+    {
+      "pid": 162627,
+      "cmdline_sha256": "612a407e22072dd63690886446f2f491d81f5f3c9f3cc822f5cc69e4b14ce630",
+      "start_ticks": "1213578"
+    },
+    {
+      "pid": 201846,
+      "cmdline_sha256": "0767ebfe1f1f945a00c6df0131636fc6dc06310ce9c1d3933bf55f6484604e28",
+      "start_ticks": "1496907"
+    }
+  ],
+  "completed_episodes": 161,
+  "recorded_call_journals": 178,
+  "pending_or_orphan_calls": 0,
+  "attempts": 1,
+  "server_untouched": true,
+  "resume_order": [
+    182323,
+    162627,
+    201846
+  ],
+  "original_denominator_retained": 17664
+}

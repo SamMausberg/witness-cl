@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/witness-cl/artifacts/campaign/fast-dense-v2/sources/tools/campaign_fast.py", line 416, in <module>
+    main()
+  File "/home/ubuntu/witness-cl/artifacts/campaign/fast-dense-v2/sources/tools/campaign_fast.py", line 409, in main
+    result = run(args.out, build_client(frozen["runtime_config"], args.key_file))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/witness-cl/artifacts/campaign/fast-dense-v2/sources/tools/campaign_fast.py", line 249, in run
+    result = campaign.run(out, client, max_new_records=max_new_records)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/witness-cl/artifacts/campaign/fast-dense-v2/sources/tools/campaign.py", line 657, in run
+    return _run(out, client, max_new_records=max_new_records)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/witness-cl/artifacts/campaign/fast-dense-v2/sources/tools/campaign.py", line 674, in _run
+    serving = None if frozen["contains_test_double_calls"] else runtime_identity(frozen)
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/witness-cl/artifacts/campaign/fast-dense-v2/sources/tools/campaign.py", line 118, in runtime_identity
+    command = [word.decode() for word in (process / "cmdline").read_bytes().split(b"\0") if word]
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.12.14-linux-aarch64-gnu/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.12.14-linux-aarch64-gnu/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/proc/161293/cmdline'

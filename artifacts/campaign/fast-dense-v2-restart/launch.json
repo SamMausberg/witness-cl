@@ -1,0 +1,17 @@
+{
+  "recorded_utc": "2026-09-09T23:03:03.032010+00:00",
+  "runner_pid": 223162,
+  "command": [
+    "/home/ubuntu/witness-cl/.venv/bin/python",
+    "-u",
+    "artifacts/campaign/fast-dense-v2-restart/sources/tools/campaign_fast.py",
+    "resume",
+    "--out",
+    "artifacts/campaign/fast-dense-v2-restart",
+    "--key-file",
+    "/home/ubuntu/.local/share/witness-cl/campaign-dense/runtime/server.key"
+  ],
+  "detached_session": true,
+  "freeze_sha256": "180ce0c3c61ea3150eb723b7db295e356a92703db6c456e4f735ec8f1cb39b9b",
+  "report_deadline_utc": "2026-09-10T00:43:00+00:00"
+}

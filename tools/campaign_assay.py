@@ -14,6 +14,7 @@ from copy import deepcopy
 from dataclasses import replace
 from datetime import datetime, timezone
 import hashlib
+import os
 from pathlib import Path
 import shutil
 import sys
@@ -539,13 +540,83 @@ def all_deletion_cases(records, mechanism_audit=None):
     for index, case in enumerate(cases):
         original = records[case["original_record_ordinal"]]
         case.update(key=f"deletion-{index:05d}", original_record_sha256=digest(original),
+                    original_data_sha256=original["trace"]["evaluator"]["data_sha256"],
                     original_correct=original["trace"]["reward"] == 1.0)
         if not case["original_correct"] or case["sampling_seed"] is None:
             raise ValueError("deletion requires a correct source execution with frozen sampling seed")
     return cases, mechanism_audit
 
 
-def freeze_deletion(out, source_study):
+def deletion_source_inventory(source_schedule="campaign"):
+    sources = source_inventory()
+    if source_schedule == "fast240":
+        for name in ("tools/campaign_fast.py", "docs/campaign/FAST_DELETION_PLAN.md"):
+            sources[name] = sha(ROOT / name)
+    elif source_schedule != "campaign":
+        raise ValueError("unknown deletion source schedule")
+    return sources
+
+
+def resolve_deletion_source(out, frozen):
+    """Locate a relocated parent without rewriting its original provenance."""
+    if "source_study_relative_to_output" in frozen:
+        locator = frozen["source_study_relative_to_output"]
+        if not isinstance(locator, str) or not locator or Path(locator).is_absolute():
+            raise ValueError("deletion parent locator must be a nonempty relative path")
+        source = (Path(out) / locator).resolve()
+    else:
+        source = Path(frozen["source_study"]).resolve()
+    if not source.is_dir():
+        raise ValueError("deletion parent locator does not resolve to an existing directory")
+    return source
+
+
+def load_deletion_source(source_study, original, audit_receipt, source_schedule):
+    """Explicitly validate the sparse parent schedule before enumerating cases."""
+    if source_schedule == "fast240":
+        from tools import campaign_fast as fast
+        fast.validate_protocol(original)
+        if (read(source_study / "freeze.sha256.json") != {"sha256": sha(source_study / "freeze.json")}
+                or original["fixtures_sha256"] != fast.fixture_digest(original)
+                or original["source_sha256"].get("tools/campaign_fast.py") != sha(ROOT / "tools/campaign_fast.py")):
+            raise ValueError("fast deletion parent fixture or schedule implementation changed")
+        plan = fast.planned_records(original)
+        with fast.adapted(original):
+            records = campaign.load_records(source_study)
+        expected_summary = fast.summarize(records, original)
+    elif source_schedule == "campaign":
+        if original.get("experiment") == "descriptive_fast_240_v1":
+            raise ValueError("fast parent requires the explicit fast240 deletion schedule adapter")
+        plan = campaign.planned_records(original)
+        records = campaign.load_records(source_study)
+        expected_summary = campaign.summarize(records, original)
+    else:
+        raise ValueError("unknown deletion source schedule")
+    if (read(source_study / "schedule.json") != plan or digest(plan) != original["schedule_sha256"]
+            or original["planned_records"] != len(plan) or len(records) != len(plan)
+            or audit_receipt.get("records_replayed") != len(plan)
+            or read(source_study / "summary.json") != expected_summary
+            or not expected_summary["complete"]
+            or original["environment"] != campaign.environment_fingerprint()):
+        raise ValueError("deletion source is not the complete exact audited schedule")
+    # Reproduce every parent transition offline, retaining semantic panel indices,
+    # sampling seeds and direct SQL observations. No model requests are made.
+    memories = {}
+    for item, record in zip(plan, records, strict=True):
+        key = (item["seed"], item["condition"], item["arm"])
+        memory = memories.setdefault(key, campaign.memory_for(item["arm"]))
+        after = campaign.validate_record(source_study, original, item, record, memory.snapshot())
+        if item["phase"] == "ordinary":
+            memories[key] = after
+    if journal_usage(source_study / "calls") != audit_receipt["cost"] or expected_summary["cost"] != audit_receipt["cost"]:
+        raise ValueError("deletion source cost differs from its complete raw journal")
+    if not original["contains_test_double_calls"] and any(
+            call.get("test_double") for record in records for call in record["trace"]["model_calls"]):
+        raise ValueError("scripted parent calls cannot enter real deletion evidence")
+    return records
+
+
+def freeze_deletion(out, source_study, *, source_schedule="campaign"):
     """Bind all eligible cases from a completed, already replay-audited campaign."""
     out, source_study = Path(out).resolve(), Path(source_study).resolve()
     if out.exists():
@@ -565,17 +636,19 @@ def freeze_deletion(out, source_study):
         if path.startswith("src/") or path == "experiments/delayed_sql.py":
             if not (ROOT / path).is_file() or sha(ROOT / path) != expected:
                 raise ValueError("deletion source generator or executor differs from original campaign")
-    records = campaign.load_records(source_study)
+    records = load_deletion_source(source_study, original, audit_receipt, source_schedule)
     cases, mechanism = all_deletion_cases(records)
     if not original["contains_test_double_calls"] and any(case["test_double"] for case in cases):
         raise ValueError("scripted source event cannot enter a real deletion diagnostic")
     frozen = {
         "schema_version": 1, "experiment": "agent_relation_deletion_v1", "created_utc": utc(),
         "source_study": str(source_study), "source_freeze_sha256": sha(source_study / "freeze.json"),
+        "source_study_relative_to_output": os.path.relpath(source_study, out),
         "source_audit_sha256": sha(source_study / "audit.json"),
         "source_records_sha256": campaign.artifact_digest(source_study / "episodes"),
         "source_journals_sha256": campaign.artifact_digest(source_study / "calls"),
-        "source_sha256": source_inventory(), "environment": campaign.environment_fingerprint(),
+        "source_sha256": deletion_source_inventory(source_schedule), "environment": campaign.environment_fingerprint(),
+        "source_schedule": source_schedule, "source_schedule_sha256": sha(source_study / "schedule.json"),
         "runtime_config": deepcopy(original["runtime_config"]),
         "runtime_receipt": deepcopy(original["runtime_receipt"]),
         "client_config": deepcopy(original["client_config"]),
@@ -591,6 +664,9 @@ def freeze_deletion(out, source_study):
         "original_acquisition_and_evaluation_cost": audit_receipt["cost"],
         "primary_or_population_claim": False,
     }
+    if source_schedule == "fast240":
+        frozen.update({key: original[key] for key in (
+            "last_call_start_utc", "generation_deadline_utc", "report_deadline_utc")})
     out.mkdir(parents=True)
     for path, expected in frozen["source_sha256"].items():
         target = out / "sources" / path
@@ -613,10 +689,24 @@ def verify_deletion_freeze(out):
     if (frozen.get("experiment") != "agent_relation_deletion_v1"
             or read(out / "freeze.sha256.json") != {"sha256": sha(out / "freeze.json")}
             or digest(cases) != frozen["cases_sha256"] or len(cases) != frozen["planned_cases"]
-            or source_inventory() != frozen["source_sha256"]
+            or deletion_source_inventory(frozen.get("source_schedule", "campaign")) != frozen["source_sha256"]
             or campaign.environment_fingerprint() != frozen["environment"]
             or sha(out / "mechanism-selection.json") != frozen["selection_receipt_sha256"]):
         raise ValueError("deletion diagnostic manifest, source or environment changed")
+    if frozen.get("source_schedule") == "fast240":
+        source = resolve_deletion_source(out, frozen)
+        parent = read(source / "freeze.json")
+        if any(frozen.get(key) != parent.get(key) for key in (
+                "last_call_start_utc", "generation_deadline_utc", "report_deadline_utc")):
+            raise ValueError("fast deletion deadline differs from the parent protocol")
+        for filename, key in (("freeze.json", "source_freeze_sha256"),
+                              ("audit.json", "source_audit_sha256"),
+                              ("schedule.json", "source_schedule_sha256")):
+            if sha(source / filename) != frozen[key]:
+                raise ValueError("fast deletion parent receipt changed")
+        for directory, key in (("episodes", "source_records_sha256"), ("calls", "source_journals_sha256")):
+            if campaign.artifact_digest(source / directory) != frozen[key]:
+                raise ValueError("fast deletion parent raw records changed")
     return frozen, cases
 
 
@@ -630,6 +720,8 @@ def execute_deletion_case(case, client, frozen):
     try:
         spec = make_episode(case["seed"], frozen["source_split"], case["condition"],
                             case["phase"], case["index"], old_replicates=frozen["old_replicates"])
+        if case.get("original_data_sha256", dict(spec._metadata)["data_sha256"]) != dict(spec._metadata)["data_sha256"]:
+            raise ValueError("deletion database differs from its original episode")
         trace = execute_episode(spec, memory, client, campaign.budget_for(frozen),
                                 phase=case["phase"], learn=False,
                                 episode_nonce=case["original_episode_nonce"],
@@ -645,9 +737,14 @@ def execute_deletion_case(case, client, frozen):
 
 def deletion_report(records, frozen, physical):
     completed = [r for r in records if r["trace"]["status"] in {"completed", "no_valid_answer"}]
+    complete = len(completed) == frozen["planned_cases"] and physical["unknown_usage_calls"] == 0
     return {"experiment": frozen["experiment"], "planned_cases": frozen["planned_cases"],
             "recorded_cases": len(records), "completed_cases": len(completed),
-            "complete": len(completed) == frozen["planned_cases"],
+            "complete": complete,
+            "status": ("no_reruns_performed" if frozen["planned_cases"] == 0 else
+                       "complete" if complete else "incomplete"),
+            "source_schedule": frozen.get("source_schedule", "campaign"),
+            "agent_reruns_performed": len(completed),
             "answer_flips_to_wrong": sum(r["trace"]["reward"] != 1 for r in completed),
             "correct_despite_deletion": sum(r["trace"]["reward"] == 1 for r in completed),
             "physical_diagnostic_cost": physical,
@@ -661,14 +758,24 @@ def run_deletion(out, client, *, max_new_records=None, replay=False):
     out = Path(out).resolve()
     with study_lock(out):
         frozen, cases = verify_deletion_freeze(out)
+        if max_new_records is not None and (type(max_new_records) is not int or max_new_records < 0):
+            raise ValueError("nonnegative deletion checkpoint size required")
+        keys = [case["key"] for case in cases]
+        episode_files = {path.stem for path in (out / "episodes").glob("*.json")
+                         if not path.name.endswith(".sha256.json")}
+        if episode_files != set(keys[:len(episode_files)]):
+            raise ValueError("deletion records are not the frozen case prefix")
+        call_dirs = {path.name for path in (out / "calls").iterdir() if path.is_dir()} if (out / "calls").exists() else set()
+        if call_dirs - set(keys[:len(episode_files) + 1]):
+            raise ValueError("deletion model journal skips the frozen case census")
         if not frozen["contains_test_double_calls"]:
             if ROOT.resolve() != (out / "sources").resolve():
                 raise ValueError("real deletion diagnostics must execute immutable sources/tools/campaign_assay.py")
-            if not replay and client.snapshot_config() != frozen["client_config"]:
+            if not replay and cases and client.snapshot_config() != frozen["client_config"]:
                 raise ValueError("deletion client differs from frozen source policy")
-            if not replay:
+            if not replay and cases:
                 save(out / "execution_environment.json", campaign.runtime_identity(frozen))
-        records, new = [], 0
+        records, new, replayed, stopped = [], 0, 0, []
         try:
             for case in cases:
                 path = out / "episodes" / (case["key"] + ".json")
@@ -682,7 +789,11 @@ def run_deletion(out, client, *, max_new_records=None, replay=False):
                     previous = getattr(client, "decoding", None)
                     if previous is not None:
                         client.decoding = replace(previous, seed=case["sampling_seed"])
-                    journal = JournalClient(client, out / "calls" / case["key"])
+                    journal_type = JournalClient
+                    if frozen.get("source_schedule") == "fast240":
+                        from tools.campaign_fast import deadline_journal
+                        journal_type = deadline_journal(frozen)
+                    journal = journal_type(client, out / "calls" / case["key"])
                     try:
                         trace = execute_deletion_case(case, journal, frozen)
                     finally:
@@ -700,21 +811,26 @@ def run_deletion(out, client, *, max_new_records=None, replay=False):
                 if (record["case_sha256"] != digest(case) or record["freeze_sha256"] != sha(out / "freeze.json")
                         or record["journal"] != journal_summary(out / "calls" / case["key"])):
                     raise ValueError("deletion case or journal identity changed")
-                if (record["trace"]["status"] in {"runtime_failure", "resource_stop"}
-                        or receipt_cost([record])["total_tokens"] is None):
-                    raise ValueError("failed/uncertain deletion attempt retained without automatic retry")
                 if record["journal"]["invocations"] != len(record["trace"]["model_calls"]):
                     raise ValueError("deletion trace omits journaled invocation")
                 for i, call in enumerate(record["trace"]["model_calls"]):
                     campaign.validate_call(call, frozen, case["sampling_seed"])
                     if read(out / "calls" / case["key"] / f"{i:03d}.json") != {"state": "recorded", "calls": [call]}:
                         raise ValueError("deletion raw model receipt differs")
+                if (record["trace"]["status"] in {"runtime_failure", "resource_stop"}
+                        or receipt_cost([record])["total_tokens"] is None):
+                    if len(episode_files) > len(records):
+                        raise ValueError("deletion records continue after an interrupted case")
+                    stopped.append({"key": case["key"], "status": record["trace"]["status"],
+                                    "error": record["trace"].get("error"), "full_episode_replayed": False})
+                    break  # Retain the attempt; never replace it or run later cases.
                 if replay:
                     model = RecordedClient(record["trace"]["model_calls"])
                     actual = execute_deletion_case(case, model, frozen)
                     if (model.index != len(model.calls)
                             or canonical(campaign.semantic(actual)) != canonical(campaign.semantic(record["trace"]))):
                         raise ValueError("relation-deletion transcript replay differs")
+                    replayed += 1
         finally:
             summary = deletion_report(records, frozen, journal_cost(out))
             if not replay:
@@ -722,7 +838,9 @@ def run_deletion(out, client, *, max_new_records=None, replay=False):
         if replay:
             if read(out / "summary.json") != summary:
                 raise ValueError("relation-deletion report differs from receipts")
-            result = {"consistent": True, "complete": summary["complete"], "cases_replayed": len(records),
+            result = {"consistent": summary["physical_diagnostic_cost"]["unknown_usage_calls"] == 0,
+                      "complete": summary["complete"], "cases_replayed": replayed,
+                      "recorded_cases": len(records), "stopped_cases": stopped,
                       "model_calls_made": 0, "freeze_sha256": sha(out / "freeze.json"),
                       "summary_sha256": sha(out / "summary.json"),
                       "records_sha256": campaign.artifact_digest(out / "episodes"),
@@ -744,6 +862,7 @@ def main():
     p = sub.add_parser("deletion-freeze")
     p.add_argument("--out", type=Path, required=True)
     p.add_argument("--source-study", type=Path, required=True)
+    p.add_argument("--source-schedule", choices=("campaign", "fast240"), default="campaign")
     for command in ("deletion-run", "deletion-resume", "deletion-audit"):
         p = sub.add_parser(command)
         p.add_argument("--out", type=Path, required=True)
@@ -758,7 +877,7 @@ def main():
             p.add_argument("--max-new-records", type=int)
     args = parser.parse_args()
     if args.command == "deletion-freeze":
-        result = freeze_deletion(args.out, args.source_study)
+        result = freeze_deletion(args.out, args.source_study, source_schedule=args.source_schedule)
     elif args.command in {"deletion-run", "deletion-resume"}:
         from witness_cl.model_campaign import build_client
         frozen, _ = verify_deletion_freeze(args.out)

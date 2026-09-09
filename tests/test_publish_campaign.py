@@ -369,9 +369,9 @@ def test_confirmation_requires_full_assigned_n_and_bound_prospective_power(tmp_p
         pub.confirmation(pub.Inputs(), out, frozen, summary)
 
 
-def deletion_bundle(tmp_path, *, eligible=0):
+def deletion_bundle(tmp_path, *, eligible=0, source=None):
     """Saved schema fixtures for the deletion publisher, never model evidence."""
-    source = bundle(tmp_path)
+    source = bundle(tmp_path) if source is None else source
     source_schedule = read(source / "schedule.json")
     cases, events = [], []
     if eligible:
@@ -384,7 +384,8 @@ def deletion_bundle(tmp_path, *, eligible=0):
         memory = ready_memory()
         original["before_snapshot"] = memory.snapshot()
         original["sampling_seed"] = 314
-        original["trace"].update(episode_index=2, episode_nonce="schema-unit-baseline")
+        original["trace"].update(episode_index=2, episode_nonce="schema-unit-baseline",
+                                 evaluator={"data_sha256": pub.digest({"schema_fixture": True})})
         save(path, original)
         removed = memory.registry.entries[0]
         memory = DelayedMemory.from_snapshot(memory.snapshot())
@@ -392,6 +393,7 @@ def deletion_bundle(tmp_path, *, eligible=0):
         case = {key: original[key] for key in ("seed", "condition", "arm", "phase", "index", "sampling_seed")}
         case.update(key="deletion-00000", original_record_ordinal=ordinal,
                     original_record_sha256=pub.digest(original), original_correct=True, learn=False,
+                    original_data_sha256=original["trace"]["evaluator"]["data_sha256"],
                     before_snapshot=memory.snapshot(), removed_entry_key=removed.key,
                     removed_view_key=removed.view.key, original_episode_nonce="schema-unit-baseline",
                     episode_index=2)
@@ -421,6 +423,7 @@ def deletion_bundle(tmp_path, *, eligible=0):
     for case in cases:
         trace = {"status": "completed", "learn": False, "reward": 0.0,
                  "memory": case["before_snapshot"], "model_calls": [call()],
+                 "evaluator": {"data_sha256": case["original_data_sha256"]},
                  "phase": case["phase"], "arm": case["arm"], "episode_index": 2,
                  "episode_nonce": "schema-unit-baseline"}
         save(out / "episodes" / (case["key"] + ".json"), {"case_sha256": pub.digest(case),
@@ -452,7 +455,7 @@ def test_agent_deletion_complete_census_and_zero_are_recognized(tmp_path, eligib
     assert result["physical_cost"]["calls"] == eligible
     if not eligible:
         assert "zero eligible deletion cases" in pub.render_markdown(snapshot)
-        assert "Zero eligible cases; no rerun estimate" in pub.render_tex(snapshot)
+        assert "Zero eligible cases; no reruns performed" in pub.render_tex(snapshot)
     else:
         assert "1/1 answers flip to wrong" in pub.render_markdown(snapshot)
 

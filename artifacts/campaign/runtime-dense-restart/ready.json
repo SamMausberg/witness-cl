@@ -1,0 +1,11 @@
+{
+  "status": "ready",
+  "recorded_utc": "2026-09-09T23:02:51.137545+00:00",
+  "health": {
+    "status": "ok"
+  },
+  "server_pid": 222592,
+  "same_config_model_backend_command_as_original": true,
+  "model_calls_made": 0,
+  "credential_value_recorded": false
+}

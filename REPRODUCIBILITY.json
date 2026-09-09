@@ -48,7 +48,7 @@
     "qualification": "docs/campaign/QUALIFICATION.md",
     "runner": "tools/campaign.py",
     "runtime_config": "configs/campaign_runtime_dense.json",
-    "status": "stage_1_registered_report; candidate_2_32_stream_pilot_running; confirmation_and_auxiliaries_held",
+    "status": "stage_1_registered_report; original_32_stream_pilot_paused; separate_240_record_diagnostic_running; confirmation_and_auxiliaries_held",
     "confirmatory_result_established": false,
     "native_result_established": false,
     "sequence": "configs/campaign_sequence_dense_v2.json",
@@ -79,6 +79,25 @@
       "qualified": true,
       "development_planned_records": 2208,
       "development_complete": false
-    }
+    },
+    "pilot_completed_records": 161,
+    "pilot_pause_receipt": "artifacts/campaign/pilot-dense-v2/time-budget-amendment-pause.json",
+    "time_budget_amendment": "docs/campaign/TIME_BUDGET_AMENDMENT.md",
+    "time_budget_diagnostic": {
+      "directory": "artifacts/campaign/fast-dense-v2-restart",
+      "streams": 2,
+      "planned_records": 240,
+      "seeds": [
+        101302,
+        101303
+      ],
+      "complete": false,
+      "confirmatory": false,
+      "report_deadline_utc": "2026-09-10T00:43:00+00:00",
+      "freeze": "artifacts/campaign/fast-dense-v2-restart/freeze.json",
+      "runtime_receipt": "artifacts/campaign/runtime-dense-restart/server.json",
+      "offline_replay_instructions": "artifacts/campaign/fast-dense-v2-restart/RUN.md"
+    },
+    "time_budget_unused_freeze": "artifacts/campaign/fast-dense-v2/startup-failure.json"
   }
 }

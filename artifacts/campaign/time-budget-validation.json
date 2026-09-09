@@ -1,0 +1,23 @@
+{
+  "recorded_utc": "2026-09-09T23:26:52.705703+00:00",
+  "scope": "Full offline repository suite after fast diagnostic, deadline, deletion adapter and publisher changes; no model calls",
+  "counts": {
+    "tests": 2056,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 13
+  },
+  "passed": 2043,
+  "duration_seconds": 122.082,
+  "junit": "artifacts/campaign/time-budget-tests.xml",
+  "junit_sha256": "56f5eba4d3e5d61190c1da950fe99da3e217b38edfc8e6eac2358d65289f1ad4",
+  "changed_implementation_sha256": {
+    "tools/campaign_fast.py": "cc60983b4936289008e8c0298b47404ac5efc2e0df1933acee09ecb1f3fae3e0",
+    "tools/campaign_fast_diagnostics.py": "4972fbec169b374b77005db0148e9b4d2010ca730e3e6e1daa500b05e47200a5",
+    "tools/campaign_assay.py": "fcdb43c88a60a5a86706509f5310e9ef2fbc7b371b971d22fbf94fd2c031cf82",
+    "tools/publish_campaign.py": "09670217f52d53f5a2161a481229dbbac3a9296dce9218759d4b5d6949e67b5b",
+    "Makefile": "791bf4b315d6ff6c022ca35582c53991280b376e7b187056f88c0fe04cd135b0"
+  },
+  "git_base": "b3dbb78",
+  "later_changes_require_separate_validation": true
+}

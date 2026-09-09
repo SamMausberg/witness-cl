@@ -1,0 +1,13 @@
+{
+  "status": "original_serving_process_unavailable",
+  "recorded_utc": "2026-09-09T23:31:20.969849+00:00",
+  "detected_utc": "2026-09-09T23:00:41+00:00",
+  "original_pid": 161293,
+  "exit_cause": "unknown",
+  "last_server_log_sha256": "0b87b042b69a051185b8175e0592556bd991877a9a15b7b23b2cf205be254ed1",
+  "last_logged_work": "last complete episode before the original pilot pause",
+  "original_pilot_pause_receipt": "artifacts/campaign/pilot-dense-v2/time-budget-amendment-pause.json",
+  "initial_fast_launch_made_no_model_calls": true,
+  "replacement_runtime": "artifacts/campaign/runtime-dense-restart",
+  "original_runtime_receipt_preserved": true
+}

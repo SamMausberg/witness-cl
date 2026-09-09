@@ -38,6 +38,8 @@ CAMPAIGN_PYTHON = \
 	tools/campaign_auxiliary_sequence.py \
 	tools/campaign_supervisor.py \
 	tools/campaign_pilot_report.py \
+	tools/campaign_fast.py \
+	tools/campaign_fast_diagnostics.py \
 	tools/campaign_assay.py \
 	tools/native_campaign.py \
 	tools/publish_campaign.py \
