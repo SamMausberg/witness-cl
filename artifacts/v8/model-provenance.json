@@ -1,0 +1,41 @@
+{
+  "model_repository": "Qwen/Qwen3-4B-GGUF",
+  "model_repository_commit": "bc640142c66e1fdd12af0bd68f40445458f3869b",
+  "model_file": "Qwen3-4B-Q8_0.gguf",
+  "model_file_bytes": 4280404704,
+  "model_sha256": "8c2f07f26af9747e41988551106f149b03eb9b5cb6df636027b6bf6278473300",
+  "download_hash_verified": true,
+  "download_and_hash_seconds": 164.38181397299923,
+  "llama_cpp_commit": "fe2adf0e722f30f5295fdec8a0f1dc788f7498bc",
+  "model_load_seconds": 28.13,
+  "server_alias": "witness-v8-qwen3-4b-q8",
+  "context_tokens": 32768,
+  "gpu_layers": 99,
+  "threads": 6,
+  "batch_size": 512,
+  "ubatch_size": 128,
+  "kv_type": "q8_0",
+  "flash_attention": true,
+  "parallel_slots": 1,
+  "thinking": false,
+  "temperature": 0,
+  "seed": 42,
+  "cache_prompt": false,
+  "ui": false,
+  "agent_tools": false,
+  "authenticated": true,
+  "loopback_only": true,
+  "weights_updated": false,
+  "native_benchmark": false,
+  "python": "3.12.3",
+  "packages": {
+    "numpy": "2.2.6",
+    "pytest": "9.0.2",
+    "scipy": "1.16.2",
+    "matplotlib": "3.10.3"
+  },
+  "sources": [
+    "https://huggingface.co/Qwen/Qwen3-4B-GGUF/tree/bc640142c66e1fdd12af0bd68f40445458f3869b",
+    "https://github.com/ggml-org/llama.cpp/tree/fe2adf0e722f30f5295fdec8a0f1dc788f7498bc"
+  ]
+}

@@ -36,3 +36,7 @@ paper/v5/*.out
 paper/v6/*.aux
 paper/v6/*.log
 paper/v6/*.out
+
+paper/v7/*.aux
+paper/v7/*.log
+paper/v7/*.out

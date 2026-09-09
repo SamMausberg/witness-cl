@@ -1,5 +1,7 @@
 # Witness-CL
 
+**Version0.8 implementation checkpoint:** a local SQL abstraction-discovery agent, six legal-history/memory controls, charged reconstruction checks, fresh old-task panels, and89 Lean statements are implemented. The development cost pilot has not yet run. The research claim is unestablished. See the [v8 protocol](docs/v8/EVALUATION.md), [compiler proof boundary](docs/v8/FORMAL.md), and [composition audit](docs/v8/COMPOSITION_AUDIT.md). The v7 study below and its [archived paper](paper/v7/main.pdf) remain unchanged.
+
 **Online learning from executed experience, with explicit retention assumptions and falsifiable results.**
 
 Version 0.7.0 · [Paper](paper/main.pdf) · [Results](docs/v7/RESULTS.md) · [Protocol](docs/v7/EVALUATION.md) · [Formal bridge](docs/v7/FORMAL.md) · [Next experiment](docs/v7/NEXT_STEP.md)

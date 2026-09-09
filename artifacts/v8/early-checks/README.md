@@ -1,0 +1,1 @@
+The early component collection ran while a new test file was being written and stopped on a transient syntax error. The finalized pre-pilot suite is recorded separately:1031passed and8optional skips. No task-model run or outcome was involved in this collection failure.

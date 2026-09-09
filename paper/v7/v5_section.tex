@@ -1,0 +1,151 @@
+\section{Version 5: a falsified exploration hypothesis}
+\subsection{Decision regret instead of trace count}
+The inherited controller charges a worst-case loss but orders feasible probes by
+how many observable traces they distinguish. This can reward distinctions that do
+not change which program should be executed. We tested a replacement that values
+uncertainty about the decision itself. For the fixed program library $\PP$, define
+\begin{equation}
+ \rho_g(\C)=\min_{p\in\PP}\max_{m\in\C}
+ \left[\max_{q\in\PP}V_m(q,g)-V_m(p,g)\right].
+\end{equation}
+This is minimax simple regret restricted to the supplied library, not realized
+cumulative regret or unrestricted optimal control. Model-wise optima are computed
+inside the learner's compatible class; the true environment is not revealed.
+Models with identical observable traces for every library program are quotiented
+before scoring. Label multiplicity is therefore not treated as probability.
+
+Let $\C_{u,\tau}$ be the nonempty cell consistent with observable trace $\tau$
+after program $u$. The fixed two-objective score is
+\begin{equation}
+ G(u,\C)=\sum_g\rho_g(\C)-\max_{\tau}\sum_g\rho_g(\C_{u,\tau}).
+ \label{eq:regretprobe}
+\end{equation}
+Among exactly checked, affordable probes, the new controller maximizes
+$G/(1+d)$, then favors lower debit, larger optimistic current-objective gain,
+and proposer order. The incumbent is eligible as a free probe. If the best
+$G$ is zero, the controller executes the incumbent. Strict guaranteed
+improvements still use the unchanged v4 admission rule. Enumeration has a strict
+cap and returns \unk\ when incomplete. Exactness is conditional, exponential,
+and limited to the fixed finite model and policy classes.
+
+\subsection{Frozen protocol and rejected primary hypothesis}
+The selection rule was recorded before a 20-seed pilot (20000--20019) and a
+100-seed holdout (30000--30099). Every stream uses the inherited two-state,
+two-action, two-output generator, 16 action words, horizon four, and 48-episode
+A--B--A objective schedule. Four arms yield 3,840 pilot and 19,200 holdout rows:
+v4 B16, decision-regret B16, its untrained ablation, and the original optimistic
+full-history planner. All receive their own feedback and identical interaction
+horizons. Total CPU time is measured but unequal. The primary contrast is
+all-episode mean reward of the new trained controller minus v4 B16; intervals
+pair independent seeds rather than treating episodes as independent.
+
+\begin{table*}[t]
+\centering\input{v5_results.tex}
+\caption{New frozen v5 holdout: 100 seeds, 48 episodes, four systems. Rewards
+range from zero to eight. Deficit is the worst completed-prefix loss relative to
+the initial anchor. Times cover measured per-stream decision/update mechanics,
+not setup or a dedicated timing experiment; concurrent host load can affect them.}
+\label{tab:v5}
+\end{table*}
+
+The proposed improvement is rejected. New mean return is 5.82708 versus
+5.92167 for v4: difference $-0.09458$, paired 95\% $t$ interval
+$[-0.16915,-0.02001]$. Against full-history planning the difference is
+$-0.11750$, interval $[-0.19182,-0.04318]$. Late-A return falls from 5.80
+to 5.72, with three seeds worse and 97 tied; its paired interval crosses zero.
+The largest observed anchor deficit increases from 4 to 10, still within the
+allowed 16. No protected-incumbent violations occur. Mean measured mechanics
+cost is approximately 1.90 times v4. Fewer paired-check nodes do not imply lower
+cost: the new arm adds about 5,957 model rollouts per stream for regret scoring.
+
+Training also fails to show a clear benefit in this comparison: the trained
+minus untrained difference is $-0.03292$, interval $[-0.09639,0.03055]$.
+This secondary interval is descriptive and uncorrected for multiplicity.
+The result does not contradict conditional incumbent retention; it shows that
+retention alone neither chooses useful probes nor ensures efficient learning.
+The pilot contains 20 distinct tables and the holdout 85, with 10 shared.
+The new holdout also shares seven tables with v4 development and 22 with its
+holdout. These are samples with replacement from only 256 labelled tables, not
+disjoint environments or evidence of new-domain transfer.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=.98\textwidth]{figures/v5_learning.pdf}
+\caption{Frozen v5 result from raw episode records. Left: mean cumulative reward,
+including all exploratory episodes. Right: per-seed mean differences sorted for
+visibility; the seed is the statistical unit. The public objective changes at
+16 and 32 completed episodes. Underlying CSVs accompany the figure.}
+\label{fig:v5}
+\end{figure*}
+
+\subsection{Complementary free probes defeat one-step scoring}
+An independent post-hoc counterexample isolates a completeness failure.
+There are four compatible worlds indexed by hidden bits $(a,b)$. An anchor
+returns 5 and reveals nothing. Two other actions also return 5 but reveal $a$
+and $b$, respectively. Two terminal decision actions return 10 or 0 depending
+on the parity $a\mathbin{\mathrm{xor}}b$. Observations encode these outcomes;
+all four worlds are valid stationary reset models in a separately declared
+finite class. This construction uses more outputs/actions than the primary
+binary study and is identified as such in its executable artifact.
+
+Initially the minimax regret is 5. Either free bit probe leaves parity ambiguous,
+so its immediate regret reduction is zero. The decision actions have positive
+regret reduction but a worst-case debit of 5 and are infeasible at budget zero.
+The greedy selector therefore repeats the anchor indefinitely. Nevertheless,
+executing the two free probes identifies parity and permits a guaranteed
+improvement of 5 without any exploration loss. The reproducer executes both the
+stall and the successful probe sequence; it is a finite implementation test and
+written induction, not an additional Lean theorem.
+
+\paragraph{A separately diagnosed admission plateau.}
+Three frozen-holdout seeds stall after the sum of minimax regrets reaches zero.
+A common optimal candidate exists, but it ties the incumbent in at least one
+compatible model, so the strict $L>0$ promotion rule refuses it. Every probe also
+has zero regret-reduction score. A separate weak-dominance closure promotes a
+candidate only when exact comparison gives $L\geq0$ and $U>0$, preserving the
+conditional retention premise. This is a post-hoc repair, not the frozen method.
+
+An exhaustive development diagnostic evaluates all 256 labelled tables under
+one proposer initialization per table, four arms and 48 episodes: 49,152 rows.
+The repair improves the original v5 mean by 0.05453, improves ten tables and
+worsens none, and repairs four late-return deficits in that diagnostic. It still
+trails v4 and the full-history planner (mean 6.25326 versus 6.26123 and 6.29541)
+and is slower. This finite schedule census supports the diagnosed repair only;
+it supplies no held-out confidence interval or guarantee for other schedules,
+model classes, or random initializations. It does not resolve the complementary
+free-probe obstruction above.
+
+\paragraph{Successor hypothesis.}
+A bounded, adaptive two-probe plan can value complementary information that
+Equation~\eqref{eq:regretprobe} misses. For each first outcome, choose a second
+probe using that branch's updated cover, and maximize the worst-branch terminal
+reduction. Charge every executed probe separately using the original ledger;
+simulated outcomes supply planning information, never training evidence. A
+cheaper baseline simply falls back to v4's trace-count rule when $G=0$.
+Neither approach is entitled to a reward guarantee from uncertainty contraction.
+The first kill test is failure to solve the complementary-probe example at zero
+budget; the substantive kill test is no future reward advantage over both v4
+and the cheaper fallback at equal total compute. The existing holdout is now
+consumed for design purposes. Any tuned successor evaluation must be labelled
+post-hoc or use a genuinely new task family/protocol.
+
+\section{Actual local-model inference and native integration}
+\input{v5_local.tex}
+
+The native integration targets the official CL-Bench interface at commit
+\texttt{5f8c50eb1e84b2eda2ef4faff757dfc812a0ea26}. Its feedback semantics are
+material: the runner separately delivers observations; duplicating them through
+query handling would change the ICL baseline. A task may legally reveal a correct
+answer in post-action feedback; that is different from reading the evaluator's
+answer records before acting. Native reward and each system's stateful--stateless
+gain must remain separate. A bridge and interface tests do not supply a native
+benchmark result, an empirical retention result, or a valid finite-state
+abstraction for database drift. Those remain the next experimental obligations.
+
+
+Twenty optional-runtime tests pass, including eight tests executing the actual
+pinned upstream ICL/runner and SQLite task; twelve dependency-free contracts also
+belong to the 401-test standard suite. The native transport is scripted for these
+checks, and the SQLite database/questions are fixtures. Its exact certificate
+metadata is always \unk. The bridge is a baseline and audit foundation, not an
+implemented native Witness adaptation algorithm. The unmodified official
+benchmark dataset and a live native model transport remain unexecuted.

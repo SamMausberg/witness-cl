@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="1" time="0.799" timestamp="2026-09-08T19:36:46.516568-07:00" hostname="Sam"><testcase classname="" name="tests.test_sql_env_v8" time="0.000"><error message="collection failure">/home/sam/.local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
+    mod = import_path(
+/home/sam/.local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
+    importlib.import_module(module_name)
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1387: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+/home/sam/.local/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:197: in exec_module
+    exec(co, module.__dict__)
+tests/test_sql_env_v8.py:7: in &lt;module&gt;
+    from witness_cl.sql_env_v8 import (
+E     File "/mnt/c/Users/Sam/Documents/Codex/2026-09-08/we-are-working-together-on-open-2/outputs/witness-cl/src/witness_cl/sql_env_v8.py", line 371
+E       ('south_undelivered_refunds', 'For current South-region customers with at least one order not yet delivered, what is the average of each customer's total refunds on those undelivered orders?'),
+E                                                                                                                                                                                                     ^
+E   SyntaxError: unterminated string literal (detected at line 371)</error></testcase></testsuite></testsuites>

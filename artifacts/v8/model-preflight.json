@@ -1,0 +1,54 @@
+{
+  "usage": {
+    "max_total_tokens": 300000,
+    "max_calls": 320,
+    "total_tokens": 73,
+    "prompt_tokens": 47,
+    "completion_tokens": 26,
+    "calls": 1,
+    "tokenization_seconds": 0.017990042004385032,
+    "inference_seconds": 0.5272043689983548,
+    "unknown_usage_calls": 0
+  },
+  "records": [
+    {
+      "phase": "transport_preflight",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only JSON."
+        },
+        {
+          "role": "user",
+          "content": "Return a SQLite SELECT that sums the amount column of table sales using a named region parameter for west. JSON keys sql and params."
+        }
+      ],
+      "preflight_tokens": 47,
+      "max_output_tokens": 384,
+      "tokenization_seconds": 0.017990042004385032,
+      "status": "completed",
+      "usage": {
+        "completion_tokens": 26,
+        "prompt_tokens": 47,
+        "total_tokens": 73,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "content": "{\n  \"sql\": \"SELECT SUM(amount) FROM sales WHERE region = ?\",\n  \"params\": [\"west\"]\n}",
+      "finish_reason": "stop",
+      "backend_timings": {
+        "cache_n": 0,
+        "prompt_n": 47,
+        "prompt_ms": 102.622,
+        "prompt_per_token_ms": 2.1834468085106384,
+        "prompt_per_second": 457.99146381867433,
+        "predicted_n": 26,
+        "predicted_ms": 412.94,
+        "predicted_per_token_ms": 15.882307692307693,
+        "predicted_per_second": 62.96314234513489
+      },
+      "inference_seconds": 0.5272043689983548
+    }
+  ]
+}

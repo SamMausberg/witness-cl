@@ -1,0 +1,33 @@
+{
+  "purpose": "implementation and development-pilot source receipt; not a confirmatory evaluation freeze",
+  "parent_commit": "246ad39746cc311db14256ba9e667dea942be4c5",
+  "source_sha256": {
+    "src/witness_cl/sql_env_v8.py": "8199b4714cd3460157a3acb81dcbf0581bd540129dd5c230db7a609cd2155a6d",
+    "src/witness_cl/fragments_v8.py": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd",
+    "src/witness_cl/memory_v8.py": "18a0c2994c7f8b437f1ff070f791bc0f6c8d344bdfc4ad9687af6396e6db1b47",
+    "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+    "src/witness_cl/abstraction_v8.py": "1bf54a2d273533238d0dc3940f4460efb37e60694818c7dfd1a4b669faf24b44",
+    "experiments/sql_abstractions_v8.py": "a8d3ed49f45106b0d9193c414ab57ee7ef85249ca876157d224a165d22178447",
+    "docs/v8/EVALUATION.md": "632939f6c8119bfbc0ca7ae15fb56d60cb5bf80d157c13fd2b7fca0b65014e85"
+  },
+  "model_provenance_sha256": "38a36832163d3648dea7798e84980542facc830718daf8bf96cd37228706e1fc",
+  "prepilot_pytest_sha256": "e4d8ff44d755b976b7a4aeaee97057f908a47b2f073fdd5b55dc91c4c394855b",
+  "ordinary_model_task_calls_before_freeze": 0,
+  "transport_only_model_calls_before_freeze": 2,
+  "development_seeds": [
+    90000
+  ],
+  "conditions": [
+    "reuse"
+  ],
+  "arms": [
+    "full_history",
+    "verbatim",
+    "insights",
+    "fragments",
+    "fragments_unchecked",
+    "stateless"
+  ],
+  "wall_seconds_cap": 1800,
+  "claim_confirmed": false
+}

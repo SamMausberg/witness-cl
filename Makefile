@@ -2,8 +2,8 @@ PYTHON ?= python3
 .PHONY: test experiment audit-power refine refine-learning refine-audit refine-training cube-bench cpp-check cuda-check paper formal clean
 
 test:
-	mkdir -p artifacts/v7
-	PYTHONPATH=src $(PYTHON) -m pytest -q --junitxml=artifacts/v7/pytest.xml
+	mkdir -p artifacts/v8
+	PYTHONPATH=src $(PYTHON) -m pytest -q --junitxml=artifacts/v8/pytest.xml
 experiment:
 	PYTHONPATH=src $(PYTHON) experiments/synthetic.py --seeds 20 --episodes 384 --out artifacts/synthetic
 audit-power:
@@ -33,7 +33,7 @@ paper:
 	cd paper && pdflatex -interaction=nonstopmode -halt-on-error main.tex
 	cd paper && pdflatex -interaction=nonstopmode -halt-on-error main.tex
 formal:
-	$(PYTHON) formal/audit.py --output artifacts/v7
+	$(PYTHON) formal/audit_v8.py --output artifacts/v8
 clean:
 	rm -f paper/*.aux paper/*.log paper/*.out paper/*.bbl paper/*.blg
 	$(MAKE) -C kernels clean

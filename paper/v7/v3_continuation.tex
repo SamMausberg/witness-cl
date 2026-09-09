@@ -1,0 +1,15 @@
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+& \multicolumn{3}{c}{Delayed damage} & \multicolumn{3}{c}{Compositional navigation} \\
+\cmidrule(lr){2-4}\cmidrule(l){5-7}
+Method & Early & Late & Worst deficit & Early & Late & Worst deficit \\
+\midrule
+Frozen anchor & 8.750 & 8.750 & 0 & 6.250 & 6.250 & 0 \\
+Immediate-reward greedy & 8.150 & 8.150 & 133 & 9.312 & 9.312 & 0 \\
+Full-history optimistic & 12.869 & 13.137 & 2 & 11.012 & 11.262 & 0 \\
+Uniform explore then plan & 10.900 & 13.137 & 19 & 10.131 & 11.262 & 4 \\
+Continuation, $B=0$ & 12.275 & 12.562 & 0 & 10.925 & 11.262 & 0 \\
+Continuation, $B=4$ & 12.850 & 13.137 & 2 & 11.000 & 11.262 & 0 \\
+Continuation, $B=16$ & 12.806 & 13.137 & 2 & 11.006 & 11.262 & 0 \\
+\bottomrule
+\end{tabular}

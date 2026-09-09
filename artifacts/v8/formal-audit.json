@@ -1,0 +1,399 @@
+{
+  "checked_at_utc": "2026-09-09T02:59:47.789832+00:00",
+  "scope": "typed prepared-request compilation; SQLite semantics and learned truth remain outside Lean",
+  "toolchain": "leanprover/lean4:v4.19.0",
+  "compiler": "Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)",
+  "build_exit_code": 0,
+  "theorem_count": 89,
+  "new_theorem_count": 12,
+  "theorems_by_file": {
+    "WitnessCL/Ambiguity.lean": [
+      "WitnessCL.V5.safe_policy_cannot_gain_under_aliasing"
+    ],
+    "WitnessCL/Continuation.lean": [
+      "WitnessCL.V3.closed_continuations_equal",
+      "WitnessCL.V3.closed_outputs_equal",
+      "WitnessCL.V3.bellman_improvement",
+      "WitnessCL.V3.plausible_member_improves",
+      "WitnessCL.V3.obligation_survives_shrinking",
+      "WitnessCL.V3.total_deficit_bounded_by_debits",
+      "WitnessCL.V3.debit_budget",
+      "WitnessCL.V3.no_risk_no_gain",
+      "WitnessCL.V3.truncation_counterexample",
+      "WitnessCL.V3.incumbent_chain"
+    ],
+    "WitnessCL/Core.lean": [
+      "WitnessCL.step_refines",
+      "WitnessCL.truth_survives",
+      "WitnessCL.truthful_feedback_preserves",
+      "WitnessCL.certified_sound",
+      "WitnessCL.certified_under_refinement",
+      "WitnessCL.empty_not_certified",
+      "WitnessCL.equivalent_certificates",
+      "WitnessCL.redundant_constraint",
+      "WitnessCL.redundancy_persists",
+      "WitnessCL.fold_refines",
+      "WitnessCL.fold_truth",
+      "WitnessCL.other_scope_unchanged",
+      "WitnessCL.incompatible_worlds"
+    ],
+    "WitnessCL/Executable.lean": [
+      "WitnessCL.Executable.runFrom_actions",
+      "WitnessCL.Executable.run_actions",
+      "WitnessCL.Executable.runFrom_append",
+      "WitnessCL.Executable.traceMatches_iff",
+      "WitnessCL.Executable.mem_filterTrace_iff",
+      "WitnessCL.Executable.filterTrace_retains_executed_truth",
+      "WitnessCL.Executable.mem_filterHistory_iff",
+      "WitnessCL.Executable.filterHistory_retains_executed_truth",
+      "WitnessCL.Executable.executed_history_characterization",
+      "WitnessCL.Executable.filterHistory_subset",
+      "WitnessCL.Executable.filterHistory_append",
+      "WitnessCL.Executable.incompatible_evidence_eliminates"
+    ],
+    "WitnessCL/Latent.lean": [
+      "WitnessCL.V4.split_cover",
+      "WitnessCL.V4.assigned_refines",
+      "WitnessCL.V4.exact_evidence_intersection",
+      "WitnessCL.V4.covered_lower_bound",
+      "WitnessCL.V4.guarded_update",
+      "WitnessCL.V4.arbitrary_proposer",
+      "WitnessCL.V4.retained_chain",
+      "WitnessCL.V4.informative_probe_removes",
+      "WitnessCL.V4.hidden_state_alias_counterexample",
+      "WitnessCL.V4.reset_prefix_budget",
+      "WitnessCL.V4.shrinking_retains"
+    ],
+    "WitnessCL/Refinement.lean": [
+      "WitnessCL.V2.growth_replays_every_event",
+      "WitnessCL.V2.growth_decomposition",
+      "WitnessCL.V2.old_survivors_survive_class_growth",
+      "WitnessCL.V2.expanded_survivor_truth",
+      "WitnessCL.V2.witness_growth_counterexample",
+      "WitnessCL.V2.patch_outside",
+      "WitnessCL.V2.patch_inside",
+      "WitnessCL.V2.protected_domain_unchanged",
+      "WitnessCL.V2.multiple_patches_preserve_outside",
+      "WitnessCL.V2.disagreement_patch_is_candidate",
+      "WitnessCL.V2.archive_output_unchanged",
+      "WitnessCL.V2.annihilated_residual_preserves_output",
+      "WitnessCL.V2.residual_preserves_protected_domain",
+      "WitnessCL.V2.zero_difference_is_neutral",
+      "WitnessCL.V2.inserting_neutral_factor",
+      "WitnessCL.V2.filter_one_factors"
+    ],
+    "WitnessCL/StatisticalBridge.lean": [
+      "WitnessCL.StatisticalBridge.scoreList_bounded",
+      "WitnessCL.StatisticalBridge.total_bounded",
+      "WitnessCL.StatisticalBridge.failed_iff",
+      "WitnessCL.StatisticalBridge.failureDebit_zero_iff",
+      "WitnessCL.StatisticalBridge.one_promotion_bound",
+      "WitnessCL.StatisticalBridge.promotion_chain_bound",
+      "WitnessCL.StatisticalBridge.finalVersion_append",
+      "WitnessCL.StatisticalBridge.toleranceSum_append",
+      "WitnessCL.StatisticalBridge.failureCount_append",
+      "WitnessCL.StatisticalBridge.historical_version_bound",
+      "WitnessCL.StatisticalBridge.historical_no_failure_bound",
+      "WitnessCL.StatisticalBridge.historical_no_forgetting",
+      "WitnessCL.StatisticalBridge.historical_tolerance_budget",
+      "WitnessCL.StatisticalBridge.context_regression_counterexample"
+    ],
+    "WitnessCL/TypedFragments.lean": [
+      "WitnessCL.TypedFragments.argument_substitution_correct",
+      "WitnessCL.TypedFragments.compilation_substitution_correct",
+      "WitnessCL.TypedFragments.witness_request_exact",
+      "WitnessCL.TypedFragments.sql_independent_of_values",
+      "WitnessCL.TypedFragments.renaming_preserves_parameter_values",
+      "WitnessCL.TypedFragments.composition_expansion_exact",
+      "WitnessCL.TypedFragments.witness_executor_result_exact",
+      "WitnessCL.TypedFragments.readOnlyRun_preserves_database",
+      "WitnessCL.TypedFragments.failed_guard_uses_fallback",
+      "WitnessCL.TypedFragments.conditional_pointwise_retention",
+      "WitnessCL.TypedFragments.zero_observation_cannot_identify_units",
+      "WitnessCL.TypedFragments.passing_guard_drift_counterexample"
+    ]
+  },
+  "source_sha256": {
+    "WitnessCL/Ambiguity.lean": "14aa4f4369ea6c471e24fdfce740a08deab4b7562ddd76abace68a816e866d72",
+    "WitnessCL/Continuation.lean": "3b69f0da8d0377f1398a7573470294db40a64e8a25db31bf80123c21b4908965",
+    "WitnessCL/Core.lean": "fc1665139f559ac0146cb6265761423bb4d16ab65c38840df785d9bec88871b5",
+    "WitnessCL/Executable.lean": "ae22efe9406376585db6a858ac26719d227c8d353f0241a58ac78f9bc143b09c",
+    "WitnessCL/Latent.lean": "94515e00f8e62f6e49499af6ce4d199cc5744e656e53dbd0d1939fb1565f72ee",
+    "WitnessCL/Refinement.lean": "3b5472a22fa16624ebf6ead36d65fcc9c9e9e3597031f30be32ac93a4b884016",
+    "WitnessCL/StatisticalBridge.lean": "f86e64712797e2ae3d8f8ad6f1d1d73d8b2ca0ec5804f013d10827450611a380",
+    "WitnessCL/TypedFragments.lean": "37157244528a9b8ef166dfc4640f96f70736a4f7f8d573ea10c54f88725f784e"
+  },
+  "build_input_sha256": {
+    "WitnessCL.lean": "638c262bb395c7fa6946a68569c20162849cd7ca680e24f0ba12da1e33cac2bd",
+    "FragmentFixture.lean": "2e02f2fcc8e201bd4fe619e0bb479f4f07925b5fdfe0fdb5afc976bb8f0f0a85",
+    "lakefile.toml": "a7e1605b03575995e6a558a69883e8013ed9f9ed8fd9fc68dc5146e8c729a89b",
+    "lean-toolchain": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea",
+    "audit.py": "e18567737237fc0a9ce43bee044cc78aaad5e71f3ff787fe5a39f92789b055b3",
+    "audit_v8.py": "fba9a57058a5973a95e4c9af63afd50c42a6ce2813e2f59e28d7a22217b1a151"
+  },
+  "runtime_source_sha256": {
+    "src/witness_cl/fragments_v8.py": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd"
+  },
+  "source_placeholder_or_custom_axiom_tokens": [],
+  "allowed_standard_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "theorem_axioms": {
+    "WitnessCL.V5.safe_policy_cannot_gain_under_aliasing": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.V3.closed_continuations_equal": [],
+    "WitnessCL.V3.closed_outputs_equal": [],
+    "WitnessCL.V3.bellman_improvement": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.V3.plausible_member_improves": [],
+    "WitnessCL.V3.obligation_survives_shrinking": [],
+    "WitnessCL.V3.total_deficit_bounded_by_debits": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.V3.debit_budget": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.V3.no_risk_no_gain": [
+      "propext"
+    ],
+    "WitnessCL.V3.truncation_counterexample": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "WitnessCL.V3.incumbent_chain": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.step_refines": [],
+    "WitnessCL.truth_survives": [],
+    "WitnessCL.truthful_feedback_preserves": [],
+    "WitnessCL.certified_sound": [],
+    "WitnessCL.certified_under_refinement": [],
+    "WitnessCL.empty_not_certified": [],
+    "WitnessCL.equivalent_certificates": [],
+    "WitnessCL.redundant_constraint": [],
+    "WitnessCL.redundancy_persists": [],
+    "WitnessCL.fold_refines": [],
+    "WitnessCL.fold_truth": [
+      "propext"
+    ],
+    "WitnessCL.other_scope_unchanged": [
+      "propext"
+    ],
+    "WitnessCL.incompatible_worlds": [],
+    "WitnessCL.Executable.runFrom_actions": [
+      "propext"
+    ],
+    "WitnessCL.Executable.run_actions": [
+      "propext"
+    ],
+    "WitnessCL.Executable.runFrom_append": [
+      "propext"
+    ],
+    "WitnessCL.Executable.traceMatches_iff": [
+      "propext"
+    ],
+    "WitnessCL.Executable.mem_filterTrace_iff": [
+      "propext"
+    ],
+    "WitnessCL.Executable.filterTrace_retains_executed_truth": [
+      "propext"
+    ],
+    "WitnessCL.Executable.mem_filterHistory_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.Executable.filterHistory_retains_executed_truth": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.Executable.executed_history_characterization": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.Executable.filterHistory_subset": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.Executable.filterHistory_append": [
+      "propext"
+    ],
+    "WitnessCL.Executable.incompatible_evidence_eliminates": [
+      "propext"
+    ],
+    "WitnessCL.V4.split_cover": [
+      "propext"
+    ],
+    "WitnessCL.V4.assigned_refines": [
+      "propext"
+    ],
+    "WitnessCL.V4.exact_evidence_intersection": [],
+    "WitnessCL.V4.covered_lower_bound": [],
+    "WitnessCL.V4.guarded_update": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.V4.arbitrary_proposer": [],
+    "WitnessCL.V4.retained_chain": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.V4.informative_probe_removes": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "WitnessCL.V4.hidden_state_alias_counterexample": [],
+    "WitnessCL.V4.reset_prefix_budget": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.V4.shrinking_retains": [],
+    "WitnessCL.V2.growth_replays_every_event": [],
+    "WitnessCL.V2.growth_decomposition": [],
+    "WitnessCL.V2.old_survivors_survive_class_growth": [],
+    "WitnessCL.V2.expanded_survivor_truth": [],
+    "WitnessCL.V2.witness_growth_counterexample": [
+      "propext"
+    ],
+    "WitnessCL.V2.patch_outside": [
+      "propext"
+    ],
+    "WitnessCL.V2.patch_inside": [
+      "propext"
+    ],
+    "WitnessCL.V2.protected_domain_unchanged": [
+      "propext"
+    ],
+    "WitnessCL.V2.multiple_patches_preserve_outside": [
+      "propext"
+    ],
+    "WitnessCL.V2.disagreement_patch_is_candidate": [
+      "propext"
+    ],
+    "WitnessCL.V2.archive_output_unchanged": [
+      "propext"
+    ],
+    "WitnessCL.V2.annihilated_residual_preserves_output": [
+      "propext"
+    ],
+    "WitnessCL.V2.residual_preserves_protected_domain": [
+      "propext"
+    ],
+    "WitnessCL.V2.zero_difference_is_neutral": [
+      "propext"
+    ],
+    "WitnessCL.V2.inserting_neutral_factor": [
+      "propext"
+    ],
+    "WitnessCL.V2.filter_one_factors": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.StatisticalBridge.scoreList_bounded": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.StatisticalBridge.total_bounded": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.StatisticalBridge.failed_iff": [
+      "propext"
+    ],
+    "WitnessCL.StatisticalBridge.failureDebit_zero_iff": [
+      "propext"
+    ],
+    "WitnessCL.StatisticalBridge.one_promotion_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.StatisticalBridge.promotion_chain_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.StatisticalBridge.finalVersion_append": [
+      "propext"
+    ],
+    "WitnessCL.StatisticalBridge.toleranceSum_append": [
+      "propext"
+    ],
+    "WitnessCL.StatisticalBridge.failureCount_append": [
+      "propext"
+    ],
+    "WitnessCL.StatisticalBridge.historical_version_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.StatisticalBridge.historical_no_failure_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.StatisticalBridge.historical_no_forgetting": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.StatisticalBridge.historical_tolerance_budget": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.StatisticalBridge.context_regression_counterexample": [
+      "propext"
+    ],
+    "WitnessCL.TypedFragments.argument_substitution_correct": [],
+    "WitnessCL.TypedFragments.compilation_substitution_correct": [
+      "propext"
+    ],
+    "WitnessCL.TypedFragments.witness_request_exact": [
+      "propext"
+    ],
+    "WitnessCL.TypedFragments.sql_independent_of_values": [
+      "propext"
+    ],
+    "WitnessCL.TypedFragments.renaming_preserves_parameter_values": [
+      "propext"
+    ],
+    "WitnessCL.TypedFragments.composition_expansion_exact": [
+      "propext"
+    ],
+    "WitnessCL.TypedFragments.witness_executor_result_exact": [
+      "propext"
+    ],
+    "WitnessCL.TypedFragments.readOnlyRun_preserves_database": [],
+    "WitnessCL.TypedFragments.failed_guard_uses_fallback": [
+      "propext"
+    ],
+    "WitnessCL.TypedFragments.conditional_pointwise_retention": [
+      "propext"
+    ],
+    "WitnessCL.TypedFragments.zero_observation_cannot_identify_units": [
+      "propext",
+      "Quot.sound"
+    ],
+    "WitnessCL.TypedFragments.passing_guard_drift_counterexample": []
+  },
+  "passed": true,
+  "audit_exit_code": 0,
+  "unexpected_axioms": [],
+  "axiom_usage_counts": {
+    "Classical.choice": 2,
+    "Quot.sound": 24,
+    "propext": 62
+  },
+  "axiom_free_theorems": 27,
+  "fragment_fixture": {
+    "path": "formal-fragments.jsonl",
+    "exit_code": 0,
+    "sha256": "99e05df3452814b690ccdf62474877d3ec71c6bf16aa8dda11bbc3fd3a221342",
+    "line_count": 38
+  }
+}
