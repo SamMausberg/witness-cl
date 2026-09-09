@@ -69,3 +69,15 @@ relational-audit:
 .PHONY: sql-abstraction-audit
 sql-abstraction-audit:
 	PYTHONPATH=src $(PYTHON) experiments/audit_sql_abstractions_v8.py artifacts/v8/development --freeze artifacts/v8/prepilot-freeze.json --output artifacts/v8/development-replay.json
+
+.PHONY: v9-audit paper-v9
+v9-audit:
+	PYTHONPATH=src $(PYTHON) experiments/audit_competence_v9.py artifacts/v9/diagnostics/*/ --output /tmp/witness-v9-diagnostic-replay.json
+	PYTHONPATH=src $(PYTHON) experiments/audit_sql_abstractions_v9.py artifacts/v9/prospective-92001 --freeze artifacts/v9/prepilot-freeze.json --output /tmp/witness-v9-first-replay.json
+	PYTHONPATH=src $(PYTHON) experiments/audit_sql_abstractions_v9.py artifacts/v9/prospective-json-92002 --freeze artifacts/v9/prepilot-json-freeze.json --output /tmp/witness-v9-json-replay.json
+	PYTHONPATH=src $(PYTHON) experiments/audit_sql_abstractions_v9.py artifacts/v9/prospective-portable-92003 --freeze artifacts/v9/prepilot-portable-freeze.json --output /tmp/witness-v9-portable-replay.json
+	$(PYTHON) tools/v9_results.py
+paper-v9:
+	$(PYTHON) tools/v9_results.py
+	cd paper && pdflatex -interaction=nonstopmode -halt-on-error v9_development.tex
+	cd paper && pdflatex -interaction=nonstopmode -halt-on-error v9_development.tex

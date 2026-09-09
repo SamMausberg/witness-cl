@@ -1,0 +1,90 @@
+0.00.102.661 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.270.018 I srv          init: The UI is disabled
+0.00.270.035 I srv          init: Use --ui/--no-ui (or deprecated --webui/--no-webui) to enable/disable
+0.00.273.884 I srv    load_model: loading model '/mnt/c/Users/Sam/Documents/Codex/2026-09-08/we-are-working-together-on-open-2/work/v9-model/Qwen3.5-9B-Q8_0.gguf'
+0.51.538.736 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 65536, kv_unified = 'false'
+0.51.552.658 I srv  llama_server: model loaded
+0.51.552.688 I srv  llama_server: listening on http://127.0.0.1:18085
+6.10.148.495 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+6.10.149.855 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+6.12.291.894 I slot print_timing: id  0 | task 0 | prompt eval time =     356.85 ms /   704 tokens (    0.51 ms per token,  1972.83 tokens per second)
+6.12.291.934 I slot print_timing: id  0 | task 0 |        eval time =    1784.87 ms /   128 tokens (   13.94 ms per token,    71.71 tokens per second)
+6.12.291.935 I slot print_timing: id  0 | task 0 |       total time =    2141.71 ms /   832 tokens
+6.12.291.943 I slot print_timing: id  0 | task 0 |    graphs reused =        126
+6.12.292.187 I slot      release: id  0 | task 0 | stop processing: n_tokens = 831, truncated = 0
+6.12.304.904 I slot get_availabl: id  0 | task -1 | selected slot by LCP similarity, f_sim_best = 0.466 (> 0.100 thold), f_keep = 0.845
+6.12.305.451 I slot launch_slot_: id  0 | task 132 | processing task, is_child = 0
+6.15.902.850 I slot print_timing: id  0 | task 132 | n_decoded =    216, tg =  71.76 t/s, tg_3s =  71.76 t/s
+6.17.562.060 I slot print_timing: id  0 | task 132 | prompt eval time =     587.42 ms /  1508 tokens (    0.39 ms per token,  2567.14 tokens per second)
+6.17.562.083 I slot print_timing: id  0 | task 132 |        eval time =    4669.17 ms /   334 tokens (   13.98 ms per token,    71.53 tokens per second)
+6.17.562.083 I slot print_timing: id  0 | task 132 |       total time =    5256.60 ms /  1842 tokens
+6.17.562.085 I slot print_timing: id  0 | task 132 |    graphs reused =        459
+6.17.562.210 I slot      release: id  0 | task 132 | stop processing: n_tokens = 1841, truncated = 0
+6.17.574.574 I slot get_availabl: id  0 | task -1 | selected slot by LCP similarity, f_sim_best = 0.934 (> 0.100 thold), f_keep = 0.818
+6.17.574.778 I slot launch_slot_: id  0 | task 472 | processing task, is_child = 0
+6.20.829.495 I slot print_timing: id  0 | task 472 | prompt eval time =     598.49 ms /  1612 tokens (    0.37 ms per token,  2693.46 tokens per second)
+6.20.829.516 I slot print_timing: id  0 | task 472 |        eval time =    2656.22 ms /   192 tokens (   13.83 ms per token,    72.28 tokens per second)
+6.20.829.516 I slot print_timing: id  0 | task 472 |       total time =    3254.70 ms /  1804 tokens
+6.20.829.517 I slot print_timing: id  0 | task 472 |    graphs reused =        651
+6.20.829.694 I slot      release: id  0 | task 472 | stop processing: n_tokens = 1803, truncated = 0
+6.20.842.674 I slot get_availabl: id  0 | task -1 | selected slot by LCP similarity, f_sim_best = 0.997 (> 0.100 thold), f_keep = 0.389
+6.21.082.305 I slot launch_slot_: id  0 | task 671 | processing task, is_child = 0
+6.23.191.017 I slot print_timing: id  0 | task 671 | prompt eval time =     319.66 ms /   704 tokens (    0.45 ms per token,  2202.32 tokens per second)
+6.23.191.047 I slot print_timing: id  0 | task 671 |        eval time =    1789.01 ms /   128 tokens (   13.98 ms per token,    71.55 tokens per second)
+6.23.191.048 I slot print_timing: id  0 | task 671 |       total time =    2108.67 ms /   832 tokens
+6.23.191.049 I slot print_timing: id  0 | task 671 |    graphs reused =        776
+6.23.191.153 I slot      release: id  0 | task 671 | stop processing: n_tokens = 831, truncated = 0
+6.23.202.997 I slot get_availabl: id  0 | task -1 | selected slot by LCP similarity, f_sim_best = 0.466 (> 0.100 thold), f_keep = 0.845
+6.23.203.193 I slot launch_slot_: id  0 | task 803 | processing task, is_child = 0
+6.26.771.315 I slot print_timing: id  0 | task 803 | n_decoded =    199, tg =  66.29 t/s, tg_3s =  66.29 t/s
+6.28.885.368 I slot print_timing: id  0 | task 803 | prompt eval time =     566.02 ms /  1508 tokens (    0.38 ms per token,  2664.22 tokens per second)
+6.28.885.388 I slot print_timing: id  0 | task 803 |        eval time =    5116.14 ms /   334 tokens (   15.32 ms per token,    65.28 tokens per second)
+6.28.885.388 I slot print_timing: id  0 | task 803 |       total time =    5682.16 ms /  1842 tokens
+6.28.885.389 I slot print_timing: id  0 | task 803 |    graphs reused =       1109
+6.28.885.496 I slot      release: id  0 | task 803 | stop processing: n_tokens = 1841, truncated = 0
+6.28.897.870 I slot get_availabl: id  0 | task -1 | selected slot by LCP similarity, f_sim_best = 0.934 (> 0.100 thold), f_keep = 0.818
+6.28.898.066 I slot launch_slot_: id  0 | task 1143 | processing task, is_child = 0
+6.32.573.416 I slot print_timing: id  0 | task 1143 | prompt eval time =     674.70 ms /  1612 tokens (    0.42 ms per token,  2389.20 tokens per second)
+6.32.573.442 I slot print_timing: id  0 | task 1143 |        eval time =    3000.64 ms /   192 tokens (   15.63 ms per token,    63.99 tokens per second)
+6.32.573.443 I slot print_timing: id  0 | task 1143 |       total time =    3675.34 ms /  1804 tokens
+6.32.573.443 I slot print_timing: id  0 | task 1143 |    graphs reused =       1301
+6.32.573.558 I slot      release: id  0 | task 1143 | stop processing: n_tokens = 1803, truncated = 0
+6.32.583.025 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = 10275495809
+parse: error parsing grammar: number of repetitions exceeds sane defaults, please reduce the number of repetitions
+
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+json-array ::= "[" space ("]" | json-value (space "," space json-value)* space "]")
+json-bool ::= "true" | "false"
+json-null ::= "null"
+json-number ::= "-"? ("0" | [1-9] [0-9]*) ("." [0-9]+)? (("e" | "E") [+-]? [0-9]+)?
+json-object ::= "{" space ("}" | json-string space ":" space json-value (space "," space json-string space ":" space json-value)* space "}")
+json-string ::= "\"" ( [^"\\] | "\\" ( ["\\/ bfnrt] | "u" [0-9a-fA-F]{4} ) )* "\""
+json-value ::= json-object | json-array | json-string | json-number | json-bool | json-null
+response-format ::= "{" space response-format-insights-kv space "}"
+response-format-insights ::= "[" space (response-format-insights-item ("," space response-format-insights-item){0,15})? space "]"
+response-format-insights-item ::= "\"" char{0,4096} "\""
+response-format-insights-kv ::= "\"insights\"" space ":" space response-format-insights
+root ::= "<|im_start|>assistant\n" ("<think>" space until-6 ("</think>" | ))? space response-format
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+until-6 ::= | [<] until-6-01 | [^<] until-6
+until-6-01 ::= | [<] until-6-01 | [/] until-6-02 | [t] until-6-09 | [^/<t] until-6
+until-6-02 ::= | [<] until-6-01 | [t] until-6-03 | [^<t] until-6
+until-6-03 ::= | [<] until-6-01 | [h] until-6-04 | [^<h] until-6
+until-6-04 ::= | [<] until-6-01 | [i] until-6-05 | [^<i] until-6
+until-6-05 ::= | [<] until-6-01 | [n] until-6-06 | [^<n] until-6
+until-6-06 ::= | [<] until-6-01 | [k] until-6-07 | [^<k] until-6
+until-6-07 ::= | [<] until-6-01 | [^<>] until-6
+until-6-09 ::= | [<] until-6-01 | [o] until-6-10 | [^<o] until-6
+until-6-10 ::= | [<] until-6-01 | [o] until-6-11 | [^<o] until-6
+until-6-11 ::= | [<] until-6-01 | [l] until-6-12 | [^<l] until-6
+until-6-12 ::= | [<] until-6-01 | [_] until-6-13 | [^<_] until-6
+until-6-13 ::= | [<] until-6-01 | [c] until-6-14 | [^<c] until-6
+until-6-14 ::= | [<] until-6-01 | [a] until-6-15 | [^<a] until-6
+until-6-15 ::= | [<] until-6-01 | [l] until-6-16 | [^<l] until-6
+until-6-16 ::= | [<] until-6-01 | [l] until-6-17 | [^<l] until-6
+until-6-17 ::= | [<] until-6-01 | [^<>] until-6
+
+6.32.590.874 E failed to parse grammar
+6.32.594.098 E srv    send_error: task id = 1342, error: Failed to initialize samplers: failed to parse grammar
+6.32.594.133 E srv  process_sing: failed to launch slot with task, id_task = 1342
+6.32.594.146 W srv          stop: cancel task, id_task = 1342

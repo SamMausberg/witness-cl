@@ -1,52 +1,37 @@
 # Witness-CL
 
-**The requested online-abstraction claim is not established.** Version 0.8 implements an agent that can propose executable SQL relations from its own successful experience, but its frozen model pilot failed the prerequisite competence test: all six arms scored **0/8 on warm questions**, and neither fragment arm admitted or reused an abstraction.
+Version 0.9.0 · [Development paper](paper/v9_development.pdf) · [Results and next experiment](docs/v9/RESULTS.md) · [Mechanism review](docs/v9/MECHANISM_REVIEW.md)
 
-Version 0.8.0 · [Paper](paper/main.pdf) · [Results](docs/v8/RESULTS.md) · [Frozen protocol](docs/v8/EVALUATION.md) · [Compiler proof boundary](docs/v8/FORMAL.md)
+**Solver competence improved; the original online-abstraction claim remains unproven.** The selected 9B diagnostic reaches **7/8** after the v8 configuration scored 0/8. On the final fresh development warm block, full history scores **8/8**, evolving SQL-capable text **6/8**, and executable memory **7/8**. The declared all-arm 7/8 gate stops the run before transfer or retention panels.
 
-The complete development pilot contains **288 arm-episodes**, **621 real local-model calls**, **1,138,451 tokens**, and **307 SELECT attempts**, completing in **690.13 seconds**. Independent replay passes for every record. Only **14 answers are correct, all zero**; all old-task panels score **0/8 before and after**. Zero observed regression here does not establish preservation of a useful capability. The full-history and evolving-insight implementations did not qualify as competent controls. There is no strong-baseline superiority, heldout result or native benchmark performance claim.
+| Final warm method | Correct / 8 | SELECTs | Model calls | Tokens |
+|---|---:|---:|---:|---:|
+| Full history | 8 | 9 | 17 | 50,178 |
+| Evolving text | 6 | 14 | 30 | 55,808 |
+| Checked programs | 7 | 22 | 31 | 49,700 |
 
-The model is official Qwen3-4B Q8_0 on an authenticated local llama.cpp server, with pinned weights, source and settings. The failure belongs to this model/interface configuration; it does not establish that stronger models or revised shared solving instructions would fail. The server has been stopped. [Model provenance](artifacts/v8/model-provenance.json) · [Runtime cleanup](artifacts/v8/runtime-cleanup.json)
+Seven proposals yield two finite admissions, but **zero USE/COMPOSE actions**. An offline intervention finds that one admission's reconstruction ignores the learned relation entirely. Two admissions therefore do not demonstrate reusable abstraction learning, interaction savings or preserved behavior. These unequal-accuracy warm costs are not a matched-accuracy efficiency result.
 
-The implementation supplies natural-language questions, opaque schemas and a queryable documentation catalog. The learner receives no task IDs, gold answers or enumerated semantic feature library. After a correct ordinary episode, it may propose a new parameterized relation and an outer SELECT that reconstructs its own observed scalar answer. The check must execute within the same eight-SELECT allowance before admission. Later content retrieval supports checked use or composition with a new outer query. A constant-answer reconstruction is insufficient evidence of transfer. [Abstraction review](docs/v8/PILOT_ABSTRACTION_REVIEW.md)
+The phase fixes ordinary-SQL parsing, derived-relation authorization and native schema/reasoning compatibility. A separate **offline-tested, unintegrated repair prototype** allows up to three feedback-guided proposals, preserves original evidence, charges all checks, and requires an empty-relation intervention to change the reconstruction result before admission. It has not been tested with a real model. [Repair implementation](src/witness_cl/discovery_repair_v9.py)
 
-**1,063 Python tests pass**, with eight optional skips; C++ reference and sanitizer checks pass. [Validation ledger](artifacts/v8/validation.json)
-
-**Lean 4.19.0 checks 89 statements**, including 12 new typed-fragment statements. These establish exact prepared-request compilation, binding and composition properties, plus explicitly modeled conditional identities and counterexamples. They do not prove that the runtime discovers abstractions, solves new tasks, saves interaction, or retains behavior. Runtime guard rejection returns feedback and consumes budget, so the abstract answer-level fallback identity is not an unconditional runtime retention guarantee. [Formal audit](artifacts/v8/formal-audit.json)
+All seven adaptive diagnostics and three separately frozen follow-ups are preserved: **89 records, 244 generation requests, 366,795 known tokens**, two unknown-usage failures, and **18.40 minutes** of measured experiment time. Reserved bounds for the two failures give a total token upper bound of 375,904. No heldout, population-significance or native benchmark result is claimed. [Generated ledger](artifacts/v9/results.json) · [Model provenance](artifacts/v9/model-9b-provenance.json) · [Runtime cleanup](artifacts/v9/runtime-cleanup.json)
 
 ## Reproduce saved-data checks
 
 ```bash
 python3 -m pip install -e '.[test,analysis]'
 make test
-make formal
-make cpp-check
-PYTHONPATH=src python3 experiments/audit_sql_abstractions_v8.py \
-  artifacts/v8/development --freeze artifacts/v8/prepilot-freeze.json \
-  --output artifacts/v8/development-replay.json
-make paper
+make v9-audit
+make paper-v9
 ```
 
-The saved-data audit invokes no model. It independently replays actual SQL and reconstructs prompts, provenance, memory, phase schedules, usage and costs. It shares compiler/admission/memory definitions, and it does not cryptographically authenticate original inference. Paper generation rejects stale source, data or replay receipts, incomplete grids and unknown usage. CI also checks the pinned native CL-Bench interface in its separate dependency environment; that job is an interface test, not a benchmark result.
+These commands invoke no model. Replay checks actual SQL, legal prompts, memory transitions, costs, source/configuration freezes and incomplete schedules. It does not authenticate the original model or backend token counts. CI separately verifies the preserved Lean contracts, C++ references and pinned native CL-Bench interface; an interface test is not a benchmark run. [Audit boundary](docs/v9/AUDIT.md)
 
-A new pilot requires the model server specified in the provenance record, a secret key file outside the repository, and an unused output directory. The frozen harness accepts only development seeds 90000–90003. The first protocol has a total 30-minute model-pilot ceiling, and cannot establish the confirmatory margins from one stream. Existing studies cannot be overwritten. Any revised solver/model protocol needs a new source and evaluation freeze. No recurring research automation is active.
+The final portable protocol declared this phase's last model attempt. Any new study needs a new source/protocol freeze and fresh disjoint seeds. No research automation is active. Full implementation/test evidence is recorded in [v9 validation](artifacts/v9/validation.json).
 
-## Evidence and implementation
+## Preserved v8 evidence
 
-| Path | Purpose |
-|---|---|
-| `src/witness_cl/sql_env_v8.py` | Bounded read-only SQLite, public schema/catalog, fresh instances and evaluator-only target recipes |
-| `src/witness_cl/fragments_v8.py` | Immutable typed text/hole compiler, strict bindings and CTE composition |
-| `src/witness_cl/abstraction_v8.py` | Own-experience proposal, charged reconstruction and admission provenance |
-| `src/witness_cl/memory_v8.py`, `model_v8.py` | Six memory arms and measured authenticated loopback inference |
-| `experiments/sql_abstractions_v8.py` | Frozen actual-model pilot with reserved panel resources |
-| `experiments/audit_sql_abstractions_v8.py` | Saved-data replay and cost/completeness checks |
-| `tools/v8_results.py` | Descriptive single-stream reporting; no unsupported confidence interval |
-| `formal/WitnessCL/TypedFragments.lean` | New compiler contracts and limitation counterexamples |
-| `artifacts/v8/`, `docs/v8/` | Raw traces, source receipts, proof/test evidence and independent reviews |
-| `paper/main.tex`, `paper/main.pdf` | Current professional LaTeX report and PDF |
-
-The [environment review](docs/v8/PILOT_ENVIRONMENT_REVIEW.md) distinguishes genuine target recombination opportunities from actual acquisition. Seven of eight fresh-old targets change; refunded-order count remains structurally 22. A future heldout protocol must use disjoint numeric seeds because the split label alone does not ensure independent data seeds. The [next decision](docs/v8/NEXT_STEP.md) addresses shared solver competence before scaling the memory comparison.
+The [v8 paper](paper/main.pdf), [results](docs/v8/RESULTS.md), frozen execution inputs and 288-episode negative pilot remain unchanged. Its 89 Lean statements establish typed compilation properties and explicitly modeled conditional results, not discovery, generalization or unconditional runtime retention. [Proof boundary](docs/v8/FORMAL.md)
 
 ## Preserved earlier research
 

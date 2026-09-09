@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.0 — September 2026
+
+- Addressed the failed-solver prerequisite with seven actual diagnostics; a pinned 9B live-interaction/thinking configuration reaches 7/8. Preserved all failed settings.
+- Repaired ordinary-SQL parsing, derived-relation authorization and native structured-response compatibility without changing frozen v8 inputs.
+- Preserved three separately frozen fresh development attempts. Final warm scores are 8/8 full history, 6/8 evolving text and 7/8 checked memory; the declared gate stops before transfer/retention panels.
+- Audited two finite program admissions: no observed reuse; one wrapper ignores its learned relation. Added an unintegrated, offline-tested bounded repair/dependence-check prototype.
+- Added independent saved-data replay, mutation tests, complete known/unknown cost accounting, mechanism interventions and a separate professional development paper. The original research claim remains unproven.
+
 ## 0.8.0 — September 2026
 
 - Implemented real model-generated SQL relations from own experience, typed binding/composition, charged reconstruction, strict provenance and content-only retrieval without task IDs or a predefined semantic feature library.

@@ -1,0 +1,612 @@
+{
+  "kind": "offline_warm_relation_dependence_audit",
+  "scope": "Only saved development seed 92003 ordinary episodes 6 and 7, fresh private DB per probe.",
+  "learner_model_calls": 0,
+  "learner_sql_calls_added": 0,
+  "offline_sql_executions": 11,
+  "no_learner_feedback_memory_or_score_changed": true,
+  "not_a_transfer_or_retention_evaluation": true,
+  "sqlite_version": "3.45.1",
+  "raw_file": "artifacts/v9/prospective-portable-92003/92003-reuse-fragments.jsonl",
+  "raw_sha256": "5bee415eb4354963e8d929dc26efd74d0294e71f41fe61d858ddee8c42891e9f",
+  "audit_source_sha256": "7a1b0e2eae85546564753ece391239dc942ff1219be69b5e8c35010c357dd5ea",
+  "data_generator_sha256": "8199b4714cd3460157a3acb81dcbf0581bd540129dd5c230db7a609cd2155a6d",
+  "fragment_compiler_sha256": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd",
+  "evidence": [
+    {
+      "raw_line": 7,
+      "episode_index": 6,
+      "fragment_digest": "c289afb85c7e005f5ce63fa8211924cd11046db7b9aa95c3e505d4b2b06d58fb",
+      "relation_sql_sha256": "fa77ed55980e9a8ae2f823ba9ab7ec050ffebaead5f47cfe4bec6f90493cbb9f",
+      "outer_sql_sha256": "b9ffe27364f8d0d4126d38814311adeeccad54879aa30d641a877cd9cda980e7",
+      "source_query_index": 1,
+      "guard_query_index": 0,
+      "recorded_entry_provenance": "1e5537894571dc33272e8b6411a42aa156e5e7c6f01fcc2e7e86f7f98e6eec78",
+      "cases": [
+        {
+          "label": "saved_reconstruction",
+          "sql": "WITH \"reused\" AS (SELECT COUNT(DISTINCT o.c_qxunbx) AS distinct_refunded_orders FROM r_pvmdrq o INNER JOIN r_ayzuqt ref ON o.c_qxunbx = ref.c_ijepqu WHERE :wcl_inner_0 IS TRUE) SELECT SUM(distinct_refunded_orders) AS total FROM reused",
+          "params": {
+            "wcl_inner_0": 1
+          },
+          "sql_sha256": "1d51356e098ae7ce33826fcf92b9a1b8dfc457dea8e72557730ccc5fd380d06e",
+          "interpretation": "Offline replay of the recorded paid reconstruction; not a new learner observation.",
+          "columns": [
+            "total"
+          ],
+          "rows": [
+            [
+              22
+            ]
+          ],
+          "physical_and_transient_reads": [
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              "reused"
+            ],
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              "reused"
+            ],
+            [
+              "r_ayzuqt",
+              "c_ijepqu",
+              "main",
+              "reused"
+            ]
+          ],
+          "elapsed_seconds": 0.0005939120001130505,
+          "vm_steps_callback_floor": 600
+        },
+        {
+          "label": "empty_reused",
+          "sql": "WITH \"reused\" AS (SELECT NULL AS distinct_refunded_orders WHERE 0) SELECT SUM(distinct_refunded_orders) AS total FROM reused",
+          "params": {},
+          "sql_sha256": "ba5b2ef3c54749c4e959636de1ae943e5e9ed2007143b7c18a8568aab7206c34",
+          "interpretation": "Replace the relation with no rows, preserving its output column.",
+          "columns": [
+            "total"
+          ],
+          "rows": [
+            [
+              null
+            ]
+          ],
+          "physical_and_transient_reads": [],
+          "elapsed_seconds": 0.00045800099906045943,
+          "vm_steps_callback_floor": 0
+        },
+        {
+          "label": "sentinel_reused",
+          "sql": "WITH \"reused\" AS (SELECT -777 AS distinct_refunded_orders) SELECT SUM(distinct_refunded_orders) AS total FROM reused",
+          "params": {},
+          "sql_sha256": "37b21df96058a27e4708189f7aabb7b7325c55f12cb24d3c549160864bf4bfc8",
+          "interpretation": "Replace the relation value with a sentinel to test outer dependence.",
+          "columns": [
+            "total"
+          ],
+          "rows": [
+            [
+              -777
+            ]
+          ],
+          "physical_and_transient_reads": [],
+          "elapsed_seconds": 0.0005599460000667023,
+          "vm_steps_callback_floor": 0
+        },
+        {
+          "label": "inner_binding_zero",
+          "sql": "WITH \"reused\" AS (SELECT COUNT(DISTINCT o.c_qxunbx) AS distinct_refunded_orders FROM r_pvmdrq o INNER JOIN r_ayzuqt ref ON o.c_qxunbx = ref.c_ijepqu WHERE :wcl_inner_0 IS TRUE) SELECT SUM(distinct_refunded_orders) AS total FROM reused",
+          "params": {
+            "wcl_inner_0": 0
+          },
+          "sql_sha256": "1d51356e098ae7ce33826fcf92b9a1b8dfc457dea8e72557730ccc5fd380d06e",
+          "interpretation": "Audit-only integer binding change; it disables every joined row.",
+          "columns": [
+            "total"
+          ],
+          "rows": [
+            [
+              0
+            ]
+          ],
+          "physical_and_transient_reads": [
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              "reused"
+            ],
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              "reused"
+            ],
+            [
+              "r_ayzuqt",
+              "c_ijepqu",
+              "main",
+              "reused"
+            ]
+          ],
+          "elapsed_seconds": 0.0002685409999685362,
+          "vm_steps_callback_floor": 0
+        },
+        {
+          "label": "inner_binding_two",
+          "sql": "WITH \"reused\" AS (SELECT COUNT(DISTINCT o.c_qxunbx) AS distinct_refunded_orders FROM r_pvmdrq o INNER JOIN r_ayzuqt ref ON o.c_qxunbx = ref.c_ijepqu WHERE :wcl_inner_0 IS TRUE) SELECT SUM(distinct_refunded_orders) AS total FROM reused",
+          "params": {
+            "wcl_inner_0": 2
+          },
+          "sql_sha256": "1d51356e098ae7ce33826fcf92b9a1b8dfc457dea8e72557730ccc5fd380d06e",
+          "interpretation": "Audit-only nonzero integer change; IS TRUE still retains every joined row.",
+          "columns": [
+            "total"
+          ],
+          "rows": [
+            [
+              22
+            ]
+          ],
+          "physical_and_transient_reads": [
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              "reused"
+            ],
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              "reused"
+            ],
+            [
+              "r_ayzuqt",
+              "c_ijepqu",
+              "main",
+              "reused"
+            ]
+          ],
+          "elapsed_seconds": 0.0002621509993332438,
+          "vm_steps_callback_floor": 600
+        }
+      ],
+      "conclusion": "The outer query depends on the scalar relation. The integer hole is an all-or-nothing truth gate, not a row-level refund criterion. These binding probes are offline audit actions; the learner never changed the binding."
+    },
+    {
+      "raw_line": 8,
+      "episode_index": 7,
+      "fragment_digest": "2f5ad9a3f25b485d0b3945e08a62ab4627af688ace2f5efc89bf9f9183c2ee4c",
+      "relation_sql_sha256": "c7dc51711ac0b93b81a9ac1dad548ccbb108ca6bfe7154496ba4b3494c63771c",
+      "outer_sql_sha256": "de9c08ef6fb10aa8dae925b963e2319288bd33b54a8f00c67058178f226830e1",
+      "source_query_index": 1,
+      "guard_query_index": 0,
+      "recorded_entry_provenance": "bf5cd0f973853f74b51afbbe1b32a537d510ba991aa72db4c048b0366535b578",
+      "cases": [
+        {
+          "label": "saved_reconstruction",
+          "sql": "WITH \"reused\" AS (WITH gold_orders AS (SELECT o.c_qxunbx, SUM(o.c_wizede * o.c_rpfuqr / 100.0) AS gross FROM r_pvmdrq o INNER JOIN r_taimnx p ON o.c_vwqjnv = p.c_pydjtz WHERE p.c_jxzdke = :wcl_inner_0 AND p.c_epccvk = 1 GROUP BY o.c_qxunbx) SELECT SUM(gross) AS total_gross FROM gold_orders) SELECT SUM(gross) AS total_gross FROM (SELECT c_qxunbx, SUM(c_wizede * c_rpfuqr / 100.0) AS gross FROM r_pvmdrq o INNER JOIN r_taimnx p ON o.c_vwqjnv = p.c_pydjtz WHERE p.c_jxzdke = :wcl_outer_0 AND p.c_epccvk = 1 GROUP BY o.c_qxunbx) AS gold_orders",
+          "params": {
+            "wcl_inner_0": "Gold",
+            "wcl_outer_0": "Gold"
+          },
+          "sql_sha256": "e5a2ffa8fe8db38a54291bdcacf43a2fcd52e0cbcfdec03b19044c166d593441",
+          "interpretation": "Offline replay of the recorded paid reconstruction; not a new learner observation.",
+          "columns": [
+            "total_gross"
+          ],
+          "rows": [
+            [
+              1350.25
+            ]
+          ],
+          "physical_and_transient_reads": [
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_wizede",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_rpfuqr",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_jxzdke",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_epccvk",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_vwqjnv",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_pydjtz",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              null
+            ]
+          ],
+          "elapsed_seconds": 0.00027928099916607607,
+          "vm_steps_callback_floor": 500
+        },
+        {
+          "label": "remove_reused_cte",
+          "sql": "SELECT SUM(gross) AS total_gross FROM (SELECT c_qxunbx, SUM(c_wizede * c_rpfuqr / 100.0) AS gross FROM r_pvmdrq o INNER JOIN r_taimnx p ON o.c_vwqjnv = p.c_pydjtz WHERE p.c_jxzdke = :tier AND p.c_epccvk = 1 GROUP BY o.c_qxunbx) AS gold_orders",
+          "params": {
+            "tier": "Gold"
+          },
+          "sql_sha256": "de9c08ef6fb10aa8dae925b963e2319288bd33b54a8f00c67058178f226830e1",
+          "interpretation": "Delete the learned CTE entirely; execute only the recorded outer query.",
+          "columns": [
+            "total_gross"
+          ],
+          "rows": [
+            [
+              1350.25
+            ]
+          ],
+          "physical_and_transient_reads": [
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_wizede",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_rpfuqr",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_jxzdke",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_epccvk",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_vwqjnv",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_pydjtz",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              null
+            ]
+          ],
+          "elapsed_seconds": 0.00033454100048402324,
+          "vm_steps_callback_floor": 500
+        },
+        {
+          "label": "empty_reused",
+          "sql": "WITH \"reused\" AS (SELECT NULL AS total_gross WHERE 0) SELECT SUM(gross) AS total_gross FROM (SELECT c_qxunbx, SUM(c_wizede * c_rpfuqr / 100.0) AS gross FROM r_pvmdrq o INNER JOIN r_taimnx p ON o.c_vwqjnv = p.c_pydjtz WHERE p.c_jxzdke = :wcl_outer_0 AND p.c_epccvk = 1 GROUP BY o.c_qxunbx) AS gold_orders",
+          "params": {
+            "wcl_outer_0": "Gold"
+          },
+          "sql_sha256": "b461dc41fee9c7dc993aa69ce0f64fccedf66c97a93127bdfe4fb2ebafc85083",
+          "interpretation": "Replace the learned relation with no rows.",
+          "columns": [
+            "total_gross"
+          ],
+          "rows": [
+            [
+              1350.25
+            ]
+          ],
+          "physical_and_transient_reads": [
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_wizede",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_rpfuqr",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_jxzdke",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_epccvk",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_vwqjnv",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_pydjtz",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              null
+            ]
+          ],
+          "elapsed_seconds": 0.00029219099997135345,
+          "vm_steps_callback_floor": 500
+        },
+        {
+          "label": "sentinel_reused",
+          "sql": "WITH \"reused\" AS (SELECT -777 AS total_gross) SELECT SUM(gross) AS total_gross FROM (SELECT c_qxunbx, SUM(c_wizede * c_rpfuqr / 100.0) AS gross FROM r_pvmdrq o INNER JOIN r_taimnx p ON o.c_vwqjnv = p.c_pydjtz WHERE p.c_jxzdke = :wcl_outer_0 AND p.c_epccvk = 1 GROUP BY o.c_qxunbx) AS gold_orders",
+          "params": {
+            "wcl_outer_0": "Gold"
+          },
+          "sql_sha256": "670f496ef02355e045f2d441084fb8dc6022463b80daac88897f31bfc66aa102",
+          "interpretation": "Replace the learned relation value with a sentinel.",
+          "columns": [
+            "total_gross"
+          ],
+          "rows": [
+            [
+              1350.25
+            ]
+          ],
+          "physical_and_transient_reads": [
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_wizede",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_rpfuqr",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_jxzdke",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_epccvk",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_vwqjnv",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_pydjtz",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              null
+            ]
+          ],
+          "elapsed_seconds": 0.0002877710012398893,
+          "vm_steps_callback_floor": 500
+        },
+        {
+          "label": "change_only_inner_binding",
+          "sql": "WITH \"reused\" AS (WITH gold_orders AS (SELECT o.c_qxunbx, SUM(o.c_wizede * o.c_rpfuqr / 100.0) AS gross FROM r_pvmdrq o INNER JOIN r_taimnx p ON o.c_vwqjnv = p.c_pydjtz WHERE p.c_jxzdke = :wcl_inner_0 AND p.c_epccvk = 1 GROUP BY o.c_qxunbx) SELECT SUM(gross) AS total_gross FROM gold_orders) SELECT SUM(gross) AS total_gross FROM (SELECT c_qxunbx, SUM(c_wizede * c_rpfuqr / 100.0) AS gross FROM r_pvmdrq o INNER JOIN r_taimnx p ON o.c_vwqjnv = p.c_pydjtz WHERE p.c_jxzdke = :wcl_outer_0 AND p.c_epccvk = 1 GROUP BY o.c_qxunbx) AS gold_orders",
+          "params": {
+            "wcl_inner_0": "Silver",
+            "wcl_outer_0": "Gold"
+          },
+          "sql_sha256": "e5a2ffa8fe8db38a54291bdcacf43a2fcd52e0cbcfdec03b19044c166d593441",
+          "interpretation": "Change only the learned relation binding; keep the outer Gold binding fixed.",
+          "columns": [
+            "total_gross"
+          ],
+          "rows": [
+            [
+              1350.25
+            ]
+          ],
+          "physical_and_transient_reads": [
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_wizede",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_rpfuqr",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_jxzdke",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_epccvk",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_vwqjnv",
+              "main",
+              null
+            ],
+            [
+              "r_taimnx",
+              "c_pydjtz",
+              "main",
+              null
+            ],
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              null
+            ]
+          ],
+          "elapsed_seconds": 0.00027901099929295015,
+          "vm_steps_callback_floor": 500
+        },
+        {
+          "label": "standalone_learned_relation",
+          "sql": "WITH gold_orders AS (SELECT o.c_qxunbx, SUM(o.c_wizede * o.c_rpfuqr / 100.0) AS gross FROM r_pvmdrq o INNER JOIN r_taimnx p ON o.c_vwqjnv = p.c_pydjtz WHERE p.c_jxzdke = :tier AND p.c_epccvk = 1 GROUP BY o.c_qxunbx) SELECT SUM(gross) AS total_gross FROM gold_orders",
+          "params": {
+            "tier": "Gold"
+          },
+          "sql_sha256": "c7dc51711ac0b93b81a9ac1dad548ccbb108ca6bfe7154496ba4b3494c63771c",
+          "interpretation": "Separate offline execution of the stored SQL on its own Gold training fixture.",
+          "columns": [
+            "total_gross"
+          ],
+          "rows": [
+            [
+              1350.25
+            ]
+          ],
+          "physical_and_transient_reads": [
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              "gold_orders"
+            ],
+            [
+              "r_pvmdrq",
+              "c_wizede",
+              "main",
+              "gold_orders"
+            ],
+            [
+              "r_pvmdrq",
+              "c_rpfuqr",
+              "main",
+              "gold_orders"
+            ],
+            [
+              "r_taimnx",
+              "c_jxzdke",
+              "main",
+              "gold_orders"
+            ],
+            [
+              "r_taimnx",
+              "c_epccvk",
+              "main",
+              "gold_orders"
+            ],
+            [
+              "r_pvmdrq",
+              "c_vwqjnv",
+              "main",
+              "gold_orders"
+            ],
+            [
+              "r_taimnx",
+              "c_pydjtz",
+              "main",
+              "gold_orders"
+            ],
+            [
+              "r_pvmdrq",
+              "c_qxunbx",
+              "main",
+              "gold_orders"
+            ]
+          ],
+          "elapsed_seconds": 0.0003468310005700914,
+          "vm_steps_callback_floor": 500
+        }
+      ],
+      "conclusion": "The accepted reconstruction is independent of reused on this fixture: deleting, emptying, replacing, or rebinding that CTE leaves the result unchanged. Standalone stored SQL also produces the training answer in a separate offline probe, but the paid learner witness did not establish that dependence or test generalization. The stored SQL returns a scalar, not per-order rows."
+    }
+  ]
+}

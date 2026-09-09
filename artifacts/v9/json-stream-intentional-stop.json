@@ -1,0 +1,7 @@
+{
+  "kind": "intentional_development_abort",
+  "reason": "Reasoning cutoff produced unfinished reasoning in final content; JSON-only mode also allowed a top-level array, so both evolving-memory updates were rejected before any strong-memory comparison. Stop instead of treating this weakened baseline as competent memory.",
+  "pid": 42203,
+  "time_unix": 1788972260.9178863,
+  "preserve_failed_and_partial_costs": true
+}

@@ -1,0 +1,250 @@
+[
+  {
+    "seed": 92001,
+    "condition": "reuse",
+    "arm": "full_history",
+    "ordinary_budget": {
+      "max_total_tokens": 1000000,
+      "max_calls": 280,
+      "total_tokens": 4478,
+      "prompt_tokens": 3824,
+      "completion_tokens": 654,
+      "calls": 3,
+      "tokenization_seconds": 0.019834644001093693,
+      "inference_seconds": 10.674030247999326,
+      "unknown_usage_calls": 0
+    },
+    "panel_budget": {
+      "max_total_tokens": 1000000,
+      "max_calls": 260,
+      "total_tokens": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "calls": 0,
+      "tokenization_seconds": 0.0,
+      "inference_seconds": 0.0,
+      "unknown_usage_calls": 0
+    },
+    "memory": {
+      "arm": "full_history",
+      "history": [
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"What is the total gross order value? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_efkxvj (c_hwkkif INTEGER, c_cdsuta INTEGER, c_rxifxj NUMERIC, c_ycybrt INTEGER, c_jafktk TEXT, c_xfnyaz INTEGER, c_mkjyim TEXT);\\nCREATE TABLE r_qqnvnu (c_jzbjej INTEGER, c_vemfac INTEGER, c_tdeqei TEXT, c_xsierx TEXT, c_zdjmrk INTEGER, c_nzeqfn INTEGER);\\nCREATE TABLE r_ascfhq (c_jhtbcs INTEGER, c_pxjzxr INTEGER, c_qtmzyu NUMERIC);\\nCREATE TABLE r_wswpff (c_hcbjef INTEGER, c_pdfqcw INTEGER, c_rvwkdp INTEGER, c_qknxzn INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"SELECT * FROM catalog\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":7,\"tool_result\":{\"columns\":[\"table_name\",\"column_name\",\"description\"],\"error\":null,\"rows\":[[\"r_efkxvj\",\"*\",\"One row per order. Gross value is unit amount times quantity. Net value is gross value minus the sum of refund records for that order. Monetary outputs are dollars.\"],[\"r_efkxvj\",\"c_hwkkif\",\"Unique order identifier; refund and shipment order references point here.\"],[\"r_efkxvj\",\"c_cdsuta\",\"Customer reference, matching the customer reference in the profile table. Select one current profile per customer before joining orders.\"],[\"r_efkxvj\",\"c_rxifxj\",\"Unit amount is stored in integer cents; divide by 100.0 to obtain dollars. A NULL unit amount means zero; retain this order in monetary averages and totals.\"],[\"r_efkxvj\",\"c_ycybrt\",\"Positive integer quantity purchased in this order.\"],[\"r_efkxvj\",\"c_jafktk\",\"Order status: confirmed, cancelled, or pending. Include all statuses unless the question restricts them.\"],[\"r_efkxvj\",\"c_xfnyaz\",\"Integer day of order placement; shipment day minus this value is shipment lag in days.\"],[\"r_efkxvj\",\"c_mkjyim\",\"Order channel: web or store.\"],[\"r_qqnvnu\",\"*\",\"Customer profiles. Exactly one profile row per customer reference. The current profile is the row with greatest revision per customer; the current flag is an unreliable legacy field and must not select the row.\"],[\"r_qqnvnu\",\"c_jzbjej\",\"Unique profile-row identifier; this is not the order customer reference.\"],[\"r_qqnvnu\",\"c_vemfac\",\"Customer reference used by orders; it may repeat across profile snapshots.\"],[\"r_qqnvnu\",\"c_tdeqei\",\"Region for this profile snapshot: North or South; use the current snapshot.\"],[\"r_qqnvnu\",\"c_xsierx\",\"Tier for this profile snapshot: Gold or Silver; use the current snapshot.\"],[\"r_qqnvnu\",\"c_zdjmrk\",\"Integer profile revision, unique within each customer.\"],[\"r_qqnvnu\",\"c_nzeqfn\",\"Current flag; see the profile-table convention to decide whether it is authoritative.\"],[\"r_ascfhq\",\"*\",\"Refund events. An order can have multiple records; sum refund amounts once per order before combining them with order values or shipments. Orders without refund events have zero refunds.\"],[\"r_ascfhq\",\"c_jhtbcs\",\"Unique refund-record identifier.\"],[\"r_ascfhq\",\"c_pxjzxr\",\"Order reference matching the order identifier.\"],[\"r_ascfhq\",\"c_qtmzyu\",\"Refund amount stored in integer cents; divide by 100.0 to obtain dollars; never NULL.\"],[\"r_wswpff\",\"*\",\"Shipment events. An order can have multiple records. An order is delivered if any record has delivered flag 1; no shipment records means not delivered. The latest shipment has greatest shipment day. Aggregate per order before joining other event tables.\"],[\"r_wswpff\",\"c_hcbjef\",\"Unique shipment-record identifier.\"],[\"r_wswpff\",\"c_pdfqcw\",\"Order reference matching the order identifier.\"],[\"r_wswpff\",\"c_rvwkdp\",\"Integer shipment day. Use greatest shipment day per order for latest-shipment lag.\"],[\"r_wswpff\",\"c_qknxzn\",\"Delivery indicator, 0 or 1; any 1 for an order means delivered.\"]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"SELECT SUM(c_rxifxj * c_ycybrt / 100.0) FROM r_efkxvj\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":6,\"tool_result\":{\"columns\":[\"SUM(c_rxifxj * c_ycybrt / 100.0)\"],\"error\":null,\"rows\":[[9097.5]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":9097.5}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":true,\"meaning\":\"Correct on this episode only.\"}"
+          }
+        ]
+      ],
+      "episodes": [],
+      "insights": [],
+      "entries": [],
+      "raw_bytes": 4622,
+      "peak_memory_bytes": 4905,
+      "events": [
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "def34bb1818b58d0dff3f5c669f7a40676615e995532e77e364cfaca5e51bde2",
+          "entry_count": 0,
+          "active_memory_bytes": 4622
+        }
+      ],
+      "memory_bytes": 4905,
+      "active_memory_bytes": 4622
+    },
+    "warm": {
+      "complete": false,
+      "correct": 1,
+      "n": 1,
+      "minimum_correct": 7,
+      "meets_warm_accuracy_gate": false
+    },
+    "phase_counts": {
+      "ordinary": 1,
+      "old_before": 0,
+      "old_after": 0,
+      "final": 0
+    },
+    "phase_reward": {
+      "ordinary": 1.0,
+      "old_before": null,
+      "old_after": null,
+      "final": null
+    },
+    "phase_selects": {
+      "ordinary": 2,
+      "old_before": 0,
+      "old_after": 0,
+      "final": 0
+    },
+    "phase_failures": {
+      "ordinary": 0,
+      "old_before": 0,
+      "old_after": 0,
+      "final": 0
+    }
+  },
+  {
+    "seed": 92001,
+    "condition": "reuse",
+    "arm": "insights",
+    "ordinary_budget": {
+      "max_total_tokens": 1000000,
+      "max_calls": 280,
+      "total_tokens": 4478,
+      "prompt_tokens": 3824,
+      "completion_tokens": 654,
+      "calls": 4,
+      "tokenization_seconds": 0.022058164002373815,
+      "inference_seconds": 11.736073825000858,
+      "unknown_usage_calls": 1
+    },
+    "panel_budget": {
+      "max_total_tokens": 1000000,
+      "max_calls": 260,
+      "total_tokens": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "calls": 0,
+      "tokenization_seconds": 0.0,
+      "inference_seconds": 0.0,
+      "unknown_usage_calls": 0
+    },
+    "memory": {
+      "arm": "insights",
+      "history": [],
+      "episodes": [],
+      "insights": [],
+      "entries": [],
+      "raw_bytes": 0,
+      "peak_memory_bytes": 0,
+      "events": [],
+      "memory_bytes": 120,
+      "active_memory_bytes": 28
+    },
+    "warm": {
+      "complete": false,
+      "correct": 1,
+      "n": 1,
+      "minimum_correct": 7,
+      "meets_warm_accuracy_gate": false
+    },
+    "phase_counts": {
+      "ordinary": 1,
+      "old_before": 0,
+      "old_after": 0,
+      "final": 0
+    },
+    "phase_reward": {
+      "ordinary": 1.0,
+      "old_before": null,
+      "old_after": null,
+      "final": null
+    },
+    "phase_selects": {
+      "ordinary": 2,
+      "old_before": 0,
+      "old_after": 0,
+      "final": 0
+    },
+    "phase_failures": {
+      "ordinary": 1,
+      "old_before": 0,
+      "old_after": 0,
+      "final": 0
+    }
+  },
+  {
+    "seed": 92001,
+    "condition": "reuse",
+    "arm": "fragments",
+    "ordinary_budget": {
+      "max_total_tokens": 1000000,
+      "max_calls": 280,
+      "total_tokens": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "calls": 0,
+      "tokenization_seconds": 0.0,
+      "inference_seconds": 0.0,
+      "unknown_usage_calls": 0
+    },
+    "panel_budget": {
+      "max_total_tokens": 1000000,
+      "max_calls": 260,
+      "total_tokens": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "calls": 0,
+      "tokenization_seconds": 0.0,
+      "inference_seconds": 0.0,
+      "unknown_usage_calls": 0
+    },
+    "memory": {
+      "arm": "fragments",
+      "history": [],
+      "episodes": [],
+      "insights": [],
+      "entries": [],
+      "raw_bytes": 0,
+      "peak_memory_bytes": 0,
+      "events": [],
+      "memory_bytes": 121,
+      "active_memory_bytes": 28
+    },
+    "warm": {
+      "complete": false,
+      "correct": 0,
+      "n": 0,
+      "minimum_correct": 7,
+      "meets_warm_accuracy_gate": false
+    },
+    "phase_counts": {
+      "ordinary": 0,
+      "old_before": 0,
+      "old_after": 0,
+      "final": 0
+    },
+    "phase_reward": {
+      "ordinary": null,
+      "old_before": null,
+      "old_after": null,
+      "final": null
+    },
+    "phase_selects": {
+      "ordinary": 0,
+      "old_before": 0,
+      "old_after": 0,
+      "final": 0
+    },
+    "phase_failures": {
+      "ordinary": 0,
+      "old_before": 0,
+      "old_after": 0,
+      "final": 0
+    }
+  }
+]

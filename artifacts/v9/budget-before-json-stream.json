@@ -1,0 +1,9 @@
+{
+  "known_tokens": 170388,
+  "unknown_usage_calls": 1,
+  "unknown_request_token_upper_bound": 5585,
+  "total_token_upper_bound": 175973,
+  "calls": 143,
+  "elapsed_seconds": 391.59176750199913,
+  "source": "seven saved diagnostics plus failed prospective-92001; unknown request charged full prompt/output reservation, not reported as zero"
+}

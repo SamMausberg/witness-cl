@@ -1,0 +1,70 @@
+{
+  "purpose": "prospective development stream after actual solver screen; no claim of population superiority",
+  "parent_commit": "ed591977d30cd9778b23219d5bc4bd35b2ea639d",
+  "source_sha256": {
+    "src/witness_cl/sql_env_v8.py": "8199b4714cd3460157a3acb81dcbf0581bd540129dd5c230db7a609cd2155a6d",
+    "src/witness_cl/sql_env_v9.py": "d23d437a45871f9a27737f58ca64065eb40593a298568dac2bd1aa7de110d9ff",
+    "src/witness_cl/fragments_v8.py": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd",
+    "src/witness_cl/memory_v8.py": "18a0c2994c7f8b437f1ff070f791bc0f6c8d344bdfc4ad9687af6396e6db1b47",
+    "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+    "src/witness_cl/abstraction_v8.py": "1bf54a2d273533238d0dc3940f4460efb37e60694818c7dfd1a4b669faf24b44",
+    "src/witness_cl/memory_v9.py": "98c6ad467aade9eafc7fd76b1c3628a3df7130897e98529235d628a728aa8bbe",
+    "src/witness_cl/model_v9.py": "3ee5743c7c150158e8e8ec7c1137184864b0af6ca5245f8aca85f32da98c6438",
+    "src/witness_cl/actions_v9.py": "27a82548136e21e55a8bf374d6557c5a76ac28a7d9aa56b0fc086ccf165f12d5",
+    "experiments/competence_interactive_v9.py": "8b59d8dd596b183cd50172aa72ae30c05adb39e8a1767d671377fedb84f0f649",
+    "experiments/sql_abstractions_v9.py": "efcae7b6625e579e54504ce6197ff3e02ab818e5483678ea4320e02c6977d6f7",
+    "src/witness_cl/model_v9_compatible.py": "1655257115569734806c446db68f49bef0f94665e67d313de3446a10ab3078e5",
+    "experiments/portable_stream_v9.py": "1edc41f822e24e4e101d9605d45419ac0f45dc860e1f7c02078814aaaa51c86a"
+  },
+  "support_sha256": {
+    "docs/v9/STREAM_PROTOCOL.md": "42a66edd68eb3eb47d68f1288b40255194a10e5c5a6e010004f1d297ca0a7201",
+    "artifacts/v9/model-9b-provenance.json": "9cab589b7af6006532a96a9ba4214c44c323ebb0dc92c7aa3a37efa72e52584b",
+    "artifacts/v9/server-9b-64k-process.json": "127aa3e94f96022300e9e90dbda3f71993668e7059f763bf61bff1fd1a9f0708",
+    "artifacts/v9/diagnostics/replay-all.json": "d87a3647c09cd6a539e4d9bf351b927e40c3ef039d8ae17509d0e3ae65731a0b",
+    "artifacts/v9/prepilot-pytest.xml": "5b5e083b567607785d31b22978dd3a3ecb8095c1692e42420a13020b03afd4f8",
+    "artifacts/v9/prepilot-v9-pytest.xml": "db469bf298a71b20ed7c6670de87c00e639e6b8751d6fb78a3dfcd4a1c6d14b7",
+    "docs/v9/JSON_REPAIR_PROTOCOL.md": "360e60ce84c09e1e866124c9ae9ebaf75679f46fec8bb9d615cb732d5a6630ee",
+    "artifacts/v9/budget-before-json-stream.json": "27a82a1283e115174f32f8181f910c59d1fc64a3fb77b0b11a01eb68898e7a10",
+    "artifacts/v9/schema-rejection-log.txt": "974b7b04ffbd9b90628cc1db1a9089ce039de7fc107995722e0825e8d4ea755c",
+    "artifacts/v9/prospective-92001/manifest.json": "65d5bda35345180a11b51e8174c5ddfdebbd4e103aa3f423e6b00b131ab7ce34",
+    "docs/v9/PORTABLE_PROTOCOL.md": "ce714e8e97b8afaf6e43fc825ac648bd5a03662eabb6da915fb90a9d82209bd0",
+    "artifacts/v9/server-9b-portable-process.json": "4d2c3cb73924d1e3f1f5d26be2b9ced381773a4d31f14b62800e5b0a468515f8",
+    "artifacts/v9/budget-before-portable-stream.json": "7404a3b3e1ed25856c41e93ec740f4e724c6974db84cdcf415ef4f5a6f5d8b2e",
+    "artifacts/v9/preportable-pytest.xml": "fba07fd79c88df7179e5449acb98e78b7fc50232058f66a485afa84978f4bfd0",
+    "artifacts/v9/prospective-json-92002/manifest.json": "6bcfb4b238883e66fc2fb1187f684348ee5bb87f137069c08347cbaa8a44c530",
+    "artifacts/v9/json-stream-intentional-stop.json": "1a725f36dbfe648b1ed4fb092df591cabb9e39133492b9812e87cfa4ef926b85"
+  },
+  "seed": 92003,
+  "condition": "reuse",
+  "stage": "full",
+  "arms": [
+    "full_history",
+    "insights",
+    "fragments"
+  ],
+  "minimum_warm_correct": 7,
+  "gate_after_warm": true,
+  "previous_diagnostics": {
+    "diagnostic_runs": 7,
+    "elapsed_seconds": 369.03391108399956,
+    "calls": 136,
+    "tokens": 161432,
+    "unknown_usage_calls": 0
+  },
+  "task_model_calls_for_this_stream_before_freeze": 0,
+  "sqlite_version": "3.45.1",
+  "claim_confirmed": false,
+  "response_mode": "schema",
+  "previous_attempt": "artifacts/v9/prospective-json-92002/manifest.json",
+  "previous_development_budget": {
+    "known_tokens": 211109,
+    "unknown_usage_calls": 2,
+    "unknown_request_token_upper_bound": 9109,
+    "calls": 166,
+    "elapsed_seconds": 703.0023337319999,
+    "total_token_upper_bound": 220218
+  },
+  "wire_schema_policy": "host_checks_large_string_bounds_v1",
+  "reflection_thinking": false,
+  "server_process_receipt": "artifacts/v9/server-9b-portable-process.json"
+}

@@ -1,0 +1,68 @@
+{
+  "kind": "v9_development_validation",
+  "status": "passed",
+  "python_suite": {
+    "tests": 1314,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 8,
+    "passed": 1306,
+    "seconds": 43.561
+  },
+  "paper": {
+    "pdf": "paper/v9_development.pdf",
+    "pdf_sha256": "db7ff5e03041a4bde890f521e6896885ec364ed1069ab013b91b78efd1e529da",
+    "tex": "paper/v9_development.tex",
+    "tex_sha256": "5ffc0722f598cab3ec2cf0f07b40a1df5d09c25b35f3ef3c50e83cfd055e924e",
+    "pages": 3,
+    "tex_errors": 0,
+    "overfull_boxes": 0,
+    "visually_reviewed_pages": [
+      1,
+      2,
+      3
+    ]
+  },
+  "frozen_receipts": {
+    "artifacts/v7/freeze.json": {
+      "sha256": "f8944a7aba15f7bce2a2619f15ad77ab3d3ea7463a78e25599651e407fb31a26",
+      "verified_files": 20
+    },
+    "artifacts/v8/prepilot-freeze.json": {
+      "sha256": "dafd2a2b3bff906656e5f3e6b3f1f49d6c6127501cef4db2f8b7fded769abd6b",
+      "verified_files": 7
+    },
+    "artifacts/v9/prepilot-freeze.json": {
+      "sha256": "90ec45994a7381166a1c7154be048b1c6727a60b1bb8bca0b353d41c60a765c4",
+      "verified_files": 17
+    },
+    "artifacts/v9/prepilot-json-freeze.json": {
+      "sha256": "530072a5db94ef9757be0dcd7637e8e974e62fc09c308ea5767f59471b2c69df",
+      "verified_files": 21
+    },
+    "artifacts/v9/prepilot-portable-freeze.json": {
+      "sha256": "185fdf89b136391163d432fb5b348e6f805813ca50dc7554c8fe5ab7ca49df71",
+      "verified_files": 29
+    }
+  },
+  "preserved_v8_pdf_sha256": "3eb33944f78547140c2c43db1df28cb6274eb81c97e02bcb48a2a6c7e025c222",
+  "file_sha256": {
+    "artifacts/v9/pytest.xml": "01b411d2105838db77616f14fe78594290c528af86cd8f12c72bbe7ce90797bf",
+    "artifacts/v9/pytest.txt": "b3ab6382a307e49a81d1b341b069d1e3d6c167d98ac1a03287b38643da503a34",
+    "artifacts/v9/results.json": "d3b4a9f04e80368fd97cd7a1419807b334274f7686d314be131a6b8b2af2f3fd",
+    "docs/v9/RESULTS.md": "edfed4ce428440c041e80426d575a4aab5f519e70e371e3239d77e0d0cb5b700",
+    "docs/v9/MECHANISM_REVIEW.md": "20bd09c24b45e4229c9d32e319986e57af150af19e4a3eca07e0d23317d1f5c1",
+    "docs/v9/DISCOVERY_REPAIR_PROTOTYPE.md": "b38d84e94d8f628f5a290893ed782a537cff79835dd14c20dd1a95a924aedc9f",
+    "experiments/audit_sql_abstractions_v9.py": "7d8522fe3145774b59d3c4b0f189299abbe4c3fb4d7e9168390980793102ac91",
+    "experiments/audit_mechanism_v9.py": "7a1b0e2eae85546564753ece391239dc942ff1219be69b5e8c35010c357dd5ea",
+    "tools/v9_results.py": "9f103e56edc98f08060b54b6ac356eeb2fe3e107c639c68c90885d3519dfc737",
+    "src/witness_cl/discovery_repair_v9.py": "95fe583558d3cf33bd868ac03909de81626d99d5404ca6e29bab28812074391c",
+    "tests/test_discovery_repair_v9.py": "b69838c60df5eece53cf737857b1c6a334a9b0da9e872757157d798b327f3641",
+    "artifacts/v9/mechanism-counterfactuals.json": "5946fc28fc0861a887ba5c3e48d38792188adaaec8368e773a428880c0fa9739"
+  },
+  "owned_model_server_absent": true,
+  "temporary_key_absent": true,
+  "discovery_repair_real_model_evaluation": false,
+  "claim_established": false,
+  "scope": "Local Python/offline SQL tests and preserved-data consistency; no new Lean claims, transfer result, retention result or native benchmark performance."
+}

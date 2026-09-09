@@ -1,0 +1,8 @@
+{
+  "owned_pid": 50229,
+  "sigterm_sent": true,
+  "listener_closed": true,
+  "temporary_key_removed": true,
+  "checked_unix": 1788973100.6324625,
+  "no_further_model_task_runs_in_this_phase": true
+}
