@@ -1,0 +1,31 @@
+{
+  "version": "0.6.0",
+  "source_commit": "ffb4ed940420384cb4c82659a07dd320d35b9b36",
+  "files": {
+    "audit_table.tex": "92c5aefd04b738d1984a625194d66f1a0b9e3e3136151bce12149ecb0c2edb86",
+    "figures/v5_learning.pdf": "51256907c80cbcbbead27ab4bf891e848a2ef406d4993c7920479825fa6184ba",
+    "figures/v5_learning.png": "31b9725cf87ae35bc018117317d0cc0828884c1849ee90b3a16fe66ed06f8eed",
+    "figures/v6_reward_cost.pdf": "1edfbd62ce82c64603b0c075927395dd196a45be97cfe6988d13b3077f2a441d",
+    "figures/v6_reward_cost.png": "d916abc5d72ed7fe4ed1c05ef23a7f45932b195e061c2c3c71581138ff85c8ed",
+    "main.pdf": "e6f8627dfd42db1198a168fb1c8d03bbad91d4487f967a0626cc014d96e0c142",
+    "main.tex": "9eef385d8e10fcf6af8aa0496483f3cc6257573ca47de320ec9d4aa2d47826b8",
+    "numbers.tex": "a2459c87161ff3e9cb953fd516d18da3aaad806d0247b47aefa8530fff83bcb9",
+    "references.bib": "e255f38e67b818635e3a431c9a35718ed8cc88949fb006516f15f400e5a505bc",
+    "references_formatted.tex": "0b2a24a0f7d011e3c002affd4c05e8bd57224acfd9a9c177e77ae4691c96dff9",
+    "results_table.tex": "6cbd2cf09a732015df8fe80fe0e4cebd574f5da7167b1284b45adeea1bbe3fbd",
+    "v2_arithmetic.tex": "133d07ba03d068d2d0654535d7ba0bd70e993382e4b83628b2a0762b54d621dc",
+    "v2_audit.tex": "db76687f14f3c002aca8e6e5db06c42c59482ed3389835d2446d57d563c57cb7",
+    "v2_integrated.tex": "3d3bcbb4b5b588f57b2e0fae037a6e9733c4722346ff9b6afded5a7adcaa5626",
+    "v2_kernel.tex": "68b03246e7d9076c99b9af1e483c6c83dd03e55a00a8d268d73a00a33a258242",
+    "v2_relational.tex": "5ab6ade494980e4ee412afa6eeb2ac5e793c8b97859c963cdb6186b03a579c69",
+    "v2_training.tex": "43b779757996a853f7d90ee0b86baac149cdb9dda2c386c4770f1fd712998c6a",
+    "v3_continuation.tex": "fd523f0440a664faa3c8f9874b006c40422861e820dd0e117e5dba4b6a1c54de",
+    "v3_training.tex": "043d354713bbae60532e318f6c398d5afbaef54451e15f0240e00220a5985042",
+    "v4_results.tex": "ac138d651cc699a10a78e90533603d4eb6f962e6543a4956a0a1725e8fb4fa8e",
+    "v5_local.tex": "7ebfc80317750934be609160b22451670de0b53c476cdb5443a846d669f7e4d7",
+    "v5_results.tex": "617ab8675129315db86067517113d42b87ee20fda4010f83ede3161517e36987",
+    "v5_section.tex": "98cd2d48ccbaff982e71b4a9604161cde2037da35fc32701e5e2603dccf32319",
+    "v6_results.tex": "e639f128497a65e17bc2621c152e61d3cb861a8a065f65dbf5cc7659674fc4ef",
+    "v6_section.tex": "744903ec04be17490ac8326171f9bb5a084a4070a2ed2b64d087ce264e1f7d32"
+  }
+}

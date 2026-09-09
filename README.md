@@ -1,18 +1,20 @@
 # Witness-CL
 
-**Evidence-preserving learning from executed episodes, with explicit assumptions and falsifiable results.**
+**Online learning from executed experience, with explicit retention assumptions and falsifiable results.**
 
-Version 0.6.0 · [Paper](paper/main.pdf) · [Results](docs/v6/RESULTS.md) · [Formal bridge](docs/v6/FORMAL.md) · [Next study](docs/v6/NEXT_STEPS.md)
+Version 0.7.0 · [Paper](paper/main.pdf) · [Results](docs/v7/RESULTS.md) · [Protocol](docs/v7/EVALUATION.md) · [Formal bridge](docs/v7/FORMAL.md) · [Next experiment](docs/v7/NEXT_STEP.md)
 
-This private research repository continues `Witness_CL_v4.bundle`, preserving its history, release tags, original results and archived papers. It learns compatible finite hidden models from executed traces and checks immutable programs before changing protected incumbents. The contract requires a valid finite class, stationary deterministic dynamics, public reward functions and genuine resets.
+This private research repository continues `Witness_CL_v4.bundle`, preserving its Git history, release tags, original results and archived papers. Version 7 learns small numerical predictors from its own ordinary SQLite observations and subsequent scalar feedback. It selects reusable features from a supplied 84-monomial grammar, then tests frozen changes on fresh paired instances. No list of possible hidden worlds is given.
 
-**The general continual-learning problem remains open.** The new bounded two-probe selector gains **0.39375 reward per episode** over a cheap informative zero-loss rule on the frozen 40-stream holdout (paired 95% interval **[0.15845, 0.62905]**). It still loses **0.19479** to bounded optimism and uses **8.88×** the cheap rule's measured planning time. Shared budget ceilings do not equal matched actual risk or computation.
+**The general continual-learning problem remains open.** On 16 untouched streams, audited feature reuse changes shared-novel reward by **+0.12240** relative to no reuse (nominal paired 95% Student interval **[0.03158, 0.21321]**). The predeclared transfer target is **met**. At the common 4096-SELECT ceiling, its final-panel score is **47.44%**, versus **100.00%** for ungated sparse full-history learning and **100.00%** for full ridge. The requirement to beat every fixed simple control is **not met**. SELECT matching is not equal CPU time or equal all-resource computation. [Interpretation and failure mechanism](docs/v7/INTERPRETATION.md)
 
-All three new selectors repair the two-bit complementary-probe example at B0. Three-bit parity at B0 already defeats depth two, while the cheap rule succeeds. The mechanism is useful evidence about a failure, not a general solution or a novelty claim for belief-state planning.
+The new mechanism removes hidden-world enumeration from this experiment, but gives the learner complete small-table observations, a fixed feature grammar, exact scalar supervision and authentic report IDs. Reuse changes candidate search order. It does not learn task identity, synthesize arbitrary SQL or demonstrate native LLM benchmark superiority. Other reports retain identical installed policies during novel learning; that is structural retention under fixed routing.
 
-**503 standard Python tests pass**, with eight optional native-environment tests skipped in the ordinary runtime. The C++ reference/sanitizer checks pass. **Lean 4.19.0 checks 63 statements**, including an executable transducer/history-filter bridge, with no custom axioms or placeholders. Finite differential tests compare 262,144 Python/Lean filter membership decisions; they do not prove the optimized Python implementation generally.
+**656 standard Python tests pass**, with eight optional native-environment tests skipped in the ordinary runtime. The C++ reference/sanitizer checks pass. **Lean 4.19.0 checks 77 statements**, including 14 new finite-population promotion-accounting results; no custom source axioms, placeholders or unexpected dependencies appear. Its probability argument is **not Lean proved**. Independent finite fixtures check 8,748 historical bounds, and saved-data replay verifies the actual experiment's predictions, journals, policy transitions and query accounting.
 
-The v6 study records **8,640 benchmark episodes** plus 180 mechanism-control episodes. Independent saved-data replay checks **7,680 final-protocol episodes and 6,144 guarded prefixes**, with zero detected contract violations. The earlier development run remains preserved separately. All ranker weights are frozen in this phase; there are no new LLM calls, deployments or paid compute. The requested Codex automation was removed and no replacement was created. [Scope](docs/v6/RESEARCH_BOUNDARIES.md)
+A separate power counterexample matters: the fixed half-bet can have eventual admission probability below .159 for a policy with positive .1 mean gain, even with unlimited samples. Correct false-acceptance control alone does not make useful learning affordable. [Gate and counterexample](docs/v7/GATE.md)
+
+The holdout records **78,081 ordinary episodes**, **61,790 audit pairs**, and **61,440 panel contexts**. All 192 arm/runs passed independent replay. Four development streams remain separate. Small scalar weights are fitted online; this phase uses no new LLM calls, deployment or paid compute. The requested Codex background automation remains removed. [Execution boundaries](docs/v7/RESEARCH_BOUNDARIES.md)
 
 ## Reproduce
 
@@ -21,38 +23,44 @@ python3 -m pip install -e '.[test,analysis]'
 make formal
 make test
 make cpp-check
+PYTHONPATH=src python3 experiments/audit_relational_v7.py \
+  artifacts/v7/holdout --freeze artifacts/v7/freeze.json \
+  --out artifacts/v7/holdout-replay.json
 make paper
-PYTHONPATH=src python3 experiments/audit_v6.py \
-  artifacts/v6/development-corrected artifacts/v6/holdout \
-  artifacts/v6/work-25000 artifacts/v6/work-250000 \
-  --out /tmp/witness-v6-audit.json
 ```
 
-`make formal` builds the source-hashed theorem/axiom audit and executable fixture using pinned Lean 4.19.0. `LAKE` can specify its launcher. `make paper` requires pdfLaTeX and regenerates tables/plots from recorded data. Native integration has its own pinned dependencies and CI job; see [its README](integrations/clbench/README.md).
+The paper analysis requires a passing independent replay tied to the exact raw files, manifest, freeze and current frozen source. It rejects partial runs and missing evaluation panels. `make formal` uses pinned Lean 4.19.0; `LAKE` may specify its launcher. `make paper` needs pdfLaTeX and regenerates statistics and figures from saved results. Native integration has separate pinned dependencies and a CI job; see [its README](integrations/clbench/README.md).
 
-For a fresh development run, use an unused output directory:
+For a new development reproduction, choose an unused directory:
 
 ```bash
-PYTHONPATH=src python3 experiments/probe_v6.py \
-  --seed-offset 70000 --seeds 8 --out artifacts/new-development-run
+make relational-development V7_OUT=artifacts/v7/new-development
 ```
 
-Completed experiment directories cannot be overwritten. Holdout execution additionally checks an explicit source/configuration freeze. New seeds from the same finite class do not establish new-domain generalization. Planning deadlines are cooperative Python limits, not operating-system isolation or hard real-time guarantees.
+The evaluation freeze is committed before the untouched run. Replaying that exact frozen configuration into an unused directory is supported:
+
+```bash
+make relational-heldout V7_OUT=artifacts/v7/new-holdout
+```
+
+Completed experiment directories cannot be overwritten. Audit that new directory before analysis. Changing frozen inputs requires a new study and a new source/protocol record; it cannot silently update this evidence. Dependency versions are recorded in [environment.json](artifacts/v7/environment.json).
+
+Each ordinary instance costs three post-setup SELECTs and each pair costs five, including authoritative scoring. The 4096-SELECT companion reserves 768 for the final panel; controls spend saved audit queries on more ordinary feedback. Setup SQL is outside this named budget, with setup time reported separately. Per-run timing excludes initial harness construction and final artifact export; whole-grid elapsed time includes that surrounding work. Numeric and serialized payload sizes do not measure process RAM.
 
 ## Repository map
 
 | Path | Purpose |
 |---|---|
-| `src/witness_cl/latent.py`, `latent_agent.py` | Exact finite learner, checker, optional online ranker and nonrefundable ledger |
-| `src/witness_cl/probe_v6.py` | Bounded depth-two, free-information and optimistic selectors |
-| `experiments/probe_v6.py`, `audit_v6.py` | Frozen experiment and independent raw-data replay |
-| `tests/` | Mechanism, failure/cap, semantics and deliberate-tampering checks |
-| `formal/` | 63 checked statements and executable interpreter/filter fixtures |
-| `artifacts/v6/` | Raw data, source/configuration freeze, proofs, costs and validation logs |
-| `docs/v6/` | Algorithms, primary-source antecedents, results and precise claim boundaries |
-| `paper/` | Current LaTeX/TikZ paper, PDF, figures and generated tables |
-| `paper/v5/`, `artifacts/v5/`, `docs/v5/` | Preserved prior paper, rejected hypotheses and actual local-inference pilots |
+| `src/witness_cl/relational_v7.py` | Read-only SQLite measurements, bounded online fitting and feature-bank reuse |
+| `src/witness_cl/statistical_gate_v7.py` | Fresh paired betting tests, immutable identities and permanent error spending |
+| `experiments/relational_v7.py` | Frozen six-arm matched-example and SELECT-budget protocols |
+| `experiments/audit_relational_v7.py` | Independent standard-library replay, including own SQL and policy evaluation |
+| `tools/freeze_v7.py`, `tools/v7_results.py` | Development-gated source freeze and stream-level analysis |
+| `formal/` | 77 checked statements and executable finite fixtures |
+| `artifacts/v7/`, `docs/v7/` | Raw data, freeze, replay receipts, costs, validation and claim boundaries |
+| `paper/` | Current professional LaTeX/TikZ paper, PDF and generated figures |
+| `paper/v6/`, `artifacts/v6/`, `docs/v6/` | Preserved earlier planning experiment and negative comparisons |
 
-The prior v5 probe rule and its post-hoc repair remain below strong controls. Its 72,192 CPU episodes and 120 actual local-model calls are preserved; they are not relabeled as v6 results or native CL-Bench/AgentCL performance. No public benchmark win, universal no-forgetting, bounded lifelong memory or general alignment guarantee is claimed.
+Earlier versions' local-model pilots and benchmark integrations remain archived; they are not relabeled as new native CL-Bench or AgentCL performance. The next proposed test learns schema facts and query fragments under each benchmark's permitted feedback rules. Gold-guided admission would be an augmented-feedback track, not native AgentCL memory construction.
 
-MIT software license retained. AI-assisted research draft prepared for Samuel Mausberg; author review and independent replication remain necessary.
+MIT software license retained. AI-assisted research draft for Samuel Mausberg; author review and independent replication remain necessary.

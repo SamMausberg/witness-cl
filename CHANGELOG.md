@@ -1,3 +1,15 @@
+# Changelog
+
+## 0.7.0 — September 2026
+
+- Added real bounded read-only SQLite measurements and small online feature learners, including full-history sparse and ridge controls.
+- Added a fresh paired statistical gate with immutable policy/scope identities, permanent alpha spending, exact crossing checks and replayable journals.
+- Froze and ran sixteen untouched streams across six arms and two cost protocols after four development streams. Primary transfer difference: +0.12240, nominal 95% paired interval [0.03158, 0.21321]. Practical dominance at the 4096-SELECT ceiling: not met.
+- Independently replayed all 192 holdout arm/runs; preserved every raw record and both source/configuration freezes. Added complete-panel and raw-hash requirements to paper generation.
+- Added 14 Lean statements on actual promotion errors, accumulated tolerance and historical finite-population retention; 77 total checked statements. The statistical probability argument remains outside Lean.
+- Proved and tested a fixed-half-bet low-power counterexample under a positive-mean alternative. Documented the supplied grammar, exact feedback and fixed routing assumptions.
+- Standard suite: 656 passed, 8 optional skips. C++/UBSan checks pass. Archived the prior v6 paper and rewrote the current paper around the new study and unresolved native representation problem.
+
 # v0.6.0, 8 September 2026
 
 - Removed the requested Codex automation; continued only the active finite local research phase, with all ranker weights frozen.

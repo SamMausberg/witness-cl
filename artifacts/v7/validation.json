@@ -1,0 +1,53 @@
+{
+  "python": {
+    "passed": 656,
+    "skipped": 8,
+    "failures": 0,
+    "errors": 0,
+    "record": "pytest-preholdout.xml"
+  },
+  "lean": {
+    "statements": 77,
+    "unexpected_axioms": [],
+    "probability_formalized": false
+  },
+  "cpp": {
+    "cpu_cases": 432,
+    "v3_randomized": 200,
+    "v4_python_cpp_pairs": 400,
+    "ubsan": true,
+    "gpu_executed": false,
+    "record": "cpp-check.txt"
+  },
+  "holdout_replay": {
+    "status": "passed",
+    "checked": {
+      "source_files": 20,
+      "ordinary_contexts": 78081,
+      "policy_predictions": 263101,
+      "select_executions": 727513,
+      "audit_contexts": 61790,
+      "gate_prefixes": 61790,
+      "promotions": 43373,
+      "other_report_invariants": 43373,
+      "snapshot_contexts": 12288,
+      "final_contexts": 49152,
+      "streams": 192,
+      "policy_versions": 48391,
+      "gate_events": 63307,
+      "started_audits": 1501,
+      "budget_prefixes": 86510
+    },
+    "receipt_sha256": "f8116db02bbf38ef3d027256c84d65b98cf8f42c0c5cc8c25685e7f8869f58a5",
+    "source_sha256": "dc5c5abc15b16c2806dc64393e7223bb46c173bcfd03cd45cf2dd9b1c497e428"
+  },
+  "freeze_sha256": "f8944a7aba15f7bce2a2619f15ad77ab3d3ea7463a78e25599651e407fb31a26",
+  "limitations": "Saved-data consistency and bounded executable checks do not prove general Python refinement, authenticated execution, probability theory, native benchmark superiority or alignment.",
+  "paper": {
+    "pages": 8,
+    "pdf_sha256": "f159cf2070c58b098d03f14fb4a72f917f6fbdb07deea79b7f4829a6e881414a",
+    "source_sha256": "fcc0c858d66cace49493c3df43747143134c30560dad81168f10f8fcf10f5a82",
+    "visual_review": "All eight pages inspected; diagram label overlap corrected, tables/figures and equations fit; final two LaTeX passes have no overfull boxes or unresolved references.",
+    "build_log": "paper-build.txt"
+  }
+}
