@@ -1,0 +1,13 @@
+{
+  "backend_commit": "91f6a6cf361385700bbe15981f0f39909df77498",
+  "cmake": {
+    "CMAKE_BUILD_TYPE": "Release",
+    "CMAKE_CUDA_ARCHITECTURES": "90",
+    "CMAKE_CUDA_COMPILER": "/usr/bin/nvcc",
+    "CMAKE_CXX_COMPILER": "/usr/bin/c++",
+    "GGML_CUDA": "ON"
+  },
+  "target": "llama-server",
+  "build_parallelism": 16,
+  "status": "built"
+}

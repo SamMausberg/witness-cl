@@ -54,7 +54,9 @@ class SQLiteReplayV9(SQLiteReplay):
         super().__init__(spec)
         try:
             self.db.set_authorizer(None)
-            modules = frozenset(row[0].casefold() for row in self.db.execute('PRAGMA module_list'))
+            modules = frozenset(row[0].casefold() for row in self.db.execute('PRAGMA module_list')) | {
+                'json_each', 'json_tree', 'jsonb_each', 'jsonb_tree',
+            }
             tables = {table.name for table in spec._tables}
             def authorize(action, first, second, database, source):
                 if action == sqlite3.SQLITE_SELECT:

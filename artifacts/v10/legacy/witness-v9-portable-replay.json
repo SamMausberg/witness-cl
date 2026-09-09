@@ -1,0 +1,537 @@
+{
+  "status": "passed",
+  "directory": "/tmp/witness-cl-legacy-oxg7s883/source/artifacts/v9/prospective-portable-92003",
+  "claim_confirmed": false,
+  "scope": "independent SQLite replay, exact saved legal prompts, own-memory transitions and chronological shared-budget consistency",
+  "auditor_source_sha256": "7d8522fe3145774b59d3c4b0f189299abbe4c3fb4d7e9168390980793102ac91",
+  "auditor_dependencies_sha256": {
+    "experiments/audit_sql_abstractions_v8.py": "3e31e968edcef8713d4b0e0febc8314dc4c83f9e50a512be32b0931c1306b29c"
+  },
+  "pilot_completeness": "partial",
+  "required_records_complete": false,
+  "planned_records_complete": false,
+  "known_usage_complete": true,
+  "sqlite_outcomes_complete": true,
+  "resource_comparison_complete": false,
+  "limitations": [
+    "Fixture generation, action parser, compiler and memory definitions are shared frozen code; SQL connections and checks are independent.",
+    "Does not authenticate original execution, backend tokenization or token counts, model weights, or recorded timing.",
+    "Unknown failed generation usage remains unknown; any reservation figure is a protocol allowance, not measured usage.",
+    "A single correlated development stream cannot confirm statistical superiority, noninferiority or interaction savings.",
+    "Nonreproducible machine-specific SQL timeout errors are unverified and exclude resource comparison eligibility."
+  ],
+  "manifest_sha256": "e68d9ae6eec7c548e94f5a63dab98dd4515c5c4a5ad1a15f34444aa295058c35",
+  "summary_sha256": "63b93414b4213a7d06496c808c86469bbe0288e5d643f407b3f1081e424b9035",
+  "manifest_status": "competence_gate_failed",
+  "checked_source_sha256": {
+    "src/witness_cl/sql_env_v8.py": "8199b4714cd3460157a3acb81dcbf0581bd540129dd5c230db7a609cd2155a6d",
+    "src/witness_cl/sql_env_v9.py": "d23d437a45871f9a27737f58ca64065eb40593a298568dac2bd1aa7de110d9ff",
+    "src/witness_cl/fragments_v8.py": "d49a70f9075d0fb32fb10ffc4c92429aef33660242008e8f96b0a23e872ad4dd",
+    "src/witness_cl/memory_v8.py": "18a0c2994c7f8b437f1ff070f791bc0f6c8d344bdfc4ad9687af6396e6db1b47",
+    "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+    "src/witness_cl/abstraction_v8.py": "1bf54a2d273533238d0dc3940f4460efb37e60694818c7dfd1a4b669faf24b44",
+    "src/witness_cl/memory_v9.py": "98c6ad467aade9eafc7fd76b1c3628a3df7130897e98529235d628a728aa8bbe",
+    "src/witness_cl/model_v9.py": "3ee5743c7c150158e8e8ec7c1137184864b0af6ca5245f8aca85f32da98c6438",
+    "src/witness_cl/actions_v9.py": "27a82548136e21e55a8bf374d6557c5a76ac28a7d9aa56b0fc086ccf165f12d5",
+    "experiments/competence_interactive_v9.py": "8b59d8dd596b183cd50172aa72ae30c05adb39e8a1767d671377fedb84f0f649",
+    "experiments/sql_abstractions_v9.py": "efcae7b6625e579e54504ce6197ff3e02ab818e5483678ea4320e02c6977d6f7",
+    "src/witness_cl/model_v9_compatible.py": "1655257115569734806c446db68f49bef0f94665e67d313de3446a10ab3078e5",
+    "experiments/portable_stream_v9.py": "1edc41f822e24e4e101d9605d45419ac0f45dc860e1f7c02078814aaaa51c86a"
+  },
+  "checked_freeze_sha256": "185fdf89b136391163d432fb5b348e6f805813ca50dc7554c8fe5ab7ca49df71",
+  "checked_support_sha256": {
+    "docs/v9/STREAM_PROTOCOL.md": "42a66edd68eb3eb47d68f1288b40255194a10e5c5a6e010004f1d297ca0a7201",
+    "artifacts/v9/model-9b-provenance.json": "9cab589b7af6006532a96a9ba4214c44c323ebb0dc92c7aa3a37efa72e52584b",
+    "artifacts/v9/server-9b-64k-process.json": "127aa3e94f96022300e9e90dbda3f71993668e7059f763bf61bff1fd1a9f0708",
+    "artifacts/v9/diagnostics/replay-all.json": "d87a3647c09cd6a539e4d9bf351b927e40c3ef039d8ae17509d0e3ae65731a0b",
+    "artifacts/v9/prepilot-pytest.xml": "5b5e083b567607785d31b22978dd3a3ecb8095c1692e42420a13020b03afd4f8",
+    "artifacts/v9/prepilot-v9-pytest.xml": "db469bf298a71b20ed7c6670de87c00e639e6b8751d6fb78a3dfcd4a1c6d14b7",
+    "docs/v9/JSON_REPAIR_PROTOCOL.md": "360e60ce84c09e1e866124c9ae9ebaf75679f46fec8bb9d615cb732d5a6630ee",
+    "artifacts/v9/budget-before-json-stream.json": "27a82a1283e115174f32f8181f910c59d1fc64a3fb77b0b11a01eb68898e7a10",
+    "artifacts/v9/schema-rejection-log.txt": "974b7b04ffbd9b90628cc1db1a9089ce039de7fc107995722e0825e8d4ea755c",
+    "artifacts/v9/prospective-92001/manifest.json": "65d5bda35345180a11b51e8174c5ddfdebbd4e103aa3f423e6b00b131ab7ce34",
+    "docs/v9/PORTABLE_PROTOCOL.md": "ce714e8e97b8afaf6e43fc825ac648bd5a03662eabb6da915fb90a9d82209bd0",
+    "artifacts/v9/server-9b-portable-process.json": "4d2c3cb73924d1e3f1f5d26be2b9ced381773a4d31f14b62800e5b0a468515f8",
+    "artifacts/v9/budget-before-portable-stream.json": "7404a3b3e1ed25856c41e93ec740f4e724c6974db84cdcf415ef4f5a6f5d8b2e",
+    "artifacts/v9/preportable-pytest.xml": "fba07fd79c88df7179e5449acb98e78b7fc50232058f66a485afa84978f4bfd0",
+    "artifacts/v9/prospective-json-92002/manifest.json": "6bcfb4b238883e66fc2fb1187f684348ee5bb87f137069c08347cbaa8a44c530",
+    "artifacts/v9/json-stream-intentional-stop.json": "1a725f36dbfe648b1ed4fb092df591cabb9e39133492b9812e87cfa4ef926b85"
+  },
+  "model_provenance_sha256": "9cab589b7af6006532a96a9ba4214c44c323ebb0dc92c7aa3a37efa72e52584b",
+  "original_sqlite_version": "3.45.1",
+  "warm_qualified": false,
+  "stream_results": [
+    {
+      "seed": 92003,
+      "condition": "reuse",
+      "arm": "full_history",
+      "warm": {
+        "complete": true,
+        "correct": 8,
+        "n": 8,
+        "minimum_correct": 7,
+        "meets_warm_accuracy_gate": true
+      },
+      "phase_counts": {
+        "ordinary": 8,
+        "old_before": 0,
+        "old_after": 0,
+        "final": 0
+      },
+      "phase_reward": {
+        "ordinary": 1.0,
+        "old_before": null,
+        "old_after": null,
+        "final": null
+      },
+      "phase_selects": {
+        "ordinary": 9,
+        "old_before": 0,
+        "old_after": 0,
+        "final": 0
+      },
+      "phase_failures": {
+        "ordinary": 0,
+        "old_before": 0,
+        "old_after": 0,
+        "final": 0
+      },
+      "ordinary_budget": {
+        "max_calls": 280,
+        "max_total_tokens": 1000000,
+        "total_tokens": 50178,
+        "prompt_tokens": 46849,
+        "completion_tokens": 3329,
+        "calls": 17,
+        "tokenization_seconds": 0.18266596399917034,
+        "inference_seconds": 67.80578000999958,
+        "unknown_usage_calls": 0
+      },
+      "panel_budget": {
+        "max_calls": 260,
+        "max_total_tokens": 1000000,
+        "total_tokens": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0,
+        "tokenization_seconds": 0.0,
+        "inference_seconds": 0.0,
+        "unknown_usage_calls": 0
+      },
+      "observed_retention": null,
+      "phase_costs": {
+        "ordinary": {
+          "n": 8,
+          "correct": 8,
+          "select_attempts": 9,
+          "generation_attempts": 17,
+          "reflection_attempts": 0,
+          "known_total_tokens": 50178,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 68.00579866599946,
+          "query_seconds": 0.0014055529973120429
+        },
+        "old_before": {
+          "n": 0,
+          "correct": 0,
+          "select_attempts": 0,
+          "generation_attempts": 0,
+          "reflection_attempts": 0,
+          "known_total_tokens": 0,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 0,
+          "query_seconds": 0
+        },
+        "old_after": {
+          "n": 0,
+          "correct": 0,
+          "select_attempts": 0,
+          "generation_attempts": 0,
+          "reflection_attempts": 0,
+          "known_total_tokens": 0,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 0,
+          "query_seconds": 0
+        },
+        "final": {
+          "n": 0,
+          "correct": 0,
+          "select_attempts": 0,
+          "generation_attempts": 0,
+          "reflection_attempts": 0,
+          "known_total_tokens": 0,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 0,
+          "query_seconds": 0
+        },
+        "warm_ordinary": {
+          "n": 8,
+          "correct": 8,
+          "select_attempts": 9,
+          "generation_attempts": 17,
+          "reflection_attempts": 0,
+          "known_total_tokens": 50178,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 68.00579866599946,
+          "query_seconds": 0.0014055529973120429
+        },
+        "later_ordinary": {
+          "n": 0,
+          "correct": 0,
+          "select_attempts": 0,
+          "generation_attempts": 0,
+          "reflection_attempts": 0,
+          "known_total_tokens": 0,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 0,
+          "query_seconds": 0
+        }
+      },
+      "final_memory_bytes": 15467,
+      "accepted_entries_retained": 0,
+      "counts": {
+        "recorded_model_calls": 17,
+        "generation_attempts": 17,
+        "known_prompt_tokens": 46849,
+        "known_completion_tokens": 3329,
+        "known_total_tokens": 50178,
+        "calls_with_reasoning_output": 17,
+        "independently_replayed_queries": 9,
+        "select_attempts": 9,
+        "episodes": 8,
+        "correct_episodes": 8
+      },
+      "episode_seconds": 68.00579866599946,
+      "query_seconds": 0.0014055529973120429
+    },
+    {
+      "seed": 92003,
+      "condition": "reuse",
+      "arm": "insights",
+      "warm": {
+        "complete": true,
+        "correct": 6,
+        "n": 8,
+        "minimum_correct": 7,
+        "meets_warm_accuracy_gate": false
+      },
+      "phase_counts": {
+        "ordinary": 8,
+        "old_before": 0,
+        "old_after": 0,
+        "final": 0
+      },
+      "phase_reward": {
+        "ordinary": 0.75,
+        "old_before": null,
+        "old_after": null,
+        "final": null
+      },
+      "phase_selects": {
+        "ordinary": 14,
+        "old_before": 0,
+        "old_after": 0,
+        "final": 0
+      },
+      "phase_failures": {
+        "ordinary": 0,
+        "old_before": 0,
+        "old_after": 0,
+        "final": 0
+      },
+      "ordinary_budget": {
+        "max_calls": 280,
+        "max_total_tokens": 1000000,
+        "total_tokens": 55808,
+        "prompt_tokens": 44498,
+        "completion_tokens": 11310,
+        "calls": 30,
+        "tokenization_seconds": 0.17327706499600026,
+        "inference_seconds": 186.41834383500463,
+        "unknown_usage_calls": 0
+      },
+      "panel_budget": {
+        "max_calls": 260,
+        "max_total_tokens": 1000000,
+        "total_tokens": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0,
+        "tokenization_seconds": 0.0,
+        "inference_seconds": 0.0,
+        "unknown_usage_calls": 0
+      },
+      "observed_retention": null,
+      "phase_costs": {
+        "ordinary": {
+          "n": 8,
+          "correct": 6,
+          "select_attempts": 14,
+          "generation_attempts": 30,
+          "reflection_attempts": 8,
+          "known_total_tokens": 55808,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 186.60990242999833,
+          "query_seconds": 0.0016429809966211906
+        },
+        "old_before": {
+          "n": 0,
+          "correct": 0,
+          "select_attempts": 0,
+          "generation_attempts": 0,
+          "reflection_attempts": 0,
+          "known_total_tokens": 0,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 0,
+          "query_seconds": 0
+        },
+        "old_after": {
+          "n": 0,
+          "correct": 0,
+          "select_attempts": 0,
+          "generation_attempts": 0,
+          "reflection_attempts": 0,
+          "known_total_tokens": 0,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 0,
+          "query_seconds": 0
+        },
+        "final": {
+          "n": 0,
+          "correct": 0,
+          "select_attempts": 0,
+          "generation_attempts": 0,
+          "reflection_attempts": 0,
+          "known_total_tokens": 0,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 0,
+          "query_seconds": 0
+        },
+        "warm_ordinary": {
+          "n": 8,
+          "correct": 6,
+          "select_attempts": 14,
+          "generation_attempts": 30,
+          "reflection_attempts": 8,
+          "known_total_tokens": 55808,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 186.60990242999833,
+          "query_seconds": 0.0016429809966211906
+        },
+        "later_ordinary": {
+          "n": 0,
+          "correct": 0,
+          "select_attempts": 0,
+          "generation_attempts": 0,
+          "reflection_attempts": 0,
+          "known_total_tokens": 0,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 0,
+          "query_seconds": 0
+        }
+      },
+      "final_memory_bytes": 2425,
+      "accepted_entries_retained": 0,
+      "counts": {
+        "recorded_model_calls": 30,
+        "generation_attempts": 30,
+        "known_prompt_tokens": 44498,
+        "known_completion_tokens": 11310,
+        "known_total_tokens": 55808,
+        "calls_with_reasoning_output": 22,
+        "independently_replayed_queries": 14,
+        "select_attempts": 14,
+        "episodes": 8,
+        "correct_episodes": 6
+      },
+      "episode_seconds": 186.60990242999833,
+      "query_seconds": 0.0016429809966211906
+    },
+    {
+      "seed": 92003,
+      "condition": "reuse",
+      "arm": "fragments",
+      "warm": {
+        "complete": true,
+        "correct": 7,
+        "n": 8,
+        "minimum_correct": 7,
+        "meets_warm_accuracy_gate": true
+      },
+      "phase_counts": {
+        "ordinary": 8,
+        "old_before": 0,
+        "old_after": 0,
+        "final": 0
+      },
+      "phase_reward": {
+        "ordinary": 0.875,
+        "old_before": null,
+        "old_after": null,
+        "final": null
+      },
+      "phase_selects": {
+        "ordinary": 22,
+        "old_before": 0,
+        "old_after": 0,
+        "final": 0
+      },
+      "phase_failures": {
+        "ordinary": 0,
+        "old_before": 0,
+        "old_after": 0,
+        "final": 0
+      },
+      "ordinary_budget": {
+        "max_calls": 280,
+        "max_total_tokens": 1000000,
+        "total_tokens": 49700,
+        "prompt_tokens": 41368,
+        "completion_tokens": 8332,
+        "calls": 31,
+        "tokenization_seconds": 0.1761771280089306,
+        "inference_seconds": 145.9970737820022,
+        "unknown_usage_calls": 0
+      },
+      "panel_budget": {
+        "max_calls": 260,
+        "max_total_tokens": 1000000,
+        "total_tokens": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0,
+        "tokenization_seconds": 0.0,
+        "inference_seconds": 0.0,
+        "unknown_usage_calls": 0
+      },
+      "observed_retention": null,
+      "phase_costs": {
+        "ordinary": {
+          "n": 8,
+          "correct": 7,
+          "select_attempts": 22,
+          "generation_attempts": 31,
+          "reflection_attempts": 7,
+          "known_total_tokens": 49700,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 146.1996206449985,
+          "query_seconds": 0.002929897003923543
+        },
+        "old_before": {
+          "n": 0,
+          "correct": 0,
+          "select_attempts": 0,
+          "generation_attempts": 0,
+          "reflection_attempts": 0,
+          "known_total_tokens": 0,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 0,
+          "query_seconds": 0
+        },
+        "old_after": {
+          "n": 0,
+          "correct": 0,
+          "select_attempts": 0,
+          "generation_attempts": 0,
+          "reflection_attempts": 0,
+          "known_total_tokens": 0,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 0,
+          "query_seconds": 0
+        },
+        "final": {
+          "n": 0,
+          "correct": 0,
+          "select_attempts": 0,
+          "generation_attempts": 0,
+          "reflection_attempts": 0,
+          "known_total_tokens": 0,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 0,
+          "query_seconds": 0
+        },
+        "warm_ordinary": {
+          "n": 8,
+          "correct": 7,
+          "select_attempts": 22,
+          "generation_attempts": 31,
+          "reflection_attempts": 7,
+          "known_total_tokens": 49700,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 146.1996206449985,
+          "query_seconds": 0.002929897003923543
+        },
+        "later_ordinary": {
+          "n": 0,
+          "correct": 0,
+          "select_attempts": 0,
+          "generation_attempts": 0,
+          "reflection_attempts": 0,
+          "known_total_tokens": 0,
+          "unknown_usage_calls": 0,
+          "episode_seconds": 0,
+          "query_seconds": 0
+        }
+      },
+      "final_memory_bytes": 9943,
+      "accepted_entries_retained": 2,
+      "counts": {
+        "recorded_model_calls": 31,
+        "generation_attempts": 31,
+        "known_prompt_tokens": 41368,
+        "known_completion_tokens": 8332,
+        "known_total_tokens": 49700,
+        "calls_with_reasoning_output": 24,
+        "independently_replayed_queries": 22,
+        "select_attempts": 22,
+        "query_errors": 2,
+        "episodes": 8,
+        "correct_episodes": 7,
+        "reconstruction_selects": 6,
+        "accepted_reconstruction_witnesses": 2
+      },
+      "episode_seconds": 146.1996206449985,
+      "query_seconds": 0.002929897003923543
+    }
+  ],
+  "total_budget": {
+    "max_calls": 1200,
+    "max_total_tokens": 3000000,
+    "total_tokens": 155686,
+    "prompt_tokens": 132715,
+    "completion_tokens": 22971,
+    "calls": 78,
+    "tokenization_seconds": 0.5321201570041012,
+    "inference_seconds": 400.2211976270064,
+    "unknown_usage_calls": 0
+  },
+  "elapsed_seconds": 401.02721814100005,
+  "wall_cap_satisfied": true,
+  "independent_reference_cases": 8,
+  "response_mode": "schema",
+  "raw_sha256": {
+    "92003-reuse-fragments.jsonl": "5bee415eb4354963e8d929dc26efd74d0294e71f41fe61d858ddee8c42891e9f",
+    "92003-reuse-full_history.jsonl": "251ba6dda1f36ce257b1f3adf065f4b37234a8153cb4c1e0442bfe563d974b60",
+    "92003-reuse-insights.jsonl": "fef41c1ee513741bbd1d3e1273617c8610e14eac6586ea3fab3366f6118d7572"
+  },
+  "counts": {
+    "recorded_model_calls": 78,
+    "generation_attempts": 78,
+    "known_prompt_tokens": 132715,
+    "known_completion_tokens": 22971,
+    "known_total_tokens": 155686,
+    "calls_with_reasoning_output": 63,
+    "independently_replayed_queries": 45,
+    "select_attempts": 45,
+    "query_errors": 2,
+    "episodes": 24,
+    "correct_episodes": 21,
+    "resource_stopped_episodes": 0,
+    "runtime_failed_episodes": 0,
+    "unanswered_episodes": 0,
+    "reconstruction_selects": 6,
+    "accepted_reconstruction_witnesses": 2
+  },
+  "failures": [],
+  "protocol_issues": []
+}

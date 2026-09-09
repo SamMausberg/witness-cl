@@ -1,0 +1,105 @@
+{
+  "started_utc": "2026-09-09T19:53:12.677825+00:00",
+  "status": "passed",
+  "scope": "finite integer CUDA correctness fixtures and Compute Sanitizer diagnostics; no speed or ML benchmark claim",
+  "command": [
+    "make",
+    "cuda-check"
+  ],
+  "source_sha256": {
+    "kernels/cuda_test.cu": "8276a3978b3af8eacd5cf3a916aa4e189452efed1c7ec452ff37ab316a5ebb55",
+    "kernels/witness_ops.cu": "1ad6f06c2fa7d2f0a0635c0402bc62510a81470e6378a1bf7096c8627210e226",
+    "kernels/witness_ops.cuh": "37ba7f8c7440f8030807551e1f40123871bc7ced2231fe09aca1a954f22c00e1",
+    "kernels/reference.hpp": "0cb94723a4d99862f51ab97a4589fa26420d54785f55cd0d86fb13710ac7c51f",
+    "kernels/Makefile": "5856bb02c0a909c515b1417e510b8495519135eef300e3dd2013761421c1d11b",
+    "Makefile": "885c0b70975b409a74f4f43e5af9c1a2e2f4944a314b123a5eb0ca06470da979"
+  },
+  "toolchain": {
+    "nvcc": {
+      "command": [
+        "nvcc",
+        "--version"
+      ],
+      "returncode": 0,
+      "stdout": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Fri_Feb_21_20:26:18_PST_2025\nCuda compilation tools, release 12.8, V12.8.93\nBuild cuda_12.8.r12.8/compiler.35583870_0\n",
+      "stderr": ""
+    },
+    "compute_sanitizer": {
+      "command": [
+        "compute-sanitizer",
+        "--version"
+      ],
+      "returncode": 0,
+      "stdout": "NVIDIA (R) Compute Sanitizer\nCopyright (c) 2020-2025 NVIDIA Corporation\nVersion 2025.1.0.0 (build 35583870) (public-release)\n",
+      "stderr": ""
+    }
+  },
+  "gpu": {
+    "command": [
+      "nvidia-smi",
+      "--query-gpu=name,memory.total,memory.used,driver_version,compute_cap",
+      "--format=csv,noheader"
+    ],
+    "returncode": 0,
+    "stdout": "NVIDIA GH200 480GB, 97871 MiB, 0 MiB, 580.105.08, 9.0\n",
+    "stderr": ""
+  },
+  "test_configuration": {
+    "rng": "std::mt19937",
+    "rng_seed": 1729,
+    "batch_sizes": [
+      1,
+      3,
+      16
+    ],
+    "hypothesis_counts": [
+      1,
+      31,
+      32,
+      33,
+      65,
+      257,
+      4097
+    ],
+    "cases_per_shape": 16,
+    "expected_fixture_cases_per_invocation": 336,
+    "operations_per_fixture": [
+      "filter",
+      "consensus"
+    ],
+    "special_cases": [
+      "empty_live_set",
+      "INT_MIN_predictions",
+      "INT_MAX_predictions",
+      "warp_boundary_and_partial_tail_sizes"
+    ],
+    "runs": [
+      "native_correctness",
+      "memcheck",
+      "racecheck"
+    ]
+  },
+  "returncode": 0,
+  "finished_utc": "2026-09-09T19:53:20.216960+00:00",
+  "elapsed_seconds": 7.524173988999792,
+  "log_sha256": "949cffcbce2f915536ab1e362cb8c8980a58a5b882de9b72fc4b43657320c109",
+  "source_sha256_after": {
+    "kernels/cuda_test.cu": "8276a3978b3af8eacd5cf3a916aa4e189452efed1c7ec452ff37ab316a5ebb55",
+    "kernels/witness_ops.cu": "1ad6f06c2fa7d2f0a0635c0402bc62510a81470e6378a1bf7096c8627210e226",
+    "kernels/witness_ops.cuh": "37ba7f8c7440f8030807551e1f40123871bc7ced2231fe09aca1a954f22c00e1",
+    "kernels/reference.hpp": "0cb94723a4d99862f51ab97a4589fa26420d54785f55cd0d86fb13710ac7c51f",
+    "kernels/Makefile": "5856bb02c0a909c515b1417e510b8495519135eef300e3dd2013761421c1d11b",
+    "Makefile": "885c0b70975b409a74f4f43e5af9c1a2e2f4944a314b123a5eb0ca06470da979"
+  },
+  "observed_cases_per_invocation": [
+    336,
+    336,
+    336
+  ],
+  "native_fixture_operations_per_invocation": 672,
+  "binary_sha256": "4400b4a539dcb37a429904de5133c380d0f26bd33fd1622ec8c425e77139587b",
+  "memcheck_zero_error_summary": true,
+  "racecheck_zero_hazard_summary": true,
+  "source_unchanged": true,
+  "passed": true
+}

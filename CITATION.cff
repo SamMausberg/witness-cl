@@ -1,8 +1,8 @@
 cff-version: 1.2.0
-title: "Witness-CL: Solver Competence Before Executable Memory"
+title: "Witness-CL: Evidence, Computation, and Retention in Online Learning Agents"
 message: "Research draft. Includes checked abstract Lean lemmas; no native benchmark win or universal retention claim."
 type: software
-version: 0.9.0
+version: 0.10.0
 date-released: 2026-09-09
 license: MIT
 authors:

@@ -1,0 +1,14 @@
+make -C kernels cuda-check
+make[1]: Entering directory '/home/ubuntu/witness-cl/kernels'
+nvcc -std=c++17 -O3 -arch=sm_90 -lineinfo witness_ops.cu cuda_test.cu -o cuda_test
+./cuda_test
+{"cuda_cases_passed":336}
+compute-sanitizer --tool memcheck ./cuda_test
+========= COMPUTE-SANITIZER
+{"cuda_cases_passed":336}
+========= ERROR SUMMARY: 0 errors
+compute-sanitizer --tool racecheck ./cuda_test
+========= COMPUTE-SANITIZER
+{"cuda_cases_passed":336}
+========= RACECHECK SUMMARY: 0 hazards displayed (0 errors, 0 warnings)
+make[1]: Leaving directory '/home/ubuntu/witness-cl/kernels'

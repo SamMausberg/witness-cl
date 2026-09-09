@@ -1,0 +1,76 @@
+{"arm":"full_history","condition":"reuse","elapsed_seconds":20.28,"episode":1,"index":0,"phase":"ordinary","reward":1.0,"seed":94001,"selects":2,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":40.5,"episode":2,"index":0,"phase":"ordinary","reward":1.0,"seed":94001,"selects":2,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":64.5,"episode":3,"index":0,"phase":"ordinary","reward":1.0,"seed":94001,"selects":4,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":96.68,"episode":4,"index":1,"phase":"ordinary","reward":0.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":128.83,"episode":5,"index":1,"phase":"ordinary","reward":0.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":150.39,"episode":6,"index":1,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":173.31,"episode":7,"index":2,"phase":"ordinary","reward":1.0,"seed":94001,"selects":3,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":188.45,"episode":8,"index":2,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":203.34,"episode":9,"index":2,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":213.9,"episode":10,"index":3,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":227.2,"episode":11,"index":3,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":243.01,"episode":12,"index":3,"phase":"ordinary","reward":1.0,"seed":94001,"selects":3,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":266.55,"episode":13,"index":4,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":319.35,"episode":14,"index":4,"phase":"ordinary","reward":1.0,"seed":94001,"selects":4,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":344.42,"episode":15,"index":4,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":371.29,"episode":16,"index":5,"phase":"ordinary","reward":1.0,"seed":94001,"selects":5,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":390.49,"episode":17,"index":5,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":403.7,"episode":18,"index":5,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":420.16,"episode":19,"index":6,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":436.99,"episode":20,"index":6,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":450.79,"episode":21,"index":6,"phase":"ordinary","reward":1.0,"seed":94001,"selects":3,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":471.4,"episode":22,"index":7,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":504.65,"episode":23,"index":7,"phase":"ordinary","reward":1.0,"seed":94001,"selects":3,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":532.27,"episode":24,"index":7,"phase":"ordinary","reward":1.0,"seed":94001,"selects":2,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":538.45,"episode":25,"index":0,"phase":"old_before","reward":0.0,"seed":94001,"selects":0,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":556.89,"episode":26,"index":0,"phase":"old_before","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":562.8,"episode":27,"index":0,"phase":"old_before","reward":0.0,"seed":94001,"selects":0,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":580.66,"episode":28,"index":1,"phase":"old_before","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":631.29,"episode":29,"index":1,"phase":"old_before","reward":0.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":691.24,"episode":30,"index":1,"phase":"old_before","reward":0.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":695.93,"episode":31,"index":2,"phase":"old_before","reward":0.0,"seed":94001,"selects":0,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":709.09,"episode":32,"index":2,"phase":"old_before","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":724.44,"episode":33,"index":2,"phase":"old_before","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":742.59,"episode":34,"index":3,"phase":"old_before","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":759.41,"episode":35,"index":3,"phase":"old_before","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":774.7,"episode":36,"index":3,"phase":"old_before","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":787.43,"episode":37,"index":4,"phase":"old_before","reward":0.0,"seed":94001,"selects":0,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":795.23,"episode":38,"index":4,"phase":"old_before","reward":0.0,"seed":94001,"selects":0,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":814.37,"episode":39,"index":4,"phase":"old_before","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":821.35,"episode":40,"index":5,"phase":"old_before","reward":0.0,"seed":94001,"selects":0,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":827.33,"episode":41,"index":5,"phase":"old_before","reward":0.0,"seed":94001,"selects":0,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":845.47,"episode":42,"index":5,"phase":"old_before","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":853.85,"episode":43,"index":6,"phase":"old_before","reward":1.0,"seed":94001,"selects":0,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":870.53,"episode":44,"index":6,"phase":"old_before","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":875.02,"episode":45,"index":6,"phase":"old_before","reward":1.0,"seed":94001,"selects":0,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":887.06,"episode":46,"index":7,"phase":"old_before","reward":0.0,"seed":94001,"selects":0,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":895.77,"episode":47,"index":7,"phase":"old_before","reward":0.0,"seed":94001,"selects":0,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":905.27,"episode":48,"index":7,"phase":"old_before","reward":0.0,"seed":94001,"selects":0,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":933.14,"episode":49,"index":8,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":966.9,"episode":50,"index":8,"phase":"ordinary","reward":1.0,"seed":94001,"selects":3,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":1036.66,"episode":51,"index":8,"phase":"ordinary","reward":1.0,"seed":94001,"selects":2,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":1111.3,"episode":52,"index":9,"phase":"ordinary","reward":0.0,"seed":94001,"selects":2,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":1184.38,"episode":53,"index":9,"phase":"ordinary","reward":1.0,"seed":94001,"selects":2,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":1218.05,"episode":54,"index":9,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":1493.91,"episode":55,"index":10,"phase":"ordinary","reward":0.0,"seed":94001,"selects":8,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":1836.97,"episode":56,"index":10,"phase":"ordinary","reward":0.0,"seed":94001,"selects":8,"status":"no_valid_answer"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":2172.16,"episode":57,"index":10,"phase":"ordinary","reward":0.0,"seed":94001,"selects":8,"status":"no_valid_answer"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":2206.49,"episode":58,"index":11,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":2257.08,"episode":59,"index":11,"phase":"ordinary","reward":1.0,"seed":94001,"selects":3,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":2354.08,"episode":60,"index":11,"phase":"ordinary","reward":1.0,"seed":94001,"selects":3,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":2403.8,"episode":61,"index":12,"phase":"ordinary","reward":1.0,"seed":94001,"selects":3,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":2445.41,"episode":62,"index":12,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":2483.9,"episode":63,"index":12,"phase":"ordinary","reward":1.0,"seed":94001,"selects":1,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":2542.64,"episode":64,"index":13,"phase":"ordinary","reward":1.0,"seed":94001,"selects":2,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":2616.4,"episode":65,"index":13,"phase":"ordinary","reward":1.0,"seed":94001,"selects":2,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":2700.02,"episode":66,"index":13,"phase":"ordinary","reward":0.0,"seed":94001,"selects":2,"status":"backend_or_runtime_failure"}
+{
+  "status": "stopped",
+  "warm_qualified": false,
+  "failure": {
+    "type": "BudgetStop",
+    "reason": "global_wall_ceiling_including_export"
+  },
+  "completed_episode_records": 66,
+  "elapsed_seconds": 2700.023901219
+}

@@ -1,0 +1,24 @@
+{
+  "started_utc": "2026-09-09T18:47:32.932165+00:00",
+  "url": "https://huggingface.co/Qwen/Qwen3-32B-GGUF/resolve/938a7432affaec9157f883a87164e2646ae17555/Qwen3-32B-Q8_0.gguf",
+  "model": {
+    "repository": "Qwen/Qwen3-32B-GGUF",
+    "revision": "938a7432affaec9157f883a87164e2646ae17555",
+    "filename": "Qwen3-32B-Q8_0.gguf",
+    "sha256": "2c50eb8aad05047dbf24fa014eb621adf552e14176cabe0c5db4ef38c91e2169",
+    "bytes": 34817718912,
+    "alias": "witness-v10-qwen3-32b-q8",
+    "license": "Apache-2.0",
+    "native_context_tokens": 32768
+  },
+  "download": {
+    "parallel_requests": 12,
+    "chunk_bytes": 134217728,
+    "deadline_seconds": 1500
+  },
+  "status": "verified",
+  "sha256": "2c50eb8aad05047dbf24fa014eb621adf552e14176cabe0c5db4ef38c91e2169",
+  "bytes": 34817718912,
+  "finished_utc": "2026-09-09T18:51:25.439352+00:00",
+  "seconds": 232.50721024300015
+}

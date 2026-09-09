@@ -1,0 +1,65 @@
+{
+  "kind": "same_runner_replay_and_independent_sql",
+  "network_calls": 0,
+  "native_benchmark": false,
+  "population_claim": false,
+  "records_replayed": 65,
+  "sql_replayed": 110,
+  "partial_records": [
+    {
+      "file": "94001-reuse-fragments.jsonl",
+      "index": 13,
+      "phase": "ordinary"
+    }
+  ],
+  "fresh_use_interventions": [],
+  "per_arm": {
+    "94001-reuse-evidence": {
+      "records": 22,
+      "correct": 14,
+      "selects": 25,
+      "admitted": 0,
+      "executed_uses": 0,
+      "executed_on_correct_episode": 0,
+      "observational_answer_support": 0,
+      "tokens": 190543
+    },
+    "94001-reuse-fragments": {
+      "records": 22,
+      "correct": 14,
+      "selects": 51,
+      "admitted": 5,
+      "executed_uses": 0,
+      "executed_on_correct_episode": 0,
+      "observational_answer_support": 0,
+      "tokens": 247317
+    },
+    "94001-reuse-full_history": {
+      "records": 22,
+      "correct": 19,
+      "selects": 34,
+      "admitted": 0,
+      "executed_uses": 0,
+      "executed_on_correct_episode": 0,
+      "observational_answer_support": 0,
+      "tokens": 342897
+    }
+  },
+  "schedule": {
+    "planned_records": 144,
+    "saved_records": 66,
+    "required_records_complete": false,
+    "contains_test_double_calls": false,
+    "pre_run_freeze_sha256": "4da0b02ec821e20d76d1c80daf073724bad3e8ad00a026b876ef1d4cc3b25b7e"
+  },
+  "auditor_sha256": "e4b27c26e8c6d8c83a2d0ecdfc603e373b5625e5052138112d2e3b3dd3f7a849",
+  "recorded_totals": {
+    "calls": 174,
+    "prompt_tokens": 628344,
+    "completion_tokens": 152413,
+    "total_tokens": 780757
+  },
+  "status": "partial",
+  "saved_completed_transcripts_replayed": true,
+  "study_status": "stopped"
+}

@@ -1,4 +1,4 @@
-// Standalone GH200 correctness runner. Not executed by the authoring environment.
+// Standalone GH200 correctness runner against the integer CPU reference.
 #include "witness_ops.cuh"
 #include "reference.hpp"
 #include <iostream>

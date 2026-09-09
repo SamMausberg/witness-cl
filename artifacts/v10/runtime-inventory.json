@@ -1,0 +1,67 @@
+{
+  "timestamp_utc": "2026-09-09T18:49:37.141572+00:00",
+  "architecture": "aarch64",
+  "python": "3.12.14 (main, Sep  1 2026, 14:15:30) [Clang 22.1.3 ]",
+  "platform": "Linux-6.8.0-1046-nvidia-64k-aarch64-with-glibc2.35",
+  "gpu": {
+    "command": [
+      "nvidia-smi",
+      "--query-gpu=name,memory.total,memory.used,driver_version",
+      "--format=csv,noheader,nounits"
+    ],
+    "returncode": 0,
+    "stdout": "NVIDIA GH200 480GB, 97871, 0, 580.105.08\n",
+    "stderr": ""
+  },
+  "gpu_compute": {
+    "command": [
+      "nvidia-smi",
+      "--query-gpu=compute_cap",
+      "--format=csv,noheader"
+    ],
+    "returncode": 0,
+    "stdout": "9.0\n",
+    "stderr": ""
+  },
+  "host_memory": {
+    "command": [
+      "free",
+      "-b"
+    ],
+    "returncode": 0,
+    "stdout": "               total        used        free      shared  buff/cache   available\nMem:     564442824704 12106792960 520170962944    33816576 32165068800 515475505152\nSwap:              0           0           0\n",
+    "stderr": ""
+  },
+  "numa_memory": {
+    "node0": "Node 0 MemTotal:       452123264 kB\nNode 0 MemFree:        408889024 kB\nNode 0 MemUsed:        43234240 kB\nNode 0 SwapCached:            0 kB\nNode 0 Active:          2534976 kB\nNode 0 Inactive:       29233920 kB\nNode 0 Active(anon):    1459840 kB\nNode 0 Inactive(anon):        0 kB\nNode 0 Active(file):    1075136 kB\nNode 0 Inactive(file): 29233920 kB\nNode 0 Unevictable:       33152 kB\nNode 0 Mlocked:           29120 kB\nNode 0 Dirty:             18944 kB\nNode 0 Writeback:          8576 kB\nNode 0 FilePages:      30396736 kB\nNode 0 Mapped:           467712 kB\nNode 0 AnonPages:       1452480 kB\nNode 0 Shmem:             33024 kB\nNode 0 KernelStack:       77248 kB\nNode 0 PageTables:       104192 kB\nNode 0 SecPageTables:         0 kB\nNode 0 NFS_Unstable:          0 kB\nNode 0 Bounce:                0 kB\nNode 0 WritebackTmp:          0 kB\nNode 0 KReclaimable:    1014464 kB\nNode 0 Slab:            2508096 kB\nNode 0 SReclaimable:    1014464 kB\nNode 0 SUnreclaim:      1493632 kB\nNode 0 AnonHugePages:         0 kB\nNode 0 ShmemHugePages:        0 kB\nNode 0 ShmemPmdMapped:        0 kB\nNode 0 FileHugePages:         0 kB\nNode 0 FilePmdMapped:         0 kB\nNode 0 HugePages_Total:     0\nNode 0 HugePages_Free:      0\nNode 0 HugePages_Surp:      0\n",
+    "node1": "Node 1 MemTotal:       99090432 kB\nNode 1 MemFree:        99090432 kB\nNode 1 MemUsed:               0 kB\nNode 1 SwapCached:            0 kB\nNode 1 Active:                0 kB\nNode 1 Inactive:              0 kB\nNode 1 Active(anon):          0 kB\nNode 1 Inactive(anon):        0 kB\nNode 1 Active(file):          0 kB\nNode 1 Inactive(file):        0 kB\nNode 1 Unevictable:           0 kB\nNode 1 Mlocked:               0 kB\nNode 1 Dirty:                 0 kB\nNode 1 Writeback:             0 kB\nNode 1 FilePages:             0 kB\nNode 1 Mapped:                0 kB\nNode 1 AnonPages:             0 kB\nNode 1 Shmem:                 0 kB\nNode 1 KernelStack:           0 kB\nNode 1 PageTables:            0 kB\nNode 1 SecPageTables:         0 kB\nNode 1 NFS_Unstable:          0 kB\nNode 1 Bounce:                0 kB\nNode 1 WritebackTmp:          0 kB\nNode 1 KReclaimable:          0 kB\nNode 1 Slab:                  0 kB\nNode 1 SReclaimable:          0 kB\nNode 1 SUnreclaim:            0 kB\nNode 1 AnonHugePages:         0 kB\nNode 1 ShmemHugePages:        0 kB\nNode 1 ShmemPmdMapped:        0 kB\nNode 1 FileHugePages:         0 kB\nNode 1 FilePmdMapped:         0 kB\nNode 1 HugePages_Total:     0\nNode 1 HugePages_Free:      0\nNode 1 HugePages_Surp:      0\n",
+    "node2": "Node 2 MemTotal:              0 kB\nNode 2 MemFree:               0 kB\nNode 2 MemUsed:               0 kB\nNode 2 SwapCached:            0 kB\nNode 2 Active:                0 kB\nNode 2 Inactive:              0 kB\nNode 2 Active(anon):          0 kB\nNode 2 Inactive(anon):        0 kB\nNode 2 Active(file):          0 kB\nNode 2 Inactive(file):        0 kB\nNode 2 Unevictable:           0 kB\nNode 2 Mlocked:               0 kB\nNode 2 Dirty:                 0 kB\nNode 2 Writeback:             0 kB\nNode 2 FilePages:             0 kB\nNode 2 Mapped:                0 kB\nNode 2 AnonPages:             0 kB\nNode 2 Shmem:                 0 kB\nNode 2 KernelStack:           0 kB\nNode 2 PageTables:            0 kB\nNode 2 SecPageTables:         0 kB\nNode 2 NFS_Unstable:          0 kB\nNode 2 Bounce:                0 kB\nNode 2 WritebackTmp:          0 kB\nNode 2 KReclaimable:          0 kB\nNode 2 Slab:                  0 kB\nNode 2 SReclaimable:          0 kB\nNode 2 SUnreclaim:            0 kB\nNode 2 AnonHugePages:         0 kB\nNode 2 ShmemHugePages:        0 kB\nNode 2 ShmemPmdMapped:        0 kB\nNode 2 FileHugePages:         0 kB\nNode 2 FilePmdMapped:         0 kB\nNode 2 HugePages_Total:     0\nNode 2 HugePages_Free:      0\nNode 2 HugePages_Surp:      0\n",
+    "node3": "Node 3 MemTotal:              0 kB\nNode 3 MemFree:               0 kB\nNode 3 MemUsed:               0 kB\nNode 3 SwapCached:            0 kB\nNode 3 Active:                0 kB\nNode 3 Inactive:              0 kB\nNode 3 Active(anon):          0 kB\nNode 3 Inactive(anon):        0 kB\nNode 3 Active(file):          0 kB\nNode 3 Inactive(file):        0 kB\nNode 3 Unevictable:           0 kB\nNode 3 Mlocked:               0 kB\nNode 3 Dirty:                 0 kB\nNode 3 Writeback:             0 kB\nNode 3 FilePages:             0 kB\nNode 3 Mapped:                0 kB\nNode 3 AnonPages:             0 kB\nNode 3 Shmem:                 0 kB\nNode 3 KernelStack:           0 kB\nNode 3 PageTables:            0 kB\nNode 3 SecPageTables:         0 kB\nNode 3 NFS_Unstable:          0 kB\nNode 3 Bounce:                0 kB\nNode 3 WritebackTmp:          0 kB\nNode 3 KReclaimable:          0 kB\nNode 3 Slab:                  0 kB\nNode 3 SReclaimable:          0 kB\nNode 3 SUnreclaim:            0 kB\nNode 3 AnonHugePages:         0 kB\nNode 3 ShmemHugePages:        0 kB\nNode 3 ShmemPmdMapped:        0 kB\nNode 3 FileHugePages:         0 kB\nNode 3 FilePmdMapped:         0 kB\nNode 3 HugePages_Total:     0\nNode 3 HugePages_Free:      0\nNode 3 HugePages_Surp:      0\n",
+    "node4": "Node 4 MemTotal:              0 kB\nNode 4 MemFree:               0 kB\nNode 4 MemUsed:               0 kB\nNode 4 SwapCached:            0 kB\nNode 4 Active:                0 kB\nNode 4 Inactive:              0 kB\nNode 4 Active(anon):          0 kB\nNode 4 Inactive(anon):        0 kB\nNode 4 Active(file):          0 kB\nNode 4 Inactive(file):        0 kB\nNode 4 Unevictable:           0 kB\nNode 4 Mlocked:               0 kB\nNode 4 Dirty:                 0 kB\nNode 4 Writeback:             0 kB\nNode 4 FilePages:             0 kB\nNode 4 Mapped:                0 kB\nNode 4 AnonPages:             0 kB\nNode 4 Shmem:                 0 kB\nNode 4 KernelStack:           0 kB\nNode 4 PageTables:            0 kB\nNode 4 SecPageTables:         0 kB\nNode 4 NFS_Unstable:          0 kB\nNode 4 Bounce:                0 kB\nNode 4 WritebackTmp:          0 kB\nNode 4 KReclaimable:          0 kB\nNode 4 Slab:                  0 kB\nNode 4 SReclaimable:          0 kB\nNode 4 SUnreclaim:            0 kB\nNode 4 AnonHugePages:         0 kB\nNode 4 ShmemHugePages:        0 kB\nNode 4 ShmemPmdMapped:        0 kB\nNode 4 FileHugePages:         0 kB\nNode 4 FilePmdMapped:         0 kB\nNode 4 HugePages_Total:     0\nNode 4 HugePages_Free:      0\nNode 4 HugePages_Surp:      0\n",
+    "node5": "Node 5 MemTotal:              0 kB\nNode 5 MemFree:               0 kB\nNode 5 MemUsed:               0 kB\nNode 5 SwapCached:            0 kB\nNode 5 Active:                0 kB\nNode 5 Inactive:              0 kB\nNode 5 Active(anon):          0 kB\nNode 5 Inactive(anon):        0 kB\nNode 5 Active(file):          0 kB\nNode 5 Inactive(file):        0 kB\nNode 5 Unevictable:           0 kB\nNode 5 Mlocked:               0 kB\nNode 5 Dirty:                 0 kB\nNode 5 Writeback:             0 kB\nNode 5 FilePages:             0 kB\nNode 5 Mapped:                0 kB\nNode 5 AnonPages:             0 kB\nNode 5 Shmem:                 0 kB\nNode 5 KernelStack:           0 kB\nNode 5 PageTables:            0 kB\nNode 5 SecPageTables:         0 kB\nNode 5 NFS_Unstable:          0 kB\nNode 5 Bounce:                0 kB\nNode 5 WritebackTmp:          0 kB\nNode 5 KReclaimable:          0 kB\nNode 5 Slab:                  0 kB\nNode 5 SReclaimable:          0 kB\nNode 5 SUnreclaim:            0 kB\nNode 5 AnonHugePages:         0 kB\nNode 5 ShmemHugePages:        0 kB\nNode 5 ShmemPmdMapped:        0 kB\nNode 5 FileHugePages:         0 kB\nNode 5 FilePmdMapped:         0 kB\nNode 5 HugePages_Total:     0\nNode 5 HugePages_Free:      0\nNode 5 HugePages_Surp:      0\n",
+    "node6": "Node 6 MemTotal:              0 kB\nNode 6 MemFree:               0 kB\nNode 6 MemUsed:               0 kB\nNode 6 SwapCached:            0 kB\nNode 6 Active:                0 kB\nNode 6 Inactive:              0 kB\nNode 6 Active(anon):          0 kB\nNode 6 Inactive(anon):        0 kB\nNode 6 Active(file):          0 kB\nNode 6 Inactive(file):        0 kB\nNode 6 Unevictable:           0 kB\nNode 6 Mlocked:               0 kB\nNode 6 Dirty:                 0 kB\nNode 6 Writeback:             0 kB\nNode 6 FilePages:             0 kB\nNode 6 Mapped:                0 kB\nNode 6 AnonPages:             0 kB\nNode 6 Shmem:                 0 kB\nNode 6 KernelStack:           0 kB\nNode 6 PageTables:            0 kB\nNode 6 SecPageTables:         0 kB\nNode 6 NFS_Unstable:          0 kB\nNode 6 Bounce:                0 kB\nNode 6 WritebackTmp:          0 kB\nNode 6 KReclaimable:          0 kB\nNode 6 Slab:                  0 kB\nNode 6 SReclaimable:          0 kB\nNode 6 SUnreclaim:            0 kB\nNode 6 AnonHugePages:         0 kB\nNode 6 ShmemHugePages:        0 kB\nNode 6 ShmemPmdMapped:        0 kB\nNode 6 FileHugePages:         0 kB\nNode 6 FilePmdMapped:         0 kB\nNode 6 HugePages_Total:     0\nNode 6 HugePages_Free:      0\nNode 6 HugePages_Surp:      0\n",
+    "node7": "Node 7 MemTotal:              0 kB\nNode 7 MemFree:               0 kB\nNode 7 MemUsed:               0 kB\nNode 7 SwapCached:            0 kB\nNode 7 Active:                0 kB\nNode 7 Inactive:              0 kB\nNode 7 Active(anon):          0 kB\nNode 7 Inactive(anon):        0 kB\nNode 7 Active(file):          0 kB\nNode 7 Inactive(file):        0 kB\nNode 7 Unevictable:           0 kB\nNode 7 Mlocked:               0 kB\nNode 7 Dirty:                 0 kB\nNode 7 Writeback:             0 kB\nNode 7 FilePages:             0 kB\nNode 7 Mapped:                0 kB\nNode 7 AnonPages:             0 kB\nNode 7 Shmem:                 0 kB\nNode 7 KernelStack:           0 kB\nNode 7 PageTables:            0 kB\nNode 7 SecPageTables:         0 kB\nNode 7 NFS_Unstable:          0 kB\nNode 7 Bounce:                0 kB\nNode 7 WritebackTmp:          0 kB\nNode 7 KReclaimable:          0 kB\nNode 7 Slab:                  0 kB\nNode 7 SReclaimable:          0 kB\nNode 7 SUnreclaim:            0 kB\nNode 7 AnonHugePages:         0 kB\nNode 7 ShmemHugePages:        0 kB\nNode 7 ShmemPmdMapped:        0 kB\nNode 7 FileHugePages:         0 kB\nNode 7 FilePmdMapped:         0 kB\nNode 7 HugePages_Total:     0\nNode 7 HugePages_Free:      0\nNode 7 HugePages_Surp:      0\n",
+    "node8": "Node 8 MemTotal:              0 kB\nNode 8 MemFree:               0 kB\nNode 8 MemUsed:               0 kB\nNode 8 SwapCached:            0 kB\nNode 8 Active:                0 kB\nNode 8 Inactive:              0 kB\nNode 8 Active(anon):          0 kB\nNode 8 Inactive(anon):        0 kB\nNode 8 Active(file):          0 kB\nNode 8 Inactive(file):        0 kB\nNode 8 Unevictable:           0 kB\nNode 8 Mlocked:               0 kB\nNode 8 Dirty:                 0 kB\nNode 8 Writeback:             0 kB\nNode 8 FilePages:             0 kB\nNode 8 Mapped:                0 kB\nNode 8 AnonPages:             0 kB\nNode 8 Shmem:                 0 kB\nNode 8 KernelStack:           0 kB\nNode 8 PageTables:            0 kB\nNode 8 SecPageTables:         0 kB\nNode 8 NFS_Unstable:          0 kB\nNode 8 Bounce:                0 kB\nNode 8 WritebackTmp:          0 kB\nNode 8 KReclaimable:          0 kB\nNode 8 Slab:                  0 kB\nNode 8 SReclaimable:          0 kB\nNode 8 SUnreclaim:            0 kB\nNode 8 AnonHugePages:         0 kB\nNode 8 ShmemHugePages:        0 kB\nNode 8 ShmemPmdMapped:        0 kB\nNode 8 FileHugePages:         0 kB\nNode 8 FilePmdMapped:         0 kB\nNode 8 HugePages_Total:     0\nNode 8 HugePages_Free:      0\nNode 8 HugePages_Surp:      0\n"
+  },
+  "numa_cpus": {
+    "node0": "0-63",
+    "node1": "",
+    "node2": "",
+    "node3": "",
+    "node4": "",
+    "node5": "",
+    "node6": "",
+    "node7": "",
+    "node8": ""
+  },
+  "cuda_compiler": {
+    "command": [
+      "nvcc",
+      "--version"
+    ],
+    "returncode": 0,
+    "stdout": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Fri_Feb_21_20:26:18_PST_2025\nCuda compilation tools, release 12.8, V12.8.93\nBuild cuda_12.8.r12.8/compiler.35583870_0\n",
+    "stderr": ""
+  },
+  "interpretation": "GPU memory.total is MiB of device memory. Linux MemTotal may include HBM as a memory-only NUMA node; do not add these totals."
+}

@@ -1,0 +1,34 @@
+{"arm":"full_history","condition":"reuse","elapsed_seconds":18.79,"episode":1,"index":0,"phase":"ordinary","reward":0.0,"seed":94000,"selects":2,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":37.57,"episode":2,"index":0,"phase":"ordinary","reward":0.0,"seed":94000,"selects":2,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":56.33,"episode":3,"index":0,"phase":"ordinary","reward":0.0,"seed":94000,"selects":2,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":88.26,"episode":4,"index":1,"phase":"ordinary","reward":0.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":120.2,"episode":5,"index":1,"phase":"ordinary","reward":0.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":252.43,"episode":6,"index":1,"phase":"ordinary","reward":1.0,"seed":94000,"selects":4,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":268.06,"episode":7,"index":2,"phase":"ordinary","reward":1.0,"seed":94000,"selects":3,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":280.49,"episode":8,"index":2,"phase":"ordinary","reward":1.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":292.49,"episode":9,"index":2,"phase":"ordinary","reward":1.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":303.77,"episode":10,"index":3,"phase":"ordinary","reward":1.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":315.22,"episode":11,"index":3,"phase":"ordinary","reward":1.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":329.26,"episode":12,"index":3,"phase":"ordinary","reward":1.0,"seed":94000,"selects":3,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":345.83,"episode":13,"index":4,"phase":"ordinary","reward":0.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":368.72,"episode":14,"index":4,"phase":"ordinary","reward":0.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":391.23,"episode":15,"index":4,"phase":"ordinary","reward":1.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":411.16,"episode":16,"index":5,"phase":"ordinary","reward":1.0,"seed":94000,"selects":3,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":441.96,"episode":17,"index":5,"phase":"ordinary","reward":1.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":453.32,"episode":18,"index":5,"phase":"ordinary","reward":1.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":470.88,"episode":19,"index":6,"phase":"ordinary","reward":1.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":480.6,"episode":20,"index":6,"phase":"ordinary","reward":1.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":495.48,"episode":21,"index":6,"phase":"ordinary","reward":1.0,"seed":94000,"selects":3,"status":"completed"}
+{"arm":"evidence","condition":"reuse","elapsed_seconds":517.8,"episode":22,"index":7,"phase":"ordinary","reward":0.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"fragments","condition":"reuse","elapsed_seconds":545.36,"episode":23,"index":7,"phase":"ordinary","reward":0.0,"seed":94000,"selects":1,"status":"completed"}
+{"arm":"full_history","condition":"reuse","elapsed_seconds":577.38,"episode":24,"index":7,"phase":"ordinary","reward":1.0,"seed":94000,"selects":2,"status":"completed"}
+{
+  "status": "competence_gate_failed",
+  "warm_qualified": false,
+  "failure": {
+    "type": "_QualificationStop",
+    "reason": "one or more configured arms missed the warm competence gate"
+  },
+  "completed_episode_records": 24,
+  "elapsed_seconds": 577.3798860840002
+}

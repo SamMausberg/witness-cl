@@ -3,20 +3,23 @@ on: [push, pull_request]
 jobs:
   python:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.13']
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
-      - run: python -m pip install -e '.[test,analysis]'
-      - run: make test
-      - run: make cpp-check
-      - name: Replay frozen v8 evidence and regenerate descriptive tables
-        run: |
-          PYTHONPATH=src python experiments/audit_sql_abstractions_v8.py artifacts/v8/development --freeze artifacts/v8/prepilot-freeze.json --output artifacts/v8/development-replay.json
-          python tools/v8_results.py
-      - name: Replay all frozen v9 attempts and validate descriptive results
-        run: make v9-audit
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install uv==0.12.12
+      - run: uv sync --locked --python '${{ matrix.python-version }}' --extra test --extra analysis --extra dev
+      - run: make test PYTHON=.venv/bin/python
+      - run: make lint
+      - run: make cpp-check PYTHON=.venv/bin/python
+      - name: Replay historical evidence at its exact source revision
+        run: make legacy-audit PYTHON=.venv/bin/python
   lean:
     runs-on: ubuntu-latest
     steps:
@@ -26,6 +29,12 @@ jobs:
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - run: make formal
+  paper:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended
+      - run: make paper
   native-contract:
     runs-on: ubuntu-latest
     steps:

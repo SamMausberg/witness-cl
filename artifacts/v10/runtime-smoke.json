@@ -1,0 +1,299 @@
+{
+  "started_utc": "2026-09-09T18:52:24.640953+00:00",
+  "purpose": "generic transport smoke; not benchmark competence",
+  "config": {
+    "schema_version": 1,
+    "purpose": "development inference; a loaded model is not evidence of task competence",
+    "model": {
+      "repository": "Qwen/Qwen3-32B-GGUF",
+      "revision": "938a7432affaec9157f883a87164e2646ae17555",
+      "filename": "Qwen3-32B-Q8_0.gguf",
+      "sha256": "2c50eb8aad05047dbf24fa014eb621adf552e14176cabe0c5db4ef38c91e2169",
+      "bytes": 34817718912,
+      "alias": "witness-v10-qwen3-32b-q8",
+      "license": "Apache-2.0",
+      "native_context_tokens": 32768
+    },
+    "backend": {
+      "repository": "https://github.com/ggml-org/llama.cpp",
+      "commit": "91f6a6cf361385700bbe15981f0f39909df77498",
+      "build_options": [
+        "-DGGML_CUDA=ON",
+        "-DCMAKE_CUDA_ARCHITECTURES=90",
+        "-DLLAMA_BUILD_TESTS=OFF",
+        "-DLLAMA_BUILD_EXAMPLES=OFF",
+        "-DLLAMA_CURL=OFF",
+        "-DCMAKE_BUILD_TYPE=Release"
+      ],
+      "build_parallelism": 16
+    },
+    "server": {
+      "host": "127.0.0.1",
+      "port": 18084,
+      "context_tokens": 65536,
+      "parallel_sequences": 1,
+      "gpu_layers": 99,
+      "cpu_threads": 16,
+      "maximum_lifetime_seconds": 7200,
+      "rope_scaling": "yarn",
+      "rope_scale": 2,
+      "yarn_original_context": 32768
+    },
+    "download": {
+      "parallel_requests": 12,
+      "chunk_bytes": 134217728,
+      "deadline_seconds": 1500
+    },
+    "notes": [
+      "The GH200 480GB product name does not describe HBM capacity: inspect nvidia-smi memory.total.",
+      "65,536 tokens requires documented YaRN extension beyond this model's native 32,768 tokens.",
+      "The model, backend, and runtime changes preclude attributing cross-version differences solely to memory.",
+      "Decoding, per-call output allowances, and measured study budgets belong in the separately frozen experiment protocol."
+    ]
+  },
+  "source_sha256": {
+    "tools/gh200_runtime.py": "f07a7087376b83df816db45ec3386f5d77cf89fc8352a215a1c70ae313ca0961",
+    "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+    "src/witness_cl/model_v9.py": "3ee5743c7c150158e8e8ec7c1137184864b0af6ca5245f8aca85f32da98c6438",
+    "src/witness_cl/model_v9_compatible.py": "1655257115569734806c446db68f49bef0f94665e67d313de3446a10ab3078e5"
+  },
+  "records": [
+    {
+      "phase": "runtime:solve",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only the requested JSON object."
+        },
+        {
+          "role": "user",
+          "content": "Compute 37 + 58. Return {\"value\": number}."
+        }
+      ],
+      "preflight_tokens": 35,
+      "max_output_tokens": 1024,
+      "tokenization_seconds": 0.010410999999976411,
+      "status": "completed",
+      "generation_attempted": true,
+      "usage": {
+        "completion_tokens": 249,
+        "prompt_tokens": 35,
+        "total_tokens": 284,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "response_mode": "schema",
+      "response_schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "decoding": {
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "seed": 42,
+        "thinking": true
+      },
+      "request_config": {
+        "model": "witness-v10-qwen3-32b-q8",
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "seed": 42,
+        "max_tokens": 1024,
+        "cache_prompt": false,
+        "stream": false,
+        "response_format": {
+          "type": "json_object",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "chat_template_kwargs": {
+          "enable_thinking": true
+        }
+      },
+      "reasoning_content": "Okay, let's see. I need to compute 37 plus 58. Hmm, first I'll add the tens place. 30 and 50 make 80. Then the ones place: 7 and 8 add up to 15. So 80 plus 15 is 95. Wait, that doesn't seem right. Let me check again.\n\nWait, 37 is 30 +7, and 58 is 50 +8. Adding the tens: 30+50=80. Then the ones: 7+8=15. So total is 80+15=95. Yeah, that's correct. But wait, maybe I should do it vertically to make sure.\n\n  37\n+58\n----\nAdding the units column: 7 +8 =15. Carry over 1.\nAdding the tens column: 3 +5 =8, plus the carried 1 makes 9.\nSo the result is 95. That's right. So the JSON should be {\"value\": 95}.\n",
+      "response_model": "witness-v10-qwen3-32b-q8",
+      "finish_reason": "stop",
+      "content_was_null": false,
+      "backend_timings": {
+        "cache_n": 0,
+        "prompt_n": 35,
+        "prompt_ms": 42.935,
+        "prompt_per_token_ms": 1.2267142857142859,
+        "prompt_per_second": 815.1857458949574,
+        "predicted_n": 249,
+        "predicted_ms": 3789.83,
+        "predicted_per_token_ms": 15.281572580645161,
+        "predicted_per_second": 65.43829142731997
+      },
+      "content": "{\"value\": 95}",
+      "inference_seconds": 3.8394591339999806,
+      "wire_schema_policy": "host_checks_large_string_bounds_v1",
+      "host_response_schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "reflection_thinking": false
+    },
+    {
+      "phase": "runtime:reflection",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only the requested JSON object."
+        },
+        {
+          "role": "user",
+          "content": "Return {\"insight\": \"smoke only\"}. This is a transport check."
+        }
+      ],
+      "preflight_tokens": 41,
+      "max_output_tokens": 256,
+      "tokenization_seconds": 0.00592904199993427,
+      "status": "completed",
+      "generation_attempted": true,
+      "usage": {
+        "completion_tokens": 14,
+        "prompt_tokens": 41,
+        "total_tokens": 55,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "response_mode": "schema",
+      "response_schema": {
+        "type": "object",
+        "properties": {
+          "insight": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "insight"
+        ],
+        "additionalProperties": false
+      },
+      "decoding": {
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "seed": 42,
+        "thinking": false
+      },
+      "request_config": {
+        "model": "witness-v10-qwen3-32b-q8",
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "seed": 42,
+        "max_tokens": 256,
+        "cache_prompt": false,
+        "stream": false,
+        "response_format": {
+          "type": "json_object",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "insight": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "insight"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "reasoning_content": null,
+      "response_model": "witness-v10-qwen3-32b-q8",
+      "finish_reason": "stop",
+      "content_was_null": false,
+      "backend_timings": {
+        "cache_n": 0,
+        "prompt_n": 41,
+        "prompt_ms": 37.563,
+        "prompt_per_token_ms": 0.9161707317073171,
+        "prompt_per_second": 1091.4996139818438,
+        "predicted_n": 14,
+        "predicted_ms": 201.428,
+        "predicted_per_token_ms": 15.494461538461538,
+        "predicted_per_second": 64.53919018209982
+      },
+      "content": "{\"insight\": \"smoke only\"}",
+      "inference_seconds": 0.24992345999999088,
+      "wire_schema_policy": "host_checks_large_string_bounds_v1",
+      "host_response_schema": {
+        "type": "object",
+        "properties": {
+          "insight": {
+            "type": "string",
+            "maxLength": 4096
+          }
+        },
+        "required": [
+          "insight"
+        ],
+        "additionalProperties": false
+      },
+      "reflection_thinking": false
+    }
+  ],
+  "arithmetic_correct": true,
+  "reflection_correct": true,
+  "reflection_thinking_disabled": true,
+  "wire_large_string_bound_removed": true,
+  "status": "passed",
+  "finished_utc": "2026-09-09T18:52:28.747112+00:00",
+  "seconds": 4.105956718000016,
+  "budget": {
+    "max_total_tokens": 10000,
+    "max_calls": 2,
+    "total_tokens": 339,
+    "prompt_tokens": 76,
+    "completion_tokens": 263,
+    "calls": 2,
+    "tokenization_seconds": 0.01634004199991068,
+    "inference_seconds": 4.0893825939999715,
+    "unknown_usage_calls": 0
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "sha": "91f6a6cf361385700bbe15981f0f39909df77498",
+  "url": "https://api.github.com/repos/ggml-org/llama.cpp/commits/91f6a6cf361385700bbe15981f0f39909df77498",
+  "html_url": "https://github.com/ggml-org/llama.cpp/commit/91f6a6cf361385700bbe15981f0f39909df77498",
+  "commit": {
+    "author": {
+      "name": "Ruben Ortlam",
+      "email": "rortlam@redhat.com",
+      "date": "2026-09-09T16:53:39Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2026-09-09T16:53:39Z"
+    },
+    "message": "vulkan: use spec constant for matrix matrix multiplication A-type (#25773)\n\n* vulkan: use spec constant for mul mat type_a\n\nvulkan: use map for mul_mm shapes\n\ncleanup\n\nfix indentation\n\nfix cm2 and shmem init\n\nfix cm2 spec constants\n\nfix cm2 bindings\n\nconsolidate shmem tables and reduce size by type spec constant\n\nfix compiler warning\n\nfix missing Q2_0 type\n\nfix unused warning when integer dot glslc support is missing\n\nuse minimal shmem size 8 instead of 1 to workaround cm2 compiler bug\n\nfix missing Q2_0 type in cm2 matmul\n\nfix types\n\n* remove LUT quants from unified shader\n\n* clean up\n\n* restore coopmat2 q4_k/q5_k optimization\n\n* split out q4_k/q5_k cm2 shader to fix Ampere regression\n\n* revert iq shmem table renames\n\n* simplify cm2 code with single uint8_t buffer\n\n* fix fp4 extension use switch being overwritten by generic shader\n\n* clean up\n\n* adapt TQ1_0 changes\n\n* adapt #27471 f16 Intel tuning changes",
+    "tree": {
+      "sha": "01a4d9581e69ab391d5c8e50ae33aaf7aab4fb97",
+      "url": "https://api.github.com/repos/ggml-org/llama.cpp/git/trees/01a4d9581e69ab391d5c8e50ae33aaf7aab4fb97"
+    },
+    "url": "https://api.github.com/repos/ggml-org/llama.cpp/git/commits/91f6a6cf361385700bbe15981f0f39909df77498",
+    "comment_count": 0,
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqoY8TCRC1aQ7uu5UhlAAAEGQQAFZv+FVfomNWLv1nun0cmNFs\nbV7SJSugyo3p1cWiJh6ZsBbQJQsq6NpEHgruIIP4hs+lIpOCGmHtTb+dxJDp6Sd/\noKXZBRfXmDD1Ul5wtU0dligTzZujxSYWVO8N5HW3G+J3X5ULYje0erM5gWn8XkTx\n751imxzyq2nss+LR0KvjxzHRP22pyoP6QQy/zhDPOAYYiBSz53BCU/uOHFQtKiRy\nIuYFfNl3iNKf4jOOsJfQL7KYprpAhds53o54DKZI+HijndlNDE5grl2ZuHRc4lsC\no0Xn5UiXJLqELIUQ2MZ+lvjiK5yZDE6QeHEtgLMooMalEs+ploiwkZk/VQt4F341\nzucUdu6geG6J+FQYsj+4kN1Qy83eHNW2hAZt4G/brLd0saciFrxP6sB4kEmaeJki\n5HgXDmju2deHc2m0eyrr4NVEDT9OLcu4jkTI5cw2acQI3ussZiL0jJx700qyobBB\nDWJsRdu+pamF1KDKaF4Pc20BLkKiEEznjPQh2BAIg9QC0epf5HisRlWonLQEPsTY\nFd3TOSUmHeqge5ufvdDk3xeUXA7V+l+3l20nqRbTp/MjDJ5BZnJpGLYQ0Gb7cQe0\njU7Xrgp6IHHHjfpQIh2B+fDgLnbi74+Oggn6FoiH9IDRgqbBYdI6+G7jCccMK37t\niMBkEQOL5zkBNM2lUxus\n=Jq64\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree 01a4d9581e69ab391d5c8e50ae33aaf7aab4fb97\nparent 6d9c82ea2bb34e277c0664b8dd3434bfb4dcfb27\nauthor Ruben Ortlam <rortlam@redhat.com> 1788972819 +0200\ncommitter GitHub <noreply@github.com> 1788972819 +0200\n\nvulkan: use spec constant for matrix matrix multiplication A-type (#25773)\n\n* vulkan: use spec constant for mul mat type_a\n\nvulkan: use map for mul_mm shapes\n\ncleanup\n\nfix indentation\n\nfix cm2 and shmem init\n\nfix cm2 spec constants\n\nfix cm2 bindings\n\nconsolidate shmem tables and reduce size by type spec constant\n\nfix compiler warning\n\nfix missing Q2_0 type\n\nfix unused warning when integer dot glslc support is missing\n\nuse minimal shmem size 8 instead of 1 to workaround cm2 compiler bug\n\nfix missing Q2_0 type in cm2 matmul\n\nfix types\n\n* remove LUT quants from unified shader\n\n* clean up\n\n* restore coopmat2 q4_k/q5_k optimization\n\n* split out q4_k/q5_k cm2 shader to fix Ampere regression\n\n* revert iq shmem table renames\n\n* simplify cm2 code with single uint8_t buffer\n\n* fix fp4 extension use switch being overwritten by generic shader\n\n* clean up\n\n* adapt TQ1_0 changes\n\n* adapt #27471 f16 Intel tuning changes",
+      "verified_at": "2026-09-09T16:53:40Z"
+    }
+  }
+}

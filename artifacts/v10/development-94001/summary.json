@@ -1,0 +1,1899 @@
+[
+  {
+    "seed": 94001,
+    "condition": "reuse",
+    "arm": "full_history",
+    "ordinary_budget": {
+      "max_total_tokens": 1000000,
+      "max_calls": 280,
+      "total_tokens": 265358,
+      "prompt_tokens": 223136,
+      "completion_tokens": 42222,
+      "calls": 42,
+      "tokenization_seconds": 0.8686010129990791,
+      "inference_seconds": 770.9983952540001,
+      "unknown_usage_calls": 0
+    },
+    "panel_budget": {
+      "max_total_tokens": 1000000,
+      "max_calls": 260,
+      "total_tokens": 77539,
+      "prompt_tokens": 71302,
+      "completion_tokens": 6237,
+      "calls": 14,
+      "tokenization_seconds": 0.27554309399920385,
+      "inference_seconds": 127.76395462800065,
+      "unknown_usage_calls": 0
+    },
+    "memory": {
+      "arm": "full_history",
+      "history": [
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"What is the total gross order value? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_zthqjd (c_yqaavf INTEGER, c_npjdan INTEGER, c_frikui NUMERIC, c_tuxrkv INTEGER, c_zepmyq TEXT, c_exxvfn INTEGER, c_cwkqbk TEXT);\\nCREATE TABLE r_riisnw (c_cpdsfw INTEGER, c_rxwmxc INTEGER, c_eczbnf TEXT, c_dkwtic TEXT, c_qceicb INTEGER, c_aqsnze INTEGER);\\nCREATE TABLE r_efhmma (c_jsajyc INTEGER, c_nqyvvf INTEGER, c_iajheh NUMERIC);\\nCREATE TABLE r_hkmdsc (c_jyccyh INTEGER, c_xwqrhf INTEGER, c_kawqir INTEGER, c_bbqkwh INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"SELECT * FROM catalog\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":7,\"tool_result\":{\"columns\":[\"table_name\",\"column_name\",\"description\"],\"error\":null,\"rows\":[[\"r_zthqjd\",\"*\",\"One row per order. Gross value is unit amount times quantity. Net value is gross value minus the sum of refund records for that order. Monetary outputs are dollars.\"],[\"r_zthqjd\",\"c_yqaavf\",\"Unique order identifier; refund and shipment order references point here.\"],[\"r_zthqjd\",\"c_npjdan\",\"Customer reference, matching the customer reference in the profile table. Select one current profile per customer before joining orders.\"],[\"r_zthqjd\",\"c_frikui\",\"Unit amount is stored in integer cents; divide by 100.0 to obtain dollars. A NULL unit amount means zero; retain this order in monetary averages and totals.\"],[\"r_zthqjd\",\"c_tuxrkv\",\"Positive integer quantity purchased in this order.\"],[\"r_zthqjd\",\"c_zepmyq\",\"Order status: confirmed, cancelled, or pending. Include all statuses unless the question restricts them.\"],[\"r_zthqjd\",\"c_exxvfn\",\"Integer day of order placement; shipment day minus this value is shipment lag in days.\"],[\"r_zthqjd\",\"c_cwkqbk\",\"Order channel: web or store.\"],[\"r_riisnw\",\"*\",\"Customer profiles. Historical snapshots; multiple profile rows can share a customer reference. The current profile is the unique row whose current flag equals 1; largest revision need not be current.\"],[\"r_riisnw\",\"c_cpdsfw\",\"Unique profile-row identifier; this is not the order customer reference.\"],[\"r_riisnw\",\"c_rxwmxc\",\"Customer reference used by orders; it may repeat across profile snapshots.\"],[\"r_riisnw\",\"c_eczbnf\",\"Region for this profile snapshot: North or South; use the current snapshot.\"],[\"r_riisnw\",\"c_dkwtic\",\"Tier for this profile snapshot: Gold or Silver; use the current snapshot.\"],[\"r_riisnw\",\"c_qceicb\",\"Integer profile revision, unique within each customer.\"],[\"r_riisnw\",\"c_aqsnze\",\"Current flag; see the profile-table convention to decide whether it is authoritative.\"],[\"r_efhmma\",\"*\",\"Refund events. An order can have multiple records; sum refund amounts once per order before combining them with order values or shipments. Orders without refund events have zero refunds.\"],[\"r_efhmma\",\"c_jsajyc\",\"Unique refund-record identifier.\"],[\"r_efhmma\",\"c_nqyvvf\",\"Order reference matching the order identifier.\"],[\"r_efhmma\",\"c_iajheh\",\"Refund amount stored in integer cents; divide by 100.0 to obtain dollars; never NULL.\"],[\"r_hkmdsc\",\"*\",\"Shipment events. An order can have multiple records. An order is delivered if any record has delivered flag 1; no shipment records means not delivered. The latest shipment has greatest shipment day. Aggregate per order before joining other event tables.\"],[\"r_hkmdsc\",\"c_jyccyh\",\"Unique shipment-record identifier.\"],[\"r_hkmdsc\",\"c_xwqrhf\",\"Order reference matching the order identifier.\"],[\"r_hkmdsc\",\"c_kawqir\",\"Integer shipment day. Use greatest shipment day per order for latest-shipment lag.\"],[\"r_hkmdsc\",\"c_bbqkwh\",\"Delivery indicator, 0 or 1; any 1 for an order means delivered.\"]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"SELECT COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0) FROM r_zthqjd\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":6,\"tool_result\":{\"columns\":[\"COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0)\"],\"error\":null,\"rows\":[[10949.0]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":10949.0}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":true,\"meaning\":\"Correct on this episode only.\"}"
+          }
+        ],
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"What is the average gross order value? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_zthqjd (c_yqaavf INTEGER, c_npjdan INTEGER, c_frikui NUMERIC, c_tuxrkv INTEGER, c_zepmyq TEXT, c_exxvfn INTEGER, c_cwkqbk TEXT);\\nCREATE TABLE r_riisnw (c_cpdsfw INTEGER, c_rxwmxc INTEGER, c_eczbnf TEXT, c_dkwtic TEXT, c_qceicb INTEGER, c_aqsnze INTEGER);\\nCREATE TABLE r_efhmma (c_jsajyc INTEGER, c_nqyvvf INTEGER, c_iajheh NUMERIC);\\nCREATE TABLE r_hkmdsc (c_jyccyh INTEGER, c_xwqrhf INTEGER, c_kawqir INTEGER, c_bbqkwh INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"SELECT COALESCE((SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv) / COUNT(c_yqaavf)), 0) FROM r_zthqjd\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":7,\"tool_result\":{\"columns\":[\"COALESCE((SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv) / COUNT(c_yqaavf)), 0)\"],\"error\":null,\"rows\":[[301.890625]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":301.890625}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":true,\"meaning\":\"Correct on this episode only.\"}"
+          }
+        ],
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"How many units occur in confirmed orders? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_zthqjd (c_yqaavf INTEGER, c_npjdan INTEGER, c_frikui NUMERIC, c_tuxrkv INTEGER, c_zepmyq TEXT, c_exxvfn INTEGER, c_cwkqbk TEXT);\\nCREATE TABLE r_riisnw (c_cpdsfw INTEGER, c_rxwmxc INTEGER, c_eczbnf TEXT, c_dkwtic TEXT, c_qceicb INTEGER, c_aqsnze INTEGER);\\nCREATE TABLE r_efhmma (c_jsajyc INTEGER, c_nqyvvf INTEGER, c_iajheh NUMERIC);\\nCREATE TABLE r_hkmdsc (c_jyccyh INTEGER, c_xwqrhf INTEGER, c_kawqir INTEGER, c_bbqkwh INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"SELECT COALESCE(SUM(c_tuxrkv), 0) FROM r_zthqjd WHERE c_zepmyq = 'confirmed'\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":7,\"tool_result\":{\"columns\":[\"COALESCE(SUM(c_tuxrkv), 0)\"],\"error\":null,\"rows\":[[30]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":30}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":true,\"meaning\":\"Correct on this episode only.\"}"
+          }
+        ],
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"How many customers currently belong to the North region? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_zthqjd (c_yqaavf INTEGER, c_npjdan INTEGER, c_frikui NUMERIC, c_tuxrkv INTEGER, c_zepmyq TEXT, c_exxvfn INTEGER, c_cwkqbk TEXT);\\nCREATE TABLE r_riisnw (c_cpdsfw INTEGER, c_rxwmxc INTEGER, c_eczbnf TEXT, c_dkwtic TEXT, c_qceicb INTEGER, c_aqsnze INTEGER);\\nCREATE TABLE r_efhmma (c_jsajyc INTEGER, c_nqyvvf INTEGER, c_iajheh NUMERIC);\\nCREATE TABLE r_hkmdsc (c_jyccyh INTEGER, c_xwqrhf INTEGER, c_kawqir INTEGER, c_bbqkwh INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"SELECT COALESCE(COUNT(DISTINCT c_rxwmxc), 0) FROM r_riisnw WHERE c_aqsnze = 1 AND c_eczbnf = 'North'\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":7,\"tool_result\":{\"columns\":[\"COALESCE(COUNT(DISTINCT c_rxwmxc), 0)\"],\"error\":null,\"rows\":[[6]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":6}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":true,\"meaning\":\"Correct on this episode only.\"}"
+          }
+        ],
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"What is the total gross order value for customers currently in the North region? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_zthqjd (c_yqaavf INTEGER, c_npjdan INTEGER, c_frikui NUMERIC, c_tuxrkv INTEGER, c_zepmyq TEXT, c_exxvfn INTEGER, c_cwkqbk TEXT);\\nCREATE TABLE r_riisnw (c_cpdsfw INTEGER, c_rxwmxc INTEGER, c_eczbnf TEXT, c_dkwtic TEXT, c_qceicb INTEGER, c_aqsnze INTEGER);\\nCREATE TABLE r_efhmma (c_jsajyc INTEGER, c_nqyvvf INTEGER, c_iajheh NUMERIC);\\nCREATE TABLE r_hkmdsc (c_jyccyh INTEGER, c_xwqrhf INTEGER, c_kawqir INTEGER, c_bbqkwh INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"SELECT COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0) FROM r_zthqjd WHERE c_npjdan IN (SELECT c_rxwmxc FROM r_riisnw WHERE c_aqsnze = 1 AND c_eczbnf = 'North')\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":7,\"tool_result\":{\"columns\":[\"COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0)\"],\"error\":null,\"rows\":[[3329.0]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":3329.0}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":true,\"meaning\":\"Correct on this episode only.\"}"
+          }
+        ],
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"What is the total monetary value of all refund records? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_zthqjd (c_yqaavf INTEGER, c_npjdan INTEGER, c_frikui NUMERIC, c_tuxrkv INTEGER, c_zepmyq TEXT, c_exxvfn INTEGER, c_cwkqbk TEXT);\\nCREATE TABLE r_riisnw (c_cpdsfw INTEGER, c_rxwmxc INTEGER, c_eczbnf TEXT, c_dkwtic TEXT, c_qceicb INTEGER, c_aqsnze INTEGER);\\nCREATE TABLE r_efhmma (c_jsajyc INTEGER, c_nqyvvf INTEGER, c_iajheh NUMERIC);\\nCREATE TABLE r_hkmdsc (c_jyccyh INTEGER, c_xwqrhf INTEGER, c_kawqir INTEGER, c_bbqkwh INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"SELECT COALESCE(SUM(c_iajheh / 100.0), 0) FROM r_efhmma\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":7,\"tool_result\":{\"columns\":[\"COALESCE(SUM(c_iajheh / 100.0), 0)\"],\"error\":null,\"rows\":[[2311.75]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":2311.75}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":true,\"meaning\":\"Correct on this episode only.\"}"
+          }
+        ],
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"How many distinct orders have at least one refund record? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_zthqjd (c_yqaavf INTEGER, c_npjdan INTEGER, c_frikui NUMERIC, c_tuxrkv INTEGER, c_zepmyq TEXT, c_exxvfn INTEGER, c_cwkqbk TEXT);\\nCREATE TABLE r_riisnw (c_cpdsfw INTEGER, c_rxwmxc INTEGER, c_eczbnf TEXT, c_dkwtic TEXT, c_qceicb INTEGER, c_aqsnze INTEGER);\\nCREATE TABLE r_efhmma (c_jsajyc INTEGER, c_nqyvvf INTEGER, c_iajheh NUMERIC);\\nCREATE TABLE r_hkmdsc (c_jyccyh INTEGER, c_xwqrhf INTEGER, c_kawqir INTEGER, c_bbqkwh INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"SELECT COUNT(DISTINCT c_nqyvvf) FROM r_efhmma\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":7,\"tool_result\":{\"columns\":[\"COUNT(DISTINCT c_nqyvvf)\"],\"error\":null,\"rows\":[[22]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":22}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":true,\"meaning\":\"Correct on this episode only.\"}"
+          }
+        ],
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"What is the total gross order value for customers currently in the Gold tier? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_zthqjd (c_yqaavf INTEGER, c_npjdan INTEGER, c_frikui NUMERIC, c_tuxrkv INTEGER, c_zepmyq TEXT, c_exxvfn INTEGER, c_cwkqbk TEXT);\\nCREATE TABLE r_riisnw (c_cpdsfw INTEGER, c_rxwmxc INTEGER, c_eczbnf TEXT, c_dkwtic TEXT, c_qceicb INTEGER, c_aqsnze INTEGER);\\nCREATE TABLE r_efhmma (c_jsajyc INTEGER, c_nqyvvf INTEGER, c_iajheh NUMERIC);\\nCREATE TABLE r_hkmdsc (c_jyccyh INTEGER, c_xwqrhf INTEGER, c_kawqir INTEGER, c_bbqkwh INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"SELECT COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0) FROM r_zthqjd WHERE c_npjdan IN (SELECT c_rxwmxc FROM r_riisnw WHERE c_aqsnze = 1 AND c_dkwtic = 'Gold')\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":7,\"tool_result\":{\"columns\":[\"COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0)\"],\"error\":null,\"rows\":[[1959.25]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"SELECT COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0) FROM r_zthqjd WHERE c_npjdan IN (SELECT c_rxwmxc FROM r_riisnw WHERE c_aqsnze = 1 AND c_dkwtic = 'Gold')\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":6,\"tool_result\":{\"columns\":[\"COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0)\"],\"error\":null,\"rows\":[[1959.25]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":1959.25}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":true,\"meaning\":\"Correct on this episode only.\"}"
+          }
+        ],
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"What is the total net order value of confirmed orders for customers currently in the North region? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_zthqjd (c_yqaavf INTEGER, c_npjdan INTEGER, c_frikui NUMERIC, c_tuxrkv INTEGER, c_zepmyq TEXT, c_exxvfn INTEGER, c_cwkqbk TEXT);\\nCREATE TABLE r_riisnw (c_cpdsfw INTEGER, c_rxwmxc INTEGER, c_eczbnf TEXT, c_dkwtic TEXT, c_qceicb INTEGER, c_aqsnze INTEGER);\\nCREATE TABLE r_efhmma (c_jsajyc INTEGER, c_nqyvvf INTEGER, c_iajheh NUMERIC);\\nCREATE TABLE r_hkmdsc (c_jyccyh INTEGER, c_xwqrhf INTEGER, c_kawqir INTEGER, c_bbqkwh INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": ""
+          },
+          {
+            "role": "user",
+            "content": "{\"memory_check\":\"Invalid action format: Expecting value: line 1 column 1 (char 0)\",\"remaining_selects\":7,\"tool_result\":{\"columns\":[],\"error\":\"only one SELECT or nonrecursive WITH SELECT is permitted\",\"rows\":[],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"SELECT COALESCE(SUM((COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv) - (SELECT COALESCE(SUM(c_iajheh / 100.0), 0) FROM r_efhmma WHERE c_nqyvvf = r_zthqjd.c_yqaavf)), 0) FROM r_zthqjd WHERE c_zepmyq = 'confirmed' AND c_npjdan IN (SELECT c_rxwmxc FROM r_riisnw WHERE c_aqsnze = 1 AND c_eczbnf = 'North')\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":6,\"tool_result\":{\"columns\":[\"COALESCE(SUM((COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv) - (SELECT COALESCE(SUM(c_iajheh / 100.0), 0) FROM r_efhmma WHERE c_nqyvvf = r_zthqjd.c_yqaavf)), 0)\"],\"error\":null,\"rows\":[[2420.5]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":2420.5}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":true,\"meaning\":\"Correct on this episode only.\"}"
+          }
+        ],
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"What is the average net order value for customers currently in the Gold tier? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_zthqjd (c_yqaavf INTEGER, c_npjdan INTEGER, c_frikui NUMERIC, c_tuxrkv INTEGER, c_zepmyq TEXT, c_exxvfn INTEGER, c_cwkqbk TEXT);\\nCREATE TABLE r_riisnw (c_cpdsfw INTEGER, c_rxwmxc INTEGER, c_eczbnf TEXT, c_dkwtic TEXT, c_qceicb INTEGER, c_aqsnze INTEGER);\\nCREATE TABLE r_efhmma (c_jsajyc INTEGER, c_nqyvvf INTEGER, c_iajheh NUMERIC);\\nCREATE TABLE r_hkmdsc (c_jyccyh INTEGER, c_xwqrhf INTEGER, c_kawqir INTEGER, c_bbqkwh INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": ""
+          },
+          {
+            "role": "user",
+            "content": "{\"memory_check\":\"Invalid action format: Expecting value: line 1 column 1 (char 0)\",\"remaining_selects\":7,\"tool_result\":{\"columns\":[],\"error\":\"only one SELECT or nonrecursive WITH SELECT is permitted\",\"rows\":[],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"SELECT COALESCE(AVG((COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv) - (SELECT COALESCE(SUM(c_iajheh / 100.0), 0) FROM r_efhmma WHERE c_nqyvvf = r_zthqjd.c_yqaavf)), 0) FROM r_zthqjd WHERE c_npjdan IN (SELECT c_rxwmxc FROM r_riisnw WHERE c_aqsnze = 1 AND c_dkwtic = 'Gold')\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":6,\"tool_result\":{\"columns\":[\"COALESCE(AVG((COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv) - (SELECT COALESCE(SUM(c_iajheh / 100.0), 0) FROM r_efhmma WHERE c_nqyvvf = r_zthqjd.c_yqaavf)), 0)\"],\"error\":null,\"rows\":[[129.58333333333334]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":129.58333333333334}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":true,\"meaning\":\"Correct on this episode only.\"}"
+          }
+        ],
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"What percentage of gross order value was refunded for customers currently in the South region? Only orders with a reportable gross value contribute to either total. Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_zthqjd (c_yqaavf INTEGER, c_npjdan INTEGER, c_frikui NUMERIC, c_tuxrkv INTEGER, c_zepmyq TEXT, c_exxvfn INTEGER, c_cwkqbk TEXT);\\nCREATE TABLE r_riisnw (c_cpdsfw INTEGER, c_rxwmxc INTEGER, c_eczbnf TEXT, c_dkwtic TEXT, c_qceicb INTEGER, c_aqsnze INTEGER);\\nCREATE TABLE r_efhmma (c_jsajyc INTEGER, c_nqyvvf INTEGER, c_iajheh NUMERIC);\\nCREATE TABLE r_hkmdsc (c_jyccyh INTEGER, c_xwqrhf INTEGER, c_kawqir INTEGER, c_bbqkwh INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": ""
+          },
+          {
+            "role": "user",
+            "content": "{\"memory_check\":\"Invalid action format: Expecting value: line 1 column 1 (char 0)\",\"remaining_selects\":7,\"tool_result\":{\"columns\":[],\"error\":\"only one SELECT or nonrecursive WITH SELECT is permitted\",\"rows\":[],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": ""
+          },
+          {
+            "role": "user",
+            "content": "{\"memory_check\":\"Invalid action format: Expecting value: line 1 column 1 (char 0)\",\"remaining_selects\":6,\"tool_result\":{\"columns\":[],\"error\":\"only one SELECT or nonrecursive WITH SELECT is permitted\",\"rows\":[],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": ""
+          },
+          {
+            "role": "user",
+            "content": "{\"memory_check\":\"Invalid action format: Expecting value: line 1 column 1 (char 0)\",\"remaining_selects\":5,\"tool_result\":{\"columns\":[],\"error\":\"only one SELECT or nonrecursive WITH SELECT is permitted\",\"rows\":[],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": ""
+          },
+          {
+            "role": "user",
+            "content": "{\"memory_check\":\"Invalid action format: Expecting value: line 1 column 1 (char 0)\",\"remaining_selects\":4,\"tool_result\":{\"columns\":[],\"error\":\"only one SELECT or nonrecursive WITH SELECT is permitted\",\"rows\":[],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": ""
+          },
+          {
+            "role": "user",
+            "content": "{\"memory_check\":\"Invalid action format: Expecting value: line 1 column 1 (char 0)\",\"remaining_selects\":3,\"tool_result\":{\"columns\":[],\"error\":\"only one SELECT or nonrecursive WITH SELECT is permitted\",\"rows\":[],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": ""
+          },
+          {
+            "role": "user",
+            "content": "{\"memory_check\":\"Invalid action format: Expecting value: line 1 column 1 (char 0)\",\"remaining_selects\":2,\"tool_result\":{\"columns\":[],\"error\":\"only one SELECT or nonrecursive WITH SELECT is permitted\",\"rows\":[],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": ""
+          },
+          {
+            "role": "user",
+            "content": "{\"memory_check\":\"Invalid action format: Expecting value: line 1 column 1 (char 0)\",\"remaining_selects\":1,\"tool_result\":{\"columns\":[],\"error\":\"only one SELECT or nonrecursive WITH SELECT is permitted\",\"rows\":[],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"WITH south_customers AS (SELECT c_rxwmxc FROM r_riisnw WHERE c_aqsnze = 1 AND c_eczbnf = 'South'),\\nqualified_orders AS (SELECT o.c_yqaavf, \\n                             COALESCE(SUM(r.c_iajheh / 100.0), 0) AS total_refunds,\\n                             COALESCE(SUM(COALESCE(o.c_frikui, 0) / 100.0 * o.c_tuxrkv), 0) AS gross_value\\n                      FROM r_zthqjd o\\n                      JOIN south_customers sc ON o.c_npjdan = sc.c_rxwmxc\\n                      LEFT JOIN r_efhmma r ON o.c_yqaavf = r.c_nqyvvf\\n                      GROUP BY o.c_yqaavf\\n                      HAVING gross_value > 0)\\nSELECT COALESCE((SUM(total_refunds) / SUM(gross_value)) * 100.0, 0) AS refund_percentage\\nFROM qualified_orders\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":0,\"tool_result\":{\"columns\":[\"refund_percentage\"],\"error\":null,\"rows\":[[20.600833357615315]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":20.600833357615315}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":false,\"meaning\":\"The submitted answer was INCORRECT.\"}"
+          }
+        ],
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"How many distinct current Gold-tier customers have at least one confirmed order with positive net value? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_zthqjd (c_yqaavf INTEGER, c_npjdan INTEGER, c_frikui NUMERIC, c_tuxrkv INTEGER, c_zepmyq TEXT, c_exxvfn INTEGER, c_cwkqbk TEXT);\\nCREATE TABLE r_riisnw (c_cpdsfw INTEGER, c_rxwmxc INTEGER, c_eczbnf TEXT, c_dkwtic TEXT, c_qceicb INTEGER, c_aqsnze INTEGER);\\nCREATE TABLE r_efhmma (c_jsajyc INTEGER, c_nqyvvf INTEGER, c_iajheh NUMERIC);\\nCREATE TABLE r_hkmdsc (c_jyccyh INTEGER, c_xwqrhf INTEGER, c_kawqir INTEGER, c_bbqkwh INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": ""
+          },
+          {
+            "role": "user",
+            "content": "{\"memory_check\":\"Invalid action format: Expecting value: line 1 column 1 (char 0)\",\"remaining_selects\":7,\"tool_result\":{\"columns\":[],\"error\":\"only one SELECT or nonrecursive WITH SELECT is permitted\",\"rows\":[],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"WITH gold_customers AS (SELECT c_rxwmxc FROM r_riisnw WHERE c_aqsnze = 1 AND c_dkwtic = 'Gold'), confirmed_orders AS (SELECT o.c_yqaavf, o.c_npjdan, COALESCE(SUM(r.c_iajheh / 100.0), 0) AS refunds FROM r_zthqjd o LEFT JOIN r_efhmma r ON o.c_yqaavf = r.c_nqyvvf JOIN gold_customers gc ON o.c_npjdan = gc.c_rxwmxc WHERE o.c_zepmyq = 'confirmed' GROUP BY o.c_yqaavf, o.c_npjdan HAVING COALESCE((COALESCE(SUM(o.c_frikui, 0) / 100.0 * o.c_tuxrkv, 0) - refunds), 0) > 0) SELECT COUNT(DISTINCT c_npjdan) FROM confirmed_orders\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":6,\"tool_result\":{\"columns\":[],\"error\":\"wrong number of arguments to function SUM()\",\"rows\":[],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"WITH gold_customers AS (SELECT c_rxwmxc FROM r_riisnw WHERE c_aqsnze = 1 AND c_dkwtic = 'Gold'),\\nqualified_orders AS (SELECT o.c_npjdan, \\n                             (COALESCE(o.c_frikui, 0) / 100.0 * o.c_tuxrkv) AS gross_value,\\n                             COALESCE(SUM(r.c_iajheh / 100.0), 0) AS total_refunds\\n                      FROM r_zthqjd o\\n                      JOIN gold_customers gc ON o.c_npjdan = gc.c_rxwmxc\\n                      LEFT JOIN r_efhmma r ON o.c_yqaavf = r.c_nqyvvf\\n                      WHERE o.c_zepmyq = 'confirmed'\\n                      GROUP BY o.c_yqaavf, o.c_npjdan\\n                      HAVING (gross_value - total_refunds) > 0)\\nSELECT COUNT(DISTINCT c_npjdan) FROM qualified_orders\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":5,\"tool_result\":{\"columns\":[\"COUNT(DISTINCT c_npjdan)\"],\"error\":null,\"rows\":[[5]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":5}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":true,\"meaning\":\"Correct on this episode only.\"}"
+          }
+        ],
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"What is average net order value in the current North region minus average net order value in the current South region? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_zthqjd (c_yqaavf INTEGER, c_npjdan INTEGER, c_frikui NUMERIC, c_tuxrkv INTEGER, c_zepmyq TEXT, c_exxvfn INTEGER, c_cwkqbk TEXT);\\nCREATE TABLE r_riisnw (c_cpdsfw INTEGER, c_rxwmxc INTEGER, c_eczbnf TEXT, c_dkwtic TEXT, c_qceicb INTEGER, c_aqsnze INTEGER);\\nCREATE TABLE r_efhmma (c_jsajyc INTEGER, c_nqyvvf INTEGER, c_iajheh NUMERIC);\\nCREATE TABLE r_hkmdsc (c_jyccyh INTEGER, c_xwqrhf INTEGER, c_kawqir INTEGER, c_bbqkwh INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"WITH north_orders AS (SELECT o.c_yqaavf, (COALESCE(o.c_frikui, 0) / 100.0 * o.c_tuxrkv) - COALESCE(SUM(r.c_iajheh / 100.0), 0) AS net_value FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc LEFT JOIN r_efhmma r ON o.c_yqaavf = r.c_nqyvvf WHERE p.c_aqsnze = 1 AND p.c_eczbnf = 'North' GROUP BY o.c_yqaavf), south_orders AS (SELECT o.c_yqaavf, (COALESCE(o.c_frikui, 0) / 100.0 * o.c_tuxrkv) - COALESCE(SUM(r.c_iajheh / 100.0), 0) AS net_value FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc LEFT JOIN r_efhmma r ON o.c_yqaavf = r.c_nqyvvf WHERE p.c_aqsnze = 1 AND p.c_eczbnf = 'South' GROUP BY o.c_yqaavf) SELECT COALESCE((SELECT AVG(net_value) FROM north_orders), 0) - COALESCE((SELECT AVG(net_value) FROM south_orders), 0) AS difference;\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":7,\"tool_result\":{\"columns\":[\"difference\"],\"error\":null,\"rows\":[[15.900000000000006]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":15.900000000000006}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":true,\"meaning\":\"Correct on this episode only.\"}"
+          }
+        ],
+        [
+          {
+            "role": "user",
+            "content": "{\"question\":\"What percentage of all confirmed gross order value belongs to customers currently in the Gold tier? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.\",\"remaining_selects\":8,\"schema\":\"CREATE TABLE catalog (table_name TEXT, column_name TEXT, description TEXT);\\nCREATE TABLE r_zthqjd (c_yqaavf INTEGER, c_npjdan INTEGER, c_frikui NUMERIC, c_tuxrkv INTEGER, c_zepmyq TEXT, c_exxvfn INTEGER, c_cwkqbk TEXT);\\nCREATE TABLE r_riisnw (c_cpdsfw INTEGER, c_rxwmxc INTEGER, c_eczbnf TEXT, c_dkwtic TEXT, c_qceicb INTEGER, c_aqsnze INTEGER);\\nCREATE TABLE r_efhmma (c_jsajyc INTEGER, c_nqyvvf INTEGER, c_iajheh NUMERIC);\\nCREATE TABLE r_hkmdsc (c_jyccyh INTEGER, c_xwqrhf INTEGER, c_kawqir INTEGER, c_bbqkwh INTEGER);\"}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"WITH gold_confirmed AS (SELECT COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0) FROM r_zthqjd JOIN r_riisnw ON c_npjdan = c_rxwmxc WHERE c_zepmyq = 'confirmed' AND c_aqsnze = 1 AND c_dkwtic = 'Gold'), total_confirmed AS (SELECT COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0) FROM r_zthqjd WHERE c_zepmyq = 'confirmed') SELECT COALESCE((gold_confirmed * 100.0 / total_confirmed), 0) FROM gold_confirmed CROSS JOIN total_confirmed\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":7,\"tool_result\":{\"columns\":[],\"error\":\"no such column: gold_confirmed\",\"rows\":[],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"QUERY\",\"sql\":\"WITH gold_tier_confirmed AS (\\n    SELECT SUM(COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) AS gold_total \\n    FROM r_zthqjd o \\n    JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc \\n    WHERE o.c_zepmyq = 'confirmed' \\n      AND p.c_aqsnze = 1 \\n      AND p.c_dkwtic = 'Gold'\\n), all_confirmed AS (\\n    SELECT SUM(COALESCE(c_frikui, 0)/100.0 * c_tuxrkv) AS total \\n    FROM r_zthqjd \\n    WHERE c_zepmyq = 'confirmed'\\n)\\nSELECT COALESCE((\\n    (SELECT gold_total FROM gold_tier_confirmed) * 100.0 \\n    / NULLIF((SELECT total FROM all_confirmed), 0)\\n), 0) AS percentage;\",\"params\":{}}"
+          },
+          {
+            "role": "user",
+            "content": "{\"remaining_selects\":6,\"tool_result\":{\"columns\":[\"percentage\"],\"error\":null,\"rows\":[[74.93731343283582]],\"truncated\":false}}"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"action\":\"ANSWER\",\"value\":74.93731343283582}"
+          },
+          {
+            "role": "user",
+            "content": "{\"correct\":true,\"meaning\":\"Correct on this episode only.\"}"
+          }
+        ]
+      ],
+      "episodes": [],
+      "insights": [],
+      "entries": [],
+      "raw_bytes": 31030,
+      "peak_memory_bytes": 33367,
+      "events": [
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "bf9b61e8ca54810efe79ffb9e1ab7b9417e0a305aa8b781649a517265212c0d4",
+          "entry_count": 0,
+          "active_memory_bytes": 4665
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "563051b9d75d65c3b07fca923be46c806b3742010310935ae70d0f7bdc4a74fa",
+          "entry_count": 0,
+          "active_memory_bytes": 6074
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "ce75dc25747bc97aa45a96657ffb943737d20ca32b5ca2f9d9c2149c0bd7f0ef",
+          "entry_count": 0,
+          "active_memory_bytes": 7395
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "c2c3a3aed60aaaa3ddd902319350f492d28f777b0e34647237e9e2852a106c5f",
+          "entry_count": 0,
+          "active_memory_bytes": 8764
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "46a3da2ba1cfea220a543d0b07ce4e31e1bf6d803045e0bfdd523ea474d0a2ea",
+          "entry_count": 0,
+          "active_memory_bytes": 10259
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "b727ac8bd42a9915d05e1765749a3cdfc4a60332b88310c6692428f987b87b98",
+          "entry_count": 0,
+          "active_memory_bytes": 11591
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "f12504d9650ac9385afeaefaf150fc3e6f448cc12bf95efece862e561f74955b",
+          "entry_count": 0,
+          "active_memory_bytes": 12895
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "835bd72c4a1cd654a27ccbd707fe4ad74ee22c7b727fd17fa25288c2596e2232",
+          "entry_count": 0,
+          "active_memory_bytes": 14846
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "6db837d9a1f416e858c7a7e88752fa6dfd961ea3d713ff959959e26b0ae21685",
+          "entry_count": 0,
+          "active_memory_bytes": 16890
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "3b7d8371037eccddbc1732b9a482c76545c7631a5aedd400da3a13601d2a724f",
+          "entry_count": 0,
+          "active_memory_bytes": 18909
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "3fbbd9f30ccbfd945fd96f6e48c19ca03adecf52e8b1ccc08e6788c839cff057",
+          "entry_count": 0,
+          "active_memory_bytes": 23208
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "863294e8cd1053504a39843ca5147331d25c7644d116179c83ac33f08a593cf3",
+          "entry_count": 0,
+          "active_memory_bytes": 26338
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "8b145f511d3cd200baba891536f7747debe782786bb151193815043db774da3e",
+          "entry_count": 0,
+          "active_memory_bytes": 28433
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "ec8066b51d897c907986c8751c2085d517534f6e13aae0a869609b16da75e3a1",
+          "entry_count": 0,
+          "active_memory_bytes": 31030
+        }
+      ],
+      "evidence": [],
+      "memory_bytes": 33367,
+      "active_memory_bytes": 31030
+    },
+    "warm": {
+      "complete": true,
+      "correct": 8,
+      "n": 8,
+      "minimum_correct": 7,
+      "meets_warm_accuracy_gate": true
+    },
+    "phase_counts": {
+      "ordinary": 14,
+      "old_before": 8,
+      "old_after": 0,
+      "final": 0
+    },
+    "phase_reward": {
+      "ordinary": 0.9285714285714286,
+      "old_before": 0.75,
+      "old_after": null,
+      "final": null
+    },
+    "phase_selects": {
+      "ordinary": 28,
+      "old_before": 6,
+      "old_after": 0,
+      "final": 0
+    },
+    "phase_failures": {
+      "ordinary": 0,
+      "old_before": 0,
+      "old_after": 0,
+      "final": 0
+    }
+  },
+  {
+    "seed": 94001,
+    "condition": "reuse",
+    "arm": "evidence",
+    "ordinary_budget": {
+      "max_total_tokens": 1000000,
+      "max_calls": 280,
+      "total_tokens": 156056,
+      "prompt_tokens": 114561,
+      "completion_tokens": 41495,
+      "calls": 38,
+      "tokenization_seconds": 0.4675353519987766,
+      "inference_seconds": 705.4511982159997,
+      "unknown_usage_calls": 0
+    },
+    "panel_budget": {
+      "max_total_tokens": 1000000,
+      "max_calls": 260,
+      "total_tokens": 34487,
+      "prompt_tokens": 28580,
+      "completion_tokens": 5907,
+      "calls": 10,
+      "tokenization_seconds": 0.11768162399903304,
+      "inference_seconds": 104.36899064300133,
+      "unknown_usage_calls": 0
+    },
+    "memory": {
+      "arm": "evidence",
+      "history": [],
+      "episodes": [],
+      "insights": [],
+      "entries": [],
+      "raw_bytes": 0,
+      "peak_memory_bytes": 14304,
+      "events": [
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "bf9b61e8ca54810efe79ffb9e1ab7b9417e0a305aa8b781649a517265212c0d4",
+          "entry_count": 0,
+          "active_memory_bytes": 3527
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "adbd31f696258cddfdb66cbe224f6b63d12f25c4a52ca59efa72a4758c1bcf86",
+          "entry_count": 0,
+          "active_memory_bytes": 4051
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "07f84648e76f89ce63d293203fb3d2b75c8c9241260859aea62cd0b885f6c905",
+          "entry_count": 0,
+          "active_memory_bytes": 4482
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "9560155df49695b4da01a4c75f36d9bf124426bca65cbb90f83874f1cdbde336",
+          "entry_count": 0,
+          "active_memory_bytes": 4961
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "262281a3a87b6a14b604050924c21a8142769e89a041343232150b2944a4dc0d",
+          "entry_count": 0,
+          "active_memory_bytes": 5595
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "c2063198a1a722fc342a3eeaa2d02c3d206b6360b2e20c75ebc91463aa329836",
+          "entry_count": 0,
+          "active_memory_bytes": 6059
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "f12504d9650ac9385afeaefaf150fc3e6f448cc12bf95efece862e561f74955b",
+          "entry_count": 0,
+          "active_memory_bytes": 6499
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "4f6dc3ae1043c92e3831d373f6b1e75ddae63cfecf56b4b6ed14dabb39c13e2f",
+          "entry_count": 0,
+          "active_memory_bytes": 7131
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "fb02ae75897bb64474c93181f6e6c9f4436d3756852664959c3abf932a32d6ae",
+          "entry_count": 0,
+          "active_memory_bytes": 7976
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "b7e216b11205268997ecc39f982b06188c0a6383d83f55b1d8f7d171aa752a37",
+          "entry_count": 0,
+          "active_memory_bytes": 8842
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "31bc1618de61b9b68744540a99ba2d82d7839b5721a24f1f1ded26616c01363f",
+          "entry_count": 0,
+          "active_memory_bytes": 9661
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "cc4f68483ae4733d5bfaa85017c23f6202619cfd25f79f5ce69217be6ce38013",
+          "entry_count": 0,
+          "active_memory_bytes": 11210
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "a1605161ca76b00c6c3856b8b0bed9e1a090e97e02279f71b1768de27292a07f",
+          "entry_count": 0,
+          "active_memory_bytes": 12165
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "observation",
+          "sql": "SELECT * FROM catalog",
+          "params": {},
+          "columns": [
+            "table_name",
+            "column_name",
+            "description"
+          ],
+          "rows": [
+            [
+              "r_zthqjd",
+              "*",
+              "One row per order. Gross value is unit amount times quantity. Net value is gross value minus the sum of refund records for that order. Monetary outputs are dollars."
+            ],
+            [
+              "r_zthqjd",
+              "c_yqaavf",
+              "Unique order identifier; refund and shipment order references point here."
+            ],
+            [
+              "r_zthqjd",
+              "c_npjdan",
+              "Customer reference, matching the customer reference in the profile table. Select one current profile per customer before joining orders."
+            ],
+            [
+              "r_zthqjd",
+              "c_frikui",
+              "Unit amount is stored in integer cents; divide by 100.0 to obtain dollars. A NULL unit amount means zero; retain this order in monetary averages and totals."
+            ],
+            [
+              "r_zthqjd",
+              "c_tuxrkv",
+              "Positive integer quantity purchased in this order."
+            ],
+            [
+              "r_zthqjd",
+              "c_zepmyq",
+              "Order status: confirmed, cancelled, or pending. Include all statuses unless the question restricts them."
+            ],
+            [
+              "r_zthqjd",
+              "c_exxvfn",
+              "Integer day of order placement; shipment day minus this value is shipment lag in days."
+            ],
+            [
+              "r_zthqjd",
+              "c_cwkqbk",
+              "Order channel: web or store."
+            ],
+            [
+              "r_riisnw",
+              "*",
+              "Customer profiles. Historical snapshots; multiple profile rows can share a customer reference. The current profile is the unique row whose current flag equals 1; largest revision need not be current."
+            ],
+            [
+              "r_riisnw",
+              "c_cpdsfw",
+              "Unique profile-row identifier; this is not the order customer reference."
+            ],
+            [
+              "r_riisnw",
+              "c_rxwmxc",
+              "Customer reference used by orders; it may repeat across profile snapshots."
+            ],
+            [
+              "r_riisnw",
+              "c_eczbnf",
+              "Region for this profile snapshot: North or South; use the current snapshot."
+            ],
+            [
+              "r_riisnw",
+              "c_dkwtic",
+              "Tier for this profile snapshot: Gold or Silver; use the current snapshot."
+            ],
+            [
+              "r_riisnw",
+              "c_qceicb",
+              "Integer profile revision, unique within each customer."
+            ],
+            [
+              "r_riisnw",
+              "c_aqsnze",
+              "Current flag; see the profile-table convention to decide whether it is authoritative."
+            ],
+            [
+              "r_efhmma",
+              "*",
+              "Refund events. An order can have multiple records; sum refund amounts once per order before combining them with order values or shipments. Orders without refund events have zero refunds."
+            ],
+            [
+              "r_efhmma",
+              "c_jsajyc",
+              "Unique refund-record identifier."
+            ],
+            [
+              "r_efhmma",
+              "c_nqyvvf",
+              "Order reference matching the order identifier."
+            ],
+            [
+              "r_efhmma",
+              "c_iajheh",
+              "Refund amount stored in integer cents; divide by 100.0 to obtain dollars; never NULL."
+            ],
+            [
+              "r_hkmdsc",
+              "*",
+              "Shipment events. An order can have multiple records. An order is delivered if any record has delivered flag 1; no shipment records means not delivered. The latest shipment has greatest shipment day. Aggregate per order before joining other event tables."
+            ],
+            [
+              "r_hkmdsc",
+              "c_jyccyh",
+              "Unique shipment-record identifier."
+            ],
+            [
+              "r_hkmdsc",
+              "c_xwqrhf",
+              "Order reference matching the order identifier."
+            ],
+            [
+              "r_hkmdsc",
+              "c_kawqir",
+              "Integer shipment day. Use greatest shipment day per order for latest-shipment lag."
+            ],
+            [
+              "r_hkmdsc",
+              "c_bbqkwh",
+              "Delivery indicator, 0 or 1; any 1 for an order means delivered."
+            ]
+          ]
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0) FROM r_zthqjd",
+          "params": {},
+          "columns": [
+            "COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0)"
+          ],
+          "rows": [
+            [
+              10949.0
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is the total gross order value? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 10949.0,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COALESCE((SUM(COALESCE(c_frikui, 0)/100.0 * c_tuxrkv) / COUNT(*)), 0) FROM r_zthqjd",
+          "params": {},
+          "columns": [
+            "COALESCE((SUM(COALESCE(c_frikui, 0)/100.0 * c_tuxrkv) / COUNT(*)), 0)"
+          ],
+          "rows": [
+            [
+              301.890625
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is the average gross order value? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 301.89,
+          "correct": false
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT SUM(c_tuxrkv) FROM r_zthqjd WHERE c_zepmyq = 'confirmed'",
+          "params": {},
+          "columns": [
+            "SUM(c_tuxrkv)"
+          ],
+          "rows": [
+            [
+              30
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "How many units occur in confirmed orders? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 30,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COUNT(DISTINCT c_rxwmxc) FROM r_riisnw WHERE c_aqsnze = 1 AND c_eczbnf = 'North'",
+          "params": {},
+          "columns": [
+            "COUNT(DISTINCT c_rxwmxc)"
+          ],
+          "rows": [
+            [
+              6
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "How many customers currently belong to the North region? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 6,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COALESCE(SUM(COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv), 0) FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc WHERE p.c_aqsnze = 1 AND p.c_eczbnf = 'North'",
+          "params": {},
+          "columns": [
+            "COALESCE(SUM(COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv), 0)"
+          ],
+          "rows": [
+            [
+              3329.0
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is the total gross order value for customers currently in the North region? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 3329.0,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COALESCE(SUM(c_iajheh)/100.0, 0) FROM r_efhmma",
+          "params": {},
+          "columns": [
+            "COALESCE(SUM(c_iajheh)/100.0, 0)"
+          ],
+          "rows": [
+            [
+              2311.75
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is the total monetary value of all refund records? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 2311.75,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COUNT(DISTINCT c_nqyvvf) FROM r_efhmma",
+          "params": {},
+          "columns": [
+            "COUNT(DISTINCT c_nqyvvf)"
+          ],
+          "rows": [
+            [
+              22
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "How many distinct orders have at least one refund record? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 22,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COALESCE(SUM(COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv), 0) FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc WHERE p.c_aqsnze = 1 AND p.c_dkwtic = 'Gold'",
+          "params": {},
+          "columns": [
+            "COALESCE(SUM(COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv), 0)"
+          ],
+          "rows": [
+            [
+              1959.25
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is the total gross order value for customers currently in the Gold tier? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 1959.25,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT SUM((COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE(r.total_refund, 0)) FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc LEFT JOIN (SELECT c_nqyvvf, SUM(c_iajheh)/100.0 AS total_refund FROM r_efhmma GROUP BY c_nqyvvf) r ON o.c_yqaavf = r.c_nqyvvf WHERE p.c_aqsnze = 1 AND p.c_eczbnf = 'North' AND o.c_zepmyq = 'confirmed'",
+          "params": {},
+          "columns": [
+            "SUM((COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE(r.total_refund, 0))"
+          ],
+          "rows": [
+            [
+              2420.5
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is the total net order value of confirmed orders for customers currently in the North region? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 2420.5,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COALESCE(SUM((COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE(r.total_refund, 0)) / COUNT(*), 0) FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc LEFT JOIN (SELECT c_nqyvvf, SUM(c_iajheh)/100.0 AS total_refund FROM r_efhmma GROUP BY c_nqyvvf) r ON o.c_yqaavf = r.c_nqyvvf WHERE p.c_aqsnze = 1 AND p.c_dkwtic = 'Gold'",
+          "params": {},
+          "columns": [
+            "COALESCE(SUM((COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE(r.total_refund, 0)) / COUNT(*), 0)"
+          ],
+          "rows": [
+            [
+              129.58333333333334
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is the average net order value for customers currently in the Gold tier? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 129.58333333333334,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COUNT(DISTINCT p.c_rxwmxc) FROM r_riisnw p JOIN r_zthqjd o ON p.c_rxwmxc = o.c_npjdan LEFT JOIN (SELECT c_nqyvvf, SUM(c_iajheh)/100.0 AS total_refund FROM r_efhmma GROUP BY c_nqyvvf) r ON o.c_yqaavf = r.c_nqyvvf WHERE p.c_aqsnze = 1 AND p.c_dkwtic = 'Gold' AND o.c_zepmyq = 'confirmed' AND ((COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE(r.total_refund, 0)) > 0",
+          "params": {},
+          "columns": [
+            "COUNT(DISTINCT p.c_rxwmxc)"
+          ],
+          "rows": [
+            [
+              5
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "How many distinct current Gold-tier customers have at least one confirmed order with positive net value? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 5,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "WITH refunds AS (SELECT c_nqyvvf, SUM(c_iajheh)/100.0 AS total_refund FROM r_efhmma GROUP BY c_nqyvvf) SELECT COALESCE((SUM(CASE WHEN p.c_eczbnf = 'North' THEN (COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE(r.total_refund, 0) END) / NULLIF(COUNT(DISTINCT CASE WHEN p.c_eczbnf = 'North' THEN o.c_yqaavf END), 0)), 0) - COALESCE((SUM(CASE WHEN p.c_eczbnf = 'South' THEN (COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE(r.total_refund, 0) END) / NULLIF(COUNT(DISTINCT CASE WHEN p.c_eczbnf = 'South' THEN o.c_yqaavf END), 0)), 0) FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc LEFT JOIN refunds r ON o.c_yqaavf = r.c_nqyvvf WHERE p.c_aqsnze = 1",
+          "params": {},
+          "columns": [
+            "COALESCE((SUM(CASE WHEN p.c_eczbnf = 'North' THEN (COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE(r.total_refund, 0) END) / NULLIF(COUNT(DISTINCT CASE WHEN p.c_eczbnf = 'North' THEN o.c_yqaavf END), 0)), 0) - COALESCE((SUM(CASE WHEN p.c_eczbnf = 'South' THEN (COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE(r.total_refund, 0) END) / NULLIF(COUNT(DISTINCT CASE WHEN p.c_eczbnf = 'South' THEN o.c_yqaavf END), 0)), 0)"
+          ],
+          "rows": [
+            [
+              15.900000000000006
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is average net order value in the current North region minus average net order value in the current South region? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 15.9,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "WITH confirmed_all AS (SELECT SUM(COALESCE(c_frikui, 0)/100.0 * c_tuxrkv) AS total_confirmed FROM r_zthqjd WHERE c_zepmyq = 'confirmed'), confirmed_gold AS (SELECT SUM(COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) AS total_gold FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc WHERE p.c_aqsnze = 1 AND p.c_dkwtic = 'Gold' AND o.c_zepmyq = 'confirmed') SELECT COALESCE((total_gold / NULLIF(total_confirmed, 0)) * 100, 0) FROM confirmed_all, confirmed_gold",
+          "params": {},
+          "columns": [
+            "COALESCE((total_gold / NULLIF(total_confirmed, 0)) * 100, 0)"
+          ],
+          "rows": [
+            [
+              74.93731343283582
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What percentage of all confirmed gross order value belongs to customers currently in the Gold tier? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 74.9373,
+          "correct": true
+        }
+      ],
+      "memory_bytes": 14304,
+      "active_memory_bytes": 12165
+    },
+    "warm": {
+      "complete": true,
+      "correct": 7,
+      "n": 8,
+      "minimum_correct": 7,
+      "meets_warm_accuracy_gate": true
+    },
+    "phase_counts": {
+      "ordinary": 14,
+      "old_before": 8,
+      "old_after": 0,
+      "final": 0
+    },
+    "phase_reward": {
+      "ordinary": 0.8571428571428571,
+      "old_before": 0.25,
+      "old_after": null,
+      "final": null
+    },
+    "phase_selects": {
+      "ordinary": 23,
+      "old_before": 2,
+      "old_after": 0,
+      "final": 0
+    },
+    "phase_failures": {
+      "ordinary": 1,
+      "old_before": 0,
+      "old_after": 0,
+      "final": 0
+    }
+  },
+  {
+    "seed": 94001,
+    "condition": "reuse",
+    "arm": "fragments",
+    "ordinary_budget": {
+      "max_total_tokens": 1000000,
+      "max_calls": 280,
+      "total_tokens": 201405,
+      "prompt_tokens": 152796,
+      "completion_tokens": 48609,
+      "calls": 58,
+      "tokenization_seconds": 0.678368890999991,
+      "inference_seconds": 848.2838021729972,
+      "unknown_usage_calls": 1
+    },
+    "panel_budget": {
+      "max_total_tokens": 1000000,
+      "max_calls": 260,
+      "total_tokens": 45912,
+      "prompt_tokens": 37969,
+      "completion_tokens": 7943,
+      "calls": 12,
+      "tokenization_seconds": 0.1479299239995271,
+      "inference_seconds": 140.24893621299998,
+      "unknown_usage_calls": 0
+    },
+    "memory": {
+      "arm": "fragments",
+      "history": [],
+      "episodes": [],
+      "insights": [],
+      "entries": [
+        {
+          "description": "Counts distinct customers in a specified region and active status. Reusable for any region or active flag.",
+          "source": {
+            "format_version": 1,
+            "holes": [
+              {
+                "kind": "text",
+                "name": "active_flag"
+              },
+              {
+                "kind": "text",
+                "name": "region"
+              }
+            ],
+            "sha256": "697342f20d445662aa60c45213444159f37a1a9f910b0ba74373f910cf0fbbac",
+            "sql": "SELECT c_rxwmxc AS customer_id FROM r_riisnw WHERE c_aqsnze = :active_flag AND c_eczbnf = :region",
+            "witness": {
+              "active_flag": "1",
+              "region": "North"
+            }
+          },
+          "guard": {
+            "format_version": 1,
+            "holes": [],
+            "sha256": "275b10fe470cbef5d262ec129e6dcccac13cec6c4f889a9c5314c8fe57e8caed",
+            "sql": "SELECT COUNT(DISTINCT c_rxwmxc) FROM r_riisnw WHERE c_aqsnze = 1 AND c_eczbnf = 'North'",
+            "witness": {}
+          },
+          "expected": {
+            "columns": [
+              "COUNT(DISTINCT c_rxwmxc)"
+            ],
+            "rows": [
+              [
+                6
+              ]
+            ],
+            "truncated": false
+          },
+          "provenance": "3c1b5d1a7ed895776826dacbc2c77651a79bc917e71ee7516d3f08f062466370"
+        },
+        {
+          "description": "This abstraction extracts the monetary value column from refund records and computes the total in dollars by summing normalized values.",
+          "source": {
+            "format_version": 1,
+            "holes": [],
+            "sha256": "034a1acb08446e50fb1642b5c0c24c5253306f732adaf6c747364b7f38aa0df4",
+            "sql": "SELECT c_iajheh AS monetary_value FROM r_efhmma",
+            "witness": {}
+          },
+          "guard": {
+            "format_version": 1,
+            "holes": [],
+            "sha256": "8112f1b4f137d85fade16fa4d5f9b854ad6faf9e06a04effb69964e8157c6e37",
+            "sql": "SELECT COALESCE(SUM(c_iajheh) / 100.0, 0) FROM r_efhmma",
+            "witness": {}
+          },
+          "expected": {
+            "columns": [
+              "COALESCE(SUM(c_iajheh) / 100.0, 0)"
+            ],
+            "rows": [
+              [
+                2311.75
+              ]
+            ],
+            "truncated": false
+          },
+          "provenance": "c304714994a5192c72b713b53fc50694abcba3260a36e48772f57d4409cce378"
+        },
+        {
+          "description": "Generalizes the retrieval of distinct orders with a refund amount greater than zero. The outer query computes the count.",
+          "source": {
+            "format_version": 1,
+            "holes": [
+              {
+                "kind": "integer",
+                "name": "min_refund"
+              }
+            ],
+            "sha256": "126629ad3cc9f216edf2003ab0cd6ce6c7cb6eb7fd9c14bbba8028b3df0593ac",
+            "sql": "SELECT c_nqyvvf AS order_id FROM r_efhmma WHERE c_iajheh > :min_refund",
+            "witness": {
+              "min_refund": 0
+            }
+          },
+          "guard": {
+            "format_version": 1,
+            "holes": [],
+            "sha256": "084170d6b86c8e700a54f9ab07584638e06e08a95bb17468ad47da146581317d",
+            "sql": "SELECT COUNT(DISTINCT c_nqyvvf) FROM r_efhmma",
+            "witness": {}
+          },
+          "expected": {
+            "columns": [
+              "COUNT(DISTINCT c_nqyvvf)"
+            ],
+            "rows": [
+              [
+                22
+              ]
+            ],
+            "truncated": false
+          },
+          "provenance": "8f8dd24d54d244261895d39cb71691edda28ec013ebba89e2574c15ee6bfddcd"
+        },
+        {
+          "description": "Reusable per-customer net order values for confirmed orders and a specific customer segment and region. Aggregated in outer query.",
+          "source": {
+            "format_version": 1,
+            "holes": [
+              {
+                "kind": "text",
+                "name": "customer_segment"
+              },
+              {
+                "kind": "text",
+                "name": "region"
+              }
+            ],
+            "sha256": "af33fb0a96153f49289d513283bff576e1977275b0c8ee0e2bba7c29c0901e69",
+            "sql": "SELECT o.c_yqaavf AS customer_id, (COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE((SELECT SUM(r.c_iajheh)/100.0 FROM r_efhmma r WHERE r.c_nqyvvf = o.c_yqaavf), 0) AS net_order_value FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc WHERE o.c_zepmyq = 'confirmed' AND p.c_aqsnze = :customer_segment AND p.c_eczbnf = :region",
+            "witness": {
+              "customer_segment": "1",
+              "region": "North"
+            }
+          },
+          "guard": {
+            "format_version": 1,
+            "holes": [],
+            "sha256": "25f7bb8b4dbe0af4af65168024778ee1a09ae4cb8045b730fdbf6bcc595936c7",
+            "sql": "SELECT COALESCE(SUM((COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - (SELECT COALESCE(SUM(r.c_iajheh)/100.0, 0) FROM r_efhmma r WHERE r.c_nqyvvf = o.c_yqaavf)), 0) FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc WHERE o.c_zepmyq = 'confirmed' AND p.c_aqsnze = 1 AND p.c_eczbnf = 'North'",
+            "witness": {}
+          },
+          "expected": {
+            "columns": [
+              "COALESCE(SUM((COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - (SELECT COALESCE(SUM(r.c_iajheh)/100.0, 0) FROM r_efhmma r WHERE r.c_nqyvvf = o.c_yqaavf)), 0)"
+            ],
+            "rows": [
+              [
+                2420.5
+              ]
+            ],
+            "truncated": false
+          },
+          "provenance": "c41c816285e467269ed4815700519a2cd732238a47a33cff3ea7715a1cc31bf4"
+        },
+        {
+          "description": "Counts distinct Gold-tier customers with at least one confirmed order of positive net value. Reusable as a core relation for customer-based analyses.",
+          "source": {
+            "format_version": 1,
+            "holes": [],
+            "sha256": "901964587a90cd71a6413d568610e4ad2433f34f698f5270dc8b710359fc5db2",
+            "sql": "SELECT p.c_rxwmxc AS customer_id FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc WHERE p.c_aqsnze = 1 AND p.c_dkwtic = 'Gold' AND o.c_zepmyq = 'confirmed' AND (COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE((SELECT SUM(c_iajheh)/100.0 FROM r_efhmma r WHERE r.c_nqyvvf = o.c_yqaavf), 0) > 0",
+            "witness": {}
+          },
+          "guard": {
+            "format_version": 1,
+            "holes": [],
+            "sha256": "e5a9d9a8cd64fd4c97758ed60c6e61006bc9d4d2be80e5b4604d0720fd5bf2af",
+            "sql": "SELECT COUNT(DISTINCT p.c_rxwmxc) FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc WHERE p.c_aqsnze = 1 AND p.c_dkwtic = 'Gold' AND o.c_zepmyq = 'confirmed' AND (COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE((SELECT SUM(c_iajheh)/100.0 FROM r_efhmma r WHERE r.c_nqyvvf = o.c_yqaavf), 0) > 0",
+            "witness": {}
+          },
+          "expected": {
+            "columns": [
+              "COUNT(DISTINCT p.c_rxwmxc)"
+            ],
+            "rows": [
+              [
+                5
+              ]
+            ],
+            "truncated": false
+          },
+          "provenance": "adc13eddc12993e8421189076b46a16b917f2cc36d35b1cf118681e7ad88706e"
+        }
+      ],
+      "raw_bytes": 0,
+      "peak_memory_bytes": 21561,
+      "events": [
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "328f53c9f4f7a66bbebaea1ec20e54cf65991966a6feb89fe25aff489a35877d",
+          "entry_count": 0,
+          "active_memory_bytes": 3527
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "adbd31f696258cddfdb66cbe224f6b63d12f25c4a52ca59efa72a4758c1bcf86",
+          "entry_count": 0,
+          "active_memory_bytes": 4051
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "ba202de5c5740d6f171e80a6bfb1361db83c4d0929f5f42a1f4da213a0e3dcec",
+          "entry_count": 0,
+          "active_memory_bytes": 4482
+        },
+        {
+          "kind": "abstraction_reconstructed",
+          "evidence_digest": "3c1b5d1a7ed895776826dacbc2c77651a79bc917e71ee7516d3f08f062466370",
+          "fragment_digest": "697342f20d445662aa60c45213444159f37a1a9f910b0ba74373f910cf0fbbac",
+          "source_query_index": 0,
+          "guard_query_index": 0,
+          "verification_query_index": 1,
+          "scope": "one_own_observed_answer_only",
+          "new_sql_text": true
+        },
+        {
+          "kind": "abstraction_empty_relation_checked",
+          "fragment_digest": "697342f20d445662aa60c45213444159f37a1a9f910b0ba74373f910cf0fbbac",
+          "original_evidence_digest": "299d1cacab1d9848e133a4672adb526dff3c1c9db19c542672d135525cfc453e",
+          "reconstruction_query_index": 1,
+          "intervention_query_index": 2,
+          "intervention_digest": "1e1e102f26a5a5b289b639f0e77647333b8fcc375510e5c0e918b9726e10312a",
+          "scope": "one_observed_outer_result_changed_under_empty_relation"
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "9de3892348656967bd8cd5e12eface47548fe9897f44889d518100cf7cb8cef9",
+          "entry_count": 1,
+          "active_memory_bytes": 5811
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "e8cb0583e4ee198a184500fd64aa0c1f73b09f77d98ad4e646714fcec8b3c98f",
+          "entry_count": 1,
+          "active_memory_bytes": 6612
+        },
+        {
+          "kind": "abstraction_reconstructed",
+          "evidence_digest": "c304714994a5192c72b713b53fc50694abcba3260a36e48772f57d4409cce378",
+          "fragment_digest": "034a1acb08446e50fb1642b5c0c24c5253306f732adaf6c747364b7f38aa0df4",
+          "source_query_index": 0,
+          "guard_query_index": 0,
+          "verification_query_index": 3,
+          "scope": "one_own_observed_answer_only",
+          "new_sql_text": true
+        },
+        {
+          "kind": "abstraction_empty_relation_checked",
+          "fragment_digest": "034a1acb08446e50fb1642b5c0c24c5253306f732adaf6c747364b7f38aa0df4",
+          "original_evidence_digest": "ac4e84b0b8a155fbd308a1c0b7a160672739fb6f2b7a140b32a345656419e92a",
+          "reconstruction_query_index": 3,
+          "intervention_query_index": 4,
+          "intervention_digest": "8a406a6f1ac3a7c6f3fbec682c24967a36fbcee4d97d4641736760d292993172",
+          "scope": "one_observed_outer_result_changed_under_empty_relation"
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "4a4a360effc707bd37a4d0a4dc70c59cf5981e1d28e044896f93cc2e9b90167e",
+          "entry_count": 2,
+          "active_memory_bytes": 7792
+        },
+        {
+          "kind": "abstraction_reconstructed",
+          "evidence_digest": "8f8dd24d54d244261895d39cb71691edda28ec013ebba89e2574c15ee6bfddcd",
+          "fragment_digest": "126629ad3cc9f216edf2003ab0cd6ce6c7cb6eb7fd9c14bbba8028b3df0593ac",
+          "source_query_index": 0,
+          "guard_query_index": 0,
+          "verification_query_index": 1,
+          "scope": "one_own_observed_answer_only",
+          "new_sql_text": true
+        },
+        {
+          "kind": "abstraction_empty_relation_checked",
+          "fragment_digest": "126629ad3cc9f216edf2003ab0cd6ce6c7cb6eb7fd9c14bbba8028b3df0593ac",
+          "original_evidence_digest": "69731ebee735682e5371c3a571a301ae28cb519a3c1acf9d61dc4b6e6f1db752",
+          "reconstruction_query_index": 1,
+          "intervention_query_index": 2,
+          "intervention_digest": "174d77f95164f5bb53ad14aaa73a7409f6675fe197fcc1bacd357a37e50bb0a6",
+          "scope": "one_observed_outer_result_changed_under_empty_relation"
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "31ef1f565b8009d6cc82708c91bb192c3a7eb8fa5262617f22d0869a92d37bb6",
+          "entry_count": 3,
+          "active_memory_bytes": 8979
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "f401567fd51f0eb3c5a4dc7965c5ed2ec664d1287cd74cdec59cb1a7ac68a6aa",
+          "entry_count": 3,
+          "active_memory_bytes": 9595
+        },
+        {
+          "kind": "abstraction_reconstructed",
+          "evidence_digest": "c41c816285e467269ed4815700519a2cd732238a47a33cff3ea7715a1cc31bf4",
+          "fragment_digest": "af33fb0a96153f49289d513283bff576e1977275b0c8ee0e2bba7c29c0901e69",
+          "source_query_index": 0,
+          "guard_query_index": 0,
+          "verification_query_index": 1,
+          "scope": "one_own_observed_answer_only",
+          "new_sql_text": true
+        },
+        {
+          "kind": "abstraction_empty_relation_checked",
+          "fragment_digest": "af33fb0a96153f49289d513283bff576e1977275b0c8ee0e2bba7c29c0901e69",
+          "original_evidence_digest": "6821b671b13c7fac084723934cfb9fc70f1f515282c61375ca30f72999c6db13",
+          "reconstruction_query_index": 1,
+          "intervention_query_index": 2,
+          "intervention_digest": "21489acdcd55bde44aabae6e068ffdf5faabefc6189f8806de9912192909fd95",
+          "scope": "one_observed_outer_result_changed_under_empty_relation"
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "19454884b881b45cda0d28eac9f5c685d533efb07302152245807e1c061a8cc4",
+          "entry_count": 4,
+          "active_memory_bytes": 11934
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "42c58eb480ba1cbf76ef25e4dc8a87187c5812a92d83413e9de983a6fe600a8d",
+          "entry_count": 4,
+          "active_memory_bytes": 12760
+        },
+        {
+          "kind": "abstraction_reconstructed",
+          "evidence_digest": "adc13eddc12993e8421189076b46a16b917f2cc36d35b1cf118681e7ad88706e",
+          "fragment_digest": "901964587a90cd71a6413d568610e4ad2433f34f698f5270dc8b710359fc5db2",
+          "source_query_index": 0,
+          "guard_query_index": 0,
+          "verification_query_index": 1,
+          "scope": "one_own_observed_answer_only",
+          "new_sql_text": true
+        },
+        {
+          "kind": "abstraction_empty_relation_checked",
+          "fragment_digest": "901964587a90cd71a6413d568610e4ad2433f34f698f5270dc8b710359fc5db2",
+          "original_evidence_digest": "03fe0ae435e0f560900c50f1814fa185f8485071bfe6ab0fb2e63ba167dff62f",
+          "reconstruction_query_index": 1,
+          "intervention_query_index": 2,
+          "intervention_digest": "2e12230ef540de38e4b8e8300933ad7499c5cfc9ca3ca4773dcfea7cbe19ad82",
+          "scope": "one_observed_outer_result_changed_under_empty_relation"
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "f6902993238f35756d48f6adc2b64f2f46aef01ff0e6cedf7a3d3722334f81f0",
+          "entry_count": 5,
+          "active_memory_bytes": 14738
+        },
+        {
+          "kind": "episode_observed",
+          "evidence_digest": "1fa23f52363dd1b636c9e2990a1704e8b98d39a02ff7a748c2e15086675a225c",
+          "entry_count": 5,
+          "active_memory_bytes": 15680
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "observation",
+          "sql": "SELECT * FROM catalog",
+          "params": {},
+          "columns": [
+            "table_name",
+            "column_name",
+            "description"
+          ],
+          "rows": [
+            [
+              "r_zthqjd",
+              "*",
+              "One row per order. Gross value is unit amount times quantity. Net value is gross value minus the sum of refund records for that order. Monetary outputs are dollars."
+            ],
+            [
+              "r_zthqjd",
+              "c_yqaavf",
+              "Unique order identifier; refund and shipment order references point here."
+            ],
+            [
+              "r_zthqjd",
+              "c_npjdan",
+              "Customer reference, matching the customer reference in the profile table. Select one current profile per customer before joining orders."
+            ],
+            [
+              "r_zthqjd",
+              "c_frikui",
+              "Unit amount is stored in integer cents; divide by 100.0 to obtain dollars. A NULL unit amount means zero; retain this order in monetary averages and totals."
+            ],
+            [
+              "r_zthqjd",
+              "c_tuxrkv",
+              "Positive integer quantity purchased in this order."
+            ],
+            [
+              "r_zthqjd",
+              "c_zepmyq",
+              "Order status: confirmed, cancelled, or pending. Include all statuses unless the question restricts them."
+            ],
+            [
+              "r_zthqjd",
+              "c_exxvfn",
+              "Integer day of order placement; shipment day minus this value is shipment lag in days."
+            ],
+            [
+              "r_zthqjd",
+              "c_cwkqbk",
+              "Order channel: web or store."
+            ],
+            [
+              "r_riisnw",
+              "*",
+              "Customer profiles. Historical snapshots; multiple profile rows can share a customer reference. The current profile is the unique row whose current flag equals 1; largest revision need not be current."
+            ],
+            [
+              "r_riisnw",
+              "c_cpdsfw",
+              "Unique profile-row identifier; this is not the order customer reference."
+            ],
+            [
+              "r_riisnw",
+              "c_rxwmxc",
+              "Customer reference used by orders; it may repeat across profile snapshots."
+            ],
+            [
+              "r_riisnw",
+              "c_eczbnf",
+              "Region for this profile snapshot: North or South; use the current snapshot."
+            ],
+            [
+              "r_riisnw",
+              "c_dkwtic",
+              "Tier for this profile snapshot: Gold or Silver; use the current snapshot."
+            ],
+            [
+              "r_riisnw",
+              "c_qceicb",
+              "Integer profile revision, unique within each customer."
+            ],
+            [
+              "r_riisnw",
+              "c_aqsnze",
+              "Current flag; see the profile-table convention to decide whether it is authoritative."
+            ],
+            [
+              "r_efhmma",
+              "*",
+              "Refund events. An order can have multiple records; sum refund amounts once per order before combining them with order values or shipments. Orders without refund events have zero refunds."
+            ],
+            [
+              "r_efhmma",
+              "c_jsajyc",
+              "Unique refund-record identifier."
+            ],
+            [
+              "r_efhmma",
+              "c_nqyvvf",
+              "Order reference matching the order identifier."
+            ],
+            [
+              "r_efhmma",
+              "c_iajheh",
+              "Refund amount stored in integer cents; divide by 100.0 to obtain dollars; never NULL."
+            ],
+            [
+              "r_hkmdsc",
+              "*",
+              "Shipment events. An order can have multiple records. An order is delivered if any record has delivered flag 1; no shipment records means not delivered. The latest shipment has greatest shipment day. Aggregate per order before joining other event tables."
+            ],
+            [
+              "r_hkmdsc",
+              "c_jyccyh",
+              "Unique shipment-record identifier."
+            ],
+            [
+              "r_hkmdsc",
+              "c_xwqrhf",
+              "Order reference matching the order identifier."
+            ],
+            [
+              "r_hkmdsc",
+              "c_kawqir",
+              "Integer shipment day. Use greatest shipment day per order for latest-shipment lag."
+            ],
+            [
+              "r_hkmdsc",
+              "c_bbqkwh",
+              "Delivery indicator, 0 or 1; any 1 for an order means delivered."
+            ]
+          ]
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0) FROM r_zthqjd",
+          "params": {},
+          "columns": [
+            "COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0)"
+          ],
+          "rows": [
+            [
+              10949.0
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is the total gross order value? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 10949.0,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COALESCE((SUM(COALESCE(c_frikui, 0)/100.0 * c_tuxrkv) / COUNT(*)), 0) FROM r_zthqjd",
+          "params": {},
+          "columns": [
+            "COALESCE((SUM(COALESCE(c_frikui, 0)/100.0 * c_tuxrkv) / COUNT(*)), 0)"
+          ],
+          "rows": [
+            [
+              301.890625
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is the average gross order value? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 301.89,
+          "correct": false
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT SUM(c_tuxrkv) FROM r_zthqjd WHERE c_zepmyq = 'confirmed'",
+          "params": {},
+          "columns": [
+            "SUM(c_tuxrkv)"
+          ],
+          "rows": [
+            [
+              30
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "How many units occur in confirmed orders? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 30,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COUNT(DISTINCT c_rxwmxc) FROM r_riisnw WHERE c_aqsnze = 1 AND c_eczbnf = 'North'",
+          "params": {},
+          "columns": [
+            "COUNT(DISTINCT c_rxwmxc)"
+          ],
+          "rows": [
+            [
+              6
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "How many customers currently belong to the North region? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 6,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COUNT(DISTINCT c_rxwmxc) FROM r_riisnw WHERE c_aqsnze = 1 AND c_eczbnf = 'North'",
+          "params": {},
+          "columns": [
+            "COUNT(DISTINCT c_rxwmxc)"
+          ],
+          "rows": [
+            [
+              3
+            ]
+          ]
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0) FROM r_zthqjd JOIN r_riisnw ON c_npjdan = c_rxwmxc WHERE c_aqsnze = 1 AND c_eczbnf = 'North'",
+          "params": {},
+          "columns": [
+            "COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0)"
+          ],
+          "rows": [
+            [
+              3329.0
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is the total gross order value for customers currently in the North region? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 3329.0,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COALESCE(SUM(c_iajheh) / 100.0, 0) FROM r_efhmma",
+          "params": {},
+          "columns": [
+            "COALESCE(SUM(c_iajheh) / 100.0, 0)"
+          ],
+          "rows": [
+            [
+              2311.75
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is the total monetary value of all refund records? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 2311.75,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COUNT(DISTINCT c_nqyvvf) FROM r_efhmma",
+          "params": {},
+          "columns": [
+            "COUNT(DISTINCT c_nqyvvf)"
+          ],
+          "rows": [
+            [
+              22
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "How many distinct orders have at least one refund record? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 22,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0) FROM r_zthqjd JOIN r_riisnw ON c_npjdan = c_rxwmxc WHERE c_aqsnze = 1 AND c_dkwtic = 'Gold'",
+          "params": {},
+          "columns": [
+            "COALESCE(SUM(COALESCE(c_frikui, 0) / 100.0 * c_tuxrkv), 0)"
+          ],
+          "rows": [
+            [
+              1959.25
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is the total gross order value for customers currently in the Gold tier? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 1959.25,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COALESCE(SUM((COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - (SELECT COALESCE(SUM(r.c_iajheh)/100.0, 0) FROM r_efhmma r WHERE r.c_nqyvvf = o.c_yqaavf)), 0) FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc WHERE o.c_zepmyq = 'confirmed' AND p.c_aqsnze = 1 AND p.c_eczbnf = 'North'",
+          "params": {},
+          "columns": [
+            "COALESCE(SUM((COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - (SELECT COALESCE(SUM(r.c_iajheh)/100.0, 0) FROM r_efhmma r WHERE r.c_nqyvvf = o.c_yqaavf)), 0)"
+          ],
+          "rows": [
+            [
+              2420.5
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is the total net order value of confirmed orders for customers currently in the North region? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 2420.5,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "WITH gold_net_orders AS (SELECT o.c_yqaavf AS customer_id, (COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE((SELECT SUM(r.c_iajheh)/100.0 FROM r_efhmma r WHERE r.c_nqyvvf = o.c_yqaavf), 0) AS net_order_value FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc WHERE p.c_aqsnze = 1 AND p.c_dkwtic = 'Gold') SELECT COALESCE(AVG(net_order_value), 0) FROM gold_net_orders",
+          "params": {},
+          "columns": [
+            "COALESCE(AVG(net_order_value), 0)"
+          ],
+          "rows": [
+            [
+              129.58333333333334
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is the average net order value for customers currently in the Gold tier? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 129.58,
+          "correct": false
+        },
+        {
+          "kind": "observation",
+          "sql": "SELECT COUNT(DISTINCT p.c_rxwmxc) FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc WHERE p.c_aqsnze = 1 AND p.c_dkwtic = 'Gold' AND o.c_zepmyq = 'confirmed' AND (COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE((SELECT SUM(c_iajheh)/100.0 FROM r_efhmma r WHERE r.c_nqyvvf = o.c_yqaavf), 0) > 0",
+          "params": {},
+          "columns": [
+            "COUNT(DISTINCT p.c_rxwmxc)"
+          ],
+          "rows": [
+            [
+              5
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "How many distinct current Gold-tier customers have at least one confirmed order with positive net value? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 5,
+          "correct": true
+        },
+        {
+          "kind": "observation",
+          "sql": "WITH north_south_net AS (SELECT p.c_eczbnf AS region, (COALESCE(o.c_frikui, 0)/100.0 * o.c_tuxrkv) - COALESCE((SELECT SUM(r.c_iajheh)/100.0 FROM r_efhmma r WHERE r.c_nqyvvf = o.c_yqaavf), 0) AS net_order_value FROM r_zthqjd o JOIN r_riisnw p ON o.c_npjdan = p.c_rxwmxc WHERE p.c_aqsnze = 1) SELECT COALESCE(AVG(CASE WHEN region = 'North' THEN net_order_value END), 0) - COALESCE(AVG(CASE WHEN region = 'South' THEN net_order_value END), 0) AS avg_difference FROM north_south_net",
+          "params": {},
+          "columns": [
+            "avg_difference"
+          ],
+          "rows": [
+            [
+              15.900000000000006
+            ]
+          ]
+        },
+        {
+          "kind": "answer_feedback",
+          "question": "What is average net order value in the current North region minus average net order value in the current South region? Return one number. Monetary outputs are dollars. An empty total or undefined ratio or average is 0. The catalog table documents the current schema and business conventions.",
+          "answer": 15.9,
+          "correct": true
+        }
+      ],
+      "memory_bytes": 21561,
+      "active_memory_bytes": 15680
+    },
+    "warm": {
+      "complete": true,
+      "correct": 7,
+      "n": 8,
+      "minimum_correct": 7,
+      "meets_warm_accuracy_gate": true
+    },
+    "phase_counts": {
+      "ordinary": 14,
+      "old_before": 8,
+      "old_after": 0,
+      "final": 0
+    },
+    "phase_reward": {
+      "ordinary": 0.7142857142857143,
+      "old_before": 0.5,
+      "old_after": null,
+      "final": null
+    },
+    "phase_selects": {
+      "ordinary": 47,
+      "old_before": 4,
+      "old_after": 0,
+      "final": 0
+    },
+    "phase_failures": {
+      "ordinary": 2,
+      "old_before": 0,
+      "old_after": 0,
+      "final": 0
+    }
+  }
+]

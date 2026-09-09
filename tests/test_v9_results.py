@@ -9,6 +9,7 @@ import importlib.util
 import json
 from pathlib import Path
 import shutil
+import subprocess
 
 import pytest
 
@@ -60,7 +61,10 @@ def saved_tree(tmp_path_factory):
     for name in required:
         target = root / name
         target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(REPO / name, target)
+        # Receipt hashes refer to the historical implementation. Current SQLite
+        # compatibility fixes must not be relabeled as the original source.
+        target.write_bytes(subprocess.check_output(
+            ['git', 'show', '88b0a1b7c093c21135489a3e5cbbda3bb0634536:' + name], cwd=REPO))
     (root / 'paper').mkdir()
     return root
 

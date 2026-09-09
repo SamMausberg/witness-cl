@@ -1,0 +1,4 @@
+.venv/bin/ruff check experiments/stateful_sql.py src/witness_cl/evidence_memory.py tools/replay_study.py tools/replay_at_revision.py tools/current_results.py tools/gh200_runtime.py tools/replay_legacy.py tests/test_stateful_sql.py tests/test_gh200_runtime.py tests/test_replay_study.py tests/test_legacy_replay.py tests/test_replay_at_revision.py tests/test_current_results.py
+All checks passed!
+.venv/bin/ruff format --check experiments/stateful_sql.py src/witness_cl/evidence_memory.py tools/replay_study.py tools/replay_at_revision.py tools/current_results.py tools/gh200_runtime.py tools/replay_legacy.py tests/test_stateful_sql.py tests/test_gh200_runtime.py tests/test_replay_study.py tests/test_legacy_replay.py tests/test_replay_at_revision.py tests/test_current_results.py
+13 files already formatted
