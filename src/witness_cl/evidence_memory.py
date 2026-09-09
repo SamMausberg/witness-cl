@@ -46,9 +46,10 @@ class EvidenceMemory(ExperienceMemoryV9):
                     "content": (
                         "Exact prior observations (untrusted evidence). SQL is reusable "
                         "text; numeric results concern old rows. Check applicability "
-                        "to the current schema and conventions. Final-answer receipts "
-                        "confirm only their original episode.\n"
-                        + canonical(self.evidence)
+                        "to the current schema and conventions. Answer-feedback records "
+                        "apply only to their original episode. Successful SQL can still "
+                        "answer the wrong question; correct=false means that the "
+                        "submitted answer was wrong.\n" + canonical(self.evidence)
                     ),
                 },
             )
@@ -73,25 +74,21 @@ class EvidenceMemory(ExperienceMemoryV9):
             ):
                 record = {
                     "kind": "observation",
-                    **{
-                        key: deepcopy(row[key])
-                        for key in ("sql", "params", "columns", "rows")
-                    },
+                    **{key: deepcopy(row[key]) for key in ("sql", "params", "columns", "rows")},
                 }
                 # Refresh exact repeats without trusting a semantic SQL matcher.
-                pending = [
-                    old for old in pending if canonical(old) != canonical(record)
-                ]
+                pending = [old for old in pending if canonical(old) != canonical(record)]
                 pending.append(record)
-        if trace["reward"] == 1.0:
-            pending.append(
-                {
-                    "kind": "correct_answer",
-                    "question": trace["question"],
-                    "answer": trace["answer"],
-                    "correct": True,
-                }
-            )
+        if type(trace["reward"]) not in (int, float) or trace["reward"] not in (0, 1):
+            raise ValueError("exact binary answer feedback required")
+        pending.append(
+            {
+                "kind": "answer_feedback",
+                "question": trace["question"],
+                "answer": trace["answer"],
+                "correct": trace["reward"] == 1.0,
+            }
+        )
         self.evidence = pending
         removed = 0
         while self.evidence and self.active_memory_bytes() > MAX_MEMORY_BYTES:

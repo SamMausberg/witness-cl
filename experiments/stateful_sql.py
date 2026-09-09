@@ -34,7 +34,20 @@ from witness_cl.sql_env_v9 import evaluator_metadata, make_stream, open_episode
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-from experiments.competence_interactive_v9 import V9_SYSTEM
+from experiments.competence_interactive_v9 import V9_SYSTEM as _ORIGINAL_SOLVER
+
+# Shared engine semantics, selected after the recorded initial development run.
+# No domain recipe, target formula or evaluator answer is supplied.
+V9_SYSTEM = (
+    _ORIGINAL_SOLVER
+    + """
+SQLite arithmetic rule: division of two INTEGER operands truncates the fraction.
+When a question requires fractional quantities, explicitly use REAL arithmetic
+(for example a REAL operand or CAST(... AS REAL)). A successful SELECT proves
+that SQL executed, not that its result answers the question. Use explicit false
+answer feedback as evidence that the submitted answer was wrong.
+"""
+)
 
 MAX_ACTIONS = 10
 SOURCE_FILES = (
@@ -53,6 +66,7 @@ SOURCE_FILES = (
     "src/witness_cl/model_v9_compatible.py",
     "experiments/stateful_sql.py",
     "docs/v10/PROTOCOL.md",
+    "docs/v10/FOLLOWUP_PROTOCOL.md",
 )
 _COUNTERS = (
     "total_tokens",
@@ -70,17 +84,11 @@ def _text_hash(value):
 
 
 def source_hashes():
-    return {
-        name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
-        for name in SOURCE_FILES
-    }
+    return {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in SOURCE_FILES}
 
 
 def _check_output_caps(client, solve, reflection):
-    if any(
-        type(value) is not int or not 1 <= value <= 8192
-        for value in (solve, reflection)
-    ):
+    if any(type(value) is not int or not 1 <= value <= 8192 for value in (solve, reflection)):
         raise ValueError("solve and reflection caps must be exact integers in 1..8192")
     if max(solve, reflection) > client.max_output:
         raise ValueError("client output ceiling is below the shared per-call caps")
@@ -91,9 +99,7 @@ def _proposal_messages_v9(trace):
     payload = json.loads(messages[1]["content"])
     reward = payload.pop("feedback_reward")
     payload["correct"] = reward == 1.0
-    payload["feedback_meaning"] = (
-        "Correct on this episode only; no hidden answer is supplied."
-    )
+    payload["feedback_meaning"] = "Correct on this episode only; no hidden answer is supplied."
     messages[1]["content"] = canonical(payload)
     return messages
 
@@ -116,9 +122,9 @@ class ResourceLimitsV9:
         if (
             type(self.wall_seconds) not in (int, float)
             or not math.isfinite(self.wall_seconds)
-            or not 0 < self.wall_seconds <= 1800
+            or not 0 < self.wall_seconds <= 2700
         ):
-            raise ValueError("wall_seconds must be positive and at most 1800")
+            raise ValueError("wall_seconds must be positive and at most 2700")
         for name in (
             "ordinary_tokens",
             "panel_tokens",
@@ -129,9 +135,7 @@ class ResourceLimitsV9:
         ):
             value = getattr(self, name)
             if type(value) is not int or value < 1:
-                raise ValueError(
-                    "positive exact integer resource cap required: " + name
-                )
+                raise ValueError("positive exact integer resource cap required: " + name)
         for name in ("solve_output_tokens", "reflection_output_tokens"):
             value = getattr(self, name)
             if type(value) is not int or not 1 <= value <= 8192:
@@ -160,9 +164,7 @@ class _CombinedBudget:
             # tighter remaining shared allowance for that post-response check.
             return min(
                 self._local.max_total_tokens,
-                self._local.total_tokens
-                + self._total.max_total_tokens
-                - self._total.total_tokens,
+                self._local.total_tokens + self._total.max_total_tokens - self._total.total_tokens,
             )
         return getattr(self._local, name)
 
@@ -183,9 +185,7 @@ class _SharedBudgetClient:
         return self.client.max_output
 
     def complete(self, messages, budget, **kwargs):
-        return self.client.complete(
-            messages, _CombinedBudget(budget, self.total), **kwargs
-        )
+        return self.client.complete(messages, _CombinedBudget(budget, self.total), **kwargs)
 
 
 def execute_episode(
@@ -264,9 +264,7 @@ def execute_episode(
 
         def feedback(row, detail=None):
             msg = {
-                "tool_result": {
-                    k: row[k] for k in ("columns", "rows", "error", "truncated")
-                },
+                "tool_result": {k: row[k] for k in ("columns", "rows", "error", "truncated")},
                 "remaining_selects": public.max_selects - session.select_attempts,
             }
             if detail is not None:
@@ -332,16 +330,9 @@ def execute_episode(
                         )
                     if memory.arm == "fragments":
                         guard = entry.guard_fragment().original_prepared_query
-                        observed = query(
-                            guard.sql, guard.parameters, "applicability_check"
-                        )
-                        actual = {
-                            k: observed[k] for k in ("columns", "rows", "truncated")
-                        }
-                        passed = (
-                            observed["error"] is None
-                            and canonical(actual) == entry.expected
-                        )
+                        observed = query(guard.sql, guard.parameters, "applicability_check")
+                        actual = {k: observed[k] for k in ("columns", "rows", "truncated")}
+                        passed = observed["error"] is None and canonical(actual) == entry.expected
                         trace["actions"][-1]["guard_passed"] = passed
                         if not passed:
                             feedback(
@@ -382,9 +373,7 @@ def execute_episode(
                 if trace["reward"] == 1.0
                 else "The submitted answer was INCORRECT.",
             }
-            conversation.append(
-                {"role": "user", "content": canonical(trace["feedback"])}
-            )
+            conversation.append({"role": "user", "content": canonical(trace["feedback"])})
             if learn:
                 synthesizing = memory.arm in ("fragments", "fragments_unchecked")
                 reflection_text = None
@@ -444,9 +433,7 @@ def execute_episode(
 
 def write_json(path, payload):
     temp = path.with_suffix(path.suffix + ".tmp")
-    temp.write_text(
-        json.dumps(payload, indent=2, allow_nan=False) + "\n", encoding="utf-8"
-    )
+    temp.write_text(json.dumps(payload, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     temp.replace(path)
 
 
@@ -454,24 +441,19 @@ def _schedule(stream, stage):
     schedule = [("ordinary", i, spec) for i, spec in enumerate(stream.ordinary[:8])]
     if stage == "full":
         schedule += [("old_before", i, spec) for i, spec in enumerate(stream.old_panel)]
-        schedule += [
-            ("ordinary", i + 8, spec) for i, spec in enumerate(stream.ordinary[8:])
-        ]
+        schedule += [("ordinary", i + 8, spec) for i, spec in enumerate(stream.ordinary[8:])]
         schedule += [("old_after", i, spec) for i, spec in enumerate(stream.old_panel)]
         schedule += [("final", i, spec) for i, spec in enumerate(stream.final_panel)]
     return schedule
 
 
 def _warm_result(traces, minimum):
-    warm = [
-        row for row in traces if row["phase"] == "ordinary" and row["episode_index"] < 8
-    ]
+    warm = [row for row in traces if row["phase"] == "ordinary" and row["episode_index"] < 8]
     complete = (
         len(warm) == 8
         and sorted(row["episode_index"] for row in warm) == list(range(8))
         and all(
-            row["status"] in ("completed", "no_valid_answer")
-            and not row.get("reflection_stop")
+            row["status"] in ("completed", "no_valid_answer") and not row.get("reflection_stop")
             for row in warm
         )
     )
@@ -527,10 +509,7 @@ def run_study(
         or any(type(seed) is not int or not 94000 <= seed <= 94003 for seed in seeds)
         or not conditions
         or len(set(conditions)) != len(conditions)
-        or any(
-            condition not in ("reuse", "nonreuse", "near_match")
-            for condition in conditions
-        )
+        or any(condition not in ("reuse", "nonreuse", "near_match") for condition in conditions)
         or len(seeds) * len(conditions) > 4
     ):
         raise ValueError(
@@ -539,14 +518,10 @@ def run_study(
     if not arms or len(set(arms)) != len(arms) or any(arm not in ARMS for arm in arms):
         raise ValueError("unique known memory arms required")
     EvidenceMemory(arms[0], system_prompt)
-    _check_output_caps(
-        client, limits.solve_output_tokens, limits.reflection_output_tokens
-    )
+    _check_output_caps(client, limits.solve_output_tokens, limits.reflection_output_tokens)
     out = Path(out)
     if out.exists():
-        raise FileExistsError(
-            "completed and partial runs are immutable; use a new directory"
-        )
+        raise FileExistsError("completed and partial runs are immutable; use a new directory")
     started = time.monotonic()
     deadline = started + limits.wall_seconds
     source_before = source_hashes()
@@ -625,9 +600,7 @@ def run_study(
                 }
                 rows = {arm: [] for arm in arms}
                 active_runs.append((seed, condition, memories, ordinary, panels, rows))
-                for step, (phase, index, episode) in enumerate(
-                    _schedule(stream, stage)
-                ):
+                for step, (phase, index, episode) in enumerate(_schedule(stream, stage)):
                     if step == 8 and stage == "full" and gate_after_warm:
                         if not all(
                             _warm_result(rows[arm], minimum_warm_correct)[
@@ -644,9 +617,7 @@ def run_study(
                         if time.monotonic() >= deadline:
                             raise BudgetStop("global_study_wall_ceiling")
                         if memories[arm].system_prompt != system_prompt:
-                            raise RuntimeError(
-                                "shared solver prompt changed during the run"
-                            )
+                            raise RuntimeError("shared solver prompt changed during the run")
                         budget = ordinary[arm] if phase == "ordinary" else panels[arm]
                         trace = execute_episode(
                             episode,
@@ -658,9 +629,7 @@ def run_study(
                             solve_output_tokens=limits.solve_output_tokens,
                             reflection_output_tokens=limits.reflection_output_tokens,
                         )
-                        trace.update(
-                            seed=seed, condition=condition, arm=arm, episode_index=index
-                        )
+                        trace.update(seed=seed, condition=condition, arm=arm, episode_index=index)
                         with (out / f"{seed}-{condition}-{arm}.jsonl").open(
                             "a", encoding="utf-8"
                         ) as handle:
@@ -679,9 +648,7 @@ def run_study(
                                     "reward": trace["reward"],
                                     "selects": trace["select_attempts"],
                                     "status": trace["status"],
-                                    "elapsed_seconds": round(
-                                        time.monotonic() - started, 2
-                                    ),
+                                    "elapsed_seconds": round(time.monotonic() - started, 2),
                                 }
                             ),
                             flush=True,
@@ -690,9 +657,7 @@ def run_study(
                             raise RuntimeError(
                                 "backend/runtime failure; all remaining runs stopped"
                             )
-                        if trace["status"] == "resource_stop" or trace.get(
-                            "reflection_stop"
-                        ):
+                        if trace["status"] == "resource_stop" or trace.get("reflection_stop"):
                             raise BudgetStop(
                                 trace.get("stop_reason")
                                 or trace.get("reflection_stop")
@@ -732,9 +697,7 @@ def run_study(
                         "panel_budget": panels[arm].to_dict(),
                         "memory": memories[arm].snapshot(),
                         "warm": _warm_result(traces, minimum_warm_correct),
-                        "phase_counts": {
-                            phase: len(items) for phase, items in grouped.items()
-                        },
+                        "phase_counts": {phase: len(items) for phase, items in grouped.items()},
                         "phase_reward": {
                             phase: sum(trace["reward"] for trace in items) / len(items)
                             if items
@@ -746,9 +709,7 @@ def run_study(
                             for phase, items in grouped.items()
                         },
                         "phase_failures": {
-                            phase: sum(
-                                trace["status"] != "completed" for trace in items
-                            )
+                            phase: sum(trace["status"] != "completed" for trace in items)
                             for phase, items in grouped.items()
                         },
                     }
@@ -831,13 +792,9 @@ def run_study(
             and all(row["warm"]["meets_warm_accuracy_gate"] for row in aggregate)
         )
         write_json(out / "summary.json", aggregate)
-        manifest["summary_sha256"] = hashlib.sha256(
-            (out / "summary.json").read_bytes()
-        ).hexdigest()
+        manifest["summary_sha256"] = hashlib.sha256((out / "summary.json").read_bytes()).hexdigest()
         manifest["elapsed_seconds"] = time.monotonic() - started
-        manifest["wall_cap_satisfied"] = (
-            manifest["elapsed_seconds"] <= limits.wall_seconds
-        )
+        manifest["wall_cap_satisfied"] = manifest["elapsed_seconds"] <= limits.wall_seconds
         if not manifest["wall_cap_satisfied"]:
             manifest.update(
                 status="stopped",
@@ -862,9 +819,7 @@ def main():
     parser.add_argument("--key-file", type=Path, required=True)
     parser.add_argument("--model", required=True)
     parser.add_argument("--endpoint", default="http://127.0.0.1:18085")
-    parser.add_argument(
-        "--stage", choices=("qualification", "full"), default="qualification"
-    )
+    parser.add_argument("--stage", choices=("qualification", "full"), default="qualification")
     parser.add_argument("--system-prompt-file", type=Path)
     parser.add_argument("--seeds", nargs="+", type=int, default=[94000])
     parser.add_argument(
@@ -897,9 +852,7 @@ def main():
             type=int,
             default=getattr(DEFAULT_LIMITS, field),
         )
-    parser.add_argument(
-        "--wall-seconds", type=float, default=DEFAULT_LIMITS.wall_seconds
-    )
+    parser.add_argument("--wall-seconds", type=float, default=DEFAULT_LIMITS.wall_seconds)
     parser.add_argument("--context-tokens", type=int, default=65536)
     parser.add_argument("--timeout", type=float, default=120.0)
     parser.add_argument("--response-mode", choices=("schema", "json"), default="schema")
@@ -912,10 +865,7 @@ def main():
     parser.add_argument("--no-thinking", action="store_true")
     args = parser.parse_args()
     limits = ResourceLimitsV9(
-        **{
-            field: getattr(args, field)
-            for field in ResourceLimitsV9.__dataclass_fields__
-        }
+        **{field: getattr(args, field) for field in ResourceLimitsV9.__dataclass_fields__}
     )
     decoding = DecodingV9(
         temperature=args.temperature,
