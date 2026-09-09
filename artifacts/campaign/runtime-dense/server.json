@@ -1,0 +1,114 @@
+{
+  "started_utc": "2026-09-09T21:45:34.998039+00:00",
+  "status": "running",
+  "config": {
+    "schema_version": 1,
+    "purpose": "separate official dense text-only BF16 development candidate; historical coder studies stay frozen",
+    "model": {
+      "repository": "Qwen/Qwen3.6-27B",
+      "revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+      "alias": "Qwen3.6-27B-Text-BF16-campaign",
+      "filename": "Qwen3.6-27B-Text-BF16.gguf",
+      "outtype": "bf16",
+      "native_context_tokens": 262144
+    },
+    "backend": {
+      "repository": "https://github.com/ggml-org/llama.cpp",
+      "commit": "434ddbbc0e30522e897670681e503b797c12b7c1"
+    },
+    "download": {
+      "parallel_files": 4,
+      "attempts_per_file": 5,
+      "timeout_seconds": 60
+    },
+    "server": {
+      "host": "127.0.0.1",
+      "port": 18086,
+      "context_tokens": 65536,
+      "parallel_sequences": 1,
+      "cpu_threads": 16,
+      "gpu_layers": 99,
+      "kv_cache_dtype": "f16",
+      "memory_reserve_mib": 8192,
+      "maximum_lifetime_seconds": null,
+      "rope_scaling": "none"
+    },
+    "decoding": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 65536,
+      "frequency_penalty": 0.0,
+      "thinking": false,
+      "seed": 42
+    }
+  },
+  "command": [
+    "/home/ubuntu/.local/share/witness-cl/llama.cpp-dense/build/bin/llama-server",
+    "--model",
+    "/home/ubuntu/.local/share/witness-cl/campaign-dense/models/Qwen3.6-27B-Text-BF16.gguf",
+    "--alias",
+    "Qwen3.6-27B-Text-BF16-campaign",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "18086",
+    "--api-key-file",
+    "/home/ubuntu/.local/share/witness-cl/campaign-dense/runtime/server.key",
+    "--ctx-size",
+    "65536",
+    "--parallel",
+    "1",
+    "--n-gpu-layers",
+    "99",
+    "--threads",
+    "16",
+    "--flash-attn",
+    "on",
+    "--cache-type-k",
+    "f16",
+    "--cache-type-v",
+    "f16",
+    "--jinja",
+    "--no-context-shift",
+    "--no-webui",
+    "--rope-scaling",
+    "none"
+  ],
+  "backend": {
+    "commit": "434ddbbc0e30522e897670681e503b797c12b7c1",
+    "converter_sha256": "e9a1da876330bbce9687541ab31736542a01b4ac43c6686126514a50f122fb7f",
+    "binary_sha256": "8e55619a12339d07aef77951b5f853b90fbe02115cb76cfa196291e8d784eef1",
+    "shared_libraries_sha256": {
+      "build/bin/libggml-base.so.0.23.0": "ba51df10d76cac9c17a4e2a149b883b389ac0bf10ecd727e399044aa146a7d37",
+      "build/bin/libggml-cpu.so.0.23.0": "89192125cd4b7628d9ddc3272ba992c9d84fbae13b40fa9f4c8c834bba9008e7",
+      "build/bin/libggml-cuda.so.0.23.0": "3ba754ef17b447a5b1a5db9f8cfcdc6b8b3ef64195c18a20a6e55d35ac22a765",
+      "build/bin/libggml.so.0.23.0": "2a7897a3109395fdb231ad0ee34997ab0cf08d4fbea646d6cc6b5010c146f8ac",
+      "build/bin/libllama-common.so.0.4.0": "74ebdca2ecf1e1ca99720eb5928eef6836de9fbd1b50356b2a31d1975aaafa78",
+      "build/bin/libllama-server-impl.so": "1bc56922e30a01991cbd966814658d5896ecfa6a355e463e72e3c76cb5416985",
+      "build/bin/libllama.so.0.4.0": "514b13138412c3837d09e8b76f3f4f7934ba735b1e68483e4e7ad36549e13b20",
+      "build/bin/libmtmd.so.0.4.0": "7821f5607d71cafb0f1c957f0306a6543bdbde36765a3e5c8ad4d0c0a123bbb2"
+    }
+  },
+  "model_sha256": "e2a674c2e137641526292db3fdc220537761bf731602c723845ce8279b305045",
+  "conversion_receipt_sha256": "04859951b6b580f9f6aa52e42c150bc5446d15d6fcab1edce43a6912878f064f",
+  "source_sha256": "22784f53c4cf815d6f7f1cbd56905b4879ce27c18e25d94bb634a4f22474bcbf",
+  "credential_value_recorded": false,
+  "memory_fit": {
+    "timestamp_utc": "2026-09-09T21:45:34.995512+00:00",
+    "model_bytes": 54657732928,
+    "kv_bytes_estimate": 17179869184,
+    "reserve_mib": 8192,
+    "required_free_mib": 76702,
+    "gpu_total_mib": 97871,
+    "gpu_free_mib": 96765,
+    "fits": true,
+    "interpretation": "pre-launch estimate with explicit f16 KV cache and workspace reserve; actual allocation remains measured at startup",
+    "hybrid_attention_bound": "all layers charged full-attention KV even when linear attention uses less"
+  },
+  "hardware": "name, memory.total [MiB], driver_version\nNVIDIA GH200 480GB, 97871 MiB, 580.105.08\n",
+  "pid": 161293
+}

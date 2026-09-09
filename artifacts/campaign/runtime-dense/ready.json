@@ -1,0 +1,16 @@
+{
+  "status": "ready_for_frozen_qualification",
+  "checked_utc": "2026-09-09T21:46:13.973351+00:00",
+  "server_receipt_sha256": "c0b5f41912fca9bc43c86d885ea78de1e65007b9f58fbf0df24cb81ee9a45781",
+  "smoke_receipt_sha256": "dd672bf86f6d023d3227ce8b2bbe7bf8eeb2096c6418fefe092e0fb39e96b76f",
+  "decoding_protocol_sha256": "348ef1b2af01e8f808998ab3b46a7192cffd275d365b4fa0983523b3af53859d",
+  "metadata_receipt_sha256": "17b4bbaa4a70249f2164d4b8d646ae7ad099f689c38e053a60a5d71936fe685b",
+  "health": {
+    "status": "ok"
+  },
+  "gpu_memory_total_used_free_mib": "97871, 54056, 42713",
+  "pid": 161293,
+  "setup_smoke_calls": 2,
+  "setup_smoke_known_tokens": 112,
+  "qualification_calls_made_by_runtime_preparation": 0
+}

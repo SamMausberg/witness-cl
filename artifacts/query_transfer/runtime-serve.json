@@ -1,6 +1,6 @@
 {
   "started_utc": "2026-09-09T20:09:40.159968+00:00",
-  "status": "running",
+  "status": "stopped",
   "config": {
     "schema_version": 1,
     "purpose": "prospective cold SQL backbone qualification runtime",
@@ -156,5 +156,7 @@
   ],
   "credential_value_recorded": false,
   "maximum_lifetime_seconds": 7200,
-  "pid": 79767
+  "pid": 79767,
+  "returncode": 0,
+  "finished_utc": "2026-09-09T20:59:59.332413+00:00"
 }

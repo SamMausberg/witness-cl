@@ -1,0 +1,14 @@
+{
+  "kind": "software_validation_not_empirical_results",
+  "tests": 1991,
+  "passed": 1978,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 13,
+  "seconds": 83.323,
+  "junit_sha256": "4aca7baf5abdac21dfdd721ba9f65a206cf5da16910794d1e3e8715baaad2ffa",
+  "lint": "make lint passed",
+  "paper": "Stage 1 registered-report manuscript; 10 pages; make paper passed",
+  "native_optional_validation_receipt": "artifacts/campaign/native-preparation/receipt.json",
+  "model_calls_made_by_validation": 0
+}

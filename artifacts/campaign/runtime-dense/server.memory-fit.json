@@ -1,0 +1,12 @@
+{
+  "timestamp_utc": "2026-09-09T21:45:34.995512+00:00",
+  "model_bytes": 54657732928,
+  "kv_bytes_estimate": 17179869184,
+  "reserve_mib": 8192,
+  "required_free_mib": 76702,
+  "gpu_total_mib": 97871,
+  "gpu_free_mib": 96765,
+  "fits": true,
+  "interpretation": "pre-launch estimate with explicit f16 KV cache and workspace reserve; actual allocation remains measured at startup",
+  "hybrid_attention_bound": "all layers charged full-attention KV even when linear attention uses less"
+}

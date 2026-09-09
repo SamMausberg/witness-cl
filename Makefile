@@ -18,7 +18,32 @@ CURRENT_PYTHON = \
 	tests/test_current_results.py \
 	tests/test_formal_v10.py
 
-.PHONY: test lint format formal paper legacy-audit v9-audit cpp-check cuda-check clean
+CAMPAIGN_PYTHON = \
+	experiments/delayed_sql.py \
+	src/witness_cl/delayed_memory.py \
+	src/witness_cl/campaign_env.py \
+	src/witness_cl/campaign_analysis.py \
+	src/witness_cl/campaign_io.py \
+	src/witness_cl/model_campaign.py \
+	src/witness_cl/ace_memory.py \
+	src/witness_cl/query_memory.py \
+	src/witness_cl/source_views.py \
+	src/witness_cl/relational_program.py \
+	integrations/clbench/ace.py \
+	integrations/clbench/witness.py \
+	tools/campaign.py \
+	tools/campaign_runtime.py \
+	tools/campaign_results.py \
+	tools/campaign_sequence.py \
+	tools/campaign_auxiliary_sequence.py \
+	tools/campaign_supervisor.py \
+	tools/campaign_pilot_report.py \
+	tools/campaign_assay.py \
+	tools/native_campaign.py \
+	tools/publish_campaign.py \
+	tools/audit_campaign_mechanism.py
+
+.PHONY: test lint format formal paper technical-report legacy-audit v9-audit cpp-check cuda-check clean
 
 test:
 	mkdir -p $(TEST_ARTIFACTS)
@@ -26,6 +51,7 @@ test:
 lint:
 	$(RUFF) check $(CURRENT_PYTHON)
 	$(RUFF) format --check $(CURRENT_PYTHON)
+	$(RUFF) check $(CAMPAIGN_PYTHON)
 format:
 	$(RUFF) format $(CURRENT_PYTHON)
 formal:
@@ -35,6 +61,12 @@ paper:
 	cd paper && bibtex main
 	cd paper && pdflatex -interaction=nonstopmode -halt-on-error main.tex
 	cd paper && pdflatex -interaction=nonstopmode -halt-on-error main.tex
+
+technical-report:
+	cd paper && pdflatex -interaction=nonstopmode -halt-on-error technical_report.tex
+	cd paper && bibtex technical_report
+	cd paper && pdflatex -interaction=nonstopmode -halt-on-error technical_report.tex
+	cd paper && pdflatex -interaction=nonstopmode -halt-on-error technical_report.tex
 legacy-audit:
 	$(PYTHON) tools/replay_legacy.py --output artifacts/v10/legacy-replay.json
 v9-audit: legacy-audit

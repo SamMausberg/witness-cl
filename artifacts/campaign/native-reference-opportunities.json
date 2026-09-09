@@ -1,0 +1,414 @@
+{
+  "diagnostic_only": true,
+  "not_learner_input": true,
+  "gold_sql_executed": false,
+  "scope": "Reference decomposition opportunities only; does not prove no alternative correct learner decomposition exists. Whole public schema excludes internal sqlite_sequence, whose untypedDDL is unsupported.",
+  "upstream_commit": "5f8c50eb1e84b2eda2ef4faff757dfc812a0ea26",
+  "dataset_revision": "a0cc57eeb9a54f01c0490a1b46cb705b4e05aa19",
+  "source_sha256": {
+    "src/witness_cl/source_views.py": "af8f334427d01e9825a860fdfa16de6ade9aaac5acde3a0a68f42d8c09e655b8",
+    "src/witness_cl/delayed_memory.py": "d502da48bf016cb12ddba0b271a14332fd5ba7261c8f6c84f31d61aa060de199"
+  },
+  "reports": [
+    {
+      "stage": "pre",
+      "question_count": 20,
+      "supported": 7,
+      "templates": [
+        {
+          "question_id": 1,
+          "bindings": {},
+          "full_template_sha256": "63ed55692ecee7e560b7717833affee75f17dd91382b15ca41aaf1e36de54df9",
+          "row_template_sha256": "1f8282ecf7b3c01e888b81390ef2536870a570ccdd667a0f08b93774fc1bda6c"
+        },
+        {
+          "question_id": 2,
+          "bindings": {},
+          "full_template_sha256": "12d04113843cca1e5b381574c89c468ea71a92604ed5ea1ca62bfc41da93ba9a",
+          "row_template_sha256": "1933f3c6d8b167f85ee43f3d3dee0b45713023a10e21027e94cec76275ee57e1"
+        },
+        {
+          "question_id": 4,
+          "bindings": {},
+          "full_template_sha256": "2e64d0ea532680f489b1c4bd676d62aed4d93033c3fc74844a9687eea327e149",
+          "row_template_sha256": "f6056976421bc11bae244a8eac08a1aa83fbc7f12fc605c7b08c0b383e61da46"
+        },
+        {
+          "question_id": 6,
+          "bindings": {},
+          "full_template_sha256": "aff37310ee6fac3329832dc5a45c00938dd57676d53c6ae0b5e420b6bcf0e58e",
+          "row_template_sha256": "98fd9223dcc6d1a519f795816f15712304d3bd72518d5b72edcfc536dcd9c7e2"
+        },
+        {
+          "question_id": 9,
+          "bindings": {},
+          "full_template_sha256": "0f7474826e786eab5c7d6e280b4b13beaf433dcc5185a272214b158dd100d45b",
+          "row_template_sha256": "bc4fb1890ea7751846c6d746a9738ea71044801bc5f0a25dd3dbb0c863ee28c6"
+        },
+        {
+          "question_id": 12,
+          "bindings": {},
+          "full_template_sha256": "e75cd86b7e098aa3c27368feb96185f0f8e2a7391f2166b3a34eba2e80ca2ce6",
+          "row_template_sha256": "cc8dbe123e9fb33794773e82168e5b1c05b364490e004b2a2100fc06260b86d8"
+        },
+        {
+          "question_id": 15,
+          "bindings": {
+            "sv_text_0": "Computers & Accessories",
+            "sv_text_1": "Computers & Accessories"
+          },
+          "full_template_sha256": "d9856e84c5e687f24719061eb0ac43d44917765b406f937c7d207190cbdd3c60",
+          "row_template_sha256": "8402cde5ea8e1b9c7f85b8d7f55ba3a0f1dafa60a8e68e22d9f9f5ad7f12c33f"
+        }
+      ],
+      "unsupported": [
+        {
+          "question_id": 3,
+          "reason": "function Anonymous is outside the lifting language"
+        },
+        {
+          "question_id": 5,
+          "reason": "root order is outside the scalar aggregate language"
+        },
+        {
+          "question_id": 7,
+          "reason": "projection must contain only supported scalar aggregates/arithmetic"
+        },
+        {
+          "question_id": 8,
+          "reason": "function Substring is outside the lifting language"
+        },
+        {
+          "question_id": 10,
+          "reason": "function Anonymous is outside the lifting language"
+        },
+        {
+          "question_id": 11,
+          "reason": "function Length is outside the lifting language"
+        },
+        {
+          "question_id": 13,
+          "reason": "projection must contain only supported scalar aggregates/arithmetic"
+        },
+        {
+          "question_id": 14,
+          "reason": "a row source is required"
+        },
+        {
+          "question_id": 16,
+          "reason": "root group is outside the scalar aggregate language"
+        },
+        {
+          "question_id": 17,
+          "reason": "root group is outside the scalar aggregate language"
+        },
+        {
+          "question_id": 18,
+          "reason": "a row source is required"
+        },
+        {
+          "question_id": 19,
+          "reason": "a row source is required"
+        },
+        {
+          "question_id": 20,
+          "reason": "a row source is required"
+        }
+      ],
+      "full_template_sha256_changed_binding_pairs": [],
+      "full_template_sha256_any_binding_pairs": [],
+      "row_template_sha256_changed_binding_pairs": [],
+      "row_template_sha256_any_binding_pairs": []
+    },
+    {
+      "stage": "pre",
+      "question_count": 30,
+      "supported": 9,
+      "templates": [
+        {
+          "question_id": 1,
+          "bindings": {},
+          "full_template_sha256": "63ed55692ecee7e560b7717833affee75f17dd91382b15ca41aaf1e36de54df9",
+          "row_template_sha256": "1f8282ecf7b3c01e888b81390ef2536870a570ccdd667a0f08b93774fc1bda6c"
+        },
+        {
+          "question_id": 2,
+          "bindings": {},
+          "full_template_sha256": "12d04113843cca1e5b381574c89c468ea71a92604ed5ea1ca62bfc41da93ba9a",
+          "row_template_sha256": "1933f3c6d8b167f85ee43f3d3dee0b45713023a10e21027e94cec76275ee57e1"
+        },
+        {
+          "question_id": 4,
+          "bindings": {},
+          "full_template_sha256": "2e64d0ea532680f489b1c4bd676d62aed4d93033c3fc74844a9687eea327e149",
+          "row_template_sha256": "f6056976421bc11bae244a8eac08a1aa83fbc7f12fc605c7b08c0b383e61da46"
+        },
+        {
+          "question_id": 6,
+          "bindings": {},
+          "full_template_sha256": "aff37310ee6fac3329832dc5a45c00938dd57676d53c6ae0b5e420b6bcf0e58e",
+          "row_template_sha256": "98fd9223dcc6d1a519f795816f15712304d3bd72518d5b72edcfc536dcd9c7e2"
+        },
+        {
+          "question_id": 9,
+          "bindings": {},
+          "full_template_sha256": "0f7474826e786eab5c7d6e280b4b13beaf433dcc5185a272214b158dd100d45b",
+          "row_template_sha256": "bc4fb1890ea7751846c6d746a9738ea71044801bc5f0a25dd3dbb0c863ee28c6"
+        },
+        {
+          "question_id": 12,
+          "bindings": {},
+          "full_template_sha256": "e75cd86b7e098aa3c27368feb96185f0f8e2a7391f2166b3a34eba2e80ca2ce6",
+          "row_template_sha256": "cc8dbe123e9fb33794773e82168e5b1c05b364490e004b2a2100fc06260b86d8"
+        },
+        {
+          "question_id": 15,
+          "bindings": {
+            "sv_text_0": "Computers & Accessories",
+            "sv_text_1": "Computers & Accessories"
+          },
+          "full_template_sha256": "d9856e84c5e687f24719061eb0ac43d44917765b406f937c7d207190cbdd3c60",
+          "row_template_sha256": "8402cde5ea8e1b9c7f85b8d7f55ba3a0f1dafa60a8e68e22d9f9f5ad7f12c33f"
+        },
+        {
+          "question_id": 23,
+          "bindings": {},
+          "full_template_sha256": "841904b4f292cc5aecab9047244b58768d235029c5906c364d30216bfa7c94fb",
+          "row_template_sha256": "e7550390ff49331039921a35265d240493c1fa7556eb73a2ea2539b4829be5ee"
+        },
+        {
+          "question_id": 24,
+          "bindings": {},
+          "full_template_sha256": "8fda54ec0ce6222f594975cb0557057897849729dc9c987d9f9cbfa43ac30275",
+          "row_template_sha256": "a65e7070113bdec3f8dd36e6182d2b71229c54aa28fd3242c2a57783a37b3b3d"
+        }
+      ],
+      "unsupported": [
+        {
+          "question_id": 3,
+          "reason": "function Anonymous is outside the lifting language"
+        },
+        {
+          "question_id": 5,
+          "reason": "root order is outside the scalar aggregate language"
+        },
+        {
+          "question_id": 7,
+          "reason": "projection must contain only supported scalar aggregates/arithmetic"
+        },
+        {
+          "question_id": 8,
+          "reason": "function Substring is outside the lifting language"
+        },
+        {
+          "question_id": 10,
+          "reason": "function Anonymous is outside the lifting language"
+        },
+        {
+          "question_id": 11,
+          "reason": "function Length is outside the lifting language"
+        },
+        {
+          "question_id": 13,
+          "reason": "projection must contain only supported scalar aggregates/arithmetic"
+        },
+        {
+          "question_id": 14,
+          "reason": "a row source is required"
+        },
+        {
+          "question_id": 16,
+          "reason": "root group is outside the scalar aggregate language"
+        },
+        {
+          "question_id": 17,
+          "reason": "root group is outside the scalar aggregate language"
+        },
+        {
+          "question_id": 18,
+          "reason": "a row source is required"
+        },
+        {
+          "question_id": 19,
+          "reason": "a row source is required"
+        },
+        {
+          "question_id": 20,
+          "reason": "a row source is required"
+        },
+        {
+          "question_id": 21,
+          "reason": "root group is outside the scalar aggregate language"
+        },
+        {
+          "question_id": 22,
+          "reason": "function Anonymous is outside the lifting language"
+        },
+        {
+          "question_id": 25,
+          "reason": "projection must contain only supported scalar aggregates/arithmetic"
+        },
+        {
+          "question_id": 26,
+          "reason": "a row source is required"
+        },
+        {
+          "question_id": 27,
+          "reason": "Union is outside the lifting language"
+        },
+        {
+          "question_id": 28,
+          "reason": "a row source is required"
+        },
+        {
+          "question_id": 29,
+          "reason": "Intersect is outside the lifting language"
+        },
+        {
+          "question_id": 30,
+          "reason": "root order is outside the scalar aggregate language"
+        }
+      ],
+      "full_template_sha256_changed_binding_pairs": [],
+      "full_template_sha256_any_binding_pairs": [],
+      "row_template_sha256_changed_binding_pairs": [],
+      "row_template_sha256_any_binding_pairs": []
+    },
+    {
+      "stage": "post",
+      "question_count": 20,
+      "supported": 14,
+      "templates": [
+        {
+          "question_id": 101,
+          "bindings": {},
+          "full_template_sha256": "2ad44c9ca5490715e592616302094004049cf810fd10cbcc66261cf673a2983e",
+          "row_template_sha256": "808b26ea7445d4b00d593227f9c96c7d0a9f8da86d8ba89110641504482a37d2"
+        },
+        {
+          "question_id": 103,
+          "bindings": {},
+          "full_template_sha256": "74a0a7f6ea6f061daeda02e2a675034a73f2b2fb1a1e05d47bffbe08d5450422",
+          "row_template_sha256": "a8bfa0a70dcfbd40c3d61b143e875842c71057422f8398be71cc6579d4750b9b"
+        },
+        {
+          "question_id": 104,
+          "bindings": {},
+          "full_template_sha256": "b066a0db6cae6dee64da605977f291fc30ce6c8c308775395be960c51fbb7393",
+          "row_template_sha256": "f3a02e39b4859c4f1c72daa5037481e0c5aada448da7195e91f6c561a2d3f727"
+        },
+        {
+          "question_id": 105,
+          "bindings": {},
+          "full_template_sha256": "3d12a0e29b5fb6188a4095f246997e77e9ec5a561d23a4cef00d99ed36a0994c",
+          "row_template_sha256": "539b3b68774b63c0a031b0648b56f84eaf646c7f19bd80fc0442356ee66e85eb"
+        },
+        {
+          "question_id": 107,
+          "bindings": {
+            "sv_text_0": "active"
+          },
+          "full_template_sha256": "bb111326ad5a540058f1556f4e1113d866d3fef8857099b852b9c28c0549c73b",
+          "row_template_sha256": "b18b0be2b6c68f0b75498dbb5002b6ce3f0c246ae9cffe3e77a8990ce0d946d7"
+        },
+        {
+          "question_id": 108,
+          "bindings": {},
+          "full_template_sha256": "ebb6d2eed80b88ad611987e42d37f5049ed4c4308f913526c378cd8965c6009d",
+          "row_template_sha256": "3ed47a333658d6b0335126da8c256e07b7a4d7451b66b1b63409018e43fa1761"
+        },
+        {
+          "question_id": 111,
+          "bindings": {
+            "sv_text_0": "Brand",
+            "sv_text_1": "Brand"
+          },
+          "full_template_sha256": "7d6f1613d251586f37c4e75ae8c2d68612fe56cb8904733de15ebe662a7eab58",
+          "row_template_sha256": "c99e6320c35ee03812404b1ec40fde240f0f5ee16d2cf58509183f39fa813e0f"
+        },
+        {
+          "question_id": 113,
+          "bindings": {
+            "sv_text_0": "active"
+          },
+          "full_template_sha256": "fedf4cc59bb08bc980a07b8cfa21eabc9153245676d88984fb655c726ffeed8d",
+          "row_template_sha256": "ed52d02a90b81d194f27af39b073cf5387e3b6bde4ffc98e508d741df7f0084a"
+        },
+        {
+          "question_id": 115,
+          "bindings": {
+            "sv_text_0": "archived"
+          },
+          "full_template_sha256": "65ae5015396284d11d656ea96e9a4af192668138cd68764289f21ed34e9222ed",
+          "row_template_sha256": "60c4afddb7064f9a0078654a369dd8c37deb30b6323f27e7797282eb19cf7a05"
+        },
+        {
+          "question_id": 116,
+          "bindings": {
+            "sv_text_0": "active"
+          },
+          "full_template_sha256": "e52df10da4e7a51cf8faab80e5ef47ce5f0a92ebc1661fd43788ccf5f60ca356",
+          "row_template_sha256": "c0d925427e1e18b513ce4931347f6be0b32c2e37b97b98f0933d3f720e8e7ba7"
+        },
+        {
+          "question_id": 117,
+          "bindings": {
+            "sv_text_0": "Brand"
+          },
+          "full_template_sha256": "844b0c46dd1fe8a75b96cfc160f9c97d306ea28b9dcf0c7549d6fc1f7e1bcf54",
+          "row_template_sha256": "1544058ea68ced8b3c6ea7f5944bb8315a0e782177e075f984ed41b42d7b228c"
+        },
+        {
+          "question_id": 118,
+          "bindings": {},
+          "full_template_sha256": "b17be959b79a8a10959e73e2ba0c0b0f54ab2c0f3a091905dae1aeaac662deef",
+          "row_template_sha256": "4e1c96e0dcdd37cd567ecc905d76e61b4d9de5eabb1b0e653af42c1c54e52d64"
+        },
+        {
+          "question_id": 119,
+          "bindings": {},
+          "full_template_sha256": "86089e722ac91f43bcc0e6673fd9620270ed8c9ef4a8bd4fd0bd6941c7d61f4e",
+          "row_template_sha256": "7d6dbdce64cdb7b6946d708206d2bfe5b684ffc1088d00a7b1632ce43ecec24a"
+        },
+        {
+          "question_id": 120,
+          "bindings": {
+            "sv_text_0": "Brand"
+          },
+          "full_template_sha256": "e9c589e00a61624efec9582f15757de8bd0978b2601a39b87f646bf044989cd3",
+          "row_template_sha256": "4525ca2389fa37c66aedf7c4024bc7087d07fd04474db595f0ce59dcbcddbe87"
+        }
+      ],
+      "unsupported": [
+        {
+          "question_id": 102,
+          "reason": "projection must contain only supported scalar aggregates/arithmetic"
+        },
+        {
+          "question_id": 106,
+          "reason": "a row source is required"
+        },
+        {
+          "question_id": 109,
+          "reason": "function Exists is outside the lifting language"
+        },
+        {
+          "question_id": 110,
+          "reason": "a row source is required"
+        },
+        {
+          "question_id": 112,
+          "reason": "projection must contain only supported scalar aggregates/arithmetic"
+        },
+        {
+          "question_id": 114,
+          "reason": "root order is outside the scalar aggregate language"
+        }
+      ],
+      "full_template_sha256_changed_binding_pairs": [],
+      "full_template_sha256_any_binding_pairs": [],
+      "row_template_sha256_changed_binding_pairs": [],
+      "row_template_sha256_any_binding_pairs": []
+    }
+  ]
+}

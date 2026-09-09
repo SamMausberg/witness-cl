@@ -24,6 +24,7 @@ paper/*.fls
 paper/*.log
 paper/*.out
 .env
+artifacts/campaign/**/invocation.lock
 artifacts/local_model*.jsonl
 
 artifacts/v2/*.pid

@@ -1,0 +1,10 @@
+0.00.190.159 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.190.315 I srv          init: The UI is disabled
+0.00.190.320 I srv          init: Use --ui/--no-ui (or deprecated --webui/--no-webui) to enable/disable
+0.00.191.615 I srv    load_model: loading model '/home/ubuntu/.local/share/witness-cl/campaign/models/Qwen3-Coder-30B-A3B-Instruct-BF16.gguf'
+0.00.679.376 W load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.01.334.003 I cmn          init: llama threadpool init, n_threads = 16
+0.01.374.918 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 65536, kv_unified = 'false'
+0.01.377.752 I srv  llama_server: model loaded
+0.01.377.766 I srv  llama_server: listening on http://127.0.0.1:18085
+1.19.603.185 I srv    operator(): operator(): cleaning up before exit...

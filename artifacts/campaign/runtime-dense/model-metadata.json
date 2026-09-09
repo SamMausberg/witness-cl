@@ -1,0 +1,35 @@
+{
+  "status": "verified_metadata",
+  "file": "/home/ubuntu/.local/share/witness-cl/campaign-dense/models/Qwen3.6-27B-Text-BF16.gguf",
+  "tensor_count": 866,
+  "tensor_types": {
+    "BF16": 506,
+    "F32": 360
+  },
+  "quantized_tensors": 0,
+  "vision_tensors": 0,
+  "fields": {
+    "general.architecture": "qwen35",
+    "general.name": "Source",
+    "general.file_type": [
+      32
+    ],
+    "qwen35.context_length": [
+      262144
+    ],
+    "qwen35.block_count": [
+      65
+    ],
+    "qwen35.embedding_length": [
+      5120
+    ],
+    "qwen35.attention.head_count": [
+      24
+    ],
+    "qwen35.attention.head_count_kv": [
+      4
+    ]
+  },
+  "generation_calls": 0,
+  "model_sha256": "e2a674c2e137641526292db3fdc220537761bf731602c723845ce8279b305045"
+}

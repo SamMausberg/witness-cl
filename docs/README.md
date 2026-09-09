@@ -1,6 +1,7 @@
 # Research documentation
 
-Start with the [current results](v10/RESULTS.md), [paper](../paper/main.pdf),
+Start with the [campaign plan](campaign/PLAN.md), [ACE/native integration](campaign/ACE_NATIVE.md),
+[historical results](v10/RESULTS.md), [paper](../paper/main.pdf),
 [protocol](v10/PROTOCOL.md), [formal boundary](v10/FORMAL.md),
 [related work](v10/RELATED_WORK.md), and [GH200 reproduction](v10/HARDWARE.md).
 

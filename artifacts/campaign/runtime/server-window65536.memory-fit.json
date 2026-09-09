@@ -1,0 +1,11 @@
+{
+  "timestamp_utc": "2026-09-09T21:16:40.124236+00:00",
+  "model_bytes": 61095804768,
+  "kv_bytes_estimate": 6442450944,
+  "reserve_mib": 8192,
+  "required_free_mib": 72602,
+  "gpu_total_mib": 97871,
+  "gpu_free_mib": 96765,
+  "fits": true,
+  "interpretation": "pre-launch estimate with explicit f16 KV cache and workspace reserve; actual allocation remains measured at startup"
+}

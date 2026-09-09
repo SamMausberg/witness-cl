@@ -1,0 +1,115 @@
+{
+  "started_utc": "2026-09-09T21:16:40.126625+00:00",
+  "status": "stopped",
+  "config": {
+    "schema_version": 1,
+    "purpose": "isolated resumable campaign runtime; preparation does not generate model output",
+    "model": {
+      "repository": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      "revision": "b2cff646eb4bb1d68355c01b18ae02e7cf42d120",
+      "alias": "Qwen3-Coder-30B-A3B-Instruct-BF16-campaign",
+      "filename": "Qwen3-Coder-30B-A3B-Instruct-BF16.gguf",
+      "outtype": "bf16",
+      "native_context_tokens": 262144
+    },
+    "backend": {
+      "repository": "https://github.com/ggml-org/llama.cpp",
+      "commit": "91f6a6cf361385700bbe15981f0f39909df77498"
+    },
+    "download": {
+      "parallel_files": 4,
+      "attempts_per_file": 5,
+      "timeout_seconds": 60
+    },
+    "server": {
+      "host": "127.0.0.1",
+      "port": 18085,
+      "context_tokens": 65536,
+      "parallel_sequences": 1,
+      "cpu_threads": 16,
+      "gpu_layers": 99,
+      "kv_cache_dtype": "f16",
+      "memory_reserve_mib": 8192,
+      "maximum_lifetime_seconds": null,
+      "rope_scaling": "none"
+    },
+    "decoding": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.05,
+      "repeat_last_n": 65536,
+      "frequency_penalty": 0.0,
+      "seed": 42,
+      "thinking": false
+    }
+  },
+  "command": [
+    "/home/ubuntu/.local/share/witness-cl/llama.cpp/build/bin/llama-server",
+    "--model",
+    "/home/ubuntu/.local/share/witness-cl/campaign/models/Qwen3-Coder-30B-A3B-Instruct-BF16.gguf",
+    "--alias",
+    "Qwen3-Coder-30B-A3B-Instruct-BF16-campaign",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "18085",
+    "--api-key-file",
+    "/home/ubuntu/.local/share/witness-cl/campaign/runtime/server.key",
+    "--ctx-size",
+    "65536",
+    "--parallel",
+    "1",
+    "--n-gpu-layers",
+    "99",
+    "--threads",
+    "16",
+    "--flash-attn",
+    "on",
+    "--cache-type-k",
+    "f16",
+    "--cache-type-v",
+    "f16",
+    "--jinja",
+    "--no-context-shift",
+    "--no-webui",
+    "--rope-scaling",
+    "none"
+  ],
+  "backend": {
+    "commit": "91f6a6cf361385700bbe15981f0f39909df77498",
+    "converter_sha256": "e9a1da876330bbce9687541ab31736542a01b4ac43c6686126514a50f122fb7f",
+    "binary_sha256": "f23f82f8109ef639185b4480061c10f19d80b0204db180abf9483ec70ba0c0e7",
+    "shared_libraries_sha256": {
+      "build/bin/libggml-base.so.0.23.0": "c0312c25b60ed293b6bfa5ccee59ae9469cc73454290b52bd95f6654350ce4b2",
+      "build/bin/libggml-cpu.so.0.23.0": "8a966ad6b6724d6eff5418941ed18e56a6b6985df6288742fe33bb7964cd403d",
+      "build/bin/libggml-cuda.so.0.23.0": "84ed9a7a0cf1fbd721c6df15a5212d4f621e1c927c3b7e14d4beb24453c7634c",
+      "build/bin/libggml.so.0.23.0": "46cc47d97c51acde7cfa92f9462c0d5a6fe1bb194b20f6394ea42f8d15058e2a",
+      "build/bin/libllama-common.so.0.4.0": "fd7f0890e8c862db21c7ee5ffbb7873123677e999e0fff6bf3047e0e6ad2b7b1",
+      "build/bin/libllama-server-impl.so": "fa9dc55573063b4543788167acd5d3e8860dd3e45dd603b595760ae6fd358e09",
+      "build/bin/libllama.so.0.4.0": "f711fe11c563561b884ed438ad222952ff0d5b4b9acc20c3021c87139b240467",
+      "build/bin/libmtmd.so.0.4.0": "f59f2deacf430d309763bb17702a9a2892f3b3ad0b5c2ada52832402f70daa73"
+    }
+  },
+  "model_sha256": "17fed3ecdd6b616c464913f0ade38bf29cbbf7d7eea31f5ba014f8b7bc6d4ca9",
+  "conversion_receipt_sha256": "a6340e854f7051d5cf5a02c86dea79ce3c254f0ab3f1d44321107c86f96dcc45",
+  "source_sha256": "ff966c569ed55d4d592308a59391e423fb15b7a05c69a6b344f54c50654b2998",
+  "credential_value_recorded": false,
+  "memory_fit": {
+    "timestamp_utc": "2026-09-09T21:16:40.124236+00:00",
+    "model_bytes": 61095804768,
+    "kv_bytes_estimate": 6442450944,
+    "reserve_mib": 8192,
+    "required_free_mib": 72602,
+    "gpu_total_mib": 97871,
+    "gpu_free_mib": 96765,
+    "fits": true,
+    "interpretation": "pre-launch estimate with explicit f16 KV cache and workspace reserve; actual allocation remains measured at startup"
+  },
+  "hardware": "name, memory.total [MiB], driver_version\nNVIDIA GH200 480GB, 97871 MiB, 580.105.08\n",
+  "pid": 127414,
+  "returncode": 0,
+  "finished_utc": "2026-09-09T21:39:06.323224+00:00"
+}

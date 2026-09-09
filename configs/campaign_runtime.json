@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "purpose": "isolated resumable campaign runtime; preparation does not generate model output",
+  "model": {
+    "repository": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+    "revision": "b2cff646eb4bb1d68355c01b18ae02e7cf42d120",
+    "alias": "Qwen3-Coder-30B-A3B-Instruct-BF16-campaign",
+    "filename": "Qwen3-Coder-30B-A3B-Instruct-BF16.gguf",
+    "outtype": "bf16",
+    "native_context_tokens": 262144
+  },
+  "backend": {
+    "repository": "https://github.com/ggml-org/llama.cpp",
+    "commit": "91f6a6cf361385700bbe15981f0f39909df77498"
+  },
+  "download": {"parallel_files": 4, "attempts_per_file": 5, "timeout_seconds": 60},
+  "server": {
+    "host": "127.0.0.1",
+    "port": 18085,
+    "context_tokens": 65536,
+    "parallel_sequences": 1,
+    "cpu_threads": 16,
+    "gpu_layers": 99,
+    "kv_cache_dtype": "f16",
+    "memory_reserve_mib": 8192,
+    "maximum_lifetime_seconds": null,
+    "rope_scaling": "none"
+  },
+  "decoding": {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.05,
+    "repeat_last_n": 65536,
+    "frequency_penalty": 0.0,
+    "seed": 42,
+    "thinking": false
+  }
+}

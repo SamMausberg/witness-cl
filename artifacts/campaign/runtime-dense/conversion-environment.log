@@ -1,0 +1,49 @@
+Using Python 3.10.12 environment at: /home/ubuntu/.local/share/witness-cl/campaign-dense/conversion-venv
+Resolved 28 packages in 162ms
+Downloading sentencepiece (1.3MiB)
+Downloading tokenizers (3.1MiB)
+Downloading setuptools (1.0MiB)
+Downloading sympy (6.0MiB)
+Downloading networkx (1.6MiB)
+Downloading transformers (11.4MiB)
+Downloading numpy (13.6MiB)
+Downloading torch (141.3MiB)
+ Downloaded setuptools
+ Downloaded sentencepiece
+ Downloaded networkx
+ Downloaded tokenizers
+ Downloaded sympy
+ Downloaded numpy
+ Downloaded transformers
+ Downloaded torch
+Prepared 22 packages in 1.03s
+Uninstalled 1 package in 4ms
+Installed 27 packages in 144ms
+ + certifi==2026.7.22
+ + charset-normalizer==3.5.1
+ + filelock==3.32.6
+ + fsspec==2026.7.0
+ + gguf==0.19.0
+ + hf-xet==1.6.0
+ + huggingface-hub==0.36.2
+ + idna==3.19
+ + jinja2==3.1.6
+ + markupsafe==3.0.3
+ + mpmath==1.3.0
+ + networkx==3.4.2
+ + numpy==2.2.6
+ + protobuf==4.25.9
+ + pyyaml==6.0.3
+ + regex==2026.9.10
+ + requests==2.34.2
+ + safetensors==0.8.0
+ + sentencepiece==0.2.2
+ - setuptools==84.0.0
+ + setuptools==81.0.0
+ + sympy==1.14.0
+ + tokenizers==0.22.2
+ + torch==2.11.0+cpu
+ + tqdm==4.70.0
+ + transformers==4.57.6
+ + typing-extensions==4.16.0
+ + urllib3==2.7.0

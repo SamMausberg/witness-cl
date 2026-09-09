@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/witness-cl/tools/campaign_runtime.py", line 640, in <module>
+    main()
+  File "/home/ubuntu/witness-cl/tools/campaign_runtime.py", line 634, in main
+    smoke(cfg, args.cache, args.backend, receipt)
+  File "/home/ubuntu/witness-cl/tools/campaign_runtime.py", line 592, in smoke
+    content = client.complete(
+              ^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/witness-cl/src/witness_cl/model_v9_compatible.py", line 31, in complete
+    return super().complete(messages, budget, phase=phase, records=records,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/witness-cl/src/witness_cl/model_v9.py", line 124, in complete
+    response = self._post('/v1/chat/completions', deepcopy(body),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/witness-cl/src/witness_cl/model_v8.py", line 91, in _post
+    with self.opener.open(req, timeout=timeout) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.12.14-linux-aarch64-gnu/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.12.14-linux-aarch64-gnu/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.12.14-linux-aarch64-gnu/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.12.14-linux-aarch64-gnu/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.12.14-linux-aarch64-gnu/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 400: Bad Request

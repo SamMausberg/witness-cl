@@ -2394,3 +2394,4 @@
 38.20.461.823 I slot print_timing: id  0 | task 87937 |       total time =   13862.40 ms /  2719 tokens
 38.20.461.824 I slot print_timing: id  0 | task 87937 |    graphs reused =      87535
 38.20.461.951 I slot      release: id  0 | task 87937 | stop processing: n_tokens = 2718, truncated = 0
+50.18.910.464 I srv    operator(): operator(): cleaning up before exit...

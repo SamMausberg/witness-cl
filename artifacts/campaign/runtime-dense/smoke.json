@@ -1,0 +1,474 @@
+{
+  "started_utc": "2026-09-09T21:45:59.217659+00:00",
+  "status": "passed",
+  "cases": [
+    {
+      "prompt": "Compute 37 + 58. Return only {\"value\": number}.",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "expected": {
+        "value": 95
+      }
+    },
+    {
+      "prompt": "Return exactly {\"note\":\"runtime transport only\",\"payload\":{\"value\":1,\"items\":[\"a\"]}}.",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "note": {
+            "type": "string",
+            "maxLength": 4096
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "integer"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 2
+              }
+            },
+            "required": [
+              "value",
+              "items"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "note",
+          "payload"
+        ],
+        "additionalProperties": false
+      },
+      "expected": {
+        "note": "runtime transport only",
+        "payload": {
+          "value": 1,
+          "items": [
+            "a"
+          ]
+        }
+      }
+    }
+  ],
+  "purpose": "generic setup transport only; not SQL qualification or benchmark evidence",
+  "client": {
+    "endpoint": "http://127.0.0.1:18086",
+    "model": "Qwen3.6-27B-Text-BF16-campaign",
+    "context_tokens": 65536,
+    "max_output": 256,
+    "timeout": 120,
+    "response_mode": "schema",
+    "decoding": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "seed": 42,
+      "thinking": false,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 65536,
+      "frequency_penalty": 0.0
+    },
+    "repeat_penalty": 1.0,
+    "wire_schema_policy": "host_checks_large_string_bounds_v1"
+  },
+  "config": {
+    "schema_version": 1,
+    "purpose": "separate official dense text-only BF16 development candidate; historical coder studies stay frozen",
+    "model": {
+      "repository": "Qwen/Qwen3.6-27B",
+      "revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+      "alias": "Qwen3.6-27B-Text-BF16-campaign",
+      "filename": "Qwen3.6-27B-Text-BF16.gguf",
+      "outtype": "bf16",
+      "native_context_tokens": 262144
+    },
+    "backend": {
+      "repository": "https://github.com/ggml-org/llama.cpp",
+      "commit": "434ddbbc0e30522e897670681e503b797c12b7c1"
+    },
+    "download": {
+      "parallel_files": 4,
+      "attempts_per_file": 5,
+      "timeout_seconds": 60
+    },
+    "server": {
+      "host": "127.0.0.1",
+      "port": 18086,
+      "context_tokens": 65536,
+      "parallel_sequences": 1,
+      "cpu_threads": 16,
+      "gpu_layers": 99,
+      "kv_cache_dtype": "f16",
+      "memory_reserve_mib": 8192,
+      "maximum_lifetime_seconds": null,
+      "rope_scaling": "none"
+    },
+    "decoding": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 65536,
+      "frequency_penalty": 0.0,
+      "thinking": false,
+      "seed": 42
+    }
+  },
+  "backend": {
+    "commit": "434ddbbc0e30522e897670681e503b797c12b7c1",
+    "converter_sha256": "e9a1da876330bbce9687541ab31736542a01b4ac43c6686126514a50f122fb7f",
+    "binary_sha256": "8e55619a12339d07aef77951b5f853b90fbe02115cb76cfa196291e8d784eef1",
+    "shared_libraries_sha256": {
+      "build/bin/libggml-base.so.0.23.0": "ba51df10d76cac9c17a4e2a149b883b389ac0bf10ecd727e399044aa146a7d37",
+      "build/bin/libggml-cpu.so.0.23.0": "89192125cd4b7628d9ddc3272ba992c9d84fbae13b40fa9f4c8c834bba9008e7",
+      "build/bin/libggml-cuda.so.0.23.0": "3ba754ef17b447a5b1a5db9f8cfcdc6b8b3ef64195c18a20a6e55d35ac22a765",
+      "build/bin/libggml.so.0.23.0": "2a7897a3109395fdb231ad0ee34997ab0cf08d4fbea646d6cc6b5010c146f8ac",
+      "build/bin/libllama-common.so.0.4.0": "74ebdca2ecf1e1ca99720eb5928eef6836de9fbd1b50356b2a31d1975aaafa78",
+      "build/bin/libllama-server-impl.so": "1bc56922e30a01991cbd966814658d5896ecfa6a355e463e72e3c76cb5416985",
+      "build/bin/libllama.so.0.4.0": "514b13138412c3837d09e8b76f3f4f7934ba735b1e68483e4e7ad36549e13b20",
+      "build/bin/libmtmd.so.0.4.0": "7821f5607d71cafb0f1c957f0306a6543bdbde36765a3e5c8ad4d0c0a123bbb2"
+    }
+  },
+  "model_sha256": "e2a674c2e137641526292db3fdc220537761bf731602c723845ce8279b305045",
+  "source_sha256": {
+    "tools/campaign_runtime.py": "22784f53c4cf815d6f7f1cbd56905b4879ce27c18e25d94bb634a4f22474bcbf",
+    "src/witness_cl/model_campaign.py": "b2f4793ee4b4878791345e0f5b873f7c0de54b1ca2251a39596b03cdcd76c5ff",
+    "src/witness_cl/model_v8.py": "f569e6ff2b781a22b2ac16c1046b02e2ea3c0a8a9a9806e774709fc6e1f00042",
+    "src/witness_cl/model_v9.py": "3ee5743c7c150158e8e8ec7c1137184864b0af6ca5245f8aca85f32da98c6438",
+    "src/witness_cl/model_v9_compatible.py": "1655257115569734806c446db68f49bef0f94665e67d313de3446a10ab3078e5"
+  },
+  "records": [
+    {
+      "phase": "runtime:smoke",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only the requested JSON object."
+        },
+        {
+          "role": "user",
+          "content": "Compute 37 + 58. Return only {\"value\": number}."
+        }
+      ],
+      "preflight_tokens": 40,
+      "max_output_tokens": 256,
+      "tokenization_seconds": 0.0034899809998023557,
+      "status": "completed",
+      "generation_attempted": true,
+      "usage": {
+        "completion_tokens": 8,
+        "prompt_tokens": 40,
+        "total_tokens": 48,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "response_mode": "schema",
+      "response_schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "decoding": {
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "seed": 42,
+        "thinking": false,
+        "repeat_penalty": 1.0,
+        "repeat_last_n": 65536,
+        "frequency_penalty": 0.0
+      },
+      "request_config": {
+        "model": "Qwen3.6-27B-Text-BF16-campaign",
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "seed": 42,
+        "repeat_penalty": 1.0,
+        "repeat_last_n": 65536,
+        "frequency_penalty": 0.0,
+        "max_tokens": 256,
+        "cache_prompt": false,
+        "stream": false,
+        "response_format": {
+          "type": "json_object",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "reasoning_content": null,
+      "response_model": "Qwen3.6-27B-Text-BF16-campaign",
+      "finish_reason": "stop",
+      "content_was_null": false,
+      "backend_timings": {
+        "cache_n": 0,
+        "prompt_n": 40,
+        "prompt_ms": 106.598,
+        "prompt_per_token_ms": 2.66495,
+        "prompt_per_second": 375.24156175538,
+        "predicted_n": 8,
+        "predicted_ms": 132.898,
+        "predicted_per_token_ms": 18.98542857142857,
+        "predicted_per_second": 52.67197399509398
+      },
+      "content": "{\"value\": 95}",
+      "inference_seconds": 0.24258731699956115,
+      "wire_schema_policy": "host_checks_large_string_bounds_v1",
+      "host_response_schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "reflection_thinking": false
+    },
+    {
+      "phase": "runtime:smoke",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only the requested JSON object."
+        },
+        {
+          "role": "user",
+          "content": "Return exactly {\"note\":\"runtime transport only\",\"payload\":{\"value\":1,\"items\":[\"a\"]}}."
+        }
+      ],
+      "preflight_tokens": 45,
+      "max_output_tokens": 256,
+      "tokenization_seconds": 0.0023165640013758093,
+      "status": "completed",
+      "generation_attempted": true,
+      "usage": {
+        "completion_tokens": 19,
+        "prompt_tokens": 45,
+        "total_tokens": 64,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "response_mode": "schema",
+      "response_schema": {
+        "type": "object",
+        "properties": {
+          "note": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "integer"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 2
+              }
+            },
+            "required": [
+              "value",
+              "items"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "note",
+          "payload"
+        ],
+        "additionalProperties": false
+      },
+      "decoding": {
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "seed": 42,
+        "thinking": false,
+        "repeat_penalty": 1.0,
+        "repeat_last_n": 65536,
+        "frequency_penalty": 0.0
+      },
+      "request_config": {
+        "model": "Qwen3.6-27B-Text-BF16-campaign",
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "seed": 42,
+        "repeat_penalty": 1.0,
+        "repeat_last_n": 65536,
+        "frequency_penalty": 0.0,
+        "max_tokens": 256,
+        "cache_prompt": false,
+        "stream": false,
+        "response_format": {
+          "type": "json_object",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "note": {
+                "type": "string"
+              },
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "integer"
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 2
+                  }
+                },
+                "required": [
+                  "value",
+                  "items"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "note",
+              "payload"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "reasoning_content": null,
+      "response_model": "Qwen3.6-27B-Text-BF16-campaign",
+      "finish_reason": "stop",
+      "content_was_null": false,
+      "backend_timings": {
+        "cache_n": 0,
+        "prompt_n": 45,
+        "prompt_ms": 98.578,
+        "prompt_per_token_ms": 2.1906222222222222,
+        "prompt_per_second": 456.49130637667633,
+        "predicted_n": 19,
+        "predicted_ms": 327.985,
+        "predicted_per_token_ms": 18.22138888888889,
+        "predicted_per_second": 54.880558562129366
+      },
+      "content": "{\"note\":\"runtime transport only\",\"payload\":{\"value\":1,\"items\":[\"a\"]}}",
+      "inference_seconds": 0.4655156179996993,
+      "wire_schema_policy": "host_checks_large_string_bounds_v1",
+      "host_response_schema": {
+        "type": "object",
+        "properties": {
+          "note": {
+            "type": "string",
+            "maxLength": 4096
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "integer"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 2
+              }
+            },
+            "required": [
+              "value",
+              "items"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "note",
+          "payload"
+        ],
+        "additionalProperties": false
+      },
+      "reflection_thinking": false
+    }
+  ],
+  "case_results": [
+    true,
+    true
+  ],
+  "finished_utc": "2026-09-09T21:45:59.937423+00:00",
+  "seconds": 0.7176033039995673,
+  "budget": {
+    "max_total_tokens": 10000,
+    "max_calls": 2,
+    "total_tokens": 112,
+    "prompt_tokens": 85,
+    "completion_tokens": 27,
+    "calls": 2,
+    "tokenization_seconds": 0.005806545001178165,
+    "inference_seconds": 0.7081029349992605,
+    "unknown_usage_calls": 0
+  }
+}

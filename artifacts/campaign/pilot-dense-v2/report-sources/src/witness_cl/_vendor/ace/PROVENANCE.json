@@ -1,0 +1,42 @@
+{
+  "upstream": "https://github.com/ace-agent/ace",
+  "commit": "82709de050e1db6e6ef2f07bcb0393560b94992a",
+  "license": "Apache-2.0",
+  "files": {
+    "LICENSE.txt": {
+      "source": "LICENSE.txt",
+      "upstream_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "local_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "changes": "none"
+    },
+    "playbook_utils.py": {
+      "source": "playbook_utils.py",
+      "upstream_sha256": "c67943f06cb0ee747be04d0599216e40d6c00e0cdf96ddc6af38fc26143e3a07",
+      "local_sha256": "f086cd9a40c1574fc62c860b87d536c1edf6bc286a9f3b695e4a807915ddd08c",
+      "changes": "relative import only"
+    },
+    "prompts/generator.py": {
+      "source": "ace/prompts/generator.py",
+      "upstream_sha256": "b8b12d4a6281ea4c422a2ee0bd919b50580d388027917e8740f82f97eb24eebb",
+      "local_sha256": "b8b12d4a6281ea4c422a2ee0bd919b50580d388027917e8740f82f97eb24eebb",
+      "changes": "none"
+    },
+    "prompts/reflector.py": {
+      "source": "ace/prompts/reflector.py",
+      "upstream_sha256": "72b343ce2781531dac2fd765543410b6abfc4817c39078dd4f83187c4d217e9c",
+      "local_sha256": "72b343ce2781531dac2fd765543410b6abfc4817c39078dd4f83187c4d217e9c",
+      "changes": "none"
+    },
+    "prompts/curator.py": {
+      "source": "ace/prompts/curator.py",
+      "upstream_sha256": "eb03d59b3f3593832f730a798199b581ad797acd503c47d1737616c68cf26107",
+      "local_sha256": "eb03d59b3f3593832f730a798199b581ad797acd503c47d1737616c68cf26107",
+      "changes": "none"
+    },
+    "utils.py": {
+      "source": "utils.py",
+      "upstream_sha256": "7824aa262de2cd030b6914d1f7de698ec620dbec9c9e5f14ed1fe6322079570c",
+      "changes": "only exact get_section_slug function extracted"
+    }
+  }
+}

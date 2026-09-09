@@ -1,0 +1,45 @@
+{
+  "frozen_before_dense_generation_utc": "2026-09-09T21:43:51.909864+00:00",
+  "model": {
+    "repository": "Qwen/Qwen3.6-27B",
+    "revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+    "alias": "Qwen3.6-27B-Text-BF16-campaign",
+    "filename": "Qwen3.6-27B-Text-BF16.gguf",
+    "outtype": "bf16",
+    "native_context_tokens": 262144
+  },
+  "official_model_card": "https://huggingface.co/Qwen/Qwen3.6-27B/blob/6a9e13bd6fc8f0983b9b99948120bc37f49c13e9/README.md",
+  "official_readme_sha256": "bb936d6da51014f1edc9aa4cf9abf28d98695b7616ad56adfeeebfa752051d3d",
+  "official_nonthinking_recommendation": {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+    "repetition_penalty": 1.0
+  },
+  "actual_decoding": {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "repeat_last_n": 65536,
+    "frequency_penalty": 0.0,
+    "thinking": false,
+    "seed": 42
+  },
+  "decision": "Use neutral presence, frequency and repetition penalties because this pinned backend includes prompt tokens in the penalty history; exact SQL identifier reuse must not be penalized. Other nonthinking sampling parameters follow the publisher recommendation.",
+  "backend_semantics": {
+    "commit": "434ddbbc0e30522e897670681e503b797c12b7c1",
+    "prompt_initialization": "tools/server/server-context.cpp: init_sampler feeds prompt tokens to common_sampler_accept with is_generated=false",
+    "penalty_history": "common/sampling.cpp: common_sampler_accept unconditionally accepts tokens into the sampling chain",
+    "files_sha256": {
+      "tools/server/server-context.cpp": "6abaa516f75cc284503f1d694603eb350696b50054e5512f852e9295e8b172bd",
+      "common/sampling.cpp": "f23f8d663932bfd73abac1bd5e99055fc6efb07e21ef27dd7e25af2f2da40bff"
+    }
+  },
+  "dense_generation_calls_before_decision": 0,
+  "claim_exact_publisher_sampling": false
+}

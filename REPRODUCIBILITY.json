@@ -42,5 +42,43 @@
   "followup_status": "stopped: 65 complete transcripts and 1 partial record; old_after and final panels not reached",
   "known_model_tokens": 947781,
   "unknown_usage_calls": 1,
-  "model_token_total_complete": false
+  "model_token_total_complete": false,
+  "campaign": {
+    "protocol": "docs/campaign/PLAN.md",
+    "qualification": "docs/campaign/QUALIFICATION.md",
+    "runner": "tools/campaign.py",
+    "runtime_config": "configs/campaign_runtime_dense.json",
+    "status": "stage_1_registered_report; candidate_2_32_stream_pilot_running; confirmation_and_auxiliaries_held",
+    "confirmatory_result_established": false,
+    "native_result_established": false,
+    "sequence": "configs/campaign_sequence_dense_v2.json",
+    "analysis": "docs/campaign/ANALYSIS.md",
+    "status_report": "artifacts/campaign/publication/STATUS.md",
+    "pilot_registry": "artifacts/campaign/pilot-dense-v2/manifest.json",
+    "pilot_streams": 32,
+    "pilot_planned_records": 17664,
+    "automatic_confirmation_authorized": false,
+    "candidate_1": {
+      "directory": "artifacts/campaign/coder-v1",
+      "qualification_reuse_correct": 33,
+      "qualification_drift_correct": 39,
+      "qualification_n_per_condition": 64,
+      "model_calls": 155,
+      "measured_tokens": 325588,
+      "unknown_usage_calls": 0,
+      "qualified": false
+    },
+    "candidate_2": {
+      "directory": "artifacts/campaign/dense-v2",
+      "qualification_reuse_correct": 64,
+      "qualification_drift_correct": 64,
+      "qualification_n_per_condition": 64,
+      "model_calls": 131,
+      "measured_tokens": 339668,
+      "unknown_usage_calls": 0,
+      "qualified": true,
+      "development_planned_records": 2208,
+      "development_complete": false
+    }
+  }
 }
