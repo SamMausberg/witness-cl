@@ -8,6 +8,7 @@
 - Recorded one changed-binding composition chain. The sole actual solver rerun after relation deletion recovered the correct answer using direct SQL (0/1 wrong-answer flips).
 - Preserved the incomplete 32-stream pilot, failed qualifications, original source freezes and negative evidence. Confirmatory superiority, two-point retention noninferiority and native benchmark gains remain unestablished.
 - Corrected stale authorship, citation and build references and removed superseded narrative documents from the current tree; historical material remains recoverable in Git.
+- Made the two complete-run software fixtures independent of the historical experiment deadline, while preserving cutoff and post-deadline replay coverage.
 
 ## 0.9.0 — September 2026
 

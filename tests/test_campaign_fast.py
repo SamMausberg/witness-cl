@@ -133,7 +133,10 @@ def test_deadline_during_ace_reflector_or_curator_marks_one_stopped_episode(tmp_
     assert len(audited["stopped_records"]) == 1 and audited["cost"]["unknown_usage_calls"] == 0
 
 
-def test_complete240_replay_uses_same_learner_and_all_ace_updates_but_never_claims_scripted_evidence(tmp_path):
+def test_complete240_replay_uses_same_learner_and_all_ace_updates_but_never_claims_scripted_evidence(tmp_path, monkeypatch):
+    # Completion is independent of today's date; cutoff behavior is tested separately.
+    cutoff = datetime.fromisoformat(fast.LAST_CALL_START).timestamp()
+    monkeypatch.setattr(fast.time, "time", lambda: cutoff - 60)
     out = tmp_path / "study"
     frozen = setup(out)
     model = Client()

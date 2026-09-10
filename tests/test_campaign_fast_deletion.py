@@ -19,8 +19,13 @@ campaign_records = fixture_campaign_records
 @pytest.fixture(scope="module")
 def complete_fast(tmp_path_factory):
     out = tmp_path_factory.mktemp("fast-deletion-parent") / "study"
-    frozen = setup(out)
-    fast.run(out, Client())
+    # Scope the historical clock to fixture generation so deadline tests keep
+    # control of time and deletion replay can run after the real cutoff.
+    cutoff = datetime.fromisoformat(fast.LAST_CALL_START).timestamp()
+    with pytest.MonkeyPatch.context() as clock:
+        clock.setattr(fast.time, "time", lambda: cutoff - 60)
+        frozen = setup(out)
+        fast.run(out, Client())
     audited = fast.audit(out)
     assert audited["complete"] and audited["records_replayed"] == 240
     return out, frozen, audited
