@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-10T00:24:49.480287+00:00",
+  "status": "independent_descriptive_validation_passed",
+  "reviewer_role": "speed_runtime_audit",
+  "scope": "Independent read-only verification of completed bounded diagnostic and its one-case relation-deletion rerun; no completion of the original pilot is asserted.",
+  "checked_inputs_and_recorded_outputs": {
+    "main": {
+      "directory": "artifacts/campaign/fast-dense-v2-restart",
+      "checked_files_sha256": {
+        "freeze.json": "180ce0c3c61ea3150eb723b7db295e356a92703db6c456e4f735ec8f1cb39b9b",
+        "audit.json": "8db78420074c2cd5e069cc351e8b9af76822cd4ff6bb0d1f2ec0670b967e6e1c",
+        "summary.json": "184304b68567d3abd95cc763c9bd6c4b786acd988c7fe3aeb1abeb331c1285f9",
+        "schedule.json": "57be7162524de3b6e991e2d0c427eca6ae2b81e3af60f0872f373b4fa2692f70",
+        "audit-mechanism.json": "aa51fcc742cacced0c80eb22ed046c6b922ef7ee0160dfcd47668b015c7695dc"
+      },
+      "checked_raw_directory_sha256": {
+        "episodes": "d887a979d7eb5cd17049f8a43eea6991df23c6d1e5934946c5483eecdc667c5d",
+        "calls": "a45da509d635d99bd36574022f6e265fd332ffde6f4c114e29b016de8aafb31a"
+      },
+      "frozen_source_files_checked": 79,
+      "frozen_source_inventory_sha256": "42b8516bb6e5eb3b9fff38bfe34726fb559756e49a4a43905ac0d6b43071811b",
+      "all_frozen_source_hashes_match": true
+    },
+    "deletion": {
+      "directory": "artifacts/campaign/fast-dense-v2-restart-deletion",
+      "checked_files_sha256": {
+        "freeze.json": "0379e1d7fbd0706a6038909b0eee4ab2a73e9bcff350a24e69a3d771db81c2ac",
+        "audit.json": "24b4a17abb5b0ab523b9021360d7ed9e88d92106823a32e8f39bfae9e01a1213",
+        "summary.json": "c0ad3eefaa4fb4838dd8b5607a2a04ea63d83994189fad9f5af1c24bc32c9373",
+        "cases.json": "8411620b5a0225b192b887d9441298a99324ded1175bb51189e709c22240a1ba",
+        "episodes/deletion-00000.json": "bffd317059dea3af342d21abd1ae37b9ec05496d359dd29fff78596d8382975c"
+      },
+      "checked_raw_directory_sha256": {
+        "episodes": "7b3fed9c5160a7a0c15091256a3335ecc0e2a8ea5051e21ecdfb53575b4d92f7",
+        "calls": "e65467bc2b4e4da3ecfddf8496ee86803e81a4b77c783ed000a9a5fadb70a6c9"
+      },
+      "frozen_source_files_checked": 78,
+      "frozen_source_inventory_sha256": "3d2ece22dca460be242759820403f20bfa152c41e6efdc5a8e8340707499b115",
+      "all_frozen_source_hashes_match": true
+    },
+    "original_pilot_pause": {
+      "path": "artifacts/campaign/pilot-dense-v2/time-budget-amendment-pause.json",
+      "sha256": "b84b55be56aee543d6508c1bbb327fe6ba4a1d47f453db16a246f75bf70264ba",
+      "completed_episodes": 161,
+      "original_denominator_retained": 17664
+    }
+  },
+  "results": {
+    "original_assignment_completed": false,
+    "original_32_stream_pilot_records": 161,
+    "original_32_stream_pilot_assigned_records": 17664,
+    "main_assignment": {
+      "independent_streams": 2,
+      "seeds": [
+        101302,
+        101303
+      ],
+      "arms": [
+        "full_history",
+        "ace",
+        "delayed"
+      ],
+      "assigned_records": 240,
+      "recorded_records": 240,
+      "correct_records": 240,
+      "all_exact_schedule_identities_checked": true,
+      "all_record_freeze_identities_checked": true,
+      "all_recorded_calls_match_raw_journals": true,
+      "all_recorded_outcomes_binary_and_terminal": true,
+      "per_stream_arm_phase_counts": {
+        "ordinary": 24,
+        "old_before": 4,
+        "old_after": 4,
+        "final": 8
+      },
+      "all_six_stream_arm_cells_correct_on_every_assigned_record": true
+    },
+    "arm_totals": {
+      "full_history": {
+        "correct": 80,
+        "records": 80,
+        "final_correct": 16,
+        "final_records": 16,
+        "calls": 85,
+        "prompt_tokens": 2245943,
+        "completion_tokens": 32981,
+        "total_tokens": 2278924
+      },
+      "ace": {
+        "correct": 80,
+        "records": 80,
+        "final_correct": 16,
+        "final_records": 16,
+        "calls": 180,
+        "prompt_tokens": 514664,
+        "completion_tokens": 110590,
+        "total_tokens": 625254
+      },
+      "delayed": {
+        "correct": 80,
+        "records": 80,
+        "final_correct": 16,
+        "final_records": 16,
+        "calls": 88,
+        "prompt_tokens": 1312832,
+        "completion_tokens": 34262,
+        "total_tokens": 1347094
+      }
+    },
+    "main_cost": {
+      "calls": 353,
+      "prompt_tokens": 4073439,
+      "completion_tokens": 177833,
+      "total_tokens": 4251272,
+      "unknown_usage_calls": 0
+    },
+    "descriptive_token_comparisons": {
+      "delayed_over_full_history": 0.5911096640344303,
+      "delayed_over_ace": 2.15447482143257,
+      "percent_fewer_than_full_history": 40.88903359655697,
+      "percent_more_than_ace": 115.44748214325699,
+      "population_or_confirmatory_inference": false
+    },
+    "mechanism": {
+      "recorded_relation_executions": 3,
+      "qualifying_chains": 1,
+      "seed": 101303,
+      "record_ordinals": [
+        129,
+        165,
+        219
+      ],
+      "source": {
+        "phase": "ordinary",
+        "index": 3,
+        "binding": "North",
+        "operation": "SUM",
+        "answer": 2987.75,
+        "admission": "provisional"
+      },
+      "corroboration": {
+        "phase": "ordinary",
+        "index": 11,
+        "binding": "South",
+        "operation": "SUM",
+        "answer": 2643.0,
+        "admission": "corroborated"
+      },
+      "execution": {
+        "phase": "final",
+        "index": 3,
+        "ordinary_checkpoint": 24,
+        "binding": "North",
+        "operation": "AVG",
+        "answer": 322.67857142857144,
+        "route": "COMPOSE",
+        "initial_missing_binding_action_rejected_then_corrected": true
+      },
+      "unchanged_entry_and_template_identity_verified": true,
+      "identical_parameterized_relation_sql_verified": true,
+      "three_distinct_fresh_database_hashes_verified": true,
+      "independent_sqlite_reexecution": {
+        "source_answer": 2987.75,
+        "corroboration_answer": 2643.0,
+        "execution_answer": 322.67857142857144,
+        "empty_relation_result": null,
+        "zero_measure_result": 0.0,
+        "null_measure_result": null,
+        "all_three_fixed_program_interventions_wrong": true
+      }
+    },
+    "deletion": {
+      "assigned_cases": 1,
+      "recorded_cases": 1,
+      "actual_agent_calls": 1,
+      "correct_original_answer": true,
+      "correct_after_deletion": true,
+      "answer_flips_to_wrong": 0,
+      "answer": 322.67857142857144,
+      "same_sampling_seed_nonce_and_data_hash_verified": true,
+      "snapshot_matches_frozen_restore_then_single_registry_entry_removal": true,
+      "prior_sql_evidence_records_retained_unchanged": 25,
+      "active_derived_payload_and_byte_count_recomputed_by_frozen_snapshot_method": true,
+      "observed_action": "QUERY",
+      "direct_recomputation": "AVG(unit_amount * quantity - COALESCE(per_order_refund_sum, 0)), joined to current North-region profiles, excluding NULL unit amounts",
+      "independent_sqlite_reexecution_answer": 322.67857142857144,
+      "prompt_tokens": 18340,
+      "completion_tokens": 437,
+      "total_tokens": 18777,
+      "unknown_usage_calls": 0
+    },
+    "main_plus_deletion_cost": {
+      "calls": 354,
+      "prompt_tokens": 4091779,
+      "completion_tokens": 178270,
+      "total_tokens": 4270049,
+      "unknown_usage_calls": 0
+    }
+  },
+  "method": {
+    "all_main_raw_records_independently_aggregated": 240,
+    "all_main_raw_call_journals_independently_matched": 353,
+    "deletion_raw_call_journals_independently_matched": 1,
+    "independent_sql_statements_reexecuted": 7,
+    "independent_sql_connection": "Fresh in-memory SQLite databases constructed from the frozen generator, with query_only enabled; direct execution of recorded source, corroboration, compiled final, three intervention and deletion SQL.",
+    "deletion_state_check": "Frozen DelayedMemory restore, removal of the named registry entry, canonical-JSON equality with frozen deletion case snapshot; original direct SQL evidence compared unchanged.",
+    "source_check": "SHA-256 every file listed in each frozen source inventory; audit bindings and SHA-256 directory inventories checked.",
+    "directory_digest_algorithm": "SHA-256 of canonical sorted relative JSON path to file SHA-256 mapping, with json.dumps sort_keys=True, separators=(comma,colon), allow_nan=False."
+  },
+  "limitations": [
+    "This independent review did not repeat the entire 240-record prompt/runtime replay; it verified the bound completed replay receipts and independently checked all record identities, outcomes, cost ledgers and the seven listed SQL statements.",
+    "This review did not rehash the 54GB model weight file or assert a live-server identity check. Model/runtime identity is recorded in the frozen experiment receipts.",
+    "The descriptive all-correct ceiling, one qualifying chain and one correct deletion rerun do not establish population-level accuracy superiority, two-point retention noninferiority, a cost advantage over ACE or policy-level necessity.",
+    "No final-document hash is asserted: README and manuscript finalization were concurrent; paper reviewer received the causal-claim distinction."
+  ],
+  "model_calls_made": 0,
+  "network_calls_made": 0,
+  "raw_or_frozen_artifacts_modified": false,
+  "new_tests_executed_in_this_review": 0
+}

@@ -18,6 +18,15 @@ plus before/after old-task noninferiority within two percentage points.
 The earlier development studies and failed solver qualifications remain intact;
 their admission counts do not establish transfer.
 
+The completed [two-stream diagnostic](docs/campaign/BOUNDED_RESULTS.md) contains
+240/240 episodes. Every arm scored 16/16 on the final questions and 80/80 overall.
+Delayed memory used 40.9% fewer total tokens than full history but 115.4% more
+than ACE. Replay found one admitted, later corroborated relation used in a new
+outer computation. In the separately frozen deletion rerun, the agent recomputed
+the answer correctly with direct SQL: **0/1 answers flipped to wrong**. These
+results expose an accuracy ceiling and a failed ACE cost comparison; they do not
+establish the intended efficacy claim.
+
 The first new-interface candidate completed both frozen cold qualifications:
 33/64 on reuse and 39/64 on drift. Both failed their unchanged passing rules;
 all 155 calls and 325,588 tokens are retained and independently replayed. A
@@ -25,16 +34,16 @@ separate dense-model and common-planning candidate passed both qualifications at
 64/64, using 131 calls and 339,668 measured tokens with no unknown usage. Its
 four-stream development block is the first block of a frozen 32-stream pilot
 with 28 additional independent streams, totaling 17,664 episodes. That pilot is
-paused at 161 completed episodes following the author's two-hour time limit.
-A [separate diagnostic](docs/campaign/TIME_BUDGET_AMENDMENT.md) assigns 240 episodes
-across two fresh streams and all three arms, retaining all learning episodes
-and reducing the probe panels. It cannot establish confirmatory efficacy or
-two-point retention noninferiority.
-The full mechanism census, future-panel ceiling and measured retention variance
-must be reported before auxiliary collection or confirmation sizing. See the
+stopped at 161 completed episodes following the author's two-hour time limit.
+Its incomplete assignment is preserved separately from the completed diagnostic,
+which retained all 24 learning episodes and reduced the probe panels. Neither
+study establishes two-point retention noninferiority. Drift, matched-extra-query
+control and native model measurements remain uncollected. The existing ceiling
+must be addressed and a feasible variance-calibrated protocol frozen before
+confirmation. See the
 [pilot registry](artifacts/campaign/pilot-dense-v2/manifest.json) and
 [qualification record](docs/campaign/QUALIFICATION.md). The main
-paper has 10 pages; unrelated earlier work is in the [technical report](paper/technical_report.pdf).
+paper has 12 pages; unrelated earlier work is in the [technical report](paper/technical_report.pdf).
 
 ## Install and verify
 

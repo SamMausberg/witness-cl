@@ -842,7 +842,7 @@ def render_tex(snapshot):
     if not confirmations:
         lines += ["This Stage 1 registered-report manuscript has no complete, audit-bound confirmatory analysis.",
                   "Primary outcomes are unmeasured; pending, failed-integrity and scripted inputs",
-                  "supply no effect estimate. Complete negative results will be reported."]
+                  "supply no effect estimate. Completed descriptive results appear separately below."]
     for study in confirmations or [None]:
         lines += [r"\begin{table*}[t]\centering\small",
                   r"\begin{tabular}{p{.32\textwidth}p{.14\textwidth}p{.18\textwidth}p{.18\textwidth}}",

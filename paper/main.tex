@@ -21,38 +21,37 @@
 \hypersetup{pdftitle={Witness-CL: Delayed Corroboration for Executable Memory---Stage 1 Registered Report},pdfauthor={Samuel Mausberg}}
 \begin{document}\raggedbottom\maketitle
 \begin{abstract}
-An executable memory should earn credit when its computation helps answer a new
-question. Witness-CL extracts parameterized SQL relations from an agent's own
-successful queries and delays their availability until a later direct solution
-corroborates unchanged code under a changed binding. The agent can then compose
-a new outer operation over the relation on fresh rows. Typed compilation,
-current-execution answers and exact receipts make each transition inspectable.
-An empty-relation intervention tests observed contribution; a finite-witness
-counterexample explains why that check alone cannot establish transfer. We
-specify a complete-stream comparison with full history and an official-source
-ACE implementation, including total token costs, old-task noninferiority,
-matched-evidence controls, drift and native CL-Bench contact. This Stage 1
-manuscript records the implemented mechanism, completed solver qualifications
-and a 32-stream pilot protocol. A subsequent time-budget amendment pauses that
-pilot and assigns a separate exploratory diagnostic. The full pilot's mechanism
-census, final-panel ceiling and retention variance remain prerequisites for
-prospective confirmation sizing. Confirmatory
-accuracy, efficiency, retention and native stateful gain remain unmeasured.
+Witness-CL extracts parameterized relations from an agent's successful SQL and
+makes them executable only after a later direct solution corroborates unchanged
+code under a changed binding. Typed compilation and exact receipts expose
+whether a new outer computation uses the relation on fresh rows. A finite-witness
+counterexample separates observed execution dependence from transfer guarantees.
+This Stage 1 manuscript reports a prospective protocol and a separately frozen
+exploratory diagnostic: two streams, three policies and 240 completed episodes.
+Full history, official-source ACE and delayed memory answered every question
+correctly, including 16/16 final probes per arm. Delayed memory used 40.9\% fewer
+total tokens than full history but 115.4\% more than ACE. One model-generated
+chain progressed from a source SUM through changed-binding corroboration to a
+correct COMPOSE with MEAN; emptying its relation made the saved program wrong.
+The sole frozen solver rerun after relation removal remained correct.
+Thus the diagnostic observes executable reuse without an accuracy advantage or
+a cost advantage over ACE. The original 32-stream pilot remains incomplete at
+161/17,664 episodes. Confirmatory superiority, two-point noninferiority, drift
+robustness and native stateful gain remain unestablished.
 \end{abstract}
 \noindent\fbox{\begin{minipage}{.95\columnwidth}
 \small\textbf{Claims at this revision}\par\smallskip
-\textbf{Established}\par
-1. An implemented registry separates provisional admission, later changed-binding
-corroboration and eligibility for subsequent execution.\par
-2. The SQL interface separates typed values from code, restricts executable
-composition and resolves answers from current receipts.\par
-3. Finite reconstruction and dependence do not imply transfer; acquisition
-costs impose an explicit break-even condition.\par\smallskip
+\textbf{Established in the two-stream diagnostic}\par
+1. All three arms answered all 80 assigned questions correctly, including
+16/16 final probes each.\par
+2. Delayed memory used 40.9\% fewer total tokens than full history and 115.4\%
+more than ACE.\par
+3. One changed-binding chain reached correct new-outer composition; the sole
+solver rerun after relation removal remained correct.\par\smallskip
 \textbf{Not established}\par
-1. Causally necessary correct future composition in model-generated streams.\par
-2. Confirmatory superiority with 20\% fewer total tokens against both full
-history and ACE.\par
-3. Two-point old-task noninferiority or native-benchmark stateful gain.
+1. Confirmatory accuracy superiority with 20\% fewer tokens against both controls.\par
+2. Population-level transfer or two-point old-task noninferiority.\par
+3. Drift robustness or native-benchmark stateful gain.
 \end{minipage}}
 
 \section{The contribution to test}
@@ -82,9 +81,9 @@ old-panel interval cannot establish retention.
 
 Earlier Witness-CL controllers, neural isolation experiments, feature learners
 and kernel measurements are preserved in the
-companion technical report \citep{mausberg2026technical}. They do not supply the
-missing language-agent result. This paper concerns one frozen-backbone SQL
-memory mechanism and the evidence needed to assess it.
+companion technical report \citep{mausberg2026technical}. This paper concerns
+one frozen-backbone SQL memory mechanism, its bounded exploratory evidence,
+and the independent confirmation still needed to assess it.
 
 \section{Setting and legal evidence}
 An independent stream contains sequential scalar questions over changing SQLite
@@ -170,9 +169,10 @@ edge/.style={-{Latex[length=1.5mm]},thick}]
 \draw[edge] (source)--(provisional);\draw[edge] (provisional)--(later);
 \draw[edge] (later)--(promote);\draw[edge] (promote)--(execute);
 \end{tikzpicture}
-\caption{Implemented lifecycle and required empirical evidence. The last box is
-a required result, not a consequence of admission. Its model-generated trace
-count remains unmeasured at this revision.}\label{fig:loop}
+\caption{Implemented lifecycle and execution-dependence criterion. One
+model-generated chain in the two-stream diagnostic reaches the last box.
+Emptying a relation in a saved program and removing it before a new solver
+attempt are distinct interventions.}\label{fig:loop}
 \end{figure}
 
 \subsection{Extract an executed computation}
@@ -461,7 +461,7 @@ All 32 assigned streams and their original schedules remain in the record.
 Their original server-process binding requires a separate amendment before
 they can resume under the restarted server.
 
-A separate exploratory diagnostic assigns fresh seeds 101302 and 101303 to all
+A separate exploratory diagnostic assigned fresh seeds 101302 and 101303 to all
 three arms with the same qualified dense model, learner, interface, decoding and
 development generator. Each arm--stream cell contains 24 ordinary questions,
 four old probes before, the same four after, and eight final probes: 240 episode
@@ -476,8 +476,9 @@ checks stopped before any model call. The replacement freeze followed a restart
 verified against the same model bytes, backend, configuration and launch command,
 with no smoke generation.
 
-The diagnostic's new-call cutoff is 10 September 2026 at 00:37 UTC, with
-reporting targeted for 00:43 UTC. Its separate freeze and receipts preserve the
+The diagnostic set a new-call cutoff of 10 September 2026 at 00:37 UTC, with
+reporting targeted for 00:43 UTC; all 240 episodes finished at 00:12:51 UTC.
+Its separate freeze and receipts preserve the
 240-record assignment, actual completion, all measured costs and any missing
 cells. It supplies descriptive accuracy and mechanism observations only. It
 cannot complete the 32-stream pilot, calibrate its retention variance, establish
@@ -580,9 +581,9 @@ amendment supplies a separate exploratory report.
 \section{Controls for alternative explanations}
 The principal comparison evaluates complete independently learning policies.
 Separate matched-history interventions address narrower causal questions,
-preserving their additional costs and denominators. The following designs are
-reserved for review after the complete pilot and are not part of the
-time-limited exploratory diagnostic.
+preserving their additional costs and denominators. Matched-evidence,
+admission-timing, drift and nonreuse comparisons remain deferred. The separately
+frozen single relation-deletion rerun is reported with the exploratory diagnostic.
 
 \subsection{Identical derived SQL as text}
 The view-text arm shares source extraction, paid checks, corroboration and
@@ -663,14 +664,14 @@ The strongest policy-level trace claim requires a correct original answer and
 a wrong answer from an actual solver rerun after relation removal. A
 fixed-program empty-relation intervention alone does not establish it. Errors
 are reported explicitly. All
-qualifying chains are counted; the displayed handful follows a frozen
+qualifying chains are counted; any displayed examples follow a frozen
 deterministic ordering rather than author selection. Examples illustrate the
 mechanism but do not establish its prevalence without the full denominator of
 eligible opportunities.
 
 \section{Native benchmark contact}
 CL-Bench evaluates stateful-versus-stateless gain in native stateful domains
-\citep{asawa2026clbench}. Native contact uses DatabaseExploration, the official
+\citep{asawa2026clbench}. Planned native contact uses DatabaseExploration, the official
 database and default questions, and five official orderings. Task construction
 and the upstream evaluator remain pinned and unchanged. The custom generator
 is a mechanism fixture, not a relabeled native benchmark.
@@ -697,14 +698,63 @@ reported only after end-to-end model runs on the real domain.
 \input{campaign_results.tex}
 
 \subsection{Exploratory diagnostic under the amendment}
-% BEGIN BUDGET_DIAGNOSTIC_RESULTS: replace only from the separately frozen audit.
-Diagnostic results are pending. The planned denominator is two independent
-streams, three arms and 240 episode records; it is separate from the paused
-32-stream pilot. The report will give actual completion, per-arm ordinary and
-final accuracy, old-probe transitions, total costs, and every audited mechanism
-chain including a zero count. Missing cells remain missing, and no interval
-from the reduced old panel will be presented as two-point noninferiority.
-% END BUDGET_DIAGNOSTIC_RESULTS
+All 240 assigned episode records completed and passed independent replay. The
+six arm--stream cells each scored 24/24 ordinary questions, 4/4 old probes before,
+4/4 old probes after, and 8/8 final questions. Thus every arm was at the observed
+ceiling, with no paired accuracy gain. Each arm's two retention differences were
+zero (sample standard deviation zero, one variance degree of freedom), with no
+discordance among its eight paired old probes. Neither the two streams nor the reduced
+four-probe old panels establish a two-point noninferiority result or calibrate
+the full pilot's retention variance. The original pilot remains at 161/17,664
+records; these exploratory observations do not fill its missing cells.
+
+\begin{table}[t]\centering\small
+\begin{tabular}{lrrr}
+\toprule Arm & Final & Calls & Total tokens\\\midrule
+Full history & 16/16 & 85 & 2,278,924\\
+ACE & 16/16 & 180 & 625,254\\
+Delayed & 16/16 & 88 & 1,347,094\\
+\bottomrule\end{tabular}
+\caption{Complete two-stream exploratory diagnostic. Each arm answered all
+80 scheduled questions correctly. Tokens include all ordinary, old and final
+episodes, acquisition, rejected actions and ACE updates; setup and the separate
+deletion rerun are excluded.}\label{tab:exploratory}
+\end{table}
+
+The complete diagnostic used 353 model calls and 4,251,272 measured tokens,
+with no unknown usage. Delayed memory's aggregate token ratios were 0.5911
+against full history and 2.1545 against ACE (Table~\ref{tab:exploratory}). Its
+40.9\% saving against history therefore coexists with 115.4\% greater cost than
+ACE. This is a negative result for the proposed competitive conjunction in
+the measured diagnostic, without a population-level inference.
+
+The delayed-arm census records 36 own-source admissions and 12 later
+corroborations, yielding 12 ever-eligible relations. Twelve relations were
+retrieved, three executed and four evicted; one chain qualifies. Two old-panel
+executions retain the source outer operation and do not qualify. One final
+execution in seed 101303 qualifies: ordinary episode 3 admitted a North-region
+net-order-value relation after SUM returned 2987.75; episode 11 corroborated
+the unchanged relation for South after SUM returned 2643.00. Final probe 3,
+from the checkpoint after 24 ordinary episodes, used COMPOSE to compute MEAN
+over the North binding on fresh rows, returning 322.67857142857144 correctly.
+The first COMPOSE omitted its binding and was rejected; the second supplied it.
+Both model calls and the rejected action are included in the reported costs.
+
+The three distinct database hashes and source/corroboration/execution receipts
+are retained at frozen schedule ordinals 129, 165 and 219. Emptying the relation
+changed the saved program's result to NULL; replacing its computed measure with
+zero gave 0, and replacing it with NULL gave NULL. All three intervention
+outputs were wrong. This is one qualifying chain among 80 delayed-arm episodes,
+including 16 final probes, rather than a handful of independent transfer examples.
+
+The complete eligible set contained one actual relation-deletion rerun. With
+the registry relation removed and the original SQL evidence retained, the
+solver issued a direct QUERY and returned the same correct value,
+322.67857142857144. The independent audit replayed this single frozen case:
+zero policy-level wrong-answer flips in one actual rerun. It cost one model
+call and 18,777 measured tokens, with no unknown usage. The diagnostic plus
+this separate rerun therefore used 354 calls and 4,270,049 tokens. The result
+establishes recovery in this case, not absence of causal effects in general.
 
 \section{Related work}
 Voyager accumulates executable skills with feedback, and Agent Workflow Memory
@@ -743,19 +793,14 @@ and lifetime pointwise preservation.
 \FloatBarrier
 
 \section{Interpretation and limitations}
-A positive conjunction would establish scoped empirical superiority, token
-savings and checkpoint retention for the frozen policy and evaluated streams.
-Trace and ablation results would determine whether representation reuse explains
-that gain. It would not establish semantic correctness for arbitrary SQL or
-unrestricted continual learning.
-
-Controlled negatives are informative. If full history handles drift equally
-well, the catalog and backbone may already supply the needed competence. If
-view text matches executable memory, compilation may add little beyond exact
-evidence. If immediate admission wins, waiting may cost more than it prevents.
-If useful executions occur but total tokens rise, acquisition has not amortized.
-These conclusions require their corresponding measurements; none follows merely
-from failure of the five-way conjunction.
+The exploratory result separates observed reuse from competitive advantage.
+One checked relation supports a new outer operation, yet all three policies
+already answer every diagnostic question correctly and ACE uses the fewest
+tokens. These observations do not establish the proposed superiority-and-cost
+conjunction. The sole solver rerun after relation removal reconstructed a
+correct direct query, so this case also does not demonstrate policy-level
+necessity. These observations do not estimate the unmeasured full pilot or the held
+out-of-distribution population.
 
 The fixture deliberately supplies related computations. Its supported grammar,
 documented conventions and eight initial families limit external validity.
@@ -797,14 +842,20 @@ attempt, including reflection and learning, while keeping missing measurements
 explicit. Independent oracle checks compare Python calculations and SQLite
 references before model conclusions are drawn.
 
+An offline reporting comparison initially differed in lineage traversal order.
+The corrected report sorts lineage node and child lists while preserving their
+contents and multiplicity, and excludes replay timing from equality. It
+independently reproduces all 240 records and the same event census. The frozen
+sources, original report failure and raw observations remain unchanged.
+
 The principal interfaces are the episode executor, immutable registry snapshots,
 the campaign client and the checkpointed runner. The runtime preparation tool
 owns publisher verification, conversion provenance and setup receipts. These
 boundaries let a reader trace an aggregate or displayed example back to actual
 observations rather than a regenerated summary alone.
 
-The result section is generated from audited campaign artifacts. Until those
-exist, missing endpoints remain unmeasured. The finite-witness proof is retained
+The result section uses audited campaign artifacts. Complete exploratory
+observations and missing confirmatory endpoints remain distinct. The finite-witness proof is retained
 in \path{formal/WitnessCL/Intervention.lean}; the closed-continuation and
 accounting statements retain their original conditional scope. Formal builds,
 compiler tests and model performance remain distinct evidence classes.

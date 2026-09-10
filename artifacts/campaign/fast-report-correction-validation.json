@@ -1,0 +1,17 @@
+{
+  "scope": "offline report correction for SQL-lineage traversal order; no learner or eligibility changes",
+  "tests": {
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "inputs_sha256": {
+    "tools/campaign_fast_report.py": "ccf07bdfec47b20dfed650576dc8fb1d4d31f74707dcff4eda52d22a14dcb5aa",
+    "tests/test_campaign_fast_report.py": "ced16626f715611d7c2389d9715d9bee3b8c558525551a81fd9ad7b5de8cf44b",
+    "artifacts/campaign/fast-report-correction-tests.xml": "ea241b376d68016a0315d60c84a62116dc9107c495b9d34aae99692628a0a6c7",
+    "artifacts/campaign/fast-dense-v2-restart-offline-report-v1/manifest.json": "dcacbad59a27fcec80f8cf7b3fc530de8aa0c9cd6bc12f9396209d7fb007fe3f"
+  },
+  "main_offline_replay_records": 240,
+  "model_calls_made": 0
+}

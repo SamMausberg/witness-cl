@@ -1,6 +1,6 @@
 {
   "started_utc": "2026-09-09T23:02:16.064094+00:00",
-  "status": "running",
+  "status": "stopped",
   "config": {
     "schema_version": 1,
     "purpose": "separate official dense text-only BF16 development candidate; historical coder studies stay frozen",
@@ -110,5 +110,7 @@
     "hybrid_attention_bound": "all layers charged full-attention KV even when linear attention uses less"
   },
   "hardware": "name, memory.total [MiB], driver_version\nNVIDIA GH200 480GB, 97871 MiB, 580.105.08\n",
-  "pid": 222592
+  "pid": 222592,
+  "returncode": 0,
+  "finished_utc": "2026-09-10T00:19:25.049522+00:00"
 }

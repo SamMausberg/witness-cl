@@ -1,0 +1,50 @@
+{
+  "recorded_utc": "2026-09-10T00:28:54.001868+00:00",
+  "purpose": "Final bounded-study release validation; original research target remains unestablished",
+  "paper_pages": 12,
+  "model_calls_in_validation": 0,
+  "complete_main_records": 240,
+  "complete_deletion_reruns": 1,
+  "qualifying_saved_program_chains": 1,
+  "actual_deletion_wrong_answer_flips": 0,
+  "main_plus_deletion_calls": 354,
+  "main_plus_deletion_total_tokens": 4270049,
+  "main_plus_deletion_unknown_usage_calls": 0,
+  "original_pilot_completed": false,
+  "confirmation_completed": false,
+  "native_model_benchmark_completed": false,
+  "drift_comparison_completed": false,
+  "matched_extra_queries_comparison_completed": false,
+  "full_offline_suite": {
+    "passed": 2043,
+    "skipped": 13,
+    "scope": "pre-final-report-correction checkpoint; exact tested hashes retained in time-budget-validation.json"
+  },
+  "subsequent_focused_report_correction_tests_passed": 8,
+  "lint": {
+    "command": "make lint",
+    "exit_code": 0,
+    "log_sha256": "7911259757f3e599eca854a532da05e735df79810efaa4c0ff2c934bd6308801"
+  },
+  "working_diff_check": "passed; verbatim upstream vendor whitespace and raw logs excluded",
+  "all_task_jobs_terminated": true,
+  "base_commit": "bdfdb38faf753df51c615da549ad9703ac58baf5",
+  "files_sha256": {
+    "paper/main.pdf": "6b23e9d53bcb9bb6f4fec7345880fd56b34d3bad9fe9adc8bde507cbd939a423",
+    "paper/main.tex": "f8319b344e53d1953a32ed9464f13d2fae5db5b9337d98dd90f610963a764903",
+    "paper/campaign_results.tex": "eb01d9e2b0792c30447b43c2f25da38ef27b4baddd1d2172f7bbf737264ab89c",
+    "artifacts/campaign/publication/status.json": "fd7f6c30b3ef0f4090f3937c5bb9ee1ec5140033491a0bc1695e319e933717fa",
+    "artifacts/campaign/fast-dense-v2-restart/audit.json": "8db78420074c2cd5e069cc351e8b9af76822cd4ff6bb0d1f2ec0670b967e6e1c",
+    "artifacts/campaign/fast-dense-v2-restart-deletion/audit.json": "24b4a17abb5b0ab523b9021360d7ed9e88d92106823a32e8f39bfae9e01a1213",
+    "artifacts/campaign/fast-dense-v2-restart-offline-report-v1/manifest.json": "dcacbad59a27fcec80f8cf7b3fc530de8aa0c9cd6bc12f9396209d7fb007fe3f",
+    "artifacts/campaign/bounded-independent-validation.json": "9f150674f9b28505ce6bc200554f49bfac235361e95ebea8537b52e89abfd1ed",
+    "artifacts/campaign/time-budget-validation.json": "25ae5edf42e5b5ced6c6eb5eb9467470a46cd873fe4bc4fd1980c6ff129a0cde",
+    "artifacts/campaign/deletion-portability-validation.json": "cd2d9bfccdb66f3d0101670f6c6ab3c5576e434c979d77122cb2d4e261b80639",
+    "artifacts/campaign/fast-report-correction-validation.json": "37d60404972a9964e62f25204a459754164a2571f0b7cc0db6acaacc2361d929",
+    "artifacts/campaign/time-budget-cleanup.json": "be207f6b931da8b8586ad6e5998eae94ce7945c62aedbb16175e517fcd9b007c",
+    "tools/campaign_fast_report.py": "ccf07bdfec47b20dfed650576dc8fb1d4d31f74707dcff4eda52d22a14dcb5aa",
+    "tools/publish_campaign.py": "db584921bce9f4ce268427948c4f06323edf1e4b45a409a3bbb7fade545eba47",
+    "Makefile": "4e515da52ea491fd54d6f2e4863efd2faab6a8d11341685a42a0f2b2918ca3d0",
+    "artifacts/campaign/final-paper-validation.json": "66fde0c2a6f28016d4559a5f6df8f37e238b8fa268007d5cce3a17b0a971d218"
+  }
+}

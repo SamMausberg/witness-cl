@@ -3,8 +3,10 @@
 **Latest time-budget amendment:** the original pilot is paused at 161/17,664
 episodes. The [separate two-stream diagnostic](TIME_BUDGET_AMENDMENT.md) has a
 prospective 240-episode assignment and a fixed 2026-09-10 00:43 UTC reporting
-deadline. It supplies descriptive mechanism and performance counts only; it
-cannot calibrate the original retention variance or establish noninferiority.
+deadline. It completed all 240 episodes; the [results](BOUNDED_RESULTS.md) show
+a ceiling in all three arms, one saved-program mechanism event, and zero answer
+flips in one actual deletion rerun. It cannot calibrate the original retention
+variance or establish noninferiority.
 The equations below and the 32-stream assignment remain uncompleted proposals.
 
 **Earlier 2026-09-09 amendment:** the execution target was the complete

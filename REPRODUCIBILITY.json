@@ -36,7 +36,7 @@
   "native_benchmark_measured": false,
   "no_forgetting_established": false,
   "claims": "See current results and formal boundary; tests and interface checks are not benchmark performance.",
-  "current_results": "artifacts/v10/results.json",
+  "current_results": "artifacts/campaign/fast-dense-v2-restart-offline-report-v1/report.json",
   "cuda_validation": "artifacts/v10/cuda-validation.json",
   "runtime_cleanup": "artifacts/v10/runtime-cleanup.json",
   "followup_status": "stopped: 65 complete transcripts and 1 partial record; old_after and final panels not reached",
@@ -48,7 +48,7 @@
     "qualification": "docs/campaign/QUALIFICATION.md",
     "runner": "tools/campaign.py",
     "runtime_config": "configs/campaign_runtime_dense.json",
-    "status": "stage_1_registered_report; original_32_stream_pilot_paused; separate_240_record_diagnostic_running; confirmation_and_auxiliaries_held",
+    "status": "stage_1_registered_report_with_completed_two_stream_diagnostic; original_32_stream_pilot_stopped_incomplete; confirmation_and_auxiliaries_held",
     "confirmatory_result_established": false,
     "native_result_established": false,
     "sequence": "configs/campaign_sequence_dense_v2.json",
@@ -91,13 +91,34 @@
         101302,
         101303
       ],
-      "complete": false,
+      "complete": true,
       "confirmatory": false,
       "report_deadline_utc": "2026-09-10T00:43:00+00:00",
       "freeze": "artifacts/campaign/fast-dense-v2-restart/freeze.json",
       "runtime_receipt": "artifacts/campaign/runtime-dense-restart/server.json",
-      "offline_replay_instructions": "artifacts/campaign/fast-dense-v2-restart/RUN.md"
+      "offline_replay_instructions": "artifacts/campaign/fast-dense-v2-restart/RUN.md",
+      "completed_records": 240,
+      "model_calls": 353,
+      "measured_tokens": 4251272,
+      "unknown_usage_calls": 0,
+      "qualifying_fixed_program_events": 1,
+      "accuracy_superiority_observed": false,
+      "report": "artifacts/campaign/fast-dense-v2-restart-offline-report-v1/report.json",
+      "reporting_correction": "artifacts/campaign/fast-dense-v2-restart-offline-report-v1/manifest.json",
+      "agent_relation_deletion": {
+        "directory": "artifacts/campaign/fast-dense-v2-restart-deletion",
+        "eligible_cases": 1,
+        "completed_cases": 1,
+        "answer_flips_to_wrong": 0,
+        "model_calls": 1,
+        "measured_tokens": 18777,
+        "unknown_usage_calls": 0
+      }
     },
-    "time_budget_unused_freeze": "artifacts/campaign/fast-dense-v2/startup-failure.json"
-  }
+    "time_budget_unused_freeze": "artifacts/campaign/fast-dense-v2/startup-failure.json",
+    "bounded_results": "docs/campaign/BOUNDED_RESULTS.md",
+    "runtime_cleanup": "artifacts/campaign/time-budget-cleanup.json"
+  },
+  "historical_results": "artifacts/v10/results.json",
+  "legacy_cost_scope": "Top-level followup_status, known_model_tokens, unknown_usage_calls and model_token_total_complete describe the historical v10 followup only. Current campaign costs and completion are under campaign.time_budget_diagnostic."
 }

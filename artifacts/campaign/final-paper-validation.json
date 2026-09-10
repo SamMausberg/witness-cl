@@ -1,0 +1,179 @@
+{
+  "actual_relation_deletion": {
+    "calls": 1,
+    "completed_cases": 1,
+    "correct_despite_deletion": 1,
+    "planned_cases": 1,
+    "total_tokens": 18777,
+    "unknown_usage_calls": 0,
+    "wrong_answer_flips": 0
+  },
+  "combined_main_and_deletion_cost": {
+    "calls": 354,
+    "total_tokens": 4270049,
+    "unknown_usage_calls": 0
+  },
+  "created_utc": "2026-09-10T00:28:59.813542+00:00",
+  "frozen_source_files_checked": 79,
+  "interpretation": {
+    "accuracy_advantage_observed": false,
+    "at_least_20_percent_token_saving_against_both_controls_observed": false,
+    "drift_robustness_or_native_stateful_gain_claim": false,
+    "policy_level_wrong_answer_flip_observed": false,
+    "population_or_noninferiority_claim": false
+  },
+  "kind": "final_paper_validation",
+  "main_evidence": {
+    "calls": 353,
+    "delayed_lifecycle_funnel": {
+      "ever_eligible_relations": 12,
+      "evicted_relations": 4,
+      "executed_relations": 3,
+      "later_corroborations": 12,
+      "own_source_admissions": 36,
+      "qualifying_chains": 1,
+      "retrieved_relations": 12
+    },
+    "journals_sha256": "a45da509d635d99bd36574022f6e265fd332ffde6f4c114e29b016de8aafb31a",
+    "per_arm": {
+      "ace": {
+        "calls": 180,
+        "phases": {
+          "final": {
+            "correct": 16,
+            "n": 16
+          },
+          "old_after": {
+            "correct": 8,
+            "n": 8
+          },
+          "old_before": {
+            "correct": 8,
+            "n": 8
+          },
+          "ordinary": {
+            "correct": 48,
+            "n": 48
+          }
+        },
+        "records": 80,
+        "total_tokens": 625254
+      },
+      "delayed": {
+        "calls": 88,
+        "phases": {
+          "final": {
+            "correct": 16,
+            "n": 16
+          },
+          "old_after": {
+            "correct": 8,
+            "n": 8
+          },
+          "old_before": {
+            "correct": 8,
+            "n": 8
+          },
+          "ordinary": {
+            "correct": 48,
+            "n": 48
+          }
+        },
+        "records": 80,
+        "total_tokens": 1347094
+      },
+      "full_history": {
+        "calls": 85,
+        "phases": {
+          "final": {
+            "correct": 16,
+            "n": 16
+          },
+          "old_after": {
+            "correct": 8,
+            "n": 8
+          },
+          "old_before": {
+            "correct": 8,
+            "n": 8
+          },
+          "ordinary": {
+            "correct": 48,
+            "n": 48
+          }
+        },
+        "records": 80,
+        "total_tokens": 2278924
+      }
+    },
+    "qualifying_saved_program_chains": 1,
+    "records": 240,
+    "records_sha256": "d887a979d7eb5cd17049f8a43eea6991df23c6d1e5934946c5483eecdc667c5d",
+    "seeds": [
+      101302,
+      101303
+    ],
+    "streams": 2,
+    "token_ratio_delayed_to_ace": 2.15447482143257,
+    "token_ratio_delayed_to_full_history": 0.5911096640344303,
+    "total_tokens": 4251272,
+    "unknown_usage_calls": 0
+  },
+  "model_calls_made": 0,
+  "offline_reporting_correction": {
+    "classification_or_eligibility_changes": false,
+    "identical_after_declared_normalization": true,
+    "normalization": "offline elapsed_seconds removed; lineage nodes and child names sorted with multiplicity retained",
+    "normalized_census_sha256": "461db69fb23a4b29d1878b2b4dbfc8cc68a8804187a63868e72e3f811edd51eb"
+  },
+  "original_pilot": {
+    "complete": false,
+    "completed_records": 161,
+    "diagnostic_does_not_fill_missing_cells": true,
+    "planned_records": 17664,
+    "planned_streams": 32
+  },
+  "paper": {
+    "build_command": "make paper",
+    "build_exit_code": 0,
+    "claims_established_count": 3,
+    "claims_not_established_count": 3,
+    "journal_acceptance_claim": false,
+    "latex_warning_or_overfull_matches": [],
+    "pages": 12,
+    "stage": "Stage 1 registered report with separate completed exploratory diagnostic",
+    "visual_review_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "visual_review_scope": "All twelve rendered pages reviewed. Pages 1\u20138 unchanged after their review; final content on pages 9\u201312 reviewed. Final rebuild changed only a source comment. No clipping or unreadable overlap observed."
+  },
+  "schema_version": 1,
+  "verified_inputs_sha256": {
+    "artifacts/campaign/fast-dense-v2-restart-deletion/audit.json": "24b4a17abb5b0ab523b9021360d7ed9e88d92106823a32e8f39bfae9e01a1213",
+    "artifacts/campaign/fast-dense-v2-restart-deletion/freeze.json": "0379e1d7fbd0706a6038909b0eee4ab2a73e9bcff350a24e69a3d771db81c2ac",
+    "artifacts/campaign/fast-dense-v2-restart-deletion/summary.json": "c0ad3eefaa4fb4838dd8b5607a2a04ea63d83994189fad9f5af1c24bc32c9373",
+    "artifacts/campaign/fast-dense-v2-restart-offline-report-v1/comparison.json": "9db6873f8d82d706fd0d48448eb4b1ab7ae35b5cf83556935edc4bf23ecf9ae8",
+    "artifacts/campaign/fast-dense-v2-restart-offline-report-v1/manifest.json": "dcacbad59a27fcec80f8cf7b3fc530de8aa0c9cd6bc12f9396209d7fb007fe3f",
+    "artifacts/campaign/fast-dense-v2-restart-offline-report-v1/report.json": "1baf2d44d71d53c0c47f21ed722383eefa97d6771f84dff8d68da716b8702d26",
+    "artifacts/campaign/fast-dense-v2-restart/audit-mechanism.json": "aa51fcc742cacced0c80eb22ed046c6b922ef7ee0160dfcd47668b015c7695dc",
+    "artifacts/campaign/fast-dense-v2-restart/audit.json": "8db78420074c2cd5e069cc351e8b9af76822cd4ff6bb0d1f2ec0670b967e6e1c",
+    "artifacts/campaign/fast-dense-v2-restart/freeze.json": "180ce0c3c61ea3150eb723b7db295e356a92703db6c456e4f735ec8f1cb39b9b",
+    "artifacts/campaign/fast-dense-v2-restart/schedule.json": "57be7162524de3b6e991e2d0c427eca6ae2b81e3af60f0872f373b4fa2692f70",
+    "artifacts/campaign/fast-dense-v2-restart/summary.json": "184304b68567d3abd95cc763c9bd6c4b786acd988c7fe3aeb1abeb331c1285f9",
+    "paper/campaign_results.tex": "eb01d9e2b0792c30447b43c2f25da38ef27b4baddd1d2172f7bbf737264ab89c",
+    "paper/main.pdf": "6b23e9d53bcb9bb6f4fec7345880fd56b34d3bad9fe9adc8bde507cbd939a423",
+    "paper/main.tex": "f8319b344e53d1953a32ed9464f13d2fae5db5b9337d98dd90f610963a764903",
+    "paper/references.bib": "6fc135ad5207acba7bb2dae0f20d9f40451004ea3f62886688a1a582e9068d8d"
+  }
+}

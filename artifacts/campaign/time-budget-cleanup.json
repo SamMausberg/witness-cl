@@ -1,0 +1,68 @@
+{
+  "recorded_utc": "2026-09-10T00:19:24.535291+00:00",
+  "reason": "Complete bounded diagnostic and deletion rerun; finalizing within user two-hour cap. Original pilot remains incomplete; no further model calls authorized by this amendment.",
+  "verified_processes": [
+    {
+      "pid": 182323,
+      "cmdline_sha256": "72ec4e4d2f846353978bccd266cbef687d9a0cbb5cdd3b2f993dfee0cab435e6",
+      "start_ticks": "1351147",
+      "state_before": "T",
+      "state_after": "absent"
+    },
+    {
+      "pid": 162627,
+      "cmdline_sha256": "612a407e22072dd63690886446f2f491d81f5f3c9f3cc822f5cc69e4b14ce630",
+      "start_ticks": "1213578",
+      "state_before": "T",
+      "state_after": "absent"
+    },
+    {
+      "pid": 201846,
+      "cmdline_sha256": "0767ebfe1f1f945a00c6df0131636fc6dc06310ce9c1d3933bf55f6484604e28",
+      "start_ticks": "1496907",
+      "state_before": "T",
+      "state_after": "absent"
+    },
+    {
+      "pid": 222182,
+      "start_ticks": "1659413",
+      "cmdline_sha256": "97a85a9dc5e6ea4ad0f2ae5d2f9593ce3daa6f737e7534ab7e3bf14fbcaceaef",
+      "state_before": "S",
+      "state_after": "absent"
+    },
+    {
+      "pid": 222592,
+      "start_ticks": "1662504",
+      "cmdline_sha256": "613daeac473ab7543504a27132be713c81167f3e0e182b00ede68598d8e0ed65",
+      "state_before": "S",
+      "state_after": "absent"
+    }
+  ],
+  "running_runtime_receipt_sha256": "732799684d2737421d044d31c12ed33b396204d6d0a62128b84dbaf597608992",
+  "actions": [
+    {
+      "pid": 201846,
+      "signal": "SIGKILL",
+      "reason": "Terminate our suspended obsolete job without allowing another model request"
+    },
+    {
+      "pid": 162627,
+      "signal": "SIGKILL",
+      "reason": "Terminate our suspended obsolete job without allowing another model request"
+    },
+    {
+      "pid": 182323,
+      "signal": "SIGKILL",
+      "reason": "Terminate our suspended obsolete job without allowing another model request"
+    },
+    {
+      "pid": 222182,
+      "signal": "SIGTERM",
+      "reason": "Graceful launcher shutdown after completed model work"
+    }
+  ],
+  "verified_finished_utc": "2026-09-10T00:19:41.273043+00:00",
+  "all_jobs_terminated": true,
+  "final_runtime_receipt_sha256": "5da4da8b4d6ca4cf3f61effe8f4cc92e08a5b8fdb29005f1dd59c53044463a60",
+  "server_status": "stopped"
+}

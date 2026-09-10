@@ -63,7 +63,9 @@ with no unknown usage. These are cold solver-competence results, not stateful
 transfer, retention, cost savings or native benchmark results.
 
 The runner subsequently froze development at 22:10:22.299041 UTC on seeds
-101100–101103, with all three arms and 2,208 assigned episodes. It is running
-the complete schedule without a warm gate or short wall deadline. Its source
-copy retains this document as it existed at that freeze. Later reporting changes
-do not change the copied learner, generator, prompts or schedule.
+101100–101103, with all three arms and 2,208 assigned episodes. This was the first block of
+the original 32-stream pilot. The subsequent two-hour amendment stopped that
+pilot at 161/17,664 completed episodes. The separately frozen diagnostic
+completed 240/240 episodes; see [its results](BOUNDED_RESULTS.md). The original
+source copy retains this document as it existed at freeze. Later reporting
+changes do not change its learner, generator, prompts or schedule.

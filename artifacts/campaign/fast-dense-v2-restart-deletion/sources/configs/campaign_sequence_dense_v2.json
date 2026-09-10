@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "candidate": "delayed-stream-1-dense-catalog-reasoning-v2",
+  "arms": [
+    "full_history",
+    "ace",
+    "delayed"
+  ],
+  "qualification": [
+    {
+      "name": "qualification-reuse",
+      "seeds": [
+        100200,
+        100201
+      ],
+      "conditions": [
+        "reuse"
+      ]
+    },
+    {
+      "name": "qualification-drift",
+      "seeds": [
+        100202,
+        100203
+      ],
+      "conditions": [
+        "drift"
+      ]
+    }
+  ],
+  "development": {
+    "name": "development",
+    "seed_start": 101100,
+    "streams": 4,
+    "conditions": [
+      "reuse"
+    ]
+  },
+  "sizing": {
+    "name": "sizing",
+    "seed_start": 110100,
+    "streams": 32,
+    "conditions": [
+      "reuse"
+    ]
+  },
+  "confirmation": {
+    "name": "confirmation",
+    "seed_start": 11000000,
+    "streams": "from_audited_sizing_power",
+    "conditions": [
+      "reuse"
+    ]
+  },
+  "diagnostics": [
+    {
+      "name": "stable-drift",
+      "seed_start": 400100,
+      "streams": 64,
+      "conditions": [
+        "reuse",
+        "drift"
+      ]
+    },
+    {
+      "name": "nonreuse",
+      "seed_start": 500100,
+      "streams": 32,
+      "conditions": [
+        "nonreuse"
+      ]
+    }
+  ],
+  "separate_assay": {
+    "development_seed_start": 102000,
+    "development_streams": 4,
+    "seed_start": 300000,
+    "streams": 64,
+    "probes_per_checkpoint": 8
+  },
+  "native": {
+    "permutations": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "benchmark_seed": 42,
+    "questions_per_permutation": 40
+  },
+  "selection": "No outcome-driven stream replacement. Confirmation n is the sole sizing-dependent schedule field.",
+  "recovery": "Verify and resume frozen sources and receipts; uncertain model calls stop the original run."
+}

@@ -1,3 +1,9 @@
+**Final status:** the suspended runner and both supervisors were terminated
+after the separate diagnostic completed. Verified process identities and cleanup
+are recorded in `../time-budget-cleanup.json`. The original pilot remains
+incomplete at 161/17,664; the historical launch instructions below are retained
+for provenance and do not authorize resuming this old runtime identity.
+
 # Paused by the subsequent time-budget amendment
 
 **Subsequent runtime loss:** the original serving PID disappeared before the
