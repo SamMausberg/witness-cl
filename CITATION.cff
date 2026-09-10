@@ -1,9 +1,11 @@
 cff-version: 1.2.0
-title: "Witness-CL: Evidence, Computation, and Retention in Online Learning Agents"
-message: "Research draft. Includes checked abstract Lean lemmas; no native benchmark win or universal retention claim."
+title: "Witness-CL: Delayed Corroboration for Executable Memory"
+message: "Cite this author-reviewed research release. The exploratory diagnostic does not establish confirmatory superiority or general retention."
 type: software
 version: 0.10.0
-date-released: 2026-09-09
+date-released: 2026-09-10
+repository-code: "https://github.com/SamMausberg/witness-cl"
+url: "https://github.com/SamMausberg/witness-cl"
 license: MIT
 authors:
   - family-names: Mausberg

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.0 — September 10, 2026
+
+- Released the author-reviewed Stage 1 manuscript and companion technical report with matching LaTeX sources and rebuilt PDFs.
+- Implemented delayed corroboration, the official-source ACE baseline, durable source-frozen campaigns, native interface adapters, and independent saved-data replay.
+- Completed a two-stream, 240-episode exploratory diagnostic: all three arms answered 80/80 correctly. Delayed memory used 40.9% fewer total tokens than full history and 115.4% more than ACE.
+- Recorded one changed-binding composition chain. The sole actual solver rerun after relation deletion recovered the correct answer using direct SQL (0/1 wrong-answer flips).
+- Preserved the incomplete 32-stream pilot, failed qualifications, original source freezes and negative evidence. Confirmatory superiority, two-point retention noninferiority and native benchmark gains remain unestablished.
+- Corrected stale authorship, citation and build references and removed superseded narrative documents from the current tree; historical material remains recoverable in Git.
+
 ## 0.9.0 — September 2026
 
 - Addressed the failed-solver prerequisite with seven actual diagnostics; a pinned 9B live-interaction/thinking configuration reaches 7/8. Preserved all failed settings.
@@ -67,8 +76,6 @@ incumbent-preserving updates with explicit trust-era resets; independent
 likelihood, learned-feature isolation, and exact paired-simulation components.
 New synthetic studies, 271 total Python tests, 632 C++ cases plus overflow check,
 and 39 uncompiled Lean theorem attempts. No native LLM or GPU result.
-
-# Changelog
 
 ## 0.2.0 (2026-09-08)
 

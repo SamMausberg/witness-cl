@@ -20,8 +20,11 @@ benchmark, qualified controls and complete cost receipts. Report prompt tokens,
 completion tokens, calls, tool queries and retained state separately. An admission
 or unchanged stored program is not proof of transfer or behavioral retention.
 
-The current supported entrypoint is `experiments/stateful_sql.py`; numbered
+The current experiment entrypoint is `experiments/delayed_sql.py`, managed by
+`tools/campaign.py`; `experiments/stateful_sql.py` and numbered
 modules remain as implementation dependencies and historical regression fixtures.
 Avoid changing them merely to restyle archived code. The current manuscript lives
 in `paper/main.tex`, and its factual claims should link to artifacts or primary
-sources. Generated tables must come from validated measurements.
+sources. The companion historical report lives in `paper/technical_report.tex`
+and builds with `make technical-report`. Generated tables must come from
+validated measurements.

@@ -24,6 +24,15 @@ paper/*.fls
 paper/*.log
 paper/*.out
 .env
+.env.*
+!.env.example
+!.env.template
+*.pem
+*.p12
+*.pfx
+.netrc
+id_rsa
+id_ed25519
 artifacts/campaign/**/invocation.lock
 artifacts/local_model*.jsonl
 

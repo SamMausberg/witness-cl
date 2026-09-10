@@ -9,6 +9,10 @@ a later changed binding, and can then execute it inside a new computation.
 Learning happens between episodes without updating backbone weights. Every model
 request, learning check and memory transition is recorded.
 
+Samuel Mausberg completed human author review for this public release on
+September 10, 2026. The manuscript and implementation used AI assistance.
+Independent replication remains pending; this is not external peer review.
+
 **The confirmatory result is not established.** The delayed lifecycle, faithful
 online ACE adapter, native CL-Bench learning interface, durable campaign runner,
 matched-evidence/deletion assays and paired-stream analysis are implemented. Scripted
@@ -150,10 +154,11 @@ need a separately recorded protocol; no result is overwritten or selected away.
 | `artifacts/` | Original measurements, failed attempts and verification receipts |
 | `integrations/clbench/` | Pinned native ICL, ACE and delayed-memory adapters |
 
-Superseded paper editions and redundant older narrative documentation were removed from
-the working tree. [Historical provenance](docs/ARCHIVE.md) identifies their exact
-Git revision. Numbered implementation modules and original data remain where
-current tests, proofs and replay depend on them. They are not separate supported
-product releases.
+Superseded paper editions and 17 additional outdated narrative/planning documents
+were removed from the working tree. [Historical provenance](docs/ARCHIVE.md)
+identifies the exact Git revisions and retained records. Source-hashed protocols,
+validation-bound failure analyses, numbered implementation modules, and original
+data remain where tests, proofs and replay depend on them. They are historical
+research records, not separate supported product releases.
 
 MIT software. Downloaded models have their own licenses.

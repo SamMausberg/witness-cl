@@ -31,7 +31,8 @@
     "paper": "make paper",
     "legacy_replay": "make legacy-audit PYTHON=.venv/bin/python",
     "current_replay": ".venv/bin/python tools/replay_study.py artifacts/v10/development-94001 --freeze artifacts/v10/pre-followup-freeze.json --output artifacts/v10/replay-94001.json",
-    "cuda": "make cuda-check"
+    "cuda": "make cuda-check",
+    "technical_report": "make technical-report"
   },
   "native_benchmark_measured": false,
   "no_forgetting_established": false,
@@ -120,5 +121,20 @@
     "runtime_cleanup": "artifacts/campaign/time-budget-cleanup.json"
   },
   "historical_results": "artifacts/v10/results.json",
-  "legacy_cost_scope": "Top-level followup_status, known_model_tokens, unknown_usage_calls and model_token_total_complete describe the historical v10 followup only. Current campaign costs and completion are under campaign.time_budget_diagnostic."
+  "legacy_cost_scope": "Top-level followup_status, known_model_tokens, unknown_usage_calls and model_token_total_complete describe the historical v10 followup only. Current campaign costs and completion are under campaign.time_budget_diagnostic.",
+  "publication": {
+    "version": "0.10.0",
+    "date": "2026-09-10",
+    "author_review": {
+      "status": "completed",
+      "reviewer": "Samuel Mausberg",
+      "date": "2026-09-10"
+    },
+    "independent_replication": "pending",
+    "external_peer_review": "not_claimed",
+    "manuscript_source": "paper/main.tex",
+    "manuscript_pdf": "paper/main.pdf",
+    "technical_report_source": "paper/technical_report.tex",
+    "technical_report_pdf": "paper/technical_report.pdf"
+  }
 }

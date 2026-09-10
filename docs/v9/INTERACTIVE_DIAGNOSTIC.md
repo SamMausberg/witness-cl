@@ -1,5 +1,0 @@
-# Explicit interactive-contract diagnostic
-
-The first five development variants (four Qwen3-4B settings and one Qwen3.5-9B greedy setting) scored 0/8 for all four4B variants and1/8 for9B greedy on adaptation seed92000. The saved thinking trace repeatedly treats the database as inaccessible and copies the123.5 example answer. Read-only template inspection confirmed that the system message is rendered.
-
-The next diagnostic changes only the shared solver instruction relative to9b-evidence: explain that QUERY executes now and produces another turn, supply the already-public catalog-read action, and remove the numeric ANSWER example. It retains the same model, greedy nonthinking384-token response allowance,8 SELECTs,10 actions and eight warm items on92000. Catalog reads remain model-selected and paid; no rows or answers are supplied by the host. Freeze experiments/competence_interactive_v9.py before execution and retain all outputs. Run cap300s/400k tokens/100calls counts against the existing45-minute/4M-token/1600-call aggregate ceiling. This is adaptive development, not heldout validation or a causal test of individual sentences.
